@@ -1,14 +1,15 @@
 .navbar {
     display: flex;
-    justify-content: center; /* Center the content within the navbar */
+    justify-content: space-around; /* Center the content within the navbar */
     align-items: center;
     padding: 10px 0; /* Remove padding on the sides */
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed; /* Ensure the navbar stays at the top */
+    position: relative; /* Ensure the navbar stays at the top */
     width: 100%; /* Ensure the navbar spans the full width */
     z-index: 1000; /* Ensure the navbar is on top of other elements */
     top: 0; /* Stick the navbar to the top */
+    margin-bottom: 10px;
   }
   
   
