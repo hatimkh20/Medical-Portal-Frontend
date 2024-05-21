@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Open+Sans+Hebrew:wght@400;700&display=swap');
+
+.container {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 20px;
+  background: linear-gradient(to right, #84D0F6 70%, #224B5F 30%);
+  color: white;
+  height: 480px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content {
+  max-width: 50%;
+  z-index: 1;
+  margin-left: 10%;
+  text-align: left;
+}
+
+.title {
+  font-family: 'Open Sans Hebrew', sans-serif;
+  font-size: 66px;
+  color: #fff;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.register-button {
+  background-color: #224b5f;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 60px;
+  font-weight: 500;
+}
+
+.image-container {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.image {
+  height: auto;
+  max-width: 100%;
+}
+
+.description {
+  padding: 40px 20px;
+  background: #fff;
+  color: #224B5F;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+}
+
+.description-content {
+  text-align: justify;
+  padding: 10px 10%;
+}
+
+.description h2 {
+  margin-top: 0;
+  color: #224B5F;
+}
+
+.description p {
+  margin-bottom: 20px;
+}
