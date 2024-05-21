@@ -1,37 +1,42 @@
-import React, { useContext } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { AuthContext } from '../../context/AuthContext';
-import './Login.css';
+import React, { useContext } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { AuthContext } from "../../context/AuthContext";
+import "./Login.css";
+import authenticationImage from "../../assets/images/authentication.png"; // Correct relative path
 
 const Login = () => {
   const { login } = useContext(AuthContext);
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      gmcNumber: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      gmcNumber: "",
       signature: null,
-      password: '',
-      confirmPassword: ''
+      password: "",
+      confirmPassword: "",
     },
     validationSchema: Yup.object({
-      firstName: Yup.string().required('First Name is required'),
-      lastName: Yup.string().required('Last Name is required'),
-      email: Yup.string().email('Invalid email address').required('Email is required'),
-      gmcNumber: Yup.string().required('GMC Number is required'),
-      signature: Yup.mixed().required('Signature is required'),
-      password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+      firstName: Yup.string().required("First Name is required"),
+      lastName: Yup.string().required("Last Name is required"),
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email is required"),
+      gmcNumber: Yup.string().required("GMC Number is required"),
+      signature: Yup.mixed().required("Signature is required"),
+      password: Yup.string()
+        .min(6, "Password must be at least 6 characters")
+        .required("Password is required"),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
-        .required('Confirm Password is required')
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Confirm Password is required"),
     }),
-    onSubmit: values => {
+    onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       login();
-    }
+    },
   });
 
   return (
@@ -106,7 +111,10 @@ const Login = () => {
                 id="signature"
                 name="signature"
                 onChange={(event) => {
-                  formik.setFieldValue("signature", event.currentTarget.files[0]);
+                  formik.setFieldValue(
+                    "signature",
+                    event.currentTarget.files[0]
+                  );
                 }}
                 onBlur={formik.handleBlur}
               />
@@ -140,16 +148,29 @@ const Login = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.confirmPassword}
               />
-              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+              {formik.touched.confirmPassword &&
+              formik.errors.confirmPassword ? (
                 <div className="error">{formik.errors.confirmPassword}</div>
               ) : null}
             </div>
 
-            <button type="submit" className="btn btn-primary">Register</button>
+            <button type="submit" className="btn btn-primary">
+              Register
+            </button>
           </form>
-          <p className="login-footer">Already have an account? <a href="#">Login</a></p>
+          <p className="login-footer">
+            Already have an account? <a href="#">Login</a>
+          </p>
         </div>
-        <div className="login-info">
+        <div
+          className="login-info"
+          style={{
+            backgroundImage: `url(${authenticationImage})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        >
           <h2>Join Us Today!</h2>
           <p>
             Welcome to Doreen Medicals Limited! Signing up is quick and easy.
