@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import AuthProvider from './context/AuthContext';
 import Navbar from './components/Navigation/Navbar';
+import Dashboard from './components/User Components/Dashboard';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* Add other routes here */}
         </Routes>
       </Router>
