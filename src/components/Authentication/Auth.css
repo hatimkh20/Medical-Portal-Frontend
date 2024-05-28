@@ -1,8 +1,9 @@
+/* Auth.css */
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Use min-height to account for content overflow */
+  min-height: calc(100vh - 100px); /* Subtract the height of the navbar */
   background-size: cover;
 }
 
