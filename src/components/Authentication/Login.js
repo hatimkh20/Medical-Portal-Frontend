@@ -1,13 +1,15 @@
+// components/Auth/Login.js
 import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../../context/AuthContext";
 import "./Auth.css";
 import authenticationImage from "../../assets/images/authentication.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -18,13 +20,11 @@ const Login = () => {
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
-      password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
-        .required("Password is required"),
+      password: Yup.string().required("Password is required"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      login();
+    onSubmit: async (values) => {
+      await login(values.email, values.password);
+      navigate("/dashboard");
     },
   });
 

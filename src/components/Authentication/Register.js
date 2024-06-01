@@ -3,11 +3,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../../context/AuthContext";
 import "./Auth.css";
-import authenticationImage from "../../assets/images/authentication.png"; // Correct relative path
-import { Link } from "react-router-dom";
+import authenticationImage from "../../assets/images/authentication.png";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
-  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -15,7 +16,7 @@ const Register = () => {
       lastName: "",
       email: "",
       gmcNumber: "",
-      signature: null,
+      signature: "",  // Changed to string
       password: "",
       confirmPassword: "",
     },
@@ -26,7 +27,7 @@ const Register = () => {
         .email("Invalid email address")
         .required("Email is required"),
       gmcNumber: Yup.string().required("GMC Number is required"),
-      signature: Yup.mixed().required("Signature is required"),
+      signature: Yup.string().required("Signature is required"),  // Changed validation to string
       password: Yup.string()
         .min(6, "Password must be at least 6 characters")
         .required("Password is required"),
@@ -34,9 +35,24 @@ const Register = () => {
         .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Confirm Password is required"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      login();
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post("http://localhost:3001/api/auth/register", {
+          first_name: values.firstName,
+          last_name: values.lastName,
+          email: values.email,
+          gmc_number: values.gmcNumber,
+          signature: values.signature,  // Send signature as a string
+          password: values.password,
+        });
+        if (response.status === 200 || response.status === 201) {
+          alert("Registration successful. Please login.");
+          navigate("/sign-in");  // Redirect to login screen upon successful registration
+        }
+      } catch (error) {
+        console.error("There was an error registering!", error);
+        alert("Registration failed");
+      }
     },
   });
 
@@ -108,16 +124,12 @@ const Register = () => {
             <div className="form-group">
               <label htmlFor="signature">Signature</label>
               <input
-                type="file"
+                type="text"
                 id="signature"
                 name="signature"
-                onChange={(event) => {
-                  formik.setFieldValue(
-                    "signature",
-                    event.currentTarget.files[0]
-                  );
-                }}
+                onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.signature}
               />
               {formik.touched.signature && formik.errors.signature ? (
                 <div className="error">{formik.errors.signature}</div>
@@ -149,8 +161,7 @@ const Register = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.confirmPassword}
               />
-              {formik.touched.confirmPassword &&
-              formik.errors.confirmPassword ? (
+              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
                 <div className="error">{formik.errors.confirmPassword}</div>
               ) : null}
             </div>
