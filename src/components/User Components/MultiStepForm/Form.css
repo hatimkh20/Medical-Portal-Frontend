@@ -1,0 +1,18 @@
+/* src/components/MultiStepForm/MultiStepForm.css */
+.multi-step-form-container {
+  background-color: #ffffff;
+  padding: 30px;
+  margin: 0 10%;
+}
+
+.form-header {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #224b5f;
+}
+
+.form-description {
+  margin-bottom: 30px;
+  font-size: 1.1em;
+  color: #666;
+}
