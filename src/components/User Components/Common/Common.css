@@ -22,7 +22,7 @@
 }
 
 .text-input, .text-area {
-  width: 90%;
+  width: 100%;
   padding: 10px;
   background-color: #f1f8fb;
   font-size: 1em;
@@ -88,10 +88,11 @@
   flex-wrap: wrap;
   gap: 20px;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .input-group .input-form-group, .input-group .textarea-form-group {
-  flex: 1 1 calc(50% - 20px); /* Adjust width for better alignment */
+  flex: 1 1 calc(50% - 30px); /* Adjust width for better alignment */
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -106,4 +107,10 @@
   .input-group .input-form-group, .input-group .textarea-form-group {
     flex: 1 1 100%;
   }
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }

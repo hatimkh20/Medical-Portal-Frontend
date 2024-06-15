@@ -37,17 +37,17 @@ const MultiStepForm = () => {
     console.log("Submitting form", values);
     setFormData({ ...formData, ...values });
     // Save data to the backend
-    try {
-      await fetch('/api/saveFormData', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...formData, ...values }),
-      });
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    // try {
+    //   await fetch('/api/saveFormData', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ ...formData, ...values }),
+    //   });
+    // } catch (error) {
+    //   console.error('Error:', error);
+    // }
     nextStep(values);
   };
 

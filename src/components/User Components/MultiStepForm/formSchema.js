@@ -17,9 +17,6 @@ export const claimantDetailsSchema = Yup.object().shape({
 
 export const accidentDetailsSchema = Yup.object().shape({
   vehicleType: Yup.string().required("Vehicle Type is required"),
-  otherVehicleType: Yup.string().when('vehicleType', {
-    is: 'Other',
-    then: Yup.string().required("Other Vehicle Type is required"),
-  }),
-  // Add other fields here with validation
+  otherVehicleType: Yup.string().nullable(),
+  vehicleWheels: Yup.string().nullable()
 });
