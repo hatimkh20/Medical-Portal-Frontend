@@ -67,6 +67,9 @@
 .radio-label {
   margin-right: 20px;
   color: #224b5f;
+  font-family: 'Open Sans';
+  font-size: 16px !important;
+  font-weight: 600;
 }
 
 .radio-input {
@@ -76,7 +79,13 @@
 .radio-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: start;
+  gap: 30px;
+  width: 200px;
+  background: #F1F8FB;
+  border-radius: 20px;
+  padding: 7px 10px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .radio-container input[type="radio"] {
@@ -113,4 +122,12 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+
+.radio-group-inline {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #224B5F;
+  padding: 6px 0px;
 }

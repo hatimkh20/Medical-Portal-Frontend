@@ -14,5 +14,6 @@
 .form-description {
   margin-bottom: 30px;
   font-size: 1.1em;
-  color: #666;
+  color: #333;
+  font-weight: 600;
 }

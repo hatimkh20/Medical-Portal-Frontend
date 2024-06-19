@@ -60,6 +60,7 @@ const ClaimantDetails = ({ values }) => {
             <RadioButton name="medicalRecordsProvided" value="no" label="No" />
           </div>
         </div>
+
         <div className="form-group">
           <label>Has photo ID been confirmed?</label>
           <div className="radio-container">

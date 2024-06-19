@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import ClaimantDetails from "./ClaimantDetails";
 import AccidentDetails from "./AccidentDetails";
-import { claimantDetailsSchema, accidentDetailsSchema } from "./formSchema";
+import AccidentSectionForm from "./AccidentSection"; // Import the new form component
+import {
+  claimantDetailsSchema,
+  accidentDetailsSchema,
+  accidentSectionSchema,
+} from "./formSchema";
 import "./Form.css";
 
 const MultiStepForm = () => {
@@ -20,11 +25,13 @@ const MultiStepForm = () => {
     dateOfAccident: "",
     ageAtTimeOfAccident: "",
     whichTypeOfIDChecked: "",
-    // Add other form fields here
+    vehicleType: "", // Add new fields as needed
+    otherVehicleType: "",
+    vehicleWheels: "",
+    // Continue adding other new fields here
   });
 
   const nextStep = (values) => {
-    console.log("Next Step");
     setFormData({ ...formData, ...values });
     setCurrentStep(currentStep + 1);
   };
@@ -33,21 +40,8 @@ const MultiStepForm = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = async (values) => {
-    console.log("Submitting form", values);
+  const handleSubmit = (values) => {
     setFormData({ ...formData, ...values });
-    // Save data to the backend
-    // try {
-    //   await fetch('/api/saveFormData', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ ...formData, ...values }),
-    //   });
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
     nextStep(values);
   };
 
@@ -57,12 +51,12 @@ const MultiStepForm = () => {
         return (
           <Formik
             initialValues={formData}
-           validationSchema={claimantDetailsSchema}
+            validationSchema={claimantDetailsSchema}
             onSubmit={handleSubmit}
           >
-            {({ values }) => (
+            {(formikProps) => (
               <Form>
-                <ClaimantDetails values={values} />
+                <ClaimantDetails {...formikProps} />
               </Form>
             )}
           </Formik>
@@ -74,24 +68,33 @@ const MultiStepForm = () => {
             validationSchema={accidentDetailsSchema}
             onSubmit={handleSubmit}
           >
-            {({ values }) => (
+            {(formikProps) => (
               <Form>
-                <AccidentDetails values={values} prevStep={prevStep} />
+                <AccidentDetails {...formikProps} prevStep={prevStep} />
               </Form>
             )}
           </Formik>
         );
-      // Add cases for other steps
+      case 3:
+        return (
+          <Formik
+            initialValues={formData}
+            validationSchema={accidentSectionSchema}
+            onSubmit={handleSubmit}
+          >
+            {(formikProps) => (
+              <Form>
+                <AccidentSectionForm {...formikProps} prevStep={prevStep} />
+              </Form>
+            )}
+          </Formik>
+        );
       default:
         return null;
     }
   };
 
-  return (
-    <div className="multi-step-form-container">
-      {renderStep()}
-    </div>
-  );
+  return <div className="multi-step-form-container">{renderStep()}</div>;
 };
 
 export default MultiStepForm;
