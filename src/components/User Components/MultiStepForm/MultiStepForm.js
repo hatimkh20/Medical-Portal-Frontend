@@ -10,6 +10,8 @@ import {
   accidentSectionSchema,
 } from "./formSchema";
 import "./Form.css";
+import AnatomySectionForm from "./AnatomySection";
+import SymptomSectionForm from "./SymptomSectionForm";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -51,7 +53,7 @@ const MultiStepForm = () => {
         return (
           <Formik
             initialValues={formData}
-            validationSchema={claimantDetailsSchema}
+            //validationSchema={claimantDetailsSchema}
             onSubmit={handleSubmit}
           >
             {(formikProps) => (
@@ -65,7 +67,7 @@ const MultiStepForm = () => {
         return (
           <Formik
             initialValues={formData}
-            validationSchema={accidentDetailsSchema}
+            //validationSchema={accidentDetailsSchema}
             onSubmit={handleSubmit}
           >
             {(formikProps) => (
@@ -79,7 +81,7 @@ const MultiStepForm = () => {
         return (
           <Formik
             initialValues={formData}
-            validationSchema={accidentSectionSchema}
+            //validationSchema={accidentSectionSchema}
             onSubmit={handleSubmit}
           >
             {(formikProps) => (
@@ -89,6 +91,37 @@ const MultiStepForm = () => {
             )}
           </Formik>
         );
+      case 4:
+        return (
+          <Formik
+            initialValues={formData}
+            //validationSchema={accidentSectionSchema}
+            onSubmit={handleSubmit}
+          >
+            {(formikProps) => (
+              <Form>
+                <AnatomySectionForm {...formikProps} prevStep={prevStep} />
+              </Form>
+            )}
+          </Formik>
+        );
+
+      case 5:
+        return (
+          <Formik initialValues={formData} onSubmit={handleSubmit}>
+            {(formikProps) => (
+              <Form>
+                <SymptomSectionForm
+                  {...formikProps}
+                  selectedAnatomies={formData.selectedAnatomies}
+                  prevStep={prevStep}
+                  nextStep={nextStep}
+                />
+              </Form>
+            )}
+          </Formik>
+        );
+
       default:
         return null;
     }
