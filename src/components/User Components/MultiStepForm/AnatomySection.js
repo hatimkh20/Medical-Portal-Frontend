@@ -11,8 +11,10 @@ const AnatomySectionForm = ({ prevStep, nextStep }) => {
   return (
     <FormLayout title="SECTION: ANATOMY">
       <p className="form-description">Please select affected anatomies.</p>
+      <div className='anatomy-container'>
       <SelectableList title="Anatomy" options={anatomyOptions} />
       <SelectableList title="Psychological Injuries" options={psychologicalInjuryOptions} />
+      </div>
       <div className="button-group">
         <Button type="button" onClick={prevStep}>Previous Step</Button>
         <Button type="submit" onClick={nextStep}>Proceed to Next Step</Button>

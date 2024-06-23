@@ -46,23 +46,25 @@ const SelectableList = ({ options, title }) => {
         </div>
       </div>
       <div>
-      <div className={styles.title}>Selected Options</div>
-
-      <div className={styles.list}>
-        {selectedItems.map((item, index) => (
-          <div key={index} className={styles.item}>
-            {item}
-            <span
-              onClick={() => handleRemoveItem(item)}
-              className={styles.removeButton}
-            >
-              X
-            </span>
-          </div>
-        ))}
+        <div className={styles.title}>Selected Options</div>
+        <div className={styles.list}>
+          {selectedItems.length > 0 ? (
+            selectedItems.map((item, index) => (
+              <div key={index} className={styles.item}>
+                {item}
+                <span
+                  onClick={() => handleRemoveItem(item)}
+                  className={styles.removeButton}
+                >
+                  X
+                </span>
+              </div>
+            ))
+          ) : (
+            <div className={styles.noItems}>Please select any options</div>
+          )}
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 };

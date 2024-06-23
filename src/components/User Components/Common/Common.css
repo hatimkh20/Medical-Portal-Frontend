@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 20px;
   background-color: #ffffff;
+  color: #224B5F;
 }
 
 .form-group, .input-form-group, .textarea-form-group {
@@ -12,7 +13,7 @@
 .form-group label, .input-form-group label, .textarea-form-group label {
   margin-bottom: 5px;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 14px;
   color: #224b5f;
   display: block;
 }
@@ -94,7 +95,6 @@
 
 .input-group {
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
   align-items: flex-start;
   justify-content: space-between;
@@ -107,7 +107,7 @@
 }
 
 .rowspan-2 {
-  flex: 1 1 calc(50% - 20px); /* Adjust width for better alignment */
+  flex: 1 1 calc(50% - 30px); /* Adjust width for better alignment */
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -130,4 +130,17 @@
   font-weight: 600;
   color: #224B5F;
   padding: 6px 0px;
+}
+
+.form-sub-heading {
+  color: #224B5F;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.anatomy-container {
+  display: flex;
+  flex-direction: column;
 }

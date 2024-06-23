@@ -1,4 +1,9 @@
 /* src/components/MultiStepForm/MultiStepForm.css */
+
+* {
+  font-family: 'Open Sans' !important;
+}
+
 .multi-step-form-container {
   background-color: #ffffff;
   padding: 30px;

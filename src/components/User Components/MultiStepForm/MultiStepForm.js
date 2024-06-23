@@ -12,6 +12,11 @@ import {
 import "./Form.css";
 import AnatomySectionForm from "./AnatomySection";
 import SymptomSectionForm from "./SymptomSectionForm";
+import TreatmentSection from "./TreatmentSection";
+import LivelihoodSection from "./LivelihoodSection";
+import EducationSection from "./EducationSection";
+import DomesticImpactList from "./DomesticImpactList";
+import DomesticImpactSection from "./DomesticImpactSection";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -116,6 +121,80 @@ const MultiStepForm = () => {
                   selectedAnatomies={formData.selectedAnatomies}
                   prevStep={prevStep}
                   nextStep={nextStep}
+                />
+              </Form>
+            )}
+          </Formik>
+        );
+
+        case 6:
+        return (
+          <Formik initialValues={formData} onSubmit={handleSubmit}>
+            {(formikProps) => (
+              <Form>
+                <TreatmentSection
+                  {...formikProps}
+                  prevStep={prevStep}
+                  nextStep={nextStep}
+                />
+              </Form>
+            )}
+          </Formik>
+        );
+
+        case 7:
+        return (
+          <Formik initialValues={formData} onSubmit={handleSubmit}>
+            {(formikProps) => (
+              <Form>
+                <LivelihoodSection
+                  {...formikProps}
+                  prevStep={prevStep}
+                  nextStep={nextStep}
+                />
+              </Form>
+            )}
+          </Formik>
+        );
+
+        case 8:
+        return (
+          <Formik initialValues={formData} onSubmit={handleSubmit}>
+            {(formikProps) => (
+              <Form>
+                <EducationSection
+                  {...formikProps}
+                  prevStep={prevStep}
+                  nextStep={nextStep}
+                />
+              </Form>
+            )}
+          </Formik>
+        );
+
+        case 9:
+        return (
+          <Formik initialValues={formData} onSubmit={handleSubmit}>
+            {(formikProps) => (
+              <Form>
+                <DomesticImpactList
+                  {...formikProps}
+                  prevStep={prevStep}
+                  nextStep={nextStep}
+                />
+              </Form>
+            )}
+          </Formik>
+        );
+
+        case 10:
+        return (
+          <Formik initialValues={formData} onSubmit={handleSubmit}>
+            {(formikProps) => (
+              <Form>
+                <DomesticImpactSection
+                  {...formikProps}
+                  prevStep={prevStep}
                 />
               </Form>
             )}

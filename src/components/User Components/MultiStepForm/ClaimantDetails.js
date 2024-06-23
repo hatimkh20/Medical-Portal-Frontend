@@ -47,9 +47,8 @@ const ClaimantDetails = ({ values }) => {
           type="number"
         />
       </div>
-      <div className="input-group"></div>
       <div className="input-group">
-        <div className="form-group">
+        <div className="input-form-group">
           <label>Were medical records provided?</label>
           <div className="radio-container">
             <RadioButton
@@ -61,7 +60,7 @@ const ClaimantDetails = ({ values }) => {
           </div>
         </div>
 
-        <div className="form-group">
+        <div className="input-form-group">
           <label>Has photo ID been confirmed?</label>
           <div className="radio-container">
             <RadioButton name="hasPhotoIDConfirmed" value="yes" label="Yes" />

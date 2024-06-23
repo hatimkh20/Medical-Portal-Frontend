@@ -42,16 +42,16 @@ const SymptomSectionForm = ({ prevStep, nextStep }) => {
         />
       </div>
       <div className="input-group">
-      <SelectField
-        label="What is the severity now?"
-        name={`${symptom}_current_severity`}
-        options={severityOptions.map((opt) => opt.label)}
-      />
-      <SelectField
-        label="If symptoms have resolved, how long ago was this?"
-        name={`${symptom}_resolved_duration`}
-        options={timeOptions.map((opt) => opt.label)}
-      />
+        <SelectField
+          label="What is the severity now?"
+          name={`${symptom}_current_severity`}
+          options={severityOptions.map((opt) => opt.label)}
+        />
+        <SelectField
+          label="If symptoms have resolved, how long ago was this?"
+          name={`${symptom}_resolved_duration`}
+          options={timeOptions.map((opt) => opt.label)}
+        />
       </div>
       
     </div>
