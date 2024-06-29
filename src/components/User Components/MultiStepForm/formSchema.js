@@ -33,3 +33,5 @@ export const accidentSectionSchema = Yup.object().shape({
   airbagsFitted: Yup.boolean().required("This field is required"),
   airbagsDeploy: Yup.boolean().required("This field is required"),
 });
+
+export const nullSchema = Yup.object().shape({});
