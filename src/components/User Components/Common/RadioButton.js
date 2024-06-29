@@ -2,10 +2,10 @@
     import React from "react";
     import "./Common.css";
 
-    const RadioButton = ({ label, name, value, inline = false }) => {
+    const RadioButton = ({ label, name, value, onChange, checked, inline = false }) => {
       return (
         <label className={inline ? "radio-inline" : "radio-label"}>
-          <input type="radio" name={name} value={value} className="radio-input" />
+          <input type="radio" name={name} value={value} className="radio-input" onChange={onChange} checked={checked}/>
           {label}
         </label>
       );

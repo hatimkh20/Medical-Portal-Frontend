@@ -1,5 +1,5 @@
 // src/components/MultiStepForm/ClaimantDetails.js
-import React from "react";
+import React, { useState } from "react";
 import InputField from "../Common/InputField";
 import TextAreaField from "../Common/TextAreaField";
 import RadioButton from "../Common/RadioButton";
@@ -7,23 +7,61 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
 
-const ClaimantDetails = ({ values }) => {
+const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => {
+  // const [values, setvalues] = useState(values);
+
+  const handleInputChange = (e) => {
+    // const { name, value } = e.target;
+    // setvalues({ ...values, [name]: value });
+    // console.log(values)
+    console.log(e.target)
+    handleChange(e); // Call Formik's handleChange
+  };
+
   return (
     <FormLayout title="CLAIMANT'S DETAIL">
       <p className="form-description">
         Please provide claimant's personal details
       </p>
       <div className="input-group">
-        <InputField name="fullName" label="Full Name" />
-        <InputField name="dateOfBirth" label="Date Of Birth" type="date" />
+        <InputField
+          name="fullName"
+          label="Full Name"
+          value={values.fullName}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
+        />
+        <InputField
+          name="dateOfBirth"
+          label="Date Of Birth"
+          type="date"
+          value={values.dateOfBirth}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
+        />
       </div>
       <div className="input-group">
-        <TextAreaField name="address" label="Address" />
+        <TextAreaField
+          name="address"
+          label="Address"
+          value={values.address}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
+        />
         <div className="rowspan-2">
-          <InputField name="occupation" label="Occupation" />
+          <InputField
+            name="occupation"
+            label="Occupation"
+            value={values.occupation}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+          />
           <InputField
             name="whichTypeOfIDChecked"
             label="Which type of ID was checked?"
+            value={values.whichTypeOfIDChecked}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
           />
         </div>
       </div>
@@ -32,19 +70,34 @@ const ClaimantDetails = ({ values }) => {
           name="dateOfExamination"
           label="Date Of Examination"
           type="date"
+          value={values.dateOfExamination}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
         />
-        <InputField name="whichRecordsSeen" label="Which records were seen?" />
+        <InputField
+          name="whichRecordsSeen"
+          label="Which records were seen?"
+          value={values.whichRecordsSeen}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
+        />
       </div>
       <div className="input-group">
         <InputField
           name="dateOfAccident"
           label="Date Of Accident"
           type="date"
+          value={values.dateOfAccident}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
         />
         <InputField
           name="ageAtTimeOfAccident"
           label="Age at the time of accident"
           type="number"
+          value={values.ageAtTimeOfAccident}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
         />
       </div>
       <div className="input-group">
@@ -54,21 +107,37 @@ const ClaimantDetails = ({ values }) => {
             <RadioButton
               name="medicalRecordsProvided"
               value="yes"
-              label="Yes"
+              checked={values.medicalRecordsProvided === "yes"}
+              onChange={handleInputChange}
             />
-            <RadioButton name="medicalRecordsProvided" value="no" label="No" />
+            <RadioButton
+              name="medicalRecordsProvided"
+              value="no"
+              checked={values.medicalRecordsProvided === "no"}
+              onChange={handleInputChange}
+            />
           </div>
         </div>
 
         <div className="input-form-group">
           <label>Has photo ID been confirmed?</label>
           <div className="radio-container">
-            <RadioButton name="hasPhotoIDConfirmed" value="yes" label="Yes" />
-            <RadioButton name="hasPhotoIDConfirmed" value="no" label="No" />
+            <RadioButton
+              name="hasPhotoIDConfirmed"
+              value="yes"
+              checked={values.hasPhotoIDConfirmed === "yes"}
+              onChange={handleInputChange}
+            />
+            <RadioButton
+              name="hasPhotoIDConfirmed"
+              value="no"
+              checked={values.hasPhotoIDConfirmed === "no"}
+              onChange={handleInputChange}
+            />
           </div>
         </div>
       </div>
-      <Button type="submit">Save & Next</Button>
+      <Button type="submit" onClick={handleSubmit}>Save & Next</Button>
     </FormLayout>
   );
 };

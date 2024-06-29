@@ -6,19 +6,38 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
 
-const AccidentDetails = ({ values, prevStep }) => {
+const AccidentDetails = ({ values, handleChange, handleBlur, prevStep }) => {
   return (
     <FormLayout title="ACCIDENT DETAILS">
       <p className="form-description">
         Please select vehicle type, note that all questions will be according to that.
       </p>
       <div className="input-group">
-        <SelectField name="vehicleType" label="Vehicle Type" options={['Car', 'Bike', 'Truck', 'Other']} />
+        <SelectField
+          name="vehicleType"
+          label="Vehicle Type"
+          options={['Car', 'Bike', 'Truck', 'Other']}
+          value={values?.vehicleType}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
       </div>
       {values.vehicleType === 'Other' && (
         <div className="input-group">
-          <InputField name="otherVehicleType" label="Other vehicle type, if you selected any other" />
-          <InputField name="vehicleWheels" label="Vehicle wheels, if you selected any other" />
+          <InputField
+            name="otherVehicleType"
+            label="Other vehicle type, if you selected any other"
+            value={values.otherVehicleType}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <InputField
+            name="vehicleWheels"
+            label="Vehicle wheels, if you selected any other"
+            value={values.vehicleWheels}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
         </div>
       )}
       <div className="button-group">

@@ -1,24 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./SelectableList.module.css";
 
-const SelectableList = ({ options, title }) => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [selectedItems, setSelectedItems] = useState([]);
+const SelectableList = ({ options, title, selectedItems, handleAddItem, handleRemoveItem }) => {
+  const [selectedOption, setSelectedOption] = React.useState("");
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
-  const handleAddItem = (event) => {
-    event.preventDefault(); // Prevent form submission
-    if (selectedOption && !selectedItems.includes(selectedOption)) {
-      setSelectedItems([...selectedItems, selectedOption]);
-      setSelectedOption(""); // Reset the dropdown
-    }
-  };
-
-  const handleRemoveItem = (itemToRemove) => {
-    setSelectedItems(selectedItems.filter((item) => item !== itemToRemove));
+  const handleAddButtonClick = (event) => {
+    event.preventDefault();
+    handleAddItem(selectedOption);
+    setSelectedOption("");
   };
 
   return (
@@ -40,7 +33,7 @@ const SelectableList = ({ options, title }) => {
           </select>
         </div>
         <div>
-          <button onClick={handleAddItem} className={styles.button}>
+          <button onClick={handleAddButtonClick} className={styles.button}>
             Add {title}
           </button>
         </div>

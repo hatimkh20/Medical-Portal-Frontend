@@ -20,11 +20,12 @@ const MultiStepForm = ({steps}) => {
     vehicleType: "",
     otherVehicleType: "",
     vehicleWheels: "",
+    anatomy: [],
+    psychologicalInjuries: [],
     // Add other fields as needed
   });
 
   const nextStep = (values) => {
-    setFormData({ ...formData, ...values });
     setCurrentStep(currentStep + 1);
   };
 
@@ -33,12 +34,13 @@ const MultiStepForm = ({steps}) => {
   };
 
   const handleSubmit = (values) => {
+    console.log("Form Submitted", values)
     setFormData({ ...formData, ...values });
     nextStep(values);
   };
 
   const StepComponent = steps.getStepComponent(currentStep);
-  
+
   return (
     <div className="multi-step-form-container">
       <Formik
@@ -48,7 +50,12 @@ const MultiStepForm = ({steps}) => {
       >
         {(formikProps) => (
           <Form>
-            <StepComponent {...formikProps} prevStep={prevStep} nextStep={nextStep} />
+            <StepComponent {...formikProps} 
+            prevStep={prevStep} 
+            nextStep={nextStep} 
+            // formState={formData} 
+            // handleChange={()=>handleChange}
+            />
           </Form>
         )}
       </Formik>

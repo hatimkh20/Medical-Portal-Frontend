@@ -4,8 +4,9 @@ import InputField from "../Common/InputField";
 import RadioButton from "../Common/RadioButton";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
+import "./Form.css";
 
-const AccidentSectionForm = ({ values, prevStep, nextStep }) => {
+const AccidentSectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
   return (
     <FormLayout title="SECTION: ACCIDENT">
       <p className="form-description">
@@ -15,17 +16,32 @@ const AccidentSectionForm = ({ values, prevStep, nextStep }) => {
         <InputField
           name="accidentTime"
           label="What time of the day did the accident happen?"
+          value={values.accidentTime}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
         <InputField
           name="accidentLocation"
           label="Where did the accident happen?"
+          value={values.accidentLocation}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
       </div>
       <div className="input-group">
-        <InputField name="impactSpeed" label="What was the speed of impact?" />
+        <InputField
+          name="impactSpeed"
+          label="What was the speed of impact?"
+          value={values.impactSpeed}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
         <InputField
           name="vehicleDamage"
           label="What was the level of damage to the vehicle?"
+          value={values.vehicleDamage}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
       </div>
       <p className="form-description">
@@ -35,43 +51,113 @@ const AccidentSectionForm = ({ values, prevStep, nextStep }) => {
       <div className="radio-group-inline">
         <label>Did the vehicle have a seatbelt fitted?</label>
         <div className="radio-container">
-          <RadioButton name="seatbeltFit" value="yes" label="Yes" />
-          <RadioButton name="seatbeltFit" value="no" label="No" />
+          <RadioButton
+            name="seatbeltFit"
+            value="yes"
+            label="Yes"
+            checked={values.seatbeltFit === 'yes'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <RadioButton
+            name="seatbeltFit"
+            value="no"
+            label="No"
+            checked={values.seatbeltFit === 'no'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
         </div>
       </div>
 
       <div className="radio-group-inline">
         <label>Did the claimant have the seatbelt on?</label>
         <div className="radio-container">
-          <RadioButton name="seatbeltOn" value="yes" label="Yes" />
-          <RadioButton name="seatbeltOn" value="no" label="No" />
+          <RadioButton
+            name="seatbeltOn"
+            value="yes"
+            label="Yes"
+            checked={values.seatbeltOn === 'yes'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <RadioButton
+            name="seatbeltOn"
+            value="no"
+            label="No"
+            checked={values.seatbeltOn === 'no'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
         </div>
       </div>
 
       <div className="radio-group-inline">
         <label>Does the claimant have an exception to wearing a seatbelt?</label>
         <div className="radio-container">
-          <RadioButton name="seatbeltWear" value="yes" label="Yes" />
-          <RadioButton name="seatbeltWear" value="no" label="No" />
+          <RadioButton
+            name="seatbeltWear"
+            value="yes"
+            label="Yes"
+            checked={values.seatbeltWear === 'yes'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <RadioButton
+            name="seatbeltWear"
+            value="no"
+            label="No"
+            checked={values.seatbeltWear === 'no'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
         </div>
       </div>
 
       <div className="radio-group-inline">
         <label>Did the vehicle have airbags fitted?</label>
         <div className="radio-container">
-          <RadioButton name="airbagsFit" value="yes" label="Yes" />
-          <RadioButton name="airbagsFit" value="no" label="No" />
+          <RadioButton
+            name="airbagsFit"
+            value="yes"
+            label="Yes"
+            checked={values.airbagsFit === 'yes'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <RadioButton
+            name="airbagsFit"
+            value="no"
+            label="No"
+            checked={values.airbagsFit === 'no'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
         </div>
       </div>
 
       <div className="radio-group-inline">
         <label>Did the airbags deploy?</label>
         <div className="radio-container">
-          <RadioButton name="airbagsDeploy" value="yes" label="Yes" />
-          <RadioButton name="airbagsDeploy" value="no" label="No" />
+          <RadioButton
+            name="airbagsDeploy"
+            value="yes"
+            label="Yes"
+            checked={values.airbagsDeploy === 'yes'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <RadioButton
+            name="airbagsDeploy"
+            value="no"
+            label="No"
+            checked={values.airbagsDeploy === 'no'}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
         </div>
       </div>
-      {/* Repeat for other questions */}
+
       <div className="button-group">
         <Button type="button" onClick={prevStep}>
           Previous Step
