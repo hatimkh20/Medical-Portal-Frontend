@@ -5,6 +5,7 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 
 import "../Common/Common.css";
+import { symptomSeverity, timeAfterAccident } from "./Constants";
 
 const SymptomSectionForm = ({ prevStep, nextStep }) => {
   const symptoms = [
@@ -33,24 +34,24 @@ const SymptomSectionForm = ({ prevStep, nextStep }) => {
         <SelectField
           label="When did the symptoms start?"
           name={`${symptom}_start_time`}
-          options={timeOptions.map((opt) => opt.label)}
+          options={timeAfterAccident}
         />
         <SelectField
           label="Select severity at onset"
           name={`${symptom}_severity_onset`}
-          options={severityOptions.map((opt) => opt.label)}
+          options={symptomSeverity}
         />
       </div>
       <div className="input-group">
         <SelectField
           label="What is the severity now?"
           name={`${symptom}_current_severity`}
-          options={severityOptions.map((opt) => opt.label)}
+          options={symptomSeverity}
         />
         <SelectField
           label="If symptoms have resolved, how long ago was this?"
           name={`${symptom}_resolved_duration`}
-          options={timeOptions.map((opt) => opt.label)}
+          options={timeAfterAccident}
         />
       </div>
       

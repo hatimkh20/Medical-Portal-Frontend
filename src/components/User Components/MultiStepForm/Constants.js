@@ -48,13 +48,13 @@ export const vehicleLevelDamage = [
   "Complete write-up",
 ];
 
-export const symptomSeverity = {
-  mild: "Mild",
-  medium: "Medium",
-  mediumSevere: "Medium-Severe",
-  severe: "Severe",
-  resolved: "Resolved",
-};
+export const symptomSeverity = [
+  "Mild",
+  "Medium",
+  "Medium-Severe",
+  "Severe",
+  "Resolved",
+];
 
 export const anatomyList = [
     "Concussion", "Head", "Forehead", "Nosebleed", "Headaches", "Nausea", "Vomiting", "Dizziness", "Light-Headedness",
@@ -94,4 +94,48 @@ export const timeAfterAccident = [
   "2 months after the index accident",
   "3 months after the index accident",
   "6 months after the index accident"
+];
+
+export const postAccidentLocations = [
+  "went home",
+  "went to A&E",
+  "went to hospital",
+  "went to a Walk-in-Centre",
+  "went to work",
+  "went to school",
+  "went to a school run",
+  "went to dad's house",
+  "went to friend's house",
+  "went to mom's house",
+  "went to daughter's house",
+  "went to son's house",
+  "went to girlfriend's house",
+  "went to fiancé's house",
+  "went to a neighbour's house",
+  "went to grandparents' house",
+  "went to the shopping mall",
+  "went to a nearby cafe",
+  "went to the police station",
+  "went to the Body Shop"
+];
+
+export const treatmentOptions = [
+  "No treatment was administered at the scene of accident",
+  "Treatment was administered at the scene of accident",
+  "Received first aid at the scene of the accident",
+  "Received painkillers at the scene of the accident",
+  "The wounds were cleaned and bandaged to stop loss of blood"
+];
+
+export const responseTeams = [
+  "Police",
+  "Paramedics",
+  "Highway Patrol",
+  "Traffic Officer",
+  "Fire Service",
+  "First-Aider",
+  "Police and Paramedics",
+  "Police and Fire Service",
+  "Police, Paramedics and Fire Service",
+  "Police, Paramedics or Fire Service"
 ];

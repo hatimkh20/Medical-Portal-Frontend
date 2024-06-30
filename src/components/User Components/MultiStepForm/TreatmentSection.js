@@ -1,11 +1,12 @@
 // src/components/MultiStepForm/AnatomySectionForm.js
 import React from "react";
-import SelectableList from "../Common/SelectableList";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import SelectField from "../Common/SelectField";
+import InputField from "../Common/InputField";
+import { postAccidentLocations, responseTeams, treatmentOptions } from "./Constants";
 
-const TreatmentSection = ({ prevStep, nextStep }) => {
+const TreatmentSection = ({ values, prevStep, nextStep }) => {
   return (
     <FormLayout title="SECTION: TREATMENT">
       <div>
@@ -14,25 +15,25 @@ const TreatmentSection = ({ prevStep, nextStep }) => {
         <div className="input-group">
           <SelectField
             label="Which service attended the scene of the accident?"
-            name="a"
-            options={["Option 1", "Option 2", "Option 3"]}
+            name="serviceAtAccident"
+            options={responseTeams}
           />
           <SelectField
             label="What treatment was received at the scene of the accident?"
-            name="b"
-            options={["Option 1", "Option 2", "Option 3"]}
+            name="treatmentAtAccident"
+            options={treatmentOptions}
           />
         </div>
         <div className="input-group">
           <SelectField
             label="Where did you go after the accident?"
-            name="c"
-            options={["Option 1", "Option 2", "Option 3"]}
+            name="postLocationAccident"
+            options={postAccidentLocations}
           />
-          <SelectField
+          <InputField
             label="How did you get there?"
-            name="d"
-            options={["Option 1", "Option 2", "Option 3"]}
+            name="postLocationBy"
+            value={values.postLocationBy}
           />
         </div>
       </div>

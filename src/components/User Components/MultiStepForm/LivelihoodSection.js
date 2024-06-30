@@ -13,6 +13,7 @@ const LivelihoodSection = ({ prevStep, nextStep }) => {
           name="employmentStatus"
           label="Please select your employment status"
           options={["Student", "A", "B", "C"]}
+          fullLine={true}
         />
       </div>
       <div className="button-group">
