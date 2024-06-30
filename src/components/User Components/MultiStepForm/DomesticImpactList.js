@@ -1,18 +1,44 @@
 // src/components/MultiStepForm/AnatomySectionForm.js
-import React from 'react';
-import SelectableList from '../Common/SelectableList';
-import Button from '../Common/Button';
-import FormLayout from '../Common/FormLayout';
-import { domesticLifeActivities } from './Constants';
+import React from "react";
+import SelectableList from "../Common/SelectableList";
+import Button from "../Common/Button";
+import FormLayout from "../Common/FormLayout";
+import { domesticLifeActivities } from "./Constants";
 
-const DomesticImpactList = ({ prevStep, nextStep }) => {
+const DomesticImpactList = ({ values, handleChange, handleBlur, prevStep }) => {
+  const handleAdd = (item) => {
+    if (item && !values.domesticLifeActivities.includes(item)) {
+      handleChange({
+        target: {
+          name: "domesticLifeActivities",
+          value: [...values.domesticLifeActivities, item],
+        },
+      });
+    }
+  };
 
+  const handleRemove = (item) => {
+    handleChange({
+      target: {
+        name: "domesticLifeActivities",
+        value: values.domesticLifeActivities.filter((domesticLifeActivities) => domesticLifeActivities !== item),
+      },
+    });
+  };
   return (
     <FormLayout title="SECTION: DOMESTIC IMPACT">
-      <SelectableList title="Impacted Activities" options={domesticLifeActivities} />
+      <SelectableList
+        title="Impacted Activities"
+        options={domesticLifeActivities}
+        selectedItems={values.domesticLifeActivities}
+        handleAddItem={handleAdd}
+        handleRemoveItem={handleRemove}
+      />
       <div className="button-group">
-        <Button type="button" onClick={prevStep}>Previous Step</Button>
-        <Button type="submit" onClick={nextStep}>Proceed to Next Step</Button>
+        <Button type="button" onClick={prevStep}>
+          Previous Step
+        </Button>
+        <Button type="submit">Proceed to Next Step</Button>
       </div>
     </FormLayout>
   );

@@ -7,7 +7,7 @@ import FormLayout from "../Common/FormLayout";
 import "../Common/Common.css";
 import { symptomSeverity, timeAfterAccident } from "./Constants";
 
-const SymptomSectionForm = ({ prevStep, nextStep }) => {
+const SymptomSectionForm = ({ values, prevStep, nextStep }) => {
   const symptoms = [
     "Neck",
     "Head",
@@ -63,7 +63,7 @@ const SymptomSectionForm = ({ prevStep, nextStep }) => {
       <p className="form-description">
         Add the onset and severity for the selected symptoms
       </p>
-      {symptoms.map((symptom) => (
+      {values?.anatomy?.map((symptom) => (
         <Accordion key={symptom} title={symptom}>
           {renderSymptomDetails(symptom)}
         </Accordion>

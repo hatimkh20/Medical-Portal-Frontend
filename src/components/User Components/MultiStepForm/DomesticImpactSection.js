@@ -6,8 +6,7 @@ import FormLayout from "../Common/FormLayout";
 
 import "../Common/Common.css";
 
-const DomesticImpactSection = ({ prevStep, nextStep }) => {
-  const options = ["Personal Care", "Lifting Items", "Shopping", "Sex", "Gym"];
+const DomesticImpactSection = ({ values, prevStep, nextStep }) => {
 
   const severityOptions = [
     { value: "mild", label: "Mild" },
@@ -37,7 +36,7 @@ const DomesticImpactSection = ({ prevStep, nextStep }) => {
       <p className="form-description">
         Add severity of injury to each aspect of domestic impact.
       </p>
-      {options.map((symptom) => (
+      {values?.domesticLifeActivities?.map((symptom) => (
         <Accordion key={symptom} title={symptom}>
           {renderSymptomDetails(symptom)}
         </Accordion>
