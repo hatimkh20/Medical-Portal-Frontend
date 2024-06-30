@@ -3,11 +3,12 @@ import React from "react";
 import { useField } from "formik";
 import "./Common.css";
 
-const SelectField = ({ label, options, ...props }) => {
+const SelectField = ({ label, options, fullLine, ...props }) => {
   const [field, meta] = useField(props);
+  const className = fullLine ? "form-group" : "input-form-group";
 
   return (
-    <div className="form-group">
+    <div className={className}>
       <label htmlFor={props.id || props.name}>{label}</label>
       <select {...field} {...props} className="text-input">
         <option value="">Select an option</option>
@@ -23,3 +24,4 @@ const SelectField = ({ label, options, ...props }) => {
 };
 
 export default SelectField;
+

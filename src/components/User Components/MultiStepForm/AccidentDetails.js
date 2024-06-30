@@ -4,6 +4,7 @@ import InputField from "../Common/InputField";
 import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
+import { vehicleTypes } from "../MultiStepForm/Constants";
 import "./Form.css";
 
 const AccidentDetails = ({ values, handleChange, handleBlur, prevStep }) => {
@@ -16,10 +17,11 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep }) => {
         <SelectField
           name="vehicleType"
           label="Vehicle Type"
-          options={['Car', 'Bike', 'Truck', 'Other']}
+          options={vehicleTypes}
           value={values?.vehicleType}
           onChange={handleChange}
           onBlur={handleBlur}
+          fullLine={true}
         />
       </div>
       {values.vehicleType === 'Other' && (

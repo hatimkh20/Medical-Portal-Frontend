@@ -6,7 +6,7 @@
       return (
         <label className={inline ? "radio-inline" : "radio-label"}>
           <input type="radio" name={name} value={value} className="radio-input" onChange={onChange} checked={checked}/>
-          {label}
+          {value}
         </label>
       );
     };

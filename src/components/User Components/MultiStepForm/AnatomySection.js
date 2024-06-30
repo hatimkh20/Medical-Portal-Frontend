@@ -4,9 +4,9 @@ import SelectableList from '../Common/SelectableList';
 import Button from '../Common/Button';
 import FormLayout from '../Common/FormLayout';
 import "./Form.css";
+import { anatomyList } from './Constants';
 
 const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
-  const anatomyOptions = ["Head", "Neck", "Nose bleed", "High blood pressure", "Right ribs", "Abdomen", "Right Hip"];
   const psychologicalInjuryOptions = ["Travel Discomfort", "Travel Anxiety", "Low mood", "Flashbacks and Panic Attacks", "Nightmares"];
 
   const handleAddAnatomy = (item) => {
@@ -55,7 +55,7 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
       <div className='anatomy-container'>
         <SelectableList 
           title="Anatomy" 
-          options={anatomyOptions} 
+          options={anatomyList} 
           selectedItems={values.anatomy}
           handleAddItem={handleAddAnatomy}
           handleRemoveItem={handleRemoveAnatomy}

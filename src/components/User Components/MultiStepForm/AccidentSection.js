@@ -1,10 +1,12 @@
 // src/components/MultiStepForm/AccidentSectionForm.js
 import React from "react";
 import InputField from "../Common/InputField";
+import SelectField from "../Common/SelectField";
 import RadioButton from "../Common/RadioButton";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
+import { vehicleLevelDamage, vehicleSpeedImpact } from "./Constants";
 
 const AccidentSectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
   return (
@@ -29,17 +31,19 @@ const AccidentSectionForm = ({ values, handleChange, handleBlur, prevStep }) => 
         />
       </div>
       <div className="input-group">
-        <InputField
+        <SelectField
           name="impactSpeed"
           label="What was the speed of impact?"
-          value={values.impactSpeed}
+          options={vehicleSpeedImpact}
+          value={values?.impactSpeed}
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <InputField
+        <SelectField
           name="vehicleDamage"
           label="What was the level of damage to the vehicle?"
-          value={values.vehicleDamage}
+          value={values?.vehicleDamage}
+          options={vehicleLevelDamage}
           onChange={handleChange}
           onBlur={handleBlur}
         />

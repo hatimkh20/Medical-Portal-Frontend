@@ -25,7 +25,7 @@ const SelectableList = ({ options, title, selectedItems, handleAddItem, handleRe
             className={styles.select}
           >
             <option value="">Select {title}</option>
-            {options.map((option) => (
+            {options?.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -41,7 +41,7 @@ const SelectableList = ({ options, title, selectedItems, handleAddItem, handleRe
       <div>
         <div className={styles.title}>Selected Options</div>
         <div className={styles.list}>
-          {selectedItems.length > 0 ? (
+          {selectedItems?.length > 0 ? (
             selectedItems.map((item, index) => (
               <div key={index} className={styles.item}>
                 {item}

@@ -22,8 +22,7 @@ function App() {
           <Navbar />
         </div>
         <Routes>
-          {/* <Route path="/" element={<HomePage />} /> */}
-          <Route path="/" element={<MultiStepForm steps={Steps}/>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/sign-in" element={<AuthPage />} />
           <Route path="/sign-up" element={<AuthPage />} />
           <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
