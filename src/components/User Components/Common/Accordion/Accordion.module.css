@@ -17,6 +17,7 @@
     font-weight: 600;
     font-family: 'Open Sans';
     border: 2px solid #22485F;
+    text-transform: capitalize;
 }
   
   .accordionTitle:hover {
