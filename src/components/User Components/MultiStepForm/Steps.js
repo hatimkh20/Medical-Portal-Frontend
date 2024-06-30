@@ -15,6 +15,7 @@ import {
   nullSchema
 } from "./formSchema";
 import MedicalHistory from "./MedicalHistory";
+import ObservationSection from "./ObservationSection";
 
 const Steps = {
     values: [{
@@ -53,6 +54,9 @@ const Steps = {
     },
     {
       component: MedicalHistory
+    },
+    {
+      component: ObservationSection
     }
   
   ],

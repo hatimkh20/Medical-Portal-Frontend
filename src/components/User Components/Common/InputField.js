@@ -3,10 +3,12 @@ import React from "react";
 import { useField } from "formik";
 import "./Common.css";
 
-const InputField = ({ label, ...props }) => {
+const InputField = ({ label, fullLine = false, ...props }) => {
   const [field, meta] = useField(props);
+  const className = fullLine ? "form-group" : "input-form-group";
+
   return (
-    <div className="input-form-group">
+    <div className={className}>
       <label htmlFor={props.id || props.name}>{label}</label>
       <input className="text-input" {...field} {...props} />
       {meta.touched && meta.error ? (
