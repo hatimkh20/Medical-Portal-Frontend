@@ -46,9 +46,9 @@ const DomesticImpactSection = ({ prevStep, nextStep }) => {
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        {/* <Button type="submit" onClick={nextStep}>
+        <Button type="submit" onClick={nextStep}>
           Proceed to Next Step
-        </Button> */}
+        </Button>
       </div>
     </FormLayout>
   );

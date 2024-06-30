@@ -14,6 +14,7 @@ import {
   accidentSectionSchema,
   nullSchema
 } from "./formSchema";
+import MedicalHistory from "./MedicalHistory";
 
 const Steps = {
     values: [{
@@ -49,7 +50,12 @@ const Steps = {
     },
     {
       component: DomesticImpactSection,
-    }],
+    },
+    {
+      component: MedicalHistory
+    }
+  
+  ],
 
     getStepComponent(stepNumber){
         return this.values[stepNumber].component;
