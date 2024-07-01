@@ -4,10 +4,9 @@ import SelectableList from '../Common/SelectableList';
 import Button from '../Common/Button';
 import FormLayout from '../Common/FormLayout';
 import "./Form.css";
-import { anatomyList } from './Constants';
+import { anatomyList, psychologicalInjuries } from './Constants';
 
 const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
-  const psychologicalInjuryOptions = ["Travel Discomfort", "Travel Anxiety", "Low mood", "Flashbacks and Panic Attacks", "Nightmares"];
 
   const handleAddAnatomy = (item) => {
     if (item && !values.anatomy.includes(item)) {
@@ -62,7 +61,7 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
         />
         <SelectableList 
           title="Psychological Injuries" 
-          options={psychologicalInjuryOptions}
+          options={psychologicalInjuries}
           selectedItems={values.psychologicalInjuries}
           handleAddItem={handleAddPsychologicalInjury}
           handleRemoveItem={handleRemovePsychologicalInjury}

@@ -16,6 +16,8 @@ import {
 } from "./formSchema";
 import MedicalHistory from "./MedicalHistory";
 import ObservationSection from "./ObservationSection";
+import PhysicalExaminationSection from "./PhysicalExaminationSection";
+import DiagnosisSection from "./DiagnosisSection";
 
 const Steps = {
     values: [{
@@ -57,6 +59,12 @@ const Steps = {
     },
     {
       component: ObservationSection
+    },
+    {
+      component: PhysicalExaminationSection
+    },
+    {
+      component: DiagnosisSection
     }
   
   ],
