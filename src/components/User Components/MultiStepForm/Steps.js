@@ -18,6 +18,7 @@ import MedicalHistory from "./MedicalHistory";
 import ObservationSection from "./ObservationSection";
 import PhysicalExaminationSection from "./PhysicalExaminationSection";
 import DiagnosisSection from "./DiagnosisSection";
+import OpinionSection from "./OpinionSection";
 
 const Steps = {
     values: [{
@@ -65,6 +66,9 @@ const Steps = {
     },
     {
       component: DiagnosisSection
+    },
+    {
+      component: OpinionSection
     }
   
   ],
