@@ -4,6 +4,7 @@
   }
   
   .accordionTitle {
+    display: flex;
     background-color: #C1E8E3;
     color: #224B5F;
     cursor: pointer;

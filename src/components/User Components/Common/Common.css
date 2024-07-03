@@ -139,9 +139,85 @@
   font-weight: 600;
   text-align: center;
   margin: 20px 0px;
+  font-size: 18px;
 }
 
 .anatomy-container {
   display: flex;
   flex-direction: column;
+}
+
+.prognosis {
+  display: flex; /* This ensures that the label and radio group align perfectly */
+  border-collapse: collapse; /* For table-like border behavior */
+  margin-bottom: -1px; /* To prevent double borders between rows */
+}
+
+.prognosis .prognosis-label {
+  flex: 70%; /* Use flex layout for proportional sizing */
+  background: rgba(132, 208, 246, 0.5); /* #84D0F6 with 50% opacity */
+  padding: 10px;
+  border: 1px solid #333;
+  border-right: none; /* Remove right border to blend with the radio group */
+  color: #224B5F;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.prognosis .radio-group-inline {
+  flex: 30% 1;
+  text-align: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+
+/* If you have borders around the entire section, ensure consistency */
+.prognosis:first-child .prognosis-label,
+.prognosis:first-child .radio-group-inline {
+  border-top: 1px solid #333;
+}
+
+.prognosis:last-child .prognosis-label,
+.prognosis:last-child .radio-group-inline {
+  border-bottom: 1px solid #333;
+}
+
+.badge {
+  padding: 5px 10px;
+  color: white;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.badge.resolved {
+  background-color: #4CAF50; /* Green for resolved */
+}
+
+.badge.ongoing {
+  background-color: #FF9800; /* Orange for ongoing */
+}
+
+
+/* Add to your CSS file */
+.question-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.question-item {
+  flex: 1 1 50%; /* Each question takes up half the width of the container */
+  box-sizing: border-box;
+  padding: 10px; /* Adjust padding as necessary */
+}
+
+/* You might want to add some media queries to handle different screen sizes */
+@media (max-width: 768px) {
+  .question-item {
+    flex: 1 1 100%; /* Stack the questions vertically on smaller screens */
+  }
 }
