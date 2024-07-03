@@ -5,19 +5,14 @@ import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import { vehicleTypes } from "../MultiStepForm/Constants";
+import { otherOrValue, isOtherSelected } from "../Common/util";
 import "./Form.css";
 
 const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldValue }) => {
 
-
-  function isOtherSelected() {
-    return !vehicleTypes.filter(vType => vType !== "Other").includes(values.vehicleType);
-  }
-
   const onVehicleTypeChange = (e) => {
     handleChange(e);
     setFieldValue("vehicleWheels", "")
-    // console.log(values)
   }
 
   return (
@@ -30,13 +25,13 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldV
           name="vehicleType"
           label="Vehicle Type"
           options={vehicleTypes}
-          value={isOtherSelected()? "Other": values?.vehicleType}
+          value={otherOrValue(vehicleTypes, values?.vehicleType)}
           onChange={onVehicleTypeChange}
           onBlur={handleBlur}
           fullLine={true}
         />
       </div>
-      {isOtherSelected() && (
+      {isOtherSelected(vehicleTypes, values.vehicleType) && (
         <div className="input-group">
           <InputField
             name="vehicleType"

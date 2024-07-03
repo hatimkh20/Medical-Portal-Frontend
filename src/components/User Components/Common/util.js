@@ -9,3 +9,13 @@ export const toCamelCase = (value) => {
           .join('')
 
 }
+
+export const isOtherSelected = (options, value) => {
+  return !options
+  .filter(opt => opt !== "Other")
+  .includes(value);
+}
+
+export const otherOrValue = (options, value) => {
+  return isOtherSelected(options, value)? "Other": value;
+}
