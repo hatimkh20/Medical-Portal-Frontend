@@ -1,13 +1,13 @@
 import React from "react";
 import Accordion from "../Common/Accordion/Accordion";
-import SelectField from "../Common/SelectField"; // Ensure this is correctly imported
+import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
-
 import "../Common/Common.css";
 import { symptomSeverity, timeAfterAccident } from "./Constants";
+import { toCamelCase } from "../Common/util";
 
-const SymptomSectionForm = ({ values, prevStep, nextStep }) => {
+const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep }) => {
   const symptoms = [
     "Neck",
     "Head",
@@ -28,35 +28,49 @@ const SymptomSectionForm = ({ values, prevStep, nextStep }) => {
     { value: "1_day", label: "1 day after accident" },
   ];
 
-  const renderSymptomDetails = (symptom) => (
-    <div>
+  const handleInputChange = (e) => {
+    handleChange(e); // Call Formik's handleChange
+  };
+
+
+  const renderSymptomDetails = (symptom) => {
+    const fieldNamePrefix = `symptons_${toCamelCase(symptom)}_`;
+    return (<div>
       <div className="input-group">
         <SelectField
           label="When did the symptoms start?"
-          name={`${symptom}_start_time`}
+          name={`${fieldNamePrefix}StartTime`}
           options={timeAfterAccident}
+          onChange={handleInputChange}
+          value={values[`${fieldNamePrefix}StartTime`]}
         />
         <SelectField
           label="Select severity at onset"
-          name={`${symptom}_severity_onset`}
+          name={`${fieldNamePrefix}SeverityOnset`}
           options={symptomSeverity}
+          onChange={handleInputChange}
+          value={values[`${fieldNamePrefix}SeverityOnset`]}
         />
       </div>
       <div className="input-group">
         <SelectField
           label="What is the severity now?"
-          name={`${symptom}_current_severity`}
+          name={`${fieldNamePrefix}CurrentSeverity`}
           options={symptomSeverity}
+          onChange={handleInputChange}
+          value={values[`${fieldNamePrefix}CurrentSeverity`]}
         />
         <SelectField
           label="If symptoms have resolved, how long ago was this?"
-          name={`${symptom}_resolved_duration`}
+          name={`${fieldNamePrefix}ResolvedDuration`}
           options={timeAfterAccident}
+          onChange={handleInputChange}
+          value={values[`${fieldNamePrefix}ResolvedDuration`]}
         />
       </div>
-      
     </div>
   );
+  }
 
   return (
     <FormLayout title="SECTION: SYMPTOMS">
@@ -72,7 +86,7 @@ const SymptomSectionForm = ({ values, prevStep, nextStep }) => {
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        <Button type="submit" onClick={nextStep}>
+        <Button type="submit">
           Proceed to Next Step
         </Button>
       </div>

@@ -1,5 +1,5 @@
 // src/components/MultiStepForm/AccidentDetails.js
-import React from "react";
+import React, { useState } from "react";
 import InputField from "../Common/InputField";
 import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
@@ -7,7 +7,19 @@ import FormLayout from "../Common/FormLayout";
 import { vehicleTypes } from "../MultiStepForm/Constants";
 import "./Form.css";
 
-const AccidentDetails = ({ values, handleChange, handleBlur, prevStep }) => {
+const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldValue }) => {
+
+
+  function isOtherSelected() {
+    return !vehicleTypes.filter(vType => vType !== "Other").includes(values.vehicleType);
+  }
+
+  const onVehicleTypeChange = (e) => {
+    handleChange(e);
+    setFieldValue("vehicleWheels", "")
+    // console.log(values)
+  }
+
   return (
     <FormLayout title="ACCIDENT DETAILS">
       <p className="form-description">
@@ -18,18 +30,19 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep }) => {
           name="vehicleType"
           label="Vehicle Type"
           options={vehicleTypes}
-          value={values?.vehicleType}
-          onChange={handleChange}
+          value={isOtherSelected()? "Other": values?.vehicleType}
+          onChange={onVehicleTypeChange}
           onBlur={handleBlur}
           fullLine={true}
         />
       </div>
-      {values.vehicleType === 'Other' && (
+      {isOtherSelected() && (
         <div className="input-group">
           <InputField
-            name="otherVehicleType"
+            name="vehicleType"
             label="Other vehicle type, if you selected any other"
-            value={values.otherVehicleType}
+            value={values.vehicleType != "Other"? values.vehicleType: ""}
+            required={true}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -39,6 +52,7 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep }) => {
             value={values.vehicleWheels}
             onChange={handleChange}
             onBlur={handleBlur}
+            required={true}
           />
         </div>
       )}
@@ -48,6 +62,8 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep }) => {
       </div>
     </FormLayout>
   );
+
+  
 };
 
 export default AccidentDetails;

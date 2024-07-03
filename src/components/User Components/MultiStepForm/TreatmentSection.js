@@ -1,4 +1,3 @@
-// src/components/MultiStepForm/AnatomySectionForm.js
 import React from "react";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
@@ -6,7 +5,7 @@ import SelectField from "../Common/SelectField";
 import InputField from "../Common/InputField";
 import { postAccidentLocations, responseTeams, treatmentOptions } from "./Constants";
 
-const TreatmentSection = ({ values, prevStep, nextStep }) => {
+const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
     <FormLayout title="SECTION: TREATMENT">
       <div>
@@ -17,11 +16,15 @@ const TreatmentSection = ({ values, prevStep, nextStep }) => {
             label="Which service attended the scene of the accident?"
             name="serviceAtAccident"
             options={responseTeams}
+            value={values.serviceAtAccident}
+            onChange={handleChange}
           />
           <SelectField
             label="What treatment was received at the scene of the accident?"
             name="treatmentAtAccident"
             options={treatmentOptions}
+            value={values.treatmentAtAccident}
+            onChange={handleChange}
           />
         </div>
         <div className="input-group">
@@ -29,11 +32,14 @@ const TreatmentSection = ({ values, prevStep, nextStep }) => {
             label="Where did you go after the accident?"
             name="postLocationAccident"
             options={postAccidentLocations}
+            value={values.postLocationAccident}
+            onChange={handleChange}
           />
           <InputField
             label="How did you get there?"
             name="postLocationBy"
             value={values.postLocationBy}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -44,25 +50,33 @@ const TreatmentSection = ({ values, prevStep, nextStep }) => {
         <div className="input-group">
           <SelectField
             label="Where did you receive treatment?"
-            name="e"
+            name="laterTreatmentLocation"
             options={["Option 1", "Option 2", "Option 3"]}
+            value={values.laterTreatmentLocation}
+            onChange={handleChange}
           />
           <SelectField
             label="How long after the accident did you seek treatment?"
-            name="f"
+            name="treatmentTimeAfterAccident"
             options={["Option 1", "Option 2", "Option 3"]}
+            value={values.treatmentTimeAfterAccident}
+            onChange={handleChange}
           />
         </div>
         <div className="input-group">
           <SelectField
             label="What treatment did you receive?"
-            name="g"
+            name="receivedTreatment"
             options={["Option 1", "Option 2", "Option 3"]}
+            value={values.receivedTreatment}
+            onChange={handleChange}
           />
           <SelectField
-            label="What imaging or scans was done?"
-            name="i"
+            label="What imaging or scans were done?"
+            name="imagingOrScans"
             options={["Option 1", "Option 2", "Option 3"]}
+            value={values.imagingOrScans}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -71,7 +85,7 @@ const TreatmentSection = ({ values, prevStep, nextStep }) => {
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        <Button type="submit" onClick={nextStep}>
+        <Button type="submit">
           Proceed to Next Step
         </Button>
       </div>

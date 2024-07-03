@@ -4,7 +4,7 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import SelectField from "../Common/SelectField";
 
-const LivelihoodSection = ({ prevStep, nextStep }) => {
+const LivelihoodSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
     <FormLayout title="IMPACT ON LIVELIHOOD / EDUCATION">
       
@@ -13,6 +13,8 @@ const LivelihoodSection = ({ prevStep, nextStep }) => {
           name="employmentStatus"
           label="Please select your employment status"
           options={["Student", "A", "B", "C"]}
+          values={values.employmentStatus}
+          onChange={handleChange}
           fullLine={true}
         />
       </div>
@@ -20,7 +22,7 @@ const LivelihoodSection = ({ prevStep, nextStep }) => {
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        <Button type="submit" onClick={nextStep}>
+        <Button type="submit">
           Proceed to Next Step
         </Button>
       </div>
