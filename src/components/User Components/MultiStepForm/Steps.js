@@ -12,7 +12,7 @@ import {
   claimantDetailsSchema,
   accidentDetailsSchema,
   accidentSectionSchema,
-  nullSchema
+  nullSchema,
 } from "./formSchema";
 import MedicalHistory from "./MedicalHistory";
 import ObservationSection from "./ObservationSection";
@@ -21,74 +21,82 @@ import DiagnosisSection from "./DiagnosisSection";
 import OpinionSection from "./OpinionSection";
 import PrognosisList from "./PrognosisList";
 import PrognosisSection from "./PrognosisSection";
+import StatementOfTruth from "./StatementOfTruth";
 
 const Steps = {
-    values: [{
+  values: [
+    {
       component: ClaimantDetails,
       validationSchema: claimantDetailsSchema,
     },
+    // {
+    //   component: AccidentDetails,
+    //   validationSchema: accidentDetailsSchema,
+    // },
+    // {
+    //   component: AccidentSectionForm,
+    //   validationSchema: accidentSectionSchema,
+    // },
+    // {
+    //   component: AnatomySectionForm,
+    //   validationSchema: accidentSectionSchema,
+    // },
+    // {
+    //   component: SymptomSectionForm,
+    // },
+    // {
+    //   component: TreatmentSection,
+    // },
+    // {
+    //   component: LivelihoodSection,
+    // },
+    // {
+    //   component: EducationSection,
+    // },
+    // {
+    //   component: DomesticImpactList,
+    // },
+    // {
+    //   component: DomesticImpactSection,
+    // },
+    // {
+    //   component: MedicalHistory
+    // },
+    // {
+    //   component: ObservationSection
+    // },
+    // {
+    //   component: PhysicalExaminationSection
+    // },
+    // {
+    //   component: DiagnosisSection
+    // },
+    // {
+    //   component: OpinionSection
+    // },
+    // {
+    //   component: PrognosisList
+    // },
+    // {
+    //   component: PrognosisSection
+    // },
     {
-      component: AccidentDetails,
-      validationSchema: accidentDetailsSchema,
+      component: StatementOfTruth,
     },
-    {
-      component: AccidentSectionForm,
-      validationSchema: accidentSectionSchema,
-    },
-    {
-      component: AnatomySectionForm,
-      validationSchema: accidentSectionSchema,
-    },
-    {
-      component: SymptomSectionForm,
-    },
-    {
-      component: TreatmentSection,
-    },
-    {
-      component: LivelihoodSection,
-    },
-    {
-      component: EducationSection,
-    },
-    {
-      component: DomesticImpactList,
-    },
-    {
-      component: DomesticImpactSection,
-    },
-    {
-      component: MedicalHistory
-    },
-    {
-      component: ObservationSection
-    },
-    {
-      component: PhysicalExaminationSection
-    },
-    {
-      component: DiagnosisSection
-    },
-    {
-      component: OpinionSection
-    },
-    {
-      component: PrognosisList
-    },
-    {
-      component: PrognosisSection
-    }
-  
   ],
 
-    getStepComponent(stepNumber){
-        return this.values[stepNumber].component;
-    },
+  getStepComponent(stepNumber) {
+    const step = this.values[stepNumber];
+    return step ? step.component : null; // Safely return the component or null if not found
+  },
 
-    getStepValidationSchema(stepNumber){
-        const isValidationEnabled = process.env.REACT_APP_DISABLE_FORM_VALIDATION === "false";
-        return isValidationEnabled? this.values[stepNumber].validationSchema: nullSchema;
-    }
-}
+  getStepValidationSchema(stepNumber) {
+    const isValidationEnabled =
+      process.env.REACT_APP_DISABLE_FORM_VALIDATION === "false";
+    return isValidationEnabled
+      ? this.values[stepNumber].validationSchema
+      : nullSchema;
+  },
+};
 
 export default Steps;
