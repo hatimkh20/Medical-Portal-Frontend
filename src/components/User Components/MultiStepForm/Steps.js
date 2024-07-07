@@ -22,6 +22,7 @@ import OpinionSection from "./OpinionSection";
 import PrognosisList from "./PrognosisList";
 import PrognosisSection from "./PrognosisSection";
 import StatementOfTruth from "./StatementOfTruth";
+import Bibliography from "./BibliographySection";
 
 const Steps = {
   values: [
@@ -29,60 +30,63 @@ const Steps = {
       component: ClaimantDetails,
       validationSchema: claimantDetailsSchema,
     },
-    // {
-    //   component: AccidentDetails,
-    //   validationSchema: accidentDetailsSchema,
-    // },
-    // {
-    //   component: AccidentSectionForm,
-    //   validationSchema: accidentSectionSchema,
-    // },
-    // {
-    //   component: AnatomySectionForm,
-    //   validationSchema: accidentSectionSchema,
-    // },
-    // {
-    //   component: SymptomSectionForm,
-    // },
-    // {
-    //   component: TreatmentSection,
-    // },
-    // {
-    //   component: LivelihoodSection,
-    // },
-    // {
-    //   component: EducationSection,
-    // },
-    // {
-    //   component: DomesticImpactList,
-    // },
-    // {
-    //   component: DomesticImpactSection,
-    // },
-    // {
-    //   component: MedicalHistory
-    // },
-    // {
-    //   component: ObservationSection
-    // },
-    // {
-    //   component: PhysicalExaminationSection
-    // },
-    // {
-    //   component: DiagnosisSection
-    // },
-    // {
-    //   component: OpinionSection
-    // },
-    // {
-    //   component: PrognosisList
-    // },
-    // {
-    //   component: PrognosisSection
-    // },
+    {
+      component: AccidentDetails,
+      validationSchema: accidentDetailsSchema,
+    },
+    {
+      component: AccidentSectionForm,
+      validationSchema: accidentSectionSchema,
+    },
+    {
+      component: AnatomySectionForm,
+      validationSchema: accidentSectionSchema,
+    },
+    {
+      component: SymptomSectionForm,
+    },
+    {
+      component: TreatmentSection,
+    },
+    {
+      component: LivelihoodSection,
+    },
+    {
+      component: EducationSection,
+    },
+    {
+      component: DomesticImpactList,
+    },
+    {
+      component: DomesticImpactSection,
+    },
+    {
+      component: MedicalHistory
+    },
+    {
+      component: ObservationSection
+    },
+    {
+      component: PhysicalExaminationSection
+    },
+    {
+      component: DiagnosisSection
+    },
+    {
+      component: OpinionSection
+    },
+    {
+      component: PrognosisList
+    },
+    {
+      component: PrognosisSection
+    },
     {
       component: StatementOfTruth,
     },
+    {
+      component: Bibliography
+    }
   ],
 
   getStepComponent(stepNumber) {
