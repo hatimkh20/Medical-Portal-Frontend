@@ -49,9 +49,9 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
 
         {values.physicalAppearance === "Other" && (
           <InputField
-            name="physicalAppearance_other"
+            name="otherPhysicalAppearance"
             label="Please fill, if you selected any other (optional)"
-            value={values.physicalAppearance_other}
+            value={values.otherPhysicalAppearance}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -85,9 +85,9 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
 
         {values.presenceOfScars === "Other" && (
           <InputField
-            name="presenceOfScars_other"
+            name="otherPresenceOfScars"
             label="Please fill, if you selected any other (optional)"
-            value={values.presenceOfScars_other}
+            value={values.otherPresenceOfScars}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -121,9 +121,9 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
 
         {values.conversation === "Other" && (
           <InputField
-            name="conversation_other"
+            name="otherConversation"
             label="Please fill, if you selected any other (optional)"
-            value={values.conversation_other}
+            value={values.otherConversation}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -139,6 +139,7 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
           onBlur={handleBlur}
           fullLine={true}
           options={eyeContactOptions}
+          values={values}
         />
       </div>
 
@@ -151,6 +152,7 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
           onBlur={handleBlur}
           fullLine={true}
           options={mentalStateOptions}
+          values={values}
         />
       </div>
 

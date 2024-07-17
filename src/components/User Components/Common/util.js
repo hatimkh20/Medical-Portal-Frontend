@@ -1,5 +1,5 @@
 export const titleCase = (value) => {
-    return value.at(0).toLowerCase() + value.substring(1);
+    return value.at(0).toUpperCase() + value.substring(1);
   }
  
 export const toCamelCase = (value) => {
@@ -10,10 +10,8 @@ export const toCamelCase = (value) => {
 
 }
 
-export const isOtherSelected = (options, value) => {
-  return !options
-  .filter(opt => opt !== "Other")
-  .includes(value);
+export const isOtherSelected = (value) => {
+  return value === "Other";
 }
 
 export const otherOrValue = (options, value) => {

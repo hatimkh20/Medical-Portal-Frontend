@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import "./Form.css";
 
 const MultiStepForm = ({steps}) => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(3+5);
   const [formData, setFormData] = useState({
     fullName: "",
     dateOfBirth: "",
@@ -27,7 +27,8 @@ const MultiStepForm = ({steps}) => {
   });
 
   const nextStep = (values) => {
-    setCurrentStep(currentStep + 1);
+    if(steps.isValid(currentStep+1))
+      setCurrentStep(currentStep + 1);
   };
 
   const prevStep = () => {

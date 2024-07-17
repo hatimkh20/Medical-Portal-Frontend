@@ -14,9 +14,10 @@ const LivelihoodSection = ({ values, handleChange, prevStep, nextStep }) => {
           name="employmentStatus"
           label="Please select your employment status"
           options={employmentStatusOptions}
-          values={values.employmentStatus}
+          value={values.employmentStatus}
           onChange={handleChange}
           fullLine={true}
+          values={values}
         />
       </div>
       <div className="button-group">

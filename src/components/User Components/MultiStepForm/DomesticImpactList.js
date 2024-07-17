@@ -29,10 +29,12 @@ const DomesticImpactList = ({ values, handleChange, handleBlur, prevStep }) => {
     <FormLayout title="SECTION: DOMESTIC IMPACT">
       <SelectableList
         title="Impacted Activities"
+        name="domesticLifeActivities"
         options={domesticLifeActivities}
         selectedItems={values.domesticLifeActivities}
         handleAddItem={handleAdd}
         handleRemoveItem={handleRemove}
+        values={values}
       />
       <div className="button-group">
         <Button type="button" onClick={prevStep}>

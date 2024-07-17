@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./SelectableList.module.css";
+import InputField from "../Common/InputField";
+import { titleCase, isOtherSelected } from "./util";
+import { useField } from "formik";
 
-const SelectableList = ({ options, title, selectedItems, handleAddItem, handleRemoveItem }) => {
+const SelectableList = ({ options, title, selectedItems, handleAddItem, handleRemoveItem, values, ...props }) => {
+  const [field, meta] = useField(props);
+
   const [selectedOption, setSelectedOption] = React.useState("");
 
   const handleSelectChange = (event) => {
@@ -10,7 +15,12 @@ const SelectableList = ({ options, title, selectedItems, handleAddItem, handleRe
 
   const handleAddButtonClick = (event) => {
     event.preventDefault();
-    handleAddItem(selectedOption);
+    console.log(selectedOption)
+    if(selectedOption === "Other"){
+      handleAddItem(values[`other${titleCase(field.name)}`])
+    }
+    else
+      handleAddItem(selectedOption);
     setSelectedOption("");
   };
 
@@ -32,6 +42,19 @@ const SelectableList = ({ options, title, selectedItems, handleAddItem, handleRe
             ))}
           </select>
         </div>
+        { isOtherSelected(selectedOption) &&
+        <div className={props.children && "input-group"}>
+        <InputField 
+          name={`other${titleCase(field.name)}`}
+          label={`Other ${title}, if you selected any other`}
+          value={values && values[`other${titleCase(field.name)}`]}
+          required={true}
+          onChange={field.onChange}
+          onBlur={props.onBlur}
+        />
+        </div>
+        }
+    
         <div>
           <button onClick={handleAddButtonClick} className={styles.button}>
             Add {title}

@@ -20,23 +20,33 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldV
       <p className="form-description">
         Please select vehicle type, note that all questions will be according to that.
       </p>
-      <div className="input-group">
+      {/* <div className="input-group"> */}
         <SelectField
           name="vehicleType"
           label="Vehicle Type"
           options={vehicleTypes}
-          value={otherOrValue(vehicleTypes, values?.vehicleType)}
-          onChange={onVehicleTypeChange}
+          value={values.vehicleType}
+          otherHandleChange={handleChange}
+          values={values}
           onBlur={handleBlur}
           fullLine={true}
-        />
-      </div>
-      {isOtherSelected(vehicleTypes, values.vehicleType) && (
+        >
+          <InputField
+            name="vehicleWheels"
+            label="Vehicle wheels, if you selected any other"
+            value={values.vehicleWheels}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            required={true}
+          />
+        </SelectField>
+      {/* </div> */}
+       {/* {isOtherSelected(values.vehicleType) && (
         <div className="input-group">
           <InputField
-            name="vehicleType"
+            name="otherVehicleType"
             label="Other vehicle type, if you selected any other"
-            value={values.vehicleType != "Other"? values.vehicleType: ""}
+            value={values.otherVehicleType}
             required={true}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -49,8 +59,8 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldV
             onBlur={handleBlur}
             required={true}
           />
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
       <div className="button-group">
         <Button type="button" onClick={prevStep}>Previous Step</Button>
         <Button type="submit">Proceed to Next Step</Button>

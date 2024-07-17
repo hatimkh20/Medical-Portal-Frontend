@@ -53,18 +53,22 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
       <p className="form-description">Please select affected anatomies.</p>
       <div className='anatomy-container'>
         <SelectableList 
-          title="Anatomy" 
-          options={anatomyList} 
+          title="Anatomy"
+          name="anatomy"
+          options={anatomyList}
           selectedItems={values.anatomy}
           handleAddItem={handleAddAnatomy}
           handleRemoveItem={handleRemoveAnatomy}
+          values={values}
         />
         <SelectableList 
           title="Psychological Injuries" 
           options={psychologicalInjuries}
+          name="psychologicalInjuries"
           selectedItems={values.psychologicalInjuries}
           handleAddItem={handleAddPsychologicalInjury}
           handleRemoveItem={handleRemovePsychologicalInjury}
+          values={values}
         />
       </div>
       <div className="button-group">

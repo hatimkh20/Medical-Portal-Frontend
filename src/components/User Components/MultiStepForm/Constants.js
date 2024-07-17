@@ -39,6 +39,7 @@ export const domesticLifeActivities = [
   "fitness training",
   "gym",
   "golf",
+  "Other"
 ];
 
 export const vehicleLevelDamage = [
@@ -69,7 +70,7 @@ export const anatomyList = [
     "Right and Left Thighs", "Right Leg", "Left Leg", "Right and Left Legs", "Right Knee", "Left Knee",
     "Right and Left Knees", "Right Shin", "Left Shin", "Right and Left Shin", "Right Ankle", "Left Ankle",
     "Right and Left Ankles", "Right Toes", "Left toes", "Left Foot", "Right Foot", "Whole Body", "Radial Nerve",
-    "Collar Bone (Right)", "Collar Bone (Left)", "Collar Bone (Right & Left)"
+    "Collar Bone (Right)", "Collar Bone (Left)", "Collar Bone (Right & Left)", "Other"
 ];
 
 export const timeAfterAccident = [
@@ -103,7 +104,8 @@ export const postAccidentLocations = [
   "went to the shopping mall",
   "went to a nearby cafe",
   "went to the police station",
-  "went to the Body Shop"
+  "went to the Body Shop",
+  "Other"
 ];
 
 export const treatmentOptions = [
@@ -111,7 +113,8 @@ export const treatmentOptions = [
   "Treatment was administered at the scene of accident",
   "Received first aid at the scene of the accident",
   "Received painkillers at the scene of the accident",
-  "The wounds were cleaned and bandaged to stop loss of blood"
+  "The wounds were cleaned and bandaged to stop loss of blood",
+  "Other"
 ];
 
 export const responseTeams = [
@@ -124,7 +127,8 @@ export const responseTeams = [
   "Police and Paramedics",
   "Police and Fire Service",
   "Police, Paramedics and Fire Service",
-  "Police, Paramedics or Fire Service"
+  "Police, Paramedics or Fire Service",
+  "Other"
 ];
 
 export const observations = [
@@ -293,7 +297,8 @@ export const attendanceOptions = [
   "He did not attend Hospital or GP Surgery after the accident",
   "She did not attend Hospital or GP Surgery after the accident",
   "He did not attend Hospital after the accident",
-  "She did not attend Hospital after the accident"
+  "She did not attend Hospital after the accident",
+  "Other"
 ];
 
 export const imagingOptions = [
@@ -306,7 +311,8 @@ export const imagingOptions = [
   "CT scan was done",
   "MRI was done",
   "MRI was done with soft tissue injury observed",
-  "MRI was done with no bony injury observed"
+  "MRI was done with no bony injury observed",
+  "Other"
 ];
 
 export const prescriptionOptions = [
@@ -330,7 +336,8 @@ export const prescriptionOptions = [
   "Taking Zapain",
   "Taking Amitriptyline",
   "Taking Steroids and injections",
-  "Taking Steroids"
+  "Taking Steroids",
+  "Other"
 ];
 
 export const employmentStatusOptions = [
@@ -341,6 +348,7 @@ export const employmentStatusOptions = [
   "Retired",
   "Homemaker",
   "Military",
+  "Other"
 ];
 
 export const presentSeverityOptions = [
@@ -352,13 +360,15 @@ export const presentSeverityOptions = [
 
 export const eyeContactOptions = [
   "The claimant made good eye contact and rapport",
-  "The claimant did not make good eye contact and rapport"
+  "The claimant did not make good eye contact and rapport",
+  "Other"
 ];
 
 export const mentalStateOptions = [
   "The claimant showed no obvious sign of anxiety or depression",
   "The claimant showed signs of anxiety",
-  "The claimant showed signs of anxiety and depression"
+  "The claimant showed signs of anxiety and depression",
+  "Other"
 ];
 
 export const specialistOptions = [
