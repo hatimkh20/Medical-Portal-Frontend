@@ -5,6 +5,7 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 
 import "../Common/Common.css";
+import { presentSeverityOptions } from "./Constants";
 
 const DomesticImpactSection = ({ values, prevStep, nextStep }) => {
 
@@ -25,7 +26,7 @@ const DomesticImpactSection = ({ values, prevStep, nextStep }) => {
         <SelectField
           label="What is the current condition?"
           name={`${symptom}_severity_current`}
-          options={severityOptions.map((opt) => opt.label)}
+          options={presentSeverityOptions}
         />
       </div>
     </div>

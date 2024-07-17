@@ -3,6 +3,7 @@ import React from "react";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import SelectField from "../Common/SelectField";
+import { employmentStatusOptions } from "./Constants";
 
 const LivelihoodSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
@@ -12,7 +13,7 @@ const LivelihoodSection = ({ values, handleChange, prevStep, nextStep }) => {
         <SelectField
           name="employmentStatus"
           label="Please select your employment status"
-          options={["Student", "A", "B", "C"]}
+          options={employmentStatusOptions}
           values={values.employmentStatus}
           onChange={handleChange}
           fullLine={true}

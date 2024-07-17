@@ -3,7 +3,7 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import SelectField from "../Common/SelectField";
 import InputField from "../Common/InputField";
-import { postAccidentLocations, responseTeams, treatmentOptions } from "./Constants";
+import { attendanceOptions, imagingOptions, postAccidentLocations, prescriptionOptions, responseTeams, timeAfterAccident, treatmentOptions } from "./Constants";
 
 const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
@@ -51,14 +51,14 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
           <SelectField
             label="Where did you receive treatment?"
             name="laterTreatmentLocation"
-            options={["Option 1", "Option 2", "Option 3"]}
+            options={attendanceOptions}
             value={values.laterTreatmentLocation}
             onChange={handleChange}
           />
           <SelectField
             label="How long after the accident did you seek treatment?"
             name="treatmentTimeAfterAccident"
-            options={["Option 1", "Option 2", "Option 3"]}
+            options={timeAfterAccident}
             value={values.treatmentTimeAfterAccident}
             onChange={handleChange}
           />
@@ -67,14 +67,14 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
           <SelectField
             label="What treatment did you receive?"
             name="receivedTreatment"
-            options={["Option 1", "Option 2", "Option 3"]}
+            options={prescriptionOptions}
             value={values.receivedTreatment}
             onChange={handleChange}
           />
           <SelectField
             label="What imaging or scans were done?"
             name="imagingOrScans"
-            options={["Option 1", "Option 2", "Option 3"]}
+            options={imagingOptions}
             value={values.imagingOrScans}
             onChange={handleChange}
           />

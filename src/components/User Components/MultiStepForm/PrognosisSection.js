@@ -9,6 +9,7 @@ import Accordion from "../Common/Accordion/Accordion";
 import { toCamelCase } from "../Common/util";
 import SelectField from "../Common/SelectField";
 import InputField from "../Common/InputField";
+import { specialistOptions, symptomSeverity, timeAfterAccident } from "./Constants";
 
 const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
   const ongoingPrognosisQuestions = [
@@ -19,8 +20,9 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
     },
     {
       label: "Severity of disability?",
-      component: "InputField",
-      type: "text"
+      component: "SelectField",
+      type: "text",
+      options: symptomSeverity
     },
     {
       label: "Will the claimant require a specialist?",
@@ -29,8 +31,9 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
     },
     {
       label: "Which specialist?",
-      component: "InputField",
-      type: "text"
+      component: "SelectField",
+      type: "text",
+      options: specialistOptions
     },
     {
       label: "Will there be any long-term sequelae?",
@@ -50,8 +53,9 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
   const resolvedPrognosisQuestions = [
     {
       label: "When did it resolve? (From index accident)",
-      component: "InputField",
-      type: "text"
+      component: "SelectField",
+      type: "text",
+      options: timeAfterAccident
     },
     {
       label: "Will there be any long-term sequelae?",
@@ -79,13 +83,14 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
       case "InputField":
         return (
           <div className="question-item">
-            <InputField
+            <SelectField
               name={fieldName}
               label={question.label}
               type={question.type}
               value={values[fieldName] || ''}
               onChange={handleChange}
               onBlur={handleBlur}
+              options={timeAfterAccident}
             />
           </div>
         );

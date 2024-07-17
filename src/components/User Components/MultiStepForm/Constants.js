@@ -73,27 +73,14 @@ export const anatomyList = [
 ];
 
 export const timeAfterAccident = [
-  "Immediately after the index accident",
-  "2 hours after the index accident",
-  "3 hours after the index accident",
-  "4 hours after the index accident",
-  "5 hours after the index accident",
-  "6 hours after the index accident",
-  "8 hours after the index accident",
-  "The evening of the index accident",
-  "The night of the index accident",
-  "1 day after the index accident",
-  "2 days after the index accident",
-  "3 days after the index accident",
-  "4 days after the index accident",
-  "6 days after the index accident",
-  "1 week after the index accident",
-  "2 weeks after the index accident",
-  "3 weeks after the index accident",
-  "1 month after the index accident",
-  "2 months after the index accident",
-  "3 months after the index accident",
-  "6 months after the index accident"
+  "immediately",
+  "few minutes",
+  "day",
+  "days",
+  "week",
+  "weeks",
+  "month",
+  "months"
 ];
 
 export const postAccidentLocations = [
@@ -293,4 +280,121 @@ export const traumaOptions = [
   "spasm",
   "cramps",
   "Other" // Added "Other" option
+];
+
+export const timeOfAccident = ["morning", "day", "evening", "night"]
+
+export const attendanceOptions = [
+  "Going to Hospital",
+  "Going to A&E",
+  "Going to Urgent Care",
+  "Attending the GP Surgery",
+  "Attending a Walk-in-Centre",
+  "He did not attend Hospital or GP Surgery after the accident",
+  "She did not attend Hospital or GP Surgery after the accident",
+  "He did not attend Hospital after the accident",
+  "She did not attend Hospital after the accident"
+];
+
+export const imagingOptions = [
+  "Xray was done with bony injury observed",
+  "Xray was done, but no bony injury observed",
+  "CT was done, with the following injury observed",
+  "CT was done, but no bony injury were observed",
+  "CT Trauma was done with no bony injury observed",
+  "CT TAP scan was done",
+  "CT scan was done",
+  "MRI was done",
+  "MRI was done with soft tissue injury observed",
+  "MRI was done with no bony injury observed"
+];
+
+export const prescriptionOptions = [
+  "Co-codamol was prescribed",
+  "Naproxen was prescribed",
+  "Naproxen and lansoprazole prescribed Paracetamol prescribed to management the pain",
+  "Paracetamol prescribed to management the pain",
+  "Paracetamol and co-codamol prescribed Paracetamol prescribed to management the pain",
+  "The wounds were cleaned and bandaged to stop loss of blood",
+  "No painkillers was used",
+  "Taking painkillers",
+  "Taking Naproxene",
+  "Taking Naproxene with Lansoprazole",
+  "Taking Ibuprofen and Paracetamol",
+  "Taking Ibuprofen",
+  "Taking Paracetamol",
+  "Taking Co-codamol",
+  "Taking Neurofen",
+  "Taking Codeine",
+  "Taking Tramadol",
+  "Taking Zapain",
+  "Taking Amitriptyline",
+  "Taking Steroids and injections",
+  "Taking Steroids"
+];
+
+export const employmentStatusOptions = [
+  "Employed",
+  "Self-Employed",
+  "Unemployed",
+  "Student",
+  "Retired",
+  "Homemaker",
+  "Military",
+];
+
+export const presentSeverityOptions = [
+  "Presently",
+  "Presently severe",
+  "Presently moderate",
+  "Presently mild"
+];
+
+export const eyeContactOptions = [
+  "The claimant made good eye contact and rapport",
+  "The claimant did not make good eye contact and rapport"
+];
+
+export const mentalStateOptions = [
+  "The claimant showed no obvious sign of anxiety or depression",
+  "The claimant showed signs of anxiety",
+  "The claimant showed signs of anxiety and depression"
+];
+
+export const specialistOptions = [
+  "Cardiologist",
+  "Dermatologist",
+  "Endocrinologist",
+  "Gastroenterologist",
+  "Hematologist",
+  "Neurologist",
+  "Oncologist",
+  "Orthopedic Surgeon",
+  "Pediatrician",
+  "Psychiatrist",
+  "Pulmonologist",
+  "Rheumatologist",
+  "Urologist",
+  "Allergist/Immunologist",
+  "Anesthesiologist",
+  "Cardiothoracic Surgeon",
+  "Clinical Geneticist",
+  "Critical Care Medicine Specialist",
+  "Emergency Medicine Specialist",
+  "Family Medicine Physician",
+  "Geriatric Medicine Specialist",
+  "Infectious Disease Specialist",
+  "Internal Medicine Physician",
+  "Medical Examiner",
+  "Nephrologist",
+  "Obstetrician/Gynecologist",
+  "Ophthalmologist",
+  "Oral and Maxillofacial Surgeon",
+  "Otolaryngologist",
+  "Pathologist",
+  "Plastic Surgeon",
+  "Podiatrist",
+  "Radiologist",
+  "Sports Medicine Specialist",
+  "Vascular Surgeon"
 ];

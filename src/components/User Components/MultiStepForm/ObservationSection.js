@@ -4,6 +4,8 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
 import RadioButton from "../Common/RadioButton";
+import SelectField from "../Common/SelectField";
+import { eyeContactOptions, mentalStateOptions } from "./Constants";
 
 const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
   const handleInputChange = (e) => {
@@ -47,9 +49,9 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
 
         {values.physicalAppearance === "Other" && (
           <InputField
-            name="physicalAppearance"
+            name="physicalAppearance_other"
             label="Please fill, if you selected any other (optional)"
-            value={values.physicalAppearance}
+            value={values.physicalAppearance_other}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -83,9 +85,9 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
 
         {values.presenceOfScars === "Other" && (
           <InputField
-            name="presenceOfScars"
+            name="presenceOfScars_other"
             label="Please fill, if you selected any other (optional)"
-            value={values.presenceOfScars}
+            value={values.presenceOfScars_other}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -119,9 +121,9 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
 
         {values.conversation === "Other" && (
           <InputField
-            name="conversation"
+            name="conversation_other"
             label="Please fill, if you selected any other (optional)"
-            value={values.conversation}
+            value={values.conversation_other}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -129,24 +131,26 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
       </div>
 
       <div className="input-group">
-        <InputField
-          name="fullName"
+        <SelectField
+          name="eyeContact"
           label="Good eye contact / Rapport"
-          value={values.fullName}
+          value={values.eyeContact}
           onChange={handleInputChange}
           onBlur={handleBlur}
           fullLine={true}
+          options={eyeContactOptions}
         />
       </div>
 
       <div className="input-group">
-        <InputField
-          name="fullName"
+        <SelectField
+          name="mentalState"
           label="Mental State: Signs of Anxiety / Depression"
-          value={values.fullName}
+          value={values.mentalState}
           onChange={handleInputChange}
           onBlur={handleBlur}
           fullLine={true}
+          options={mentalStateOptions}
         />
       </div>
 

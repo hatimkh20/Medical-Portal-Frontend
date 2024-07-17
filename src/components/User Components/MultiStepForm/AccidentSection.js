@@ -5,7 +5,7 @@ import RadioButton from "../Common/RadioButton";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
-import { vehicleLevelDamage, vehicleSpeedImpact } from "./Constants";
+import { timeOfAccident, vehicleLevelDamage, vehicleSpeedImpact } from "./Constants";
 
 const questionsFourWheels = [
   { name: "seatbeltFit", label: "Did the vehicle have a seatbelt fitted?" },
@@ -75,12 +75,13 @@ const AccidentSectionForm = ({
         Please provide details about the accident.
       </p>
       <div className="input-group">
-        <InputField
+        <SelectField
           name="accidentTime"
           label="What time of the day did the accident happen?"
           value={values.accidentTime}
           onChange={handleChange}
           onBlur={handleBlur}
+          options={timeOfAccident}
         />
         <InputField
           name="accidentLocation"
