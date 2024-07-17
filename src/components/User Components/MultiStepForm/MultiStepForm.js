@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import "./Form.css";
 
 const MultiStepForm = ({steps}) => {
-  const [currentStep, setCurrentStep] = useState(3+5);
+  const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     fullName: "",
     dateOfBirth: "",
