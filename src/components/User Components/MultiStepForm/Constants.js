@@ -406,5 +406,6 @@ export const specialistOptions = [
   "Podiatrist",
   "Radiologist",
   "Sports Medicine Specialist",
-  "Vascular Surgeon"
+  "Vascular Surgeon",
+  "Other"
 ];
