@@ -114,6 +114,15 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
           </div>
         ))}
 
+      <TextAreaField
+        name="exceptionCircumstancesOther"
+        label="Anything else"
+        value={values?.exceptionCircumstancesOther}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        rows={2}
+      />
+
       </div>
 
       <div className="button-group">

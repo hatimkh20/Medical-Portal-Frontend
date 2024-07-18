@@ -65,7 +65,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
         </div>
         <div className="input-group">
           <SelectField
-            label="What treatment did you receive?"
+            label="What medications did you receive?"
             name="receivedTreatment"
             options={prescriptionOptions}
             value={values.receivedTreatment}

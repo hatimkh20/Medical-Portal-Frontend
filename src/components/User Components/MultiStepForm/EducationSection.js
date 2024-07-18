@@ -12,21 +12,21 @@ const EducationSection = ({ prevStep, nextStep }) => {
         <div className="input-group">
           <InputField
             name="currentEmployment"
-            label="Where are you studying currently?"
+            label="Where are you studying/working currently?"
           />
           <InputField
             name="hoursEmployment"
-            label="How many hours do you give to your education?"
+            label="How many hours do you give to your education/work?"
           />
         </div>
         <div className="input-group">
         <InputField
             name="currentEmployment"
-            label="How long did you take off from school after accident?"
+            label="How long did you take off from school/work after accident?"
           />
           <InputField
             name="hoursEmployment"
-            label="How was your phased return to school managed?"
+            label="How was your phased return to school/work managed?"
           />
         </div>
       </div>

@@ -12,7 +12,7 @@ const LivelihoodSection = ({ values, handleChange, prevStep, nextStep }) => {
       <div className="input-group">
         <SelectField
           name="employmentStatus"
-          label="Please select your employment status"
+          label="Please select your employment status at time of accident"
           options={employmentStatusOptions}
           value={values.employmentStatus}
           onChange={handleChange}
