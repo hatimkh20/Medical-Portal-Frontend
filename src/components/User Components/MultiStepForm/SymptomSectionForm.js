@@ -8,26 +8,6 @@ import { symptomSeverity, timeAfterAccident } from "./Constants";
 import { toCamelCase } from "../Common/util";
 
 const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep }) => {
-  const symptoms = [
-    "Neck",
-    "Head",
-    "High blood pressure",
-    "Nose bleed",
-    "Right Hip",
-  ]; // Example anatomies
-
-  const severityOptions = [
-    { value: "mild", label: "Mild" },
-    { value: "moderate", label: "Moderate" },
-    { value: "severe", label: "Severe" },
-  ];
-
-  const timeOptions = [
-    { value: "1_hour", label: "1 hour after accident" },
-    { value: "3_hours", label: "3 hours after accident" },
-    { value: "1_day", label: "1 day after accident" },
-  ];
-
   const handleInputChange = (e) => {
     handleChange(e); // Call Formik's handleChange
   };
@@ -43,6 +23,7 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep }) => {
           options={timeAfterAccident}
           onChange={handleInputChange}
           value={values[`${fieldNamePrefix}StartTime`]}
+          values={values}
         />
         <SelectField
           label="Select severity at onset"
@@ -66,6 +47,7 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep }) => {
           options={timeAfterAccident}
           onChange={handleInputChange}
           value={values[`${fieldNamePrefix}ResolvedDuration`]}
+          values={values}
         />
       </div>
     </div>

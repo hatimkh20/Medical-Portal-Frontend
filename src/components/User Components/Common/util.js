@@ -17,3 +17,7 @@ export const isOtherSelected = (value) => {
 export const otherOrValue = (options, value) => {
   return isOtherSelected(options, value)? "Other": value;
 }
+
+export const isPluralFrequencySelected = (value) => {
+  return value === "months" || value ===  "weeks" || value === "days";
+}
