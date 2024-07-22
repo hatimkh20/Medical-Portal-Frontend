@@ -8,6 +8,8 @@ import Navbar from "./components/Navigation/Navbar";
 import Dashboard from "./pages/Dashboard";
 import MultiStepForm from "./components/User Components/MultiStepForm/MultiStepForm"; // Import the MultiStepForm component
 import Steps from "./components/User Components/MultiStepForm/Steps";
+import MedicalReport from "./components/Report Component/MedicalReport";
+import { data } from "./data";
 
 const ProtectedRoute = ({ element }) => {
   const { isLoggedIn } = React.useContext(AuthContext);
@@ -27,6 +29,7 @@ function App() {
           <Route path="/sign-up" element={<AuthPage />} />
           <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
           <Route path="/form" element={ <MultiStepForm steps={Steps}/>} />
+          <Route path="/report" element={ <MedicalReport data={data} /> } />
            {/* Add route for MultiStepForm */}
         </Routes>
       </Router>
