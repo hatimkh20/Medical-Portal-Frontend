@@ -1,0 +1,33 @@
+.details-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f7f9fc;
+}
+
+.details-container.two-rows {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.details-container.two-rows .report-text {
+  width: 48%;
+}
+
+.details-container.single-column {
+  flex-direction: column;
+}
+
+.details-container.single-column .report-text {
+  width: 100%;
+}
+
+.details-container .report-text.inline {
+  display: inline;
+}
+
+.details-container .report-text.block {
+  display: block;
+  width: 100%;
+}

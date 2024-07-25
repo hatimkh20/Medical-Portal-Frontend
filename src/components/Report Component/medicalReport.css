@@ -60,10 +60,12 @@
 .report-subtitle {
   font-size: 18px;
   font-weight: bold;
-  color: #0056b3;
-  margin-bottom: 10px;
+  color: #224B5F;
+  margin-bottom: 0px;
   border-bottom: 2px solid #004085;
   padding-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .report-text {
@@ -86,4 +88,8 @@
 
 .report-download-button:hover {
   background-color: #0056b3;
+}
+
+.report-text strong {
+  color: #224B5F;
 }
