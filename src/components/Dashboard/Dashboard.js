@@ -1,33 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';  // Import useNavigate from react-router-dom
+import { formatDate } from "../User Components/Common/util";
+import LoadingErrorWrapper from "../User Components/Common/LoadingErrorWrapper";
+import useFetch from "../../hooks/useFetch";
 
 const Dashboard = () => {
 
   const navigate = useNavigate()  // Create an instance of useHistory
 
-  const reports = [
-    {
-      id: 1,
-      name: "First Report Of the system",
-      date: "09/03/2024",
-      status: "Viewed",
-    },
-    {
-      id: 2,
-      name: "Second Report Of the system",
-      date: "09/03/2024",
-      status: "Edited",
-    },
-    {
-      id: 3,
-      name: "Third Report Of the system",
-      date: "09/03/2024",
-      status: "Downloaded",
-    },
-  ];
+  const { data: reports, loading, error } = useFetch('/api/report', {});
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -60,13 +44,14 @@ const Dashboard = () => {
           <div className="reports-header-item">Status</div>
           <div className="reports-header-item">Actions</div>
         </div>
-        {reports.map((report) => (
+        <LoadingErrorWrapper loading={loading} error={error}>
+        {reports && reports.map((report, idx) => (
           <div className="report-row" key={report.id}>
             <div className="report-item">
-              {report.id.toString().padStart(2, "0")}
+              {(idx+1).toString().padStart(2, "0")}
             </div>
-            <div className="report-item">{report.name}</div>
-            <div className="report-item">{report.date}</div>
+            <div className="report-item">{report.report_name}</div>
+            <div className="report-item">{formatDate(report.createdAt)}</div>
             <div className="report-item">
               <span className={`status-badge ${getStatusClass(report.status)}`}>
                 {report.status}
@@ -85,6 +70,7 @@ const Dashboard = () => {
             </div>
           </div>
         ))}
+        </LoadingErrorWrapper>
       </div>
     </div>
   );

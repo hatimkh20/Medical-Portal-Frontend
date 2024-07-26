@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 export const titleCase = (value) => {
     return value.at(0).toUpperCase() + value.substring(1);
   }
@@ -21,3 +23,8 @@ export const otherOrValue = (options, value) => {
 export const isPluralFrequencySelected = (value) => {
   return value === "months" || value ===  "weeks" || value === "days";
 }
+
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return format(date, 'PPpp'); // Example format: "Jul 26, 2024, 9:54 AM"
+};

@@ -13,6 +13,7 @@ import { data } from "./data";
 
 const ProtectedRoute = ({ element }) => {
   const { isLoggedIn } = React.useContext(AuthContext);
+  console.log("HELLO PROTECTED ROUTE" + isLoggedIn)
   return isLoggedIn ? element : <Navigate to="/sign-in" />;
 };
 
