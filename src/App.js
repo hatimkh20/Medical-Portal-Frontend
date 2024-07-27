@@ -1,6 +1,11 @@
 // App.js
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import React, { useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import AuthProvider, { AuthContext } from "./context/AuthContext";
@@ -10,14 +15,15 @@ import MultiStepForm from "./components/User Components/MultiStepForm/MultiStepF
 import Steps from "./components/User Components/MultiStepForm/Steps";
 import MedicalReport from "./components/Report Component/MedicalReport";
 import { data } from "./data";
-
-const ProtectedRoute = ({ element }) => {
-  const { isLoggedIn } = React.useContext(AuthContext);
-  console.log("HELLO PROTECTED ROUTE" + isLoggedIn)
-  return isLoggedIn ? element : <Navigate to="/sign-in" />;
-};
+import ForgotPassword from "./components/Authentication/ForgetPassword";
+import VerifyResetPassword from "./components/Authentication/VerifyResetPassword";
+import ResetPassword from "./components/Authentication/ResetPassword";
 
 function App() {
+  const ProtectedRoute = ({ element, ...rest }) => {
+    const { isLoggedIn } = useContext(AuthContext);
+    return isLoggedIn ? element : <Navigate to="/sign-in" />;
+  };
   return (
     <AuthProvider>
       <Router>
@@ -28,10 +34,24 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/sign-in" element={<AuthPage />} />
           <Route path="/sign-up" element={<AuthPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/form" element={ <MultiStepForm steps={Steps}/>} />
-          <Route path="/report" element={ <MedicalReport data={data} /> } />
-           {/* Add route for MultiStepForm */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="/verify-reset-password/:token"
+            element={<VerifyResetPassword />}
+          />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route
+            path="/dashboard"
+            element={<ProtectedRoute element={<Dashboard />} />}
+          />
+          <Route
+            path="/form"
+            element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />}
+          />
+          <Route
+            path="/report"
+            element={<ProtectedRoute element={<MedicalReport data={data} />} />}
+          />
         </Routes>
       </Router>
     </AuthProvider>

@@ -1,4 +1,5 @@
 // components/Auth/Login.js
+
 import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -50,17 +51,24 @@ const Login = () => {
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-              />
+              <div className="password-group">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                />
+               
+              </div>
+              
               {formik.touched.password && formik.errors.password ? (
                 <div className="error">{formik.errors.password}</div>
               ) : null}
+               <Link to="/forgot-password" className="forgot-password-link">
+                Forgot Password?
+                </Link>
             </div>
 
             <button type="submit" className="btn btn-primary">
