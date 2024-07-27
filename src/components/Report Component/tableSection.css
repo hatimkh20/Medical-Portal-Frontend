@@ -1,18 +1,69 @@
 .report-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.report-table th {
+  background-color: #3EABE1;
+  color: #fff;
+  font-weight: 500;
+}
+
+.table-header {
+  background-color: #197F72 !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  .report-table {
+    display: flex;
+    flex-direction: column;
   }
-  
-  .report-table th,
+
+  .report-table thead {
+    display: none;
+  }
+
+  .report-table tbody {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .report-table tr {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
   .report-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
     text-align: left;
   }
-  
-  .report-table th {
-    background-color: #f2f2f2;
+
+  .report-table td:before {
+    content: attr(data-label);
+    font-weight: bold;
     color: #333;
+    flex: 1;
   }
-  
+
+  .report-table td {
+    flex: 2;
+  }
+}

@@ -1,4 +1,3 @@
-/* medicalReport.css */
 .report-wrapper {
   display: flex;
   flex-direction: column;
@@ -8,9 +7,10 @@
 }
 
 .report-container {
-  width: 210mm;
+  width: 100%;
+  max-width: 210mm;
   min-height: 297mm;
-  padding: 20mm;
+  padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -28,7 +28,7 @@
 }
 
 .report-section {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .report-claimant-details {
@@ -53,8 +53,14 @@
 }
 
 .report-claimant-details .report-text {
-  width: 48%;
+  width: 100%;
   margin-bottom: 5px;
+}
+
+@media (min-width: 600px) {
+  .report-claimant-details .report-text {
+    width: 48%;
+  }
 }
 
 .report-subtitle {
@@ -72,6 +78,7 @@
   font-size: 14px;
   color: #333333;
   line-height: 1.6;
+  margin: 8px 0px;
 }
 
 .report-download-button {

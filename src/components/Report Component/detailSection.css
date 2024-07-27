@@ -28,6 +28,6 @@
 }
 
 .details-container .report-text.block {
-  display: block;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

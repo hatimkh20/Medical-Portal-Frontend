@@ -10,7 +10,7 @@ const MedicalReport = ({ data }) => {
   const generatePdf = () => {
     const input = document.getElementById('report-container');
     html2canvas(input, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL('image/jpeg', 0.9); // Use JPEG and reduce quality to 0.5
       const pdf = new jsPDF('p', 'mm', 'a4');
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
@@ -32,21 +32,29 @@ const MedicalReport = ({ data }) => {
         <header className="report-header">
           <h1 className="report-title">Medical Report</h1>
         </header>
-        
+
         <DetailsSection 
           title="Claimant's Details"
           layout="two-rows"
           details={[
-            { label: 'Full Name', value: data.name, inline: true },
-            { label: 'Date of Birth', value: data.dob, inline: true },
-            { label: 'Address', value: data.address, inline: true },
-            { label: 'Occupation', value: data.occupation, inline: true },
-            { label: 'Medical Records', value: data.medicalRecords, inline: true },
-            { label: 'Date of Accident', value: data.dateOfAccident, inline: true },
-            { label: 'Date of Examination', value: data.dateOfExamination, inline: true },
-            { label: 'Duration of Examination', value: data.durationOfExamination, inline: true },
-            { label: 'Instructing Party', value: data.instructingParty, inline: true },
-            { label: 'Agency', value: data.agency, inline: true }
+            { label: 'Full Name', value: data.claimantDetails.name, inline: true },
+            { label: 'Date of Birth', value: data.claimantDetails.dob, inline: true },
+            { label: 'Address', value: data.claimantDetails.address, inline: true },
+            { label: 'Occupation', value: data.claimantDetails.occupation, inline: true },
+            { label: 'Phone', value: data.claimantDetails.phone, inline: true },
+            { label: 'GP Name', value: data.claimantDetails.gpName, inline: true },
+            { label: 'GP Address', value: data.claimantDetails.gpAddress, inline: true },
+            { label: 'Referrer', value: data.claimantDetails.referrer, inline: true },
+            { label: 'Agency Reference', value: data.claimantDetails.agencyReference, inline: true },
+            { label: 'Agency Address', value: data.claimantDetails.agencyAddress, inline: true },
+            { label: 'Solicitor', value: data.claimantDetails.solicitor, inline: true },
+            { label: 'Solicitor Address', value: data.claimantDetails.solicitorAddress, inline: true },
+            { label: 'Date of Examination', value: data.claimantDetails.dateOfExamination, inline: true },
+            { label: 'Duration of Examination', value: data.claimantDetails.durationOfExamination, inline: true },
+            { label: 'Examination Venue', value: data.claimantDetails.examinationVenue, inline: true },
+            { label: 'Report Date', value: data.claimantDetails.reportDate, inline: true },
+            { label: 'Agency', value: data.claimantDetails.agency, inline: true },
+            { label: 'Case Number', value: data.claimantDetails.caseNumber, inline: true }
           ]}
         />
 
@@ -54,51 +62,60 @@ const MedicalReport = ({ data }) => {
           title="Accident Details"
           layout="single-column"
           details={[
-            { label: 'Claimant Reported', value: data.accidentResponse, inline: false }
+            { label: 'Claimant Reported', value: data.accidentDetails.claimantResponse, inline: false }
           ]}
         />
 
         <TableSection 
           title="Symptoms Details"
-          rows={data.symptoms.map(symptom => ({
-            Area: symptom.area,
-            Symptoms: symptom.symptoms,
-            Severity: symptom.severity
+          rows={data.symptomsDetails.map(symptom => ({
+            Anatomy: symptom.anatomy,
+            "Started At": symptom.duration,
+            "Severity at onset": symptom.severityOnset,
+            "Severity now": symptom.severityNow,
+            "Ongoing/Resolved": symptom.ongoing
           }))}
         />
 
         <DetailsSection 
           title="Treatment Details"
           layout="single-column"
-          details={data.treatment.map(treat => ({
-            label: 'Treatment',
-            value: `${treat.treatment}, Details: ${treat.details}`,
-            inline: false
-          }))}
+          details={[
+            { label: 'Immediate Treatment', value: data.accidentDetails.claimantResponse, inline: false },
+            { label: 'Later Treatment', value: data.accidentDetails.claimantResponse, inline: false },
+
+          ]}
         />
 
         <DetailsSection 
           title="Employment/Education Details"
           layout="single-column"
           details={[
-            { label: 'Current Employment Status', value: data.employmentStatus, inline: true },
-            { label: 'Missed Work Days', value: data.missedWorkDays, inline: true }
+            { label: 'Current Employment Status', value: data.employmentEducationDetails.employmentStatus, inline: true },
+            { label: 'Occupation', value: data.employmentEducationDetails.occupation, inline: true },
+            { label: 'Education Level', value: data.employmentEducationDetails.educationLevel, inline: true },
+            { label: 'Missed Work Days', value: data.employmentEducationDetails.missedWorkDays, inline: true },
+            { label: 'Impact on Work', value: data.employmentEducationDetails.impactOnWork, inline: true }
           ]}
         />
 
         <TableSection 
           title="Domestic Impact Details"
-          rows={data.domesticImpact.map(impact => ({
+          rows={data.domesticImpactDetails.map(impact => ({
             Activity: impact.activity,
-            Impact: impact.impact
+            Severity: impact.severity,
+            SymptomExacerbation: impact.symptomExacerbation
           }))}
+          mergedHeader="Ongoing"
         />
 
         <DetailsSection 
           title="Past Medical History"
           layout="single-column"
           details={[
-            { label: 'Injuries', value: data.pastInjuries, inline: false }
+            { label: 'Injuries', value: data.pastMedicalHistory.injuries, inline: false },
+            { label: 'Illnesses', value: data.pastMedicalHistory.illnesses, inline: false },
+            { label: 'Operations', value: data.pastMedicalHistory.operations, inline: false }
           ]}
         />
 
@@ -106,7 +123,11 @@ const MedicalReport = ({ data }) => {
           title="General Observation"
           layout="single-column"
           details={[
-            { label: 'Observation', value: data.generalObservation, inline: false }
+            { label: 'Presentation', value: data.generalObservation.presentation, inline: true },
+            { label: 'Demeanor', value: data.generalObservation.demeanor, inline: true },
+            { label: 'Pain Levels', value: data.generalObservation.painLevels, inline: true },
+            { label: 'Pain Management', value: data.generalObservation.painManagement, inline: true },
+            { label: 'Mobility', value: data.generalObservation.mobility, inline: true }
           ]}
         />
 
@@ -114,23 +135,29 @@ const MedicalReport = ({ data }) => {
           title="Physical Examination"
           rows={data.physicalExamination.map(exam => ({
             Area: exam.area,
-            Observations: exam.observations
+            Observation: exam.observation,
+            Characteristics: exam.characteristics,
+            SymptomExacerbation: exam.symptomExacerbation
           }))}
         />
 
         <TableSection 
           title="Diagnosis - Physical Injuries"
-          rows={data.physicalDiagnosis.map(diagnosis => ({
+          rows={data.diagnosisPhysicalInjuries.map(diagnosis => ({
             Injury: diagnosis.injury,
-            Details: diagnosis.details
+            Mechanism: diagnosis.mechanism,
+            Treatment: diagnosis.treatment,
+            Prognosis: diagnosis.prognosis
           }))}
         />
 
         <TableSection 
           title="Diagnosis - Psychological Injuries"
-          rows={data.psychologicalDiagnosis.map(diagnosis => ({
+          rows={data.diagnosisPsychologicalInjuries.map(diagnosis => ({
             Injury: diagnosis.injury,
-            Details: diagnosis.details
+            Mechanism: diagnosis.mechanism,
+            Treatment: diagnosis.treatment,
+            Prognosis: diagnosis.prognosis
           }))}
         />
 
@@ -144,15 +171,19 @@ const MedicalReport = ({ data }) => {
 
         <TableSection 
           title="Prognosis - Physical Injuries"
-          rows={data.physicalPrognosis.map(prognosis => ({
-            Prognosis: prognosis.details
+          rows={data.prognosisPhysicalInjuries.map(prognosis => ({
+            Injury: prognosis.injury,
+            ShortTerm: prognosis.shortTerm,
+            LongTerm: prognosis.longTerm
           }))}
         />
 
         <TableSection 
           title="Prognosis - Psychological Injuries"
-          rows={data.psychologicalPrognosis.map(prognosis => ({
-            Prognosis: prognosis.details
+          rows={data.prognosisPsychologicalInjuries.map(prognosis => ({
+            Injury: prognosis.injury,
+            ShortTerm: prognosis.shortTerm,
+            LongTerm: prognosis.longTerm
           }))}
         />
 
@@ -160,7 +191,7 @@ const MedicalReport = ({ data }) => {
           title="Further Treatment and Rehabilitation"
           layout="single-column"
           details={[
-            { label: 'Further Treatment', value: data.furtherTreatment, inline: false }
+            { label: 'Further Treatment', value: data.furtherTreatmentRehabilitation, inline: false }
           ]}
         />
 
@@ -176,8 +207,16 @@ const MedicalReport = ({ data }) => {
           title="Signature"
           layout="single-column"
           details={[
-            { label: 'Signed By', value: data.signedBy, inline: true }
+            { label: 'Signed By', value: `${data.signedBy.name}, ${data.signedBy.qualifications}`, inline: true },
+            { label: 'Date', value: data.signedBy.date, inline: true }
           ]}
+        />
+
+        <TableSection 
+          title="Expert Bibliography"
+          rows={data.expertBibliography.map(bibliography => ({
+            Bibliography: bibliography
+          }))}
         />
       </div>
       <button onClick={generatePdf} className="report-download-button">Download PDF</button>

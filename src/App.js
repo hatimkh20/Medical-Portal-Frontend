@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/sign-in" element={<AuthPage />} />
           <Route path="/sign-up" element={<AuthPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/form" element={ <MultiStepForm steps={Steps}/>} />
           <Route path="/report" element={ <MedicalReport data={data} /> } />
            {/* Add route for MultiStepForm */}
