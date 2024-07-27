@@ -15,8 +15,8 @@ const SelectField = ({ label, options = [], fullLine, values, ...props }) => {
         <label htmlFor={props.id || props.name}>{label}</label>
         <select {...field} {...props} className="text-input">
           <option value="">Select an option</option>
-          {options.map(option => (
-            <option key={option} value={option}>{option}</option>
+          {options.map((option, idx) => (
+            <option key={idx} value={option}>{option}</option>
           ))}
         </select>
         {meta.touched && meta.error ? (
