@@ -18,6 +18,13 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
     handleChange(e); // Call Formik's handleChange
   };
 
+  const save = async (e) => {
+
+    // await handleSubmit(e)();
+  }
+
+  const pageKey = "claimantDetails";
+
   return (
     <FormLayout title="CLAIMANT'S DETAIL">
       <p className="form-description">
@@ -30,6 +37,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           value={values.fullName}
           onChange={handleInputChange}
           onBlur={handleBlur}
+          pageKey={pageKey}
         />
         <InputField
           name="dateOfBirth"
@@ -38,6 +46,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           value={values.dateOfBirth}
           onChange={handleInputChange}
           onBlur={handleBlur}
+          pageKey={pageKey}
         />
       </div>
       <div className="input-group">
@@ -47,6 +56,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           value={values.address}
           onChange={handleInputChange}
           onBlur={handleBlur}
+          pageKey={pageKey}
         />
         <div className="rowspan-2">
           <InputField
@@ -55,6 +65,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
             value={values.occupation}
             onChange={handleInputChange}
             onBlur={handleBlur}
+            pageKey={pageKey}
           />
           <InputField
             name="whichTypeOfIDChecked"
@@ -62,6 +73,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
             value={values.whichTypeOfIDChecked}
             onChange={handleInputChange}
             onBlur={handleBlur}
+            pageKey={pageKey}
           />
         </div>
       </div>
@@ -73,6 +85,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           value={values.dateOfExamination}
           onChange={handleInputChange}
           onBlur={handleBlur}
+          pageKey={pageKey}
         />
         <InputField
           name="whichRecordsSeen"
@@ -80,6 +93,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           value={values.whichRecordsSeen}
           onChange={handleInputChange}
           onBlur={handleBlur}
+          pageKey={pageKey}
         />
       </div>
       <div className="input-group">
@@ -90,6 +104,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           value={values.dateOfAccident}
           onChange={handleInputChange}
           onBlur={handleBlur}
+          pageKey={pageKey}
         />
         <InputField
           name="ageAtTimeOfAccident"
@@ -98,6 +113,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           value={values.ageAtTimeOfAccident}
           onChange={handleInputChange}
           onBlur={handleBlur}
+          pageKey={pageKey}
         />
       </div>
       <div className="input-group">
@@ -109,12 +125,14 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               value="yes"
               checked={values.medicalRecordsProvided === "yes"}
               onChange={handleInputChange}
+              pageKey={pageKey}
             />
             <RadioButton
               name="medicalRecordsProvided"
               value="no"
               checked={values.medicalRecordsProvided === "no"}
               onChange={handleInputChange}
+              pageKey={pageKey}
             />
           </div>
         </div>
@@ -127,17 +145,19 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               value="yes"
               checked={values.hasPhotoIDConfirmed === "yes"}
               onChange={handleInputChange}
+              pageKey={pageKey}
             />
             <RadioButton
               name="hasPhotoIDConfirmed"
               value="no"
               checked={values.hasPhotoIDConfirmed === "no"}
               onChange={handleInputChange}
+              pageKey={pageKey}
             />
           </div>
         </div>
       </div>
-      <Button type="submit" onClick={handleSubmit}>Save & Next</Button>
+      <Button type="submit" onClick={save}>Save & Next</Button>
     </FormLayout>
   );
 };

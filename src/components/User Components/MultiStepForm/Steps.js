@@ -93,6 +93,11 @@ const Steps = {
     return stepNumber < this.values.length;
   },
 
+  getStepKey(stepNumber) {
+    const step = this.values[stepNumber];
+    return step ? step.key : null; // Safely return the component or null if not found
+  },
+
   getStepComponent(stepNumber) {
     const step = this.values[stepNumber];
     return step ? step.component : null; // Safely return the component or null if not found

@@ -11,7 +11,9 @@ const LoadingErrorWrapper = ({ loading, error, children }) => {
   }
 
   if (error) {
-    return <div className="error">Error: {error.message}</div>;
+    return <div className="error">Error: {error.message}
+     <>{children}</>
+    </div>;
   }
 
   return <>{children}</>; // Render children if no loading or error

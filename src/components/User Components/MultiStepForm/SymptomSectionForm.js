@@ -14,7 +14,7 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep }) => {
 
 
   const renderSymptomDetails = (symptom) => {
-    const fieldNamePrefix = `symptons_${toCamelCase(symptom)}_`;
+    const fieldNamePrefix = `symptom_${toCamelCase(symptom)}_`;
     return (<div>
       <div className="input-group">
         <SelectField

@@ -9,7 +9,7 @@ const useFetch = (endpoint, options) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-
+    console.log("1 bar")
     const fetchData = async () => {
       try {
         const response = await axios.get(BASE_URL + endpoint, {
@@ -30,7 +30,7 @@ const useFetch = (endpoint, options) => {
     fetchData();
   }, [endpoint, options]);
 
-  return { data, loading, error };
+  return { data, loading, error, setData};
 };
 
 export default useFetch;

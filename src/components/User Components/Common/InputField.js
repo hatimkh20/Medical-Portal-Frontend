@@ -3,7 +3,7 @@ import React from "react";
 import { useField } from "formik";
 import "./Common.css";
 
-const InputField = ({ label, fullLine = false, ...props }) => {
+const InputField = ({ label, fullLine = false, ...props }) => { 
   const [field, meta] = useField(props);
   const className = fullLine ? "form-group" : "input-form-group";
 

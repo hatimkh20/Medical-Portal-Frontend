@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   const navigate = useNavigate()  // Create an instance of useHistory
 
-  const { data: reports, loading, error } = useFetch('/api/report', {});
+  const { data: reports, loading, error } = useFetch('/api/report');
 
   const getStatusClass = (status) => {
     switch (status) {

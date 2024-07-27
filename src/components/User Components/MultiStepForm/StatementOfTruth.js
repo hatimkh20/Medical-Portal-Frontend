@@ -5,26 +5,43 @@ import Modal from "../Common/ModalComponent";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import InputField from "../Common/InputField";
+import usePost from "../../../hooks/usePost";
+import useFetch from "../../../hooks/useFetch";
 
 const StatementOfTruth = ({ values, handleChange, handleBlur, prevStep }) => {
-  const [statements, setStatements] = useState({
-    "Statement 1":
-      "I confirm that I have made clear which facts and matters referred to in this report are within my own knowledge and which are not. Those that are within my own knowledge I confirm to be true. The opinions I have expressed represent my true and complete professional opinions on the matters to which they refer.",
-    // Initialize with more statements as necessary
-  });
-  const [selectedStatement, setSelectedStatement] = useState("Statement 1");
+
+  const [selectedStatement, setSelectedStatement] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data: response, loading, error, postRequest: saveForm } = usePost('/api/statement-of-truth', {
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  const { data: statements, setData: setStatements } = useFetch('/api/statement-of-truth');
 
   const handleSelectChange = (event) => {
     setSelectedStatement(event.target.value);
   };
 
-  const handleAddStatement = (name, text) => {
-    if (name && text) {
-      setStatements((prev) => ({ ...prev, [name]: text }));
-      setIsModalOpen(false); // Close modal after adding
+  const saveStatement = async (e) => {
+    
+    if(!values.statementName || !values.statementContent) {
+      return;
     }
-  };
+    
+    const newStatement = {
+      name: values.statementName,
+      statement: values.statementContent
+    };
+
+    await saveForm(newStatement)
+
+    setStatements([...statements, newStatement])
+    // setStatements((prev) => ({ ...prev, [name]: text }));
+
+    setIsModalOpen(false);
+
+  }
 
   return (
     <FormLayout
@@ -39,18 +56,18 @@ const StatementOfTruth = ({ values, handleChange, handleBlur, prevStep }) => {
     >
       <div className="input-group">
         <SelectField
-          name="statements"
+          name="selectedStatement"
           label="Select predefined statement or  from library"
-          options={["Statement 1"]}
-          value=""
-          onChange={handleChange}
+          options={statements?.map(statement => statement.name)}
+          value={selectedStatement}
+          onChange={(e) => setSelectedStatement(e.target.value)}
           onBlur={handleBlur}
           fullLine={true}
         />
       </div>
 
       <h4 className="form-sub-heading">Statement Preview</h4>
-      <p>{statements[selectedStatement]}</p>
+      {/* <p>{statements[selectedStatement]}</p> */}
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
@@ -59,9 +76,9 @@ const StatementOfTruth = ({ values, handleChange, handleBlur, prevStep }) => {
         >
           <div className="form-group">
             <InputField
-              name="statement"
+              name="statementName"
               label="Statement Name"
-              value={values.fullName}
+              value={values.statementName}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -69,16 +86,16 @@ const StatementOfTruth = ({ values, handleChange, handleBlur, prevStep }) => {
 
           <div className="form-group">
             <TextAreaField
-              name="address"
+              name="statementContent"
               label="Statement"
               rows={6}
-              value={values.address}
+              value={values.statementContent}
               onChange={handleChange}
               onBlur={handleBlur}
             />
           </div>
 
-          <Button type="button">Add In Library</Button>
+          <Button type="button" onClick={saveStatement}>Add In Library</Button>
         </Modal>
       )}
 
