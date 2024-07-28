@@ -14,13 +14,15 @@ const Dashboard = () => {
   const { data: reports, loading, error } = useFetch('/api/report');
 
   const getStatusClass = (status) => {
-    switch (status) {
-      case "Viewed":
+    switch (status.toLowerCase()) {
+      case "viewed":
         return "status-viewed";
-      case "Edited":
+      case "edited":
         return "status-edited";
-      case "Downloaded":
+      case "downloaded":
         return "status-downloaded";
+      case "created":
+        return "status-created";
       default:
         return "";
     }
@@ -50,7 +52,7 @@ const Dashboard = () => {
             <div className="report-item">
               {(idx+1).toString().padStart(2, "0")}
             </div>
-            <div className="report-item">{report.report_name}</div>
+            <div className="report-item">{report.reportName}</div>
             <div className="report-item">{formatDate(report.createdAt)}</div>
             <div className="report-item">
               <span className={`status-badge ${getStatusClass(report.status)}`}>

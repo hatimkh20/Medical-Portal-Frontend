@@ -116,6 +116,11 @@
   color: #000;
 }
 
+.status-created {
+  background-color: #4e6f7c; /* Light green */
+  color: #fff;
+}
+
 /* Action buttons */
 .actions {
   display: flex;

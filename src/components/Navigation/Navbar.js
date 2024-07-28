@@ -1,5 +1,4 @@
-// components/Navigation/Navbar.js
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./Navbar.css";
@@ -7,6 +6,11 @@ import logoImage from "../../assets/images/logo.png";
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="container">
@@ -20,36 +24,41 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <ul className="navbar-links">
+        <ul className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" onClick={toggleMenu}>Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/about" onClick={toggleMenu}>About</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" onClick={toggleMenu}>Contact</Link>
           </li>
           <li>
-            <Link to="/services">Services</Link>
+            <Link to="/services" onClick={toggleMenu}>Services</Link>
           </li>
           {isLoggedIn ? (
             <>
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/dashboard" onClick={toggleMenu}>Dashboard</Link>
               </li>
               <li>
-                <button onClick={logout} className="btn-logout">
+                <button onClick={() => { logout(); toggleMenu(); }} className="btn-logout">
                   Logout
                 </button>
               </li>
             </>
           ) : (
             <li>
-              <Link to="/sign-in">Login</Link>
+              <Link to="/sign-in" onClick={toggleMenu}>Login</Link>
             </li>
           )}
         </ul>
+        <div className="hamburger" onClick={toggleMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </div>
   );

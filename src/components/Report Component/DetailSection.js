@@ -12,7 +12,7 @@ const DetailsSection = ({ title, details, layout }) => {
             key={index} 
             className={`report-text ${detail.inline ? 'inline' : 'block'}`}
           >
-            <strong>{detail.label}:</strong> {detail.value}
+            <strong>{detail.label}:</strong> <span>{detail.value}</span> 
           </p>
         ))}
       </div>
