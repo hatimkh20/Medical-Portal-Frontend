@@ -2,6 +2,7 @@
 
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import  {jwtDecode} from 'jwt-decode';
 import { BASE_URL } from '../constant';
 
 export const AuthContext = createContext();
@@ -9,10 +10,14 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true); // Add loading state
+  const [user, setUser] = useState(null); // Add user state
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
+      const decodedUser = jwtDecode(token); // Decode the token to get user info
+      console.log(decodedUser, "user")
+      setUser(decodedUser);
       setIsLoggedIn(true);
     }
     setLoading(false); // Set loading to false after checking token
