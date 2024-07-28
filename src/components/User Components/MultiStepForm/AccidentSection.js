@@ -51,18 +51,18 @@ const AccidentSectionForm = ({
   const renderRadioButtons = (name) => (
     <>
       <RadioButton
-        name={name}
+        name={`vehicleQuestion_${name}`}
         value="yes"
         label="Yes"
-        checked={values[name] === "yes"}
+        checked={values[`vehicleQuestion_${name}`] === "yes"}
         onChange={handleChange}
         onBlur={handleBlur}
       />
       <RadioButton
-        name={name}
+        name={`vehicleQuestion_${name}`}
         value="no"
         label="No"
-        checked={values[name] === "no"}
+        checked={values[`vehicleQuestion_${name}`] === "no"}
         onChange={handleChange}
         onBlur={handleBlur}
       />

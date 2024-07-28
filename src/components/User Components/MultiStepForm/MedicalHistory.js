@@ -8,24 +8,22 @@ import "./MedicalHistory.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const MedicalHistory = ({ values, handleChange, handleBlur, prevStep }) => {
-  const [medicalNotes, setMedicalNotes] = useState([
-    { filename: "", expertReview: "" },
-  ]);
-
+const MedicalHistory = ({ values, setFieldValue, handleChange, handleBlur, prevStep }) => {
   const handleNoteChange = (index, field, value) => {
-    const updatedNotes = [...medicalNotes];
+    const updatedNotes = [...values.medicalNotes];
     updatedNotes[index][field] = value;
-    setMedicalNotes(updatedNotes);
+    setFieldValue("medicalNotes", updatedNotes);
   };
 
   const addNote = () => {
-    setMedicalNotes([...medicalNotes, { filename: "", expertReview: "" }]);
+    const updatedNotes = values.medicalNotes ? [...values.medicalNotes] : [];
+    updatedNotes.push({ filename: "", expertReview: "" });
+    setFieldValue("medicalNotes", updatedNotes);
   };
 
   const removeNote = (index) => {
-    const filteredNotes = medicalNotes.filter((_, i) => i !== index);
-    setMedicalNotes(filteredNotes);
+    const updatedNotes = values.medicalNotes.filter((_, i) => i !== index);
+    setFieldValue("medicalNotes", updatedNotes);
   };
 
   return (
@@ -42,7 +40,7 @@ const MedicalHistory = ({ values, handleChange, handleBlur, prevStep }) => {
       </div>
 
       <h2>SECTION: MEDICAL NOTES REVIEWED</h2>
-      {medicalNotes.map((note, index) => (
+      {values?.medicalNotes?.map((note, index) => (
         <div key={index} className="note-review-group input-group">
           <InputField
             name={`filename-${index}`}

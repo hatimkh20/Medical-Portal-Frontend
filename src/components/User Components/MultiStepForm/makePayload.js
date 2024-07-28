@@ -37,6 +37,8 @@ const makePayload = (step, formData, reportId) => {
                     }
                 };
             case 2:
+                
+
                 return {
                     reportName,
                     currentReportSectionStatus: "accidentSection",
@@ -45,10 +47,14 @@ const makePayload = (step, formData, reportId) => {
                         speedOfImpact: formData.impactSpeed || defaultData.accidentSection.speedOfImpact,
                         accidentLocation: formData.accidentLocation || defaultData.accidentSection.accidentLocation,
                         levelOfDamageVehicle: formData.vehicleLevelDamage || defaultData.accidentSection.levelOfDamageVehicle,
-                        details: (formData.accidentDetails || defaultData.accidentSection.details).map(detail => ({
-                            question: detail.question || defaultData.accidentSection.details[0].question,
-                            answer: detail.answer || defaultData.accidentSection.details[0].answer,
-                        })),
+                        details: Object.keys(formData)
+                        .filter((key) => key.startsWith("vehicleQuestion_"))
+                        .map((key)=>{
+                            return {
+                                question: key,
+                                answer: formData[key]
+                            }    
+                        })
                     }
                 };
             case 3:
@@ -61,25 +67,7 @@ const makePayload = (step, formData, reportId) => {
                     }
                 };
             case 4:
-                let symptoms = Object.entries(formData)
-                    .filter(elem => elem[0].startsWith("symptom_"))
-                    .reduce((map, elem) => {
-                        const splitted = elem[0].split("_");
-                        const symptomAnswer = elem[1];
-                        const symptom = splitted[1];
-                        const symptomAttr = splitted[2];
-                        if (!map.hasOwnProperty(symptom)) {
-                            map[symptom] = {};
-                        }
-                        
-                        map[symptom][symptomAttr] = symptomAnswer;
-                        
-                        return map;
-                    }, {});
-                
-                symptoms = Object.keys(symptoms).map(symptom => {
-                    return { type: symptom, ...symptoms[symptom] }   
-                });
+                const symptoms = groupRelatedQuestions(formData, 'symptom');
 
                 return {
                     reportName,
@@ -100,16 +88,16 @@ const makePayload = (step, formData, reportId) => {
                     currentReportSectionStatus: "treatmentSection",
                     treatmentSection: {
                         immediateTreatment: {
-                            serviceAttendedSceneOfAccident: formData.immediateServiceAttended,
-                            locationWentAfterAccident: formData.locationAfterAccident,
-                            treatmentReceivedAtSceneOfAccident: formData.treatmentAtScene,
-                            howGetThere: formData.howGetThere,
+                            serviceAttendedSceneOfAccident: formData.serviceAtAccident,
+                            locationWentAfterAccident: formData.postLocationAccident,
+                            treatmentReceivedAtSceneOfAccident: formData.treatmentAtAccident,
+                            howGetThere: formData.postLocationBy,
                         },
                         laterTreatment: {
-                            whereTreatmentReceived: formData.whereTreatmentReceived,
-                            whatTreatmentReceived: formData.whatTreatmentReceived,
-                            durationOfTreatmentReceivedAfterAccident: formData.durationTreatmentReceived,
-                            whatImagingOrScansDone: formData.imagingOrScansDone,
+                            whereTreatmentReceived: formData.laterTreatmentLocation,
+                            whatTreatmentReceived: formData.receivedTreatment,
+                            durationOfTreatmentReceivedAfterAccident: formData.treatmentTimeAfterAccident,
+                            whatImagingOrScansDone: formData.imagingOrScans,
                         }
                     }
                 };
@@ -126,25 +114,36 @@ const makePayload = (step, formData, reportId) => {
                     reportName,
                     currentReportSectionStatus: "employmentEducationSection",
                     employmentEducationSection: {
-                        studyingWhere: formData.studyingWhere,
-                        durationTakenOffFromSchoolAfterAccident: formData.durationTakenOff,
-                        hoursGaveToEducation: formData.hoursGaveToEducation,
-                        phasedReturnToSchoolManagement: formData.phasedReturnToSchool,
+                        studyingWhere: formData.currentEmployment,
+                        durationTakenOffFromSchoolAfterAccident: formData.durationTakenOffFromSchoolAfterAccident,
+                        hoursGaveToEducation: formData.hoursEmployment,
+                        phasedReturnToSchoolManagement: formData.phasedReturnToSchoolManagement,
                     }
                 };
             case 8:
                 return {
                     reportName,
+                    currentReportSectionStatus: "domesticSection",
+                    domesticSection: {
+                        domesticImpactedAreas: formData.domesticLifeActivities
+                    }
+                };
+            case 9:
+                const domesticImpactQuestions = groupRelatedQuestions(formData, 'domesticImpact');
+                
+                console.log(domesticImpactQuestions, "domestic questions h");
+                return {
+                    reportName,
                     currentReportSectionStatus: "domesticImpactSection",
                     domesticImpactSection: {
-                        questions: formData.domesticImpactQuestions.map(question => ({
+                        questions: domesticImpactQuestions.map(question => ({
                             type: question.type,
                             severityAtAccident: question.severityAtAccident,
                             currentCondition: question.currentCondition,
                         })),
                     }
                 };
-            case 9:
+            case 10:
                 return {
                     reportName,
                     currentReportSectionStatus: "medicalHistorySection",
@@ -156,52 +155,64 @@ const makePayload = (step, formData, reportId) => {
                         })),
                     }
                 };
-            case 10:
+            case 11:
                 return {
                     reportName,
                     currentReportSectionStatus: "generalObservationSection",
                     generalObservationSection: {
                         physicalAppearance: formData.physicalAppearance,
-                        presenceOfBruisesScarsMarks: formData.bruisesScarsMarks,
-                        holdingIntelligentConversation: formData.holdingIntelligentConversation,
-                        goodEyeContact: formData.goodEyeContact,
+                        presenceOfBruisesScarsMarks: formData.presenceOfScars,
+                        otherPresenceOfBruisesScarsMarks: formData.otherPresenceOfScars,
+                        holdingIntelligentConversation: formData.conversation,
+                        otherHoldingIntelligentConversation:formData.otherConversation,
+                        goodEyeContact: formData.eyeContact,
+                        otherGoodEyeContact: formData.otherEyeContact,
                         mentalState: formData.mentalState,
+                        otherMentalState: formData.otherMentalState,
                     }
                 };
-            case 11:
+            case 12:
+                const physicalExaminationQuestions = groupRelatedQuestions(formData, 'physicalExamination');
                 return {
                     reportName,
                     currentReportSectionStatus: "physicalExaminationSection",
                     physicalExaminationSection: {
-                        questions: formData.physicalExaminationQuestions.map(question => ({
+                        questions: physicalExaminationQuestions?.map(question => ({
                             type: question.type,
-                            observationOfPalpation: question.observationOfPalpation,
-                            observationOnFlexios: question.observationOnFlexios,
+                            observationOfPalpation: question.palpation,
+                            observationOnFlexios: question.observation,
                         })),
                     }
                 };
-            case 12:
+            case 13:
+                const physicalInjuriesDiagnosisQuestions = groupRelatedQuestions(formData, 'physicalInjuriesDiagnosis');
+                const psychologicalInjuriesDiagnosisQuestions = groupRelatedQuestions(formData, 'psychologicalInjuriesDiagnosis');
+
                 return {
                     reportName,
                     currentReportSectionStatus: "diagnosisSection",
                     diagnosisSection: {
                         physicalInjuries: {
-                            questions: formData.physicalInjuries.map(injury => ({
+                            questions: physicalInjuriesDiagnosisQuestions?.map(injury => ({
                                 type: injury.type,
                                 injury: injury.injury,
-                                mechanismOfInjury: injury.mechanismOfInjury,
-                                traumaItCaused: injury.traumaItCaused,
+                                otherInjury: injury.otherInJury,
+                                mechanismOfInjury: injury.injuryMechanism,
+                                otherMechanismOfInjury: injury.otherInjuryMechanism,
+                                traumaItCaused: injury.trauma,
+                                otherTraumaItCaused: injury.otherTrauma
                             })),
                         },
                         psychologicalInjuries: {
-                            questions: formData.psychologicalInjuries.map(injury => ({
+                            questions: psychologicalInjuriesDiagnosisQuestions.map(injury => ({
                                 type: injury.type,
-                                mechanismOfInjury: injury.mechanismOfInjury,
+                                mechanismOfInjury: injury.injuryMechanism,
+                                otherMechanismOfInjury: injury.otherInjuryMechanism
                             })),
                         }
                     }
                 };
-            case 13:
+            case 14:
                 return {
                     reportName,
                     currentReportSectionStatus: "opinionSection",
@@ -227,7 +238,7 @@ const makePayload = (step, formData, reportId) => {
                         }
                     }
                 };
-            case 14:
+            case 15:
                 return {
                     reportName,
                     currentReportSectionStatus: "prognosisSection",
@@ -387,5 +398,29 @@ const defaultData = {
     },
 };
   
+
+
+function groupRelatedQuestions(formData, sectionId) {
+    let symptoms = Object.entries(formData)
+        .filter(elem => elem[0].startsWith(`${sectionId}_`))
+        .reduce((map, elem) => {
+            const splitted = elem[0].split("_");
+            const symptomAnswer = elem[1];
+            const symptom = splitted[1];
+            const symptomAttr = splitted[2];
+            if (!map.hasOwnProperty(symptom)) {
+                map[symptom] = {};
+            }
+
+            map[symptom][symptomAttr] = symptomAnswer;
+
+            return map;
+        }, {});
+
+    symptoms = Object.keys(symptoms).map(symptom => {
+        return { type: symptom, ...symptoms[symptom] };
+    });
+    return symptoms;
+}
 
 export default makePayload;

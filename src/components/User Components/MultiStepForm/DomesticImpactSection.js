@@ -6,6 +6,7 @@ import FormLayout from "../Common/FormLayout";
 
 import "../Common/Common.css";
 import { presentSeverityOptions } from "./Constants";
+import { toCamelCase } from "../Common/util";
 
 const DomesticImpactSection = ({ values, prevStep, nextStep }) => {
 
@@ -20,12 +21,12 @@ const DomesticImpactSection = ({ values, prevStep, nextStep }) => {
       <div className="input-group">
         <SelectField
           label="What was the severity at the time of accident?"
-          name={`${symptom}_severity_accident`}
+          name={`${symptom}_severityAtAccident`}
           options={severityOptions.map((opt) => opt.label)}
         />
         <SelectField
           label="What is the current condition?"
-          name={`${symptom}_severity_current`}
+          name={`${symptom}_currentCondition`}
           options={presentSeverityOptions}
         />
       </div>
@@ -39,14 +40,14 @@ const DomesticImpactSection = ({ values, prevStep, nextStep }) => {
       </p>
       {values?.domesticLifeActivities?.map((symptom) => (
         <Accordion key={symptom} title={symptom}>
-          {renderSymptomDetails(symptom)}
+          {renderSymptomDetails(`domesticImpact_${toCamelCase(symptom)}`)}
         </Accordion>
       ))}
       <div className="button-group">
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        <Button type="submit" onClick={nextStep}>
+        <Button type="submit">
           Proceed to Next Step
         </Button>
       </div>

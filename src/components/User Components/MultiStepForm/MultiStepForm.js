@@ -9,7 +9,7 @@ import makePayload from "./makePayload";
 const MultiStepForm = ({steps}) => {
   const [reportId, setReportId] = useState(null);
 
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(10);
   const [formData, setFormData] = useState({
     fullName: "",
     dateOfBirth: "",
@@ -28,6 +28,7 @@ const MultiStepForm = ({steps}) => {
     anatomy: [],
     psychologicalInjuries: [],
     domesticLifeActivities: [],
+    medicalNotes:[]
     // Add other fields as needed
   });
 
