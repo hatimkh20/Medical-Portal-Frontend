@@ -15,12 +15,17 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedUser = jwtDecode(token); // Decode the token to get user info
-      console.log(decodedUser, "user")
-      setUser(decodedUser);
-      setIsLoggedIn(true);
+      try {
+        const decodedUser = jwtDecode(token);
+        console.log(decodedUser, "user");
+        setUser(decodedUser);
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.error("Token decoding error: ", error);
+        setIsLoggedIn(false);
+      }
     }
-    setLoading(false); // Set loading to false after checking token
+    setLoading(false);
   }, []);
 
   const login = async (email, password) => {
@@ -28,6 +33,8 @@ const AuthProvider = ({ children }) => {
       const response = await axios.post(BASE_URL + '/api/auth/login', { email, password });
       const { access_token } = response.data.data;
       localStorage.setItem('token', access_token);
+      const decodedUser = jwtDecode(access_token);
+      setUser(decodedUser);
       setIsLoggedIn(true);
     } catch (error) {
       console.error('Login error:', error);
@@ -37,6 +44,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    setUser(null);
     setIsLoggedIn(false);
   };
 
@@ -72,7 +80,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, loading, login, logout, forgotPassword, verifyResetPassword, resetPassword }}>
+    <AuthContext.Provider value={{ isLoggedIn, loading, login, logout, forgotPassword, verifyResetPassword, resetPassword, user }}>
       {children}
     </AuthContext.Provider>
   );
