@@ -66,6 +66,7 @@ const MultiStepForm = ({ steps }) => {
             <LoadingErrorWrapper loading={loading} error={error}>
               <StepComponent
                 {...formikProps}
+                // handleChange={formikProps.handleChange}
                 prevStep={prevStep}
                 nextStep={nextStep}
                 // formState={formData}

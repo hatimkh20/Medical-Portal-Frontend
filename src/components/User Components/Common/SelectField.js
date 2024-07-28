@@ -5,7 +5,7 @@ import "./Common.css";
 import {titleCase, isOtherSelected, isPluralFrequencySelected} from "./util"
 import InputField from "../Common/InputField";
 
-const SelectField = ({ label, options = [], fullLine, values, ...props }) => {
+const SelectField = ({ label, options = [], optionValues = [], fullLine, values, ...props }) => {
   const [field, meta] = useField(props);
   const className = fullLine ? "form-group" : "input-form-group";
 
@@ -16,7 +16,7 @@ const SelectField = ({ label, options = [], fullLine, values, ...props }) => {
         <select {...field} {...props} className="text-input">
           <option value="">Select an option</option>
           {options.map((option, idx) => (
-            <option key={idx} value={option}>{option}</option>
+            <option key={idx} value={optionValues.length > 0 ? optionValues[idx]: option}>{option}</option>
           ))}
         </select>
         {meta.touched && meta.error ? (

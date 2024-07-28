@@ -7,8 +7,9 @@ import FormLayout from "../Common/FormLayout";
 import InputField from "../Common/InputField";
 import usePost from "../../../hooks/usePost";
 import useFetch from "../../../hooks/useFetch";
+import { statement } from "@babel/template";
 
-const StatementOfTruth = ({ values, handleChange, handleBlur, prevStep }) => {
+const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, prevStep }) => {
 
   const [selectedStatement, setSelectedStatement] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +21,17 @@ const StatementOfTruth = ({ values, handleChange, handleBlur, prevStep }) => {
   const { data: statements, setData: setStatements } = useFetch('/api/statement-of-truth');
 
   const handleSelectChange = (event) => {
-    setSelectedStatement(event.target.value);
+    const statementId = event.target.value;
+    setSelectedStatement(statementId);
+
+    const statement = statements.find(statement => statement._id === statementId);
+
+    setFieldValue("selectedStatement", {
+      id: statement._id,
+      name: statement.name,
+      content: statement.statement
+    })
+
   };
 
   const saveStatement = async (e) => {
@@ -59,8 +70,9 @@ const StatementOfTruth = ({ values, handleChange, handleBlur, prevStep }) => {
           name="selectedStatement"
           label="Select predefined statement or  from library"
           options={statements?.map(statement => statement.name)}
-          value={selectedStatement}
-          onChange={(e) => setSelectedStatement(e.target.value)}
+          optionValues={statements?.map(statement => statement._id)}
+          value={values?.selectedStatement?._id}
+          onChange={handleSelectChange}
           onBlur={handleBlur}
           fullLine={true}
         />

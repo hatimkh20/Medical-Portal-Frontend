@@ -270,22 +270,33 @@ const makePayload = (step, formData, reportId) => {
             case 16:
                 return {
                     reportName,
-                    currentReportSectionStatus: "prognosisSection",
-                    prognosisSection: {
+                    currentReportSectionStatus: "prognosisDetailedSection",
+                    prognosisDetailedSection: {
                         physicalInjuries: {
-                            questions: formData.prognosisPhysicalInjuries.map(prognosis => ({
+                            questions: {} || formData.prognosisPhysicalInjuries.map(prognosis => ({
                                 type: prognosis.type,
                                 prognosis: prognosis.prognosis,
                             })),
                         },
                         psychologicalInjuries: {
-                            questions: formData.prognosisPsychologicalInjuries.map(prognosis => ({
+                            questions: {} || formData.prognosisPsychologicalInjuries.map(prognosis => ({
                                 type: prognosis.type,
                                 prognosis: prognosis.prognosis,
                             })),
                         }
                     }
                 };
+            case 17: 
+                return {
+                    currentReportSectionStatus: "statementOfTruthSection",
+                    statementOfTruthSection: {
+                        predefinedStatement: {
+                          id: formData.selectedStatement.id,
+                          name: formData.selectedStatement.name,
+                          statement: formData.selectedStatement.content
+                        }
+                    },
+                }
             default:
                 return {};
         }
