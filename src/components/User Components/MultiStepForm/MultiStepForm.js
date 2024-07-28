@@ -9,7 +9,7 @@ import makePayload from "./makePayload";
 const MultiStepForm = ({steps}) => {
   const [reportId, setReportId] = useState(null);
 
-  const [currentStep, setCurrentStep] = useState(18);
+  const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     fullName: "",
     dateOfBirth: "",
