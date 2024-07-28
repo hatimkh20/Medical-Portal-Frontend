@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+// components/Dashboard.js
+
+import React from "react";
 import "./Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faDownload } from "@fortawesome/free-solid-svg-icons";
@@ -8,8 +10,7 @@ import LoadingErrorWrapper from "../User Components/Common/LoadingErrorWrapper";
 import useFetch from "../../hooks/useFetch";
 
 const Dashboard = () => {
-
-  const navigate = useNavigate()  // Create an instance of useHistory
+  const navigate = useNavigate();  // Create an instance of useNavigate
 
   const { data: reports, loading, error } = useFetch('/api/report');
 
@@ -27,7 +28,7 @@ const Dashboard = () => {
         return "";
     }
   };
-  
+
   const redirectToForm = () => {
     navigate('/form');  // Use navigate method to change the route
   };
@@ -47,31 +48,31 @@ const Dashboard = () => {
           <div className="reports-header-item">Actions</div>
         </div>
         <LoadingErrorWrapper loading={loading} error={error}>
-        {reports && reports.map((report, idx) => (
-          <div className="report-row" key={report.id}>
-            <div className="report-item">
-              {(idx+1).toString().padStart(2, "0")}
+          {reports && reports.map((report, idx) => (
+            <div className="report-row" key={report.id}>
+              <div className="report-item">
+                {(idx+1).toString().padStart(2, "0")}
+              </div>
+              <div className="report-item">{report.reportName}</div>
+              <div className="report-item">{formatDate(report.createdAt)}</div>
+              <div className="report-item">
+                <span className={`status-badge ${getStatusClass(report.status)}`}>
+                  {report.status}
+                </span>
+              </div>
+              <div className="report-item actions">
+                <button className="action-button">
+                  <FontAwesomeIcon icon={faEye} />
+                </button>
+                <button className="action-button">
+                  <FontAwesomeIcon icon={faEdit} />
+                </button>
+                <button className="action-button">
+                  <FontAwesomeIcon icon={faDownload} />
+                </button>
+              </div>
             </div>
-            <div className="report-item">{report.reportName}</div>
-            <div className="report-item">{formatDate(report.createdAt)}</div>
-            <div className="report-item">
-              <span className={`status-badge ${getStatusClass(report.status)}`}>
-                {report.status}
-              </span>
-            </div>
-            <div className="report-item actions">
-              <button className="action-button">
-                <FontAwesomeIcon icon={faEye} />
-              </button>
-              <button className="action-button">
-                <FontAwesomeIcon icon={faEdit} />
-              </button>
-              <button className="action-button">
-                <FontAwesomeIcon icon={faDownload} />
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
         </LoadingErrorWrapper>
       </div>
     </div>

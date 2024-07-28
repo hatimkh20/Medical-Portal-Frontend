@@ -1,5 +1,4 @@
-.loading,
-.error {
+.loading {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,9 +6,6 @@
   margin-top: 20px;
   text-align: center;
   font-size: 1.5rem; /* Adjust font size as needed */
-}
-
-.loading {
   color: #00364d; /* Customize loading color */
 }
 

@@ -1,3 +1,4 @@
+/* General styles for the dashboard */
 .dashboard {
   max-width: 100%;
   margin: 0 auto;
@@ -45,6 +46,7 @@
   display: flex;
   font-weight: bold;
   background-color: #f2f2f2;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
 /* Header column style */
@@ -70,6 +72,12 @@
 /* Report row style */
 .report-row {
   display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  border: 1px solid #ddd;
+  margin: 10px 0px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 /* Report data column style */
@@ -77,7 +85,6 @@
   flex: 1;
   padding: 10px;
   text-align: center;
-  border: 1px solid #ddd;
 }
 
 .report-item:first-child {
@@ -142,4 +149,57 @@
 
 .action-button:hover .fas {
   color: #007bff;
+}
+
+/* Responsive styles for small devices */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 0 5%;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .create-report-button {
+    margin-top: 10px;
+  }
+
+  .reports-header {
+    display: none;
+  }
+
+  .report-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding: 20px;
+  }
+
+  .report-item {
+    width: 100%;
+    padding: 5px 0;
+  }
+
+  .report-item-label {
+    font-weight: bold;
+    display: block;
+  }
+
+  .report-item:first-child,
+  .report-item:nth-child(2),
+  .report-item:nth-child(3),
+  .report-item:nth-child(4),
+  .report-item:last-child {
+    width: 100%;
+  }
+
+  .report-item.actions {
+    justify-content: flex-start;
+  }
+
+  .status-badge {
+    min-width: auto;
+  }
 }
