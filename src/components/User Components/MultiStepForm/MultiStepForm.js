@@ -1,4 +1,3 @@
-// src/components/MultiStepForm/MultiStepForm.js
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import "./Form.css";
@@ -6,10 +5,9 @@ import usePost from "../../../hooks/usePost";
 import LoadingErrorWrapper from "../Common/LoadingErrorWrapper";
 import makePayload from "./makePayload";
 
-const MultiStepForm = ({steps}) => {
+const MultiStepForm = ({ steps }) => {
   const [reportId, setReportId] = useState(null);
-
-  const [currentStep, setCurrentStep] = useState(10);
+  const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     fullName: "",
     dateOfBirth: "",
@@ -37,8 +35,7 @@ const MultiStepForm = ({steps}) => {
   });
 
   const nextStep = (values) => {
-    if(steps.isValid(currentStep+1))
-      setCurrentStep(currentStep + 1);
+    if (steps.isValid(currentStep + 1)) setCurrentStep(currentStep + 1);
   };
 
   const prevStep = () => {
@@ -46,14 +43,13 @@ const MultiStepForm = ({steps}) => {
   };
 
   const handleSubmit = async (values) => {
-    console.log("Form Submitted", values)
+    console.log("Form Submitted", values);
     setFormData({ ...formData, ...values });
     console.log("Saving for: " + JSON.stringify(makePayload(currentStep)));
     const reportId = response?.data?._id;
     await saveForm(makePayload(currentStep, values, reportId));
 
     nextStep(values);
-    
   };
 
   const StepComponent = steps.getStepComponent(currentStep);
@@ -68,14 +64,14 @@ const MultiStepForm = ({steps}) => {
         {(formikProps) => (
           <Form>
             <LoadingErrorWrapper loading={loading} error={error}>
-              <StepComponent {...formikProps} 
-              prevStep={prevStep} 
-              nextStep={nextStep} 
-              // formState={formData} 
-              // handleChange={()=>handleChange}
+              <StepComponent
+                {...formikProps}
+                prevStep={prevStep}
+                nextStep={nextStep}
+                // formState={formData}
+                // handleChange={()=>handleChange}
               />
             </LoadingErrorWrapper>
-
           </Form>
         )}
       </Formik>
