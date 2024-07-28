@@ -27,11 +27,11 @@ export const accidentSectionSchema = Yup.object().shape({
   accidentLocation: Yup.string().required("Accident location is required"),
   impactSpeed: Yup.string().required("Impact speed is required"),
   vehicleDamage: Yup.string().required("Vehicle damage is required"),
-  seatbeltFitted: Yup.boolean().required("This field is required"),
-  seatbeltWorn: Yup.boolean().required("This field is required"),
-  seatbeltException: Yup.boolean().required("This field is required"),
-  airbagsFitted: Yup.boolean().required("This field is required"),
-  airbagsDeploy: Yup.boolean().required("This field is required"),
+  vehicleQuestion_seatbeltFit: Yup.boolean().required("This field is required"),
+  vehicleQuestion_seatbeltOn: Yup.boolean().required("This field is required"),
+  vehicleQuestion_seatbeltWear: Yup.boolean().required("This field is required"),
+  vehicleQuestion_airbagsFit: Yup.boolean().required("This field is required"),
+  vehicleQuestion_airbagsDeploy: Yup.boolean().required("This field is required"),
 });
 
 export const nullSchema = Yup.object().shape({});

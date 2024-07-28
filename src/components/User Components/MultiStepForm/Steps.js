@@ -36,11 +36,11 @@ const Steps = {
     },
     {
       component: AccidentSectionForm,
-      validationSchema: accidentSectionSchema,
+      // validationSchema: accidentSectionSchema,
     },
     {
       component: AnatomySectionForm,
-      validationSchema: accidentSectionSchema,
+      // validationSchema: accidentSectionSchema,
     },
     {
       component: SymptomSectionForm,
