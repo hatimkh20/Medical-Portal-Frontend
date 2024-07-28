@@ -12,6 +12,7 @@ import {
   traumaOptions,
 } from "./Constants";
 import RadioButton from "../Common/RadioButton";
+import { toCamelCase } from "../Common/util";
 
 const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
   const [selectedInjuries, setSelectedInjuries] = useState({});
@@ -44,8 +45,8 @@ const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
 
   const renderAnatomyDetails = (anatomy) => {
     const injuryName = `${anatomy}_injury`;
-    const injuryOtherName = `${anatomy}_injury_other`;
-    const mechanismName = `${anatomy}_mechanism_of_injury`;
+    const injuryOtherName = `${anatomy}_otherInjury`;
+    const mechanismName = `${anatomy}_injuryMechanism`;
     const traumaName = `${anatomy}_trauma`;
 
     return (
@@ -110,7 +111,7 @@ const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
   };
 
   const renderPsychologicalInjuries = (psychologicalInjuries) => {
-    const mechanismName = `${psychologicalInjuries}_injury`;
+    const mechanismName = `${psychologicalInjuries}_injuryMechanism`;
 
     return (
       <div>
@@ -141,7 +142,7 @@ const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
         {values?.anatomy?.map((item) => (
           <Accordion key={item} title={item}>
-            {renderAnatomyDetails(item)}
+            {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(item)}`)}
           </Accordion>
         ))}
       </div>
@@ -150,7 +151,7 @@ const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
         <h4 className="form-sub-heading">PSYCHOLOGICAL INJURIES</h4>
         {values?.psychologicalInjuries?.map((item) => (
           <Accordion key={item} title={item}>
-            {renderPsychologicalInjuries(item)}
+            {renderPsychologicalInjuries(`psychologicalInjuriesDiagnosis_${toCamelCase(item)}`)}
           </Accordion>
         ))}
       </div>

@@ -5,6 +5,7 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "../Common/Common.css";
 import { observations, palpations } from "./Constants";
+import { toCamelCase } from "../Common/util";
 
 const PhysicalExaminationSection = ({
   values,
@@ -52,7 +53,7 @@ const PhysicalExaminationSection = ({
       </p>
       {values?.anatomy?.map((item) => (
         <Accordion key={item} title={item}>
-          {renderAnatomyOnsets(item)}
+          {renderAnatomyOnsets(`physicalExamination_${toCamelCase(item)}`)}
         </Accordion>
       ))}
       <div className="button-group">
