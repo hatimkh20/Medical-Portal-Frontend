@@ -34,7 +34,7 @@ const LoadingErrorWrapper = ({ loading, error, children }) => {
 LoadingErrorWrapper.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default LoadingErrorWrapper;

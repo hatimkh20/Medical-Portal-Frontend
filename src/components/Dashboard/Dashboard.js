@@ -1,17 +1,18 @@
 // components/Dashboard.js
 
-import React from "react";
+import React, { useContext } from "react";
 import "./Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faDownload } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from 'react-router-dom';  // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom';
 import { formatDate } from "../User Components/Common/util";
 import LoadingErrorWrapper from "../User Components/Common/LoadingErrorWrapper";
 import useFetch from "../../hooks/useFetch";
+import { AuthContext } from '../../context/AuthContext';
 
 const Dashboard = () => {
-  const navigate = useNavigate();  // Create an instance of useNavigate
-
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const { data: reports, loading, error } = useFetch('/api/report');
 
   const getStatusClass = (status) => {
@@ -30,13 +31,13 @@ const Dashboard = () => {
   };
 
   const redirectToForm = () => {
-    navigate('/form');  // Use navigate method to change the route
+    navigate('/form');
   };
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <div>DR IDORENYIN'S DASHBOARD</div>
+        <div>{user ? `${user.first_name}'s DASHBOARD` : "DASHBOARD"}</div>
         <button className="create-report-button" onClick={redirectToForm}>Create Report</button>
       </header>
       <div className="reports-container">
@@ -49,9 +50,9 @@ const Dashboard = () => {
         </div>
         <LoadingErrorWrapper loading={loading} error={error}>
           {reports && reports.map((report, idx) => (
-            <div className="report-row" key={report.id}>
+            <div className="report-row" key={report.id || idx}>
               <div className="report-item">
-                {(idx+1).toString().padStart(2, "0")}
+                {(idx + 1).toString().padStart(2, "0")}
               </div>
               <div className="report-item">{report.reportName}</div>
               <div className="report-item">{formatDate(report.createdAt)}</div>
