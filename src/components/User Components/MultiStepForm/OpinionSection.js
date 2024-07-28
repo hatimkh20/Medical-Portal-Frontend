@@ -53,13 +53,13 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
         </>
       );
   const renderAnatomyDetails = (anatomy) => {
-    const injuryName = `${anatomy}_injury_opinion`;
+    const injuryName = `${anatomy}_injuryOpinion`;
 
     return (
       <TextAreaField
         name={injuryName}
         label="Please provide your opinion about the physical injuries sustained during the accident"
-        value={values?.injuryName}
+        value={values[injuryName]}
         onChange={handleChange}
         onBlur={handleBlur}
         rows={2}
@@ -68,13 +68,13 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
   };
 
   const renderPsychologicalInjuries = (psychologicalInjuries) => {
-    const injuryName = `${psychologicalInjuries}_injury_opinion`;
+    const injuryName = `${psychologicalInjuries}_injuryOpinion`;
 
     return (
       <TextAreaField
         name={injuryName}
         label="Please provide your opinion about the physical injuries sustained during the accident"
-        value={values?.injuryName}
+        value={values[injuryName]}
         onChange={handleChange}
         onBlur={handleBlur}
         rows={2}
@@ -88,7 +88,7 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
         {values?.anatomy?.map((item) => (
           <Accordion key={item} title={item}>
-            {renderAnatomyDetails(item)}
+            {renderAnatomyDetails(`physicalInjuriesOpinion_${item}`)}
           </Accordion>
         ))}
       </div>
@@ -97,7 +97,7 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
         <h4 className="form-sub-heading">PSYCHOLOGICAL INJURIES</h4>
         {values?.psychologicalInjuries?.map((item) => (
           <Accordion key={item} title={item}>
-            {renderPsychologicalInjuries(item)}
+            {renderPsychologicalInjuries(`psychologicalInjuriesOpinion_${item}`)}
           </Accordion>
         ))}
       </div>
@@ -115,9 +115,9 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
         ))}
 
       <TextAreaField
-        name="exceptionCircumstancesOther"
+        name="anythingElse"
         label="Anything else"
-        value={values?.exceptionCircumstancesOther}
+        value={values?.anythingElse}
         onChange={handleChange}
         onBlur={handleBlur}
         rows={2}

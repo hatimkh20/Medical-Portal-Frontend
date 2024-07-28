@@ -213,32 +213,61 @@ const makePayload = (step, formData, reportId) => {
                     }
                 };
             case 14:
+                const physicalInjuriesOpinionQuestions = groupRelatedQuestions(formData, 'physicalInjuriesOpinion');
+                const psychologicalInjuriesOpinionQuestions = groupRelatedQuestions(formData, 'psychologicalInjuriesOpinion');
+
                 return {
                     reportName,
                     currentReportSectionStatus: "opinionSection",
                     opinionSection: {
                         physicalInjuries: {
-                            questions: formData.opinionPhysicalInjuries.map(opinion => ({
+                            questions: physicalInjuriesOpinionQuestions?.map(opinion => ({
                                 type: opinion.type,
-                                opinion: opinion.opinion,
+                                opinion: opinion.injuryOpinion,
                             })),
                         },
                         psychologicalInjuries: {
-                            questions: formData.opinionPsychologicalInjuries.map(opinion => ({
+                            questions: psychologicalInjuriesOpinionQuestions?.map(opinion => ({
                                 type: opinion.type,
-                                opinion: opinion.opinion,
+                                opinion: opinion.injuryOpinion,
                             })),
                         },
                         exceptionalCircumstances: {
-                            claimantClaimedAnyExceptionalCircumstance: formData.exceptionalCircumstanceClaimed,
-                            anyExceptionalCircumstanceInAccident: formData.exceptionalCircumstanceInAccident,
-                            injuriesSustainedInAccident: formData.injuriesSustainedInAccident,
+                            claimantClaimedAnyExceptionalCircumstance: formData.claimedExceptionalCircumstances,
+                            anyExceptionalCircumstanceInAccident: formData.exceptionalCircumstancesInAccident,
+                            injuriesSustainedInAccident: formData.injuriesExceptionallySevere,
                             inAgreementAsMedicalExpert: formData.agreementAsMedicalExpert,
-                            injuriesResultOfExceptionalCircumstance: formData.injuriesResultOfExceptionalCircumstance,
+                            injuriesResultOfExceptionalCircumstance: formData.injuriesResultOfExceptionalCircumstances,
+                            anythingElse: formData.anythingElse
                         }
                     }
                 };
             case 15:
+                const prognosisPhysicalInjuries = groupRelatedQuestions(formData, 'physicalInjuriesPrognosis');
+                const prognosisPsychologicalInjuries = groupRelatedQuestions(formData, 'psychologicalInjuriesPrognosis');
+
+
+                return {
+                    reportName,
+                    currentReportSectionStatus: "prognosisSection",
+                    prognosisSection: {
+                        physicalInjuries: {
+                            questions: prognosisPhysicalInjuries.map(prognosis => ({
+                                type: prognosis.type,
+                                question: "resolvedOrOngoing",
+                                answer: prognosis.resolvedOrOngoing,
+                            })),
+                        },
+                        psychologicalInjuries: {
+                            questions: prognosisPsychologicalInjuries.map(prognosis => ({
+                                type: prognosis.type,
+                                question: "resolvedOrOngoing",
+                                answer: prognosis.resolvedOrOngoing,
+                            })),
+                        }
+                    }
+                };
+            case 16:
                 return {
                     reportName,
                     currentReportSectionStatus: "prognosisSection",
