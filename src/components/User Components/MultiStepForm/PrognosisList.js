@@ -7,26 +7,29 @@ import "../Common/Common.css"
 import { toCamelCase } from "../Common/util";
 
 const PrognosisList = ({ values, handleChange, handleBlur, prevStep }) => {
-  const renderRadioButtons = (name) => (
-    <div className="radio-group-inline">
+  const renderRadioButtons = (name) => {
+
+    const resolvedOrOngoing = `${name}_resolvedOrOngoing`;
+
+    return <div className="radio-group-inline">
       <RadioButton
-        name={name}
+        name={resolvedOrOngoing}
         value="Resolved"
         label="Resolved"
-        checked={values[name] === "Resolved"}
+        checked={values[resolvedOrOngoing] === "Resolved"}
         onChange={handleChange}
         onBlur={handleBlur}
       />
       <RadioButton
-        name={name}
+        name={resolvedOrOngoing}
         value="Ongoing"
         label="Ongoing"
-        checked={values[name] === "Ongoing"}
+        checked={values[resolvedOrOngoing] === "Ongoing"}
         onChange={handleChange}
         onBlur={handleBlur}
       />
     </div>
-  );
+  };
 
   return (
     <FormLayout title="SECTION: PROGNOSIS">
@@ -35,7 +38,7 @@ const PrognosisList = ({ values, handleChange, handleBlur, prevStep }) => {
         {values.anatomy.map((anatomy) => (
           <div key={anatomy} className="prognosis">
             <label className="prognosis-label">{anatomy}</label>
-            {renderRadioButtons(`prognosis_${toCamelCase(anatomy)}_`)}
+            {renderRadioButtons(`physicalInjuriesPrognosis_${toCamelCase(anatomy)}`)}
           </div>
         ))}
       </div>
@@ -45,7 +48,7 @@ const PrognosisList = ({ values, handleChange, handleBlur, prevStep }) => {
         {values.psychologicalInjuries.map((psychologicalInjuries) => (
           <div key={psychologicalInjuries} className="prognosis">
             <label className="prognosis-label">{psychologicalInjuries}</label>
-            {renderRadioButtons(`prognosis_${toCamelCase(psychologicalInjuries)}_`)}
+            {renderRadioButtons(`psychologicalInjuriesPrognosis_${toCamelCase(psychologicalInjuries)}`)}
           </div>
         ))}
       </div>
