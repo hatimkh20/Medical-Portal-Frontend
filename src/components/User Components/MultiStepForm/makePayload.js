@@ -31,8 +31,8 @@ const makePayload = (step, formData, reportId) => {
                     reportName,
                     currentReportSectionStatus: "accidentDetails",
                     accidentDetails: {
-                        vehicle_Type: formData.vehicleType || defaultData.accidentDetails.vehicleType,
-                        other_VehicleType: formData.otherVehicleType || defaultData.accidentDetails.otherVehicleType,
+                        vehicleType: formData.vehicleType || defaultData.accidentDetails.vehicleType,
+                        otherVehicleType: formData.otherVehicleType || defaultData.accidentDetails.otherVehicleType,
                         vehicleWheels: formData.vehicleWheels || defaultData.accidentDetails.vehicleWheels,
                     }
                 };
