@@ -291,10 +291,21 @@ const makePayload = (step, formData, reportId) => {
                     currentReportSectionStatus: "statementOfTruthSection",
                     statementOfTruthSection: {
                         predefinedStatement: {
-                          id: formData.selectedStatement.id,
-                          name: formData.selectedStatement.name,
-                          statement: formData.selectedStatement.content
+                          id: formData.selectedStatement?.id,
+                          name: formData.selectedStatement?.name,
+                          statement: formData.selectedStatement?.content
                         }
+                    },
+                }
+            case 18: 
+                return {
+                    currentReportSectionStatus: "expertBibliographySection",
+                    expertBibliographySection: {
+                        selectedBibliography: formData.selectedBibliographies?.map(selectedBibliography => {
+                            return {
+                                bibliography: selectedBibliography.detail
+                            }
+                        })
                     },
                 }
             default:

@@ -26,7 +26,8 @@ const MultiStepForm = ({ steps }) => {
     anatomy: [],
     psychologicalInjuries: [],
     domesticLifeActivities: [],
-    medicalNotes:[]
+    medicalNotes:[],
+    selectedBibliographies: []
     // Add other fields as needed
   });
 

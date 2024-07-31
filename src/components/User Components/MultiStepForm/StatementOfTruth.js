@@ -11,7 +11,6 @@ import { statement } from "@babel/template";
 
 const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, prevStep }) => {
 
-  const [selectedStatement, setSelectedStatement] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: response, loading, error, postRequest: saveForm } = usePost('/api/statement-of-truth', {
@@ -22,9 +21,10 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
 
   const handleSelectChange = (event) => {
     const statementId = event.target.value;
-    setSelectedStatement(statementId);
 
     const statement = statements.find(statement => statement._id === statementId);
+
+    if(!statement) return;
 
     setFieldValue("selectedStatement", {
       id: statement._id,
@@ -71,7 +71,7 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
           label="Select predefined statement or  from library"
           options={statements?.map(statement => statement.name)}
           optionValues={statements?.map(statement => statement._id)}
-          value={values?.selectedStatement?._id}
+          value={values?.selectedStatement?.id}
           onChange={handleSelectChange}
           onBlur={handleBlur}
           fullLine={true}
