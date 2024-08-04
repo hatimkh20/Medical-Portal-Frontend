@@ -7,30 +7,31 @@ const useFetch = (endpoint, options) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    console.log("1 bar")
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(BASE_URL + endpoint, {
-            ...options,
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        setData(response.data.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const token = localStorage.getItem('token');
 
+  const fetchData = async () => {
+    try {
+
+      const response = await axios.get(BASE_URL + endpoint, {
+          ...options,
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      });
+      setData(response.data.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, [endpoint, options]);
 
-  return { data, loading, error, setData};
+  return { data, loading, error, setData, refetch: fetchData};
 };
 
 export default useFetch;

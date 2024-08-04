@@ -17,7 +17,7 @@ const Bibliography = ({ values, setFieldValue, handleChange, handleBlur, prevSte
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const { data: statements, setData: setStatements } = useFetch('/api/bibliography');
+  const { data: statements, setData: setStatements, refetch} = useFetch('/api/bibliography');
 
   const handleSelectChange = (event) => {
     const selectedBibliographyId = event.target.value;
@@ -54,7 +54,9 @@ const Bibliography = ({ values, setFieldValue, handleChange, handleBlur, prevSte
     };
 
     await saveForm(newBibiliography);
-    setStatements([...statements, newBibiliography]);
+
+    await refetch();
+    // setStatements([...statements, newBibiliography]);
 
     setIsModalOpen(false);
   };
