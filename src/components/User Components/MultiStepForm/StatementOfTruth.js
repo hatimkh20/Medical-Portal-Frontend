@@ -7,7 +7,6 @@ import FormLayout from "../Common/FormLayout";
 import InputField from "../Common/InputField";
 import usePost from "../../../hooks/usePost";
 import useFetch from "../../../hooks/useFetch";
-import { statement } from "@babel/template";
 
 const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, prevStep }) => {
 
@@ -31,15 +30,13 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
       name: statement.name,
       content: statement.statement
     })
-
   };
 
   const saveStatement = async (e) => {
-    
     if(!values.statementName || !values.statementContent) {
       return;
     }
-    
+
     const newStatement = {
       name: values.statementName,
       statement: values.statementContent
@@ -48,10 +45,8 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
     await saveForm(newStatement)
 
     setStatements([...statements, newStatement])
-    // setStatements((prev) => ({ ...prev, [name]: text }));
 
     setIsModalOpen(false);
-
   }
 
   return (
@@ -68,7 +63,7 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
       <div className="input-group">
         <SelectField
           name="selectedStatement"
-          label="Select predefined statement or  from library"
+          label="Select predefined statement or from library"
           options={statements?.map(statement => statement.name)}
           optionValues={statements?.map(statement => statement._id)}
           value={values?.selectedStatement?.id}
@@ -78,8 +73,13 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
         />
       </div>
 
-      <h4 className="form-sub-heading">Statement Preview</h4>
-      {/* <p>{statements[selectedStatement]}</p> */}
+      {values.selectedStatement?.content && (
+        <>
+          <h4 className="form-sub-heading">Statement Preview</h4>
+          <p>{values.selectedStatement.content}</p>
+        </>
+      )}
+
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
