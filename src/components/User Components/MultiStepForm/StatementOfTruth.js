@@ -16,7 +16,7 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const { data: statements, setData: setStatements } = useFetch('/api/statement-of-truth');
+  const { data: statements, setData: setStatements, refetch } = useFetch('/api/statement-of-truth');
 
   const handleSelectChange = (event) => {
     const statementId = event.target.value;
@@ -30,6 +30,7 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
       name: statement.name,
       content: statement.statement
     })
+    
   };
 
   const saveStatement = async (e) => {
@@ -44,7 +45,8 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
 
     await saveForm(newStatement)
 
-    setStatements([...statements, newStatement])
+    // setStatements([...statements, newStatement])
+    await refetch();
 
     setIsModalOpen(false);
   }
