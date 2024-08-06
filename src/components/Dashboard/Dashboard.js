@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { data: reports, loading, error } = useFetch('/api/report');
+  const { data: reports, loading, error } = useFetch('/api/report');  
 
   const handleViewReport = (reportId) => {
     navigate(`/report/${reportId}`);
@@ -35,15 +35,15 @@ const Dashboard = () => {
     }
   };
 
-  const redirectToForm = () => {
-    navigate('/form');
+  const redirectToForm = (id="") => {
+    navigate(`/form/${id}`);
   };
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <div>{user ? `${user.first_name}'s DASHBOARD` : "DASHBOARD"}</div>
-        <button className="create-report-button" onClick={redirectToForm}>Create Report</button>
+        <button className="create-report-button" onClick={() => redirectToForm()}>Create Report</button>
       </header>
       <div className="reports-container">
         <div className="reports-header">
@@ -54,6 +54,10 @@ const Dashboard = () => {
           <div className="reports-header-item">Actions</div>
         </div>
         <LoadingErrorWrapper loading={loading} error={error}>
+        <button className="action-button" onClick={() => redirectToForm("66b0f9572246523c585f6ca1")}>
+                  <FontAwesomeIcon icon={faEdit} />
+                  Default form for dev purpose
+                </button>
           {reports && reports.map((report, idx) => (
             <div className="report-row" key={report.id || idx}>
               <div className="report-item">
@@ -70,7 +74,7 @@ const Dashboard = () => {
               <button className="action-button" onClick={() => handleViewReport(report._id)}>
               <FontAwesomeIcon icon={faEye} />
                 </button>
-                <button className="action-button">
+                <button className="action-button" onClick={() => redirectToForm(report._id)}>
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
                 <button className="action-button">

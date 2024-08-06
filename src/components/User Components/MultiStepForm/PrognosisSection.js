@@ -14,37 +14,44 @@ import { specialistOptions, symptomSeverity, timeAfterAccident } from "./Constan
 const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
   const ongoingPrognosisQuestions = [
     {
+      name: "timeWillTakeToRecover",
       label: "How much time will it take to recover? (From index accident)",
       component: "InputField",
       type: "text"
     },
     {
+      name: "severeDisability",
       label: "Severity of disability?",
       component: "SelectField",
       type: "text",
       options: symptomSeverity
     },
     {
+      name: "recommendCheckupSpecialist",
       label: "Will the claimant require a specialist?",
       component: "RadioButton",
       options: ["Yes", "No"]
     },
     {
+      name: "specialist",
       label: "Which specialist?",
       component: "SelectField",
       type: "text",
       options: specialistOptions
     },
     {
+      name: "anyLongTermSequelae",
       label: "Will there be any long-term sequelae?",
       component: "SelectField",
       options: ["Yes", "No"]
     },
     {
+      name: "otherRecommendation",
       label: "Any other recommendations?",
       component: "TextAreaField"
     },
     {
+      name: "treatmentAndRehabiliation",
       label: "Further Treatment and Rehabilitation",
       component: "TextAreaField"
     }
@@ -52,32 +59,34 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
   
   const resolvedPrognosisQuestions = [
     {
+      name: "whenDidItResolved",
       label: "When did it resolve? (From index accident)",
       component: "SelectField",
       type: "text",
       options: timeAfterAccident
     },
     {
+      name: "anyLongTermSequelae",
       label: "Will there be any long-term sequelae?",
       component: "SelectField",
       options: ["Yes", "No"]
     }
   ];
-  const getBadgeLabel = (item) => {
-    const status = values[`prognosis_${toCamelCase(item)}_`];
+  const getBadgeLabel = (itemKey) => {
+    const status = values[itemKey];
     return status === 'Resolved' ? 'Resolved' : 'Ongoing';
   };
 
   // Enhanced title with badge for Accordion
-  const getAccordionTitle = (item) => (
+  const getAccordionTitle = (item, itemKey) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-      <span>{item} <span className={`badge ${getBadgeLabel(item).toLowerCase()}`}>{getBadgeLabel(item)}</span></span>
+      <span>{item} <span className={`badge ${getBadgeLabel(itemKey).toLowerCase()}`}>{getBadgeLabel(itemKey)}</span></span>
       
     </div>
   );
 
   const renderQuestionComponent = (question, anatomy) => {
-    const fieldName = `${toCamelCase(anatomy)}_${toCamelCase(question.label)}`;
+    const fieldName = `${toCamelCase(anatomy)}_${toCamelCase(question.name)}`;
   
     switch (question.component) {
       case "InputField":
@@ -143,14 +152,13 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
   };
   
   
-  const renderQuestions = (anatomy) => {
-    const statusKey = `prognosis_${toCamelCase(anatomy)}_`;
+  const renderQuestions = (statusKey, fieldNamePrefix) => {
     const status = values[statusKey];
     const questions = status === 'Resolved' ? resolvedPrognosisQuestions : ongoingPrognosisQuestions;
   
     return (
       <div className="question-group">
-        {questions.map(question => renderQuestionComponent(question, anatomy))}
+        {questions.map(question => renderQuestionComponent(question, fieldNamePrefix))}
       </div>
     );
   };
@@ -159,20 +167,24 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
     <FormLayout title="SECTION: PROGNOSIS">
       <div>
         <h4 className="form-sub-heading">Physical Injuries</h4>
-        {values?.anatomy?.map((item) => (
-          <Accordion key={item} title={getAccordionTitle(item)}>
-            {renderQuestions(item)}
-          </Accordion>
-        ))}
+        {values?.anatomy?.map((item) => {
+          let itemKey = `physicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
+          let fieldNamePrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
+          return (<Accordion key={item} title={getAccordionTitle(item, itemKey)}>
+            {renderQuestions(itemKey, fieldNamePrefix)}
+          </Accordion>)
+        })}
       </div>
-
+      
       <div>
         <h4 className="form-sub-heading">Psychological Injuries</h4>
-        {values?.psychologicalInjuries?.map((item) => (
-          <Accordion key={item} title={getAccordionTitle(item)}>
-            {renderQuestions(item)}
+        {values?.psychologicalInjuries?.map((item) => {
+          let itemKey = `psychologicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
+          let fieldNamePrefix = `psychologicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
+          return <Accordion key={item} title={getAccordionTitle(item, itemKey)}>
+            {renderQuestions(itemKey, fieldNamePrefix)}
           </Accordion>
-        ))}
+        })}
       </div>
 
       <div className="button-group">

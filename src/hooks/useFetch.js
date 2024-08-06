@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../constant';
 
-const useFetch = (endpoint, options) => {
+const useFetch = (endpoint, options, mapper) => {
+  console.log(endpoint, "USE FETHC")
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +20,12 @@ const useFetch = (endpoint, options) => {
               Authorization: `Bearer ${token}`
           }
       });
-      setData(response.data.data);
+      if(mapper){
+        console.log("mapping...")
+        setData(mapper(response.data.data));
+      }
+      else
+        setData(response.data.data);
     } catch (error) {
       console.error('Error fetching data:', error);
       setError(error);
@@ -29,7 +35,13 @@ const useFetch = (endpoint, options) => {
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
+    console.log("use effect calling for fetching")
     fetchData();
+
+    return () => {
+      abortController.abort();
+    }
   }, [endpoint, options]);
 
   return { data, loading, error, setData, refetch: fetchData};

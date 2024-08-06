@@ -32,3 +32,7 @@ export const formatDate = (dateString) => {
   const date = new Date(dateString);
   return format(date, 'PPpp'); // Example format: "Jul 26, 2024, 9:54 AM"
 };
+
+export const getDateWithoutTZ = (dateTime) => {
+  return new Date(dateTime).toISOString().split('T')[0];
+}

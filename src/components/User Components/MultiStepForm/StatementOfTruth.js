@@ -19,14 +19,12 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
   const { data: statements, setData: setStatements, refetch } = useFetch('/api/statement-of-truth');
 
   const handleSelectChange = (event) => {
-    const statementId = event.target.value;
+    const statementName = event.target.value;
 
-    const statement = statements.find(statement => statement._id === statementId);
-
-    if(!statement) return;
+    const statement = statements.find(statement => statement.name === statementName);
 
     setFieldValue("selectedStatement", {
-      id: statement._id,
+      // id: statement._id,
       name: statement.name,
       content: statement.statement
     })
@@ -67,8 +65,8 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
           name="selectedStatement"
           label="Select predefined statement or from library"
           options={statements?.map(statement => statement.name)}
-          optionValues={statements?.map(statement => statement._id)}
-          value={values?.selectedStatement?.id}
+          // optionValues={statements?.map(statement => statement._id)}
+          value={values?.selectedStatement?.name}
           onChange={handleSelectChange}
           onBlur={handleBlur}
           fullLine={true}
