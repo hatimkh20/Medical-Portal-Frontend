@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../constant';
 
-const useFetch = (endpoint, options, mapper) => {
-  console.log(endpoint, "USE FETHC")
+const useFetch = (endpoint, options, mapper, defaultData) => { 
+  
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,6 +12,12 @@ const useFetch = (endpoint, options, mapper) => {
 
   const fetchData = async () => {
     try {
+
+      if(!endpoint) {
+        setData(defaultData);
+
+        return;
+      };
 
       const response = await axios.get(BASE_URL + endpoint, {
           ...options,

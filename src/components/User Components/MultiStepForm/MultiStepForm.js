@@ -16,31 +16,34 @@ const MultiStepForm = ({ steps }) => {
 
   console.log(id, "idd ")
 
+  const defaultFormData = {
+    fullName: "",
+    dateOfBirth: "",
+    address: "",
+    occupation: "",
+    dateOfExamination: "",
+    whichRecordsSeen: "",
+    medicalRecordsProvided: "",
+    hasPhotoIDConfirmed: "",
+    dateOfAccident: "",
+    ageAtTimeOfAccident: "",
+    whichTypeOfIDChecked: "",
+    vehicleType: "",
+    otherVehicleType: "",
+    vehicleWheels: "",
+    anatomy: [],
+    psychologicalInjuries: [],
+    domesticLifeActivities: [],
+    medicalNotes:[],
+    selectedBibliographies: []
+    // Add other fields as needed
+  }
+
   const mapResponseToFormData = (response) => {
     console.log("MApping Func tion Called")
-    const formData = {
-      currentStepKey: response.currentReportSectionStatus,
-      fullName: "",
-      dateOfBirth: "",
-      address: "",
-      occupation: "",
-      dateOfExamination: "",
-      whichRecordsSeen: "",
-      medicalRecordsProvided: "",
-      hasPhotoIDConfirmed: "",
-      dateOfAccident: "",
-      ageAtTimeOfAccident: "",
-      whichTypeOfIDChecked: "",
-      vehicleType: "",
-      otherVehicleType: "",
-      vehicleWheels: "",
-      anatomy: [],
-      psychologicalInjuries: [],
-      domesticLifeActivities: [],
-      medicalNotes:[],
-      selectedBibliographies: []
-      // Add other fields as needed
-    }
+    
+    const formData = {};
+    formData.currentStepKey = response?.currentReportSectionStatus;
 
     // Helper function to set formData based on the response keys and values
     const setFormData = (path, value) => {
@@ -258,6 +261,7 @@ const MultiStepForm = ({ steps }) => {
       const expertBibliographySection = response.expertBibliographySection || {};
       if (expertBibliographySection.selectedBibliography) {
         expertBibliographySection.selectedBibliography.forEach(bibliography => {
+          formData.selectedBibliographies = [];
           formData.selectedBibliographies.push({
             id: bibliography._id,
             detail: bibliography.bibliography
@@ -272,7 +276,7 @@ const MultiStepForm = ({ steps }) => {
     return formData;
 };
 
-const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFetch(`/api/report/specific/${id}`, null, mapResponseToFormData);
+const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFetch(id ? `/api/report/specific/${id}`: null, null, mapResponseToFormData, defaultFormData);
 
   const { data: response, loading: loadingOnSave, error: errorOnSave, postRequest: saveForm } = usePost('/api/report', {
     headers: { 'Content-Type': 'application/json' },
