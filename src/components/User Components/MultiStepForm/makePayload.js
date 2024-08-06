@@ -268,6 +268,10 @@ const makePayload = (step, formData, reportId) => {
                     }
                 };
             case 16:
+                
+                const detailedPrognosisPhysicalInjuries = groupRelatedQuestions(formData, 'physicalInjuriesDetailedPrognosis');
+                const detailedPrognosisPsychologicalInjuries = groupRelatedQuestions(formData, 'psychologicalInjuriesDetailedPrognosis');
+
                 return {
                     reportName,
                     currentReportSectionStatus: "prognosisDetailedSection",

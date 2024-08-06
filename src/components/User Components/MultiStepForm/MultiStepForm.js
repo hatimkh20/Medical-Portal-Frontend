@@ -258,7 +258,10 @@ const MultiStepForm = ({ steps }) => {
       const expertBibliographySection = response.expertBibliographySection || {};
       if (expertBibliographySection.selectedBibliography) {
         expertBibliographySection.selectedBibliography.forEach(bibliography => {
-          formData.selectedBibliographies.push(bibliography.bibliography);
+          formData.selectedBibliographies.push({
+            id: bibliography._id,
+            detail: bibliography.bibliography
+          });
         });
       }
     
@@ -292,6 +295,8 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
 
   const handleSubmit = async (values) => {
 
+    console.log(values)
+    console.log(values.selectedBibliographies)
     if(JSON.stringify(prevValues) != JSON.stringify(values)){
       await saveForm(makePayload(currentStep, values, response?.data?._id || id));
       setPrevValues(values);

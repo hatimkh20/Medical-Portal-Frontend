@@ -90,7 +90,7 @@ const Steps = {
     },
     {
       component: PrognosisList,
-      identifier: 'prognosisList'
+      identifier: 'prognosisSection'
     },
     {
       component: PrognosisSection,
@@ -102,7 +102,7 @@ const Steps = {
     },
     {
       component: Bibliography,
-      identifier: 'bibliography'
+      identifier: 'expertBibliographySection'
     }
   ],
 
