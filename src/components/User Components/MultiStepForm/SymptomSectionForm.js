@@ -19,34 +19,34 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep }) => {
       <div className="input-group">
         <SelectField
           label="When did the symptoms start?"
-          name={`${fieldNamePrefix}StartTime`}
+          name={`${fieldNamePrefix}startTime`}
           options={timeAfterAccident}
           onChange={handleInputChange}
-          value={values[`${fieldNamePrefix}StartTime`]}
+          value={values[`${fieldNamePrefix}startTime`]}
           values={values}
         />
         <SelectField
           label="Select severity at onset"
-          name={`${fieldNamePrefix}SeverityOnset`}
+          name={`${fieldNamePrefix}severityOnset`}
           options={symptomSeverity}
           onChange={handleInputChange}
-          value={values[`${fieldNamePrefix}SeverityOnset`]}
+          value={values[`${fieldNamePrefix}severityOnset`]}
         />
       </div>
       <div className="input-group">
         <SelectField
           label="What is the severity now?"
-          name={`${fieldNamePrefix}CurrentSeverity`}
+          name={`${fieldNamePrefix}currentSeverity`}
           options={symptomSeverity}
           onChange={handleInputChange}
-          value={values[`${fieldNamePrefix}CurrentSeverity`]}
+          value={values[`${fieldNamePrefix}currentSeverity`]}
         />
         <SelectField
           label="If symptoms have resolved, how long ago was this?"
-          name={`${fieldNamePrefix}ResolvedDuration`}
+          name={`${fieldNamePrefix}resolvedDuration`}
           options={timeAfterAccident}
           onChange={handleInputChange}
-          value={values[`${fieldNamePrefix}ResolvedDuration`]}
+          value={values[`${fieldNamePrefix}resolvedDuration`]}
           values={values}
         />
       </div>

@@ -5,6 +5,7 @@ import FormLayout from "../Common/FormLayout";
 import "../Common/Common.css";
 import RadioButton from "../Common/RadioButton";
 import TextAreaField from "../Common/TextAreaField";
+import {toCamelCase} from "../Common/util"
 
 const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
 
@@ -88,7 +89,7 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
         {values?.anatomy?.map((item) => (
           <Accordion key={item} title={item}>
-            {renderAnatomyDetails(`physicalInjuriesOpinion_${item}`)}
+            {renderAnatomyDetails(`physicalInjuriesOpinion_${toCamelCase(item)}`)}
           </Accordion>
         ))}
       </div>
@@ -97,7 +98,7 @@ const OpinionSection = ({ values, prevStep, handleChange, handleBlur }) => {
         <h4 className="form-sub-heading">PSYCHOLOGICAL INJURIES</h4>
         {values?.psychologicalInjuries?.map((item) => (
           <Accordion key={item} title={item}>
-            {renderPsychologicalInjuries(`psychologicalInjuriesOpinion_${item}`)}
+            {renderPsychologicalInjuries(`psychologicalInjuriesOpinion_${toCamelCase(item)}`)}
           </Accordion>
         ))}
       </div>

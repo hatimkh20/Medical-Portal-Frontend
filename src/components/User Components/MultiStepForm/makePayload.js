@@ -1,3 +1,5 @@
+import { toCamelCase } from "../Common/util";
+
 const makePayload = (step, formData, reportId) => {
     const reportName = "ahmed-report";
 
@@ -46,7 +48,7 @@ const makePayload = (step, formData, reportId) => {
                         timeOfAccident: formData.accidentTime || defaultData.accidentSection.timeOfAccident,
                         speedOfImpact: formData.impactSpeed || defaultData.accidentSection.speedOfImpact,
                         accidentLocation: formData.accidentLocation || defaultData.accidentSection.accidentLocation,
-                        levelOfDamageVehicle: formData.vehicleLevelDamage || defaultData.accidentSection.levelOfDamageVehicle,
+                        levelOfDamageVehicle: formData.vehicleDamage || defaultData.accidentSection.levelOfDamageVehicle,
                         details: Object.keys(formData)
                         .filter((key) => key.startsWith("vehicleQuestion_"))
                         .map((key)=>{
@@ -222,13 +224,13 @@ const makePayload = (step, formData, reportId) => {
                     opinionSection: {
                         physicalInjuries: {
                             questions: physicalInjuriesOpinionQuestions?.map(opinion => ({
-                                type: opinion.type,
+                                type: toCamelCase(opinion.type),
                                 opinion: opinion.injuryOpinion,
                             })),
                         },
                         psychologicalInjuries: {
                             questions: psychologicalInjuriesOpinionQuestions?.map(opinion => ({
-                                type: opinion.type,
+                                type: toCamelCase(opinion.type),
                                 opinion: opinion.injuryOpinion,
                             })),
                         },
@@ -253,15 +255,13 @@ const makePayload = (step, formData, reportId) => {
                     prognosisSection: {
                         physicalInjuries: {
                             questions: prognosisPhysicalInjuries.map(prognosis => ({
-                                type: prognosis.type,
-                                question: "resolvedOrOngoing",
+                                question: `${prognosis.type}_resolvedOrOngoing`,
                                 answer: prognosis.resolvedOrOngoing,
                             })),
                         },
                         psychologicalInjuries: {
                             questions: prognosisPsychologicalInjuries.map(prognosis => ({
-                                type: prognosis.type,
-                                question: "resolvedOrOngoing",
+                                question: `${prognosis.type}_resolvedOrOngoing`,
                                 answer: prognosis.resolvedOrOngoing,
                             })),
                         }
@@ -323,6 +323,28 @@ const makePayload = (step, formData, reportId) => {
     return payload;
 };
 
+function groupRelatedQuestions(formData, sectionId) {
+    let symptoms = Object.entries(formData)
+        .filter(elem => elem[0].startsWith(`${sectionId}_`))
+        .reduce((map, elem) => {
+            const splitted = elem[0].split("_");
+            const symptomAnswer = elem[1];
+            const symptom = splitted[1];
+            const symptomAttr = splitted[2];
+            if (!map.hasOwnProperty(symptom)) {
+                map[symptom] = {};
+            }
+
+            map[symptom][symptomAttr] = symptomAnswer;
+
+            return map;
+        }, {});
+
+    symptoms = Object.keys(symptoms).map(symptom => {
+        return { type: symptom, ...symptoms[symptom] };
+    });
+    return symptoms;
+}
 
 const defaultData = {
     reportName: 'Default Report Name',
@@ -448,30 +470,5 @@ const defaultData = {
         selectedBibliography: [{ bibliography: 'Expert Review Handbook' }],
     },
 };
-  
-
-
-function groupRelatedQuestions(formData, sectionId) {
-    let symptoms = Object.entries(formData)
-        .filter(elem => elem[0].startsWith(`${sectionId}_`))
-        .reduce((map, elem) => {
-            const splitted = elem[0].split("_");
-            const symptomAnswer = elem[1];
-            const symptom = splitted[1];
-            const symptomAttr = splitted[2];
-            if (!map.hasOwnProperty(symptom)) {
-                map[symptom] = {};
-            }
-
-            map[symptom][symptomAttr] = symptomAnswer;
-
-            return map;
-        }, {});
-
-    symptoms = Object.keys(symptoms).map(symptom => {
-        return { type: symptom, ...symptoms[symptom] };
-    });
-    return symptoms;
-}
 
 export default makePayload;

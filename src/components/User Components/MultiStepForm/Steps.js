@@ -29,78 +29,95 @@ const Steps = {
     {
       component: ClaimantDetails,
       validationSchema: claimantDetailsSchema,
+      identifier: 'claimantDetails'
     },
     {
       component: AccidentDetails,
       validationSchema: accidentDetailsSchema,
+      identifier: 'accidentDetails'
     },
     {
       component: AccidentSectionForm,
-      // validationSchema: accidentSectionSchema,
+      identifier: 'accidentSection'
     },
     {
       component: AnatomySectionForm,
-      // validationSchema: accidentSectionSchema,
+      identifier: 'anatomySection'
     },
     {
       component: SymptomSectionForm,
+      identifier: 'symptomsSection'
     },
     {
       component: TreatmentSection,
+      identifier: 'treatmentSection'
     },
     {
       component: LivelihoodSection,
+      identifier: 'livelihoodSection'
     },
     {
       component: EducationSection,
+      identifier: 'educationSection'
     },
     {
       component: DomesticImpactList,
+      identifier: 'domesticImpactList'
     },
     {
       component: DomesticImpactSection,
+      identifier: 'domesticImpactSection'
     },
     {
-      component: MedicalHistory
+      component: MedicalHistory,
+      identifier: 'medicalHistory'
     },
     {
-      component: ObservationSection
+      component: ObservationSection,
+      identifier: 'observationSection'
     },
     {
-      component: PhysicalExaminationSection
+      component: PhysicalExaminationSection,
+      identifier: 'physicalExaminationSection'
     },
     {
-      component: DiagnosisSection
+      component: DiagnosisSection,
+      identifier: 'diagnosisSection'
     },
     {
-      component: OpinionSection
+      component: OpinionSection,
+      identifier: 'opinionSection'
     },
     {
-      component: PrognosisList
+      component: PrognosisList,
+      identifier: 'prognosisList'
     },
     {
-      component: PrognosisSection
+      component: PrognosisSection,
+      identifier: 'prognosisDetailedSection'
     },
     {
       component: StatementOfTruth,
+      identifier: 'statementOfTruthSection'
     },
     {
-      component: Bibliography
+      component: Bibliography,
+      identifier: 'bibliography'
     }
   ],
 
-  isValid(stepNumber){
+  isValid(stepNumber) {
     return stepNumber < this.values.length;
   },
 
   getStepKey(stepNumber) {
     const step = this.values[stepNumber];
-    return step ? step.key : null; // Safely return the component or null if not found
+    return step ? step.identifier : null;
   },
 
   getStepComponent(stepNumber) {
     const step = this.values[stepNumber];
-    return step ? step.component : null; // Safely return the component or null if not found
+    return step ? step.component : null;
   },
 
   getStepValidationSchema(stepNumber) {
@@ -110,6 +127,11 @@ const Steps = {
       ? this.values[stepNumber].validationSchema
       : nullSchema;
   },
+
+  getCurrentStepByKey(identifier) {
+    const stepIndex = this.values.findIndex(step => step.identifier === identifier);
+    return stepIndex !== -1 ? stepIndex : 0;
+  }
 };
 
 export default Steps;

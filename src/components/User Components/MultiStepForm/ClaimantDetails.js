@@ -10,6 +10,8 @@ import "./Form.css";
 const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => {
   // const [values, setvalues] = useState(values);
 
+  console.log(values, "VALUES")
+
   const handleInputChange = (e) => {
     // const { name, value } = e.target;
     // setvalues({ ...values, [name]: value });
