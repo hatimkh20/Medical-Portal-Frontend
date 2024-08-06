@@ -11,6 +11,7 @@ const useFetch = (endpoint, options) => {
 
   const fetchData = async () => {
     try {
+      console.log("endpoint: ", endpoint)
 
       const response = await axios.get(BASE_URL + endpoint, {
           ...options,
