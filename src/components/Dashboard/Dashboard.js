@@ -1,6 +1,6 @@
 // components/Dashboard.js
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faDownload } from "@fortawesome/free-solid-svg-icons";
@@ -11,11 +11,14 @@ import useFetch from "../../hooks/useFetch";
 import { AuthContext } from '../../context/AuthContext';
 
 const Dashboard = () => {
-  console.log("RENDERS dashboard")
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const { data: reports, loading, error } = useFetch('/api/report');  
+
+  const handleViewReport = (reportId) => {
+    navigate(`/report/${reportId}`);
+  };
 
   const getStatusClass = (status) => {
     switch (status.toLowerCase()) {
@@ -68,8 +71,8 @@ const Dashboard = () => {
                 </span>
               </div>
               <div className="report-item actions">
-                <button className="action-button">
-                  <FontAwesomeIcon icon={faEye} />
+              <button className="action-button" onClick={() => handleViewReport(report._id)}>
+              <FontAwesomeIcon icon={faEye} />
                 </button>
                 <button className="action-button" onClick={() => redirectToForm(report._id)}>
                   <FontAwesomeIcon icon={faEdit} />

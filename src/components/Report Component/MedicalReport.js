@@ -1,12 +1,25 @@
 // MedicalReport.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import './medicalReport.css';
 import DetailsSection from './DetailSection';
 import TableSection from './TableSection';
+import { useLocation, useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
 const MedicalReport = ({ data }) => {
+  const { reportId } = useParams();
+  
+  // Adjusted to use the useFetch hook
+  const { data: reportData, loading, error, refetch } = useFetch(`/api/report/specific/${reportId}`);
+
+  console.log(reportData, "data")
+  // Optional: Add logic to handle manual refetch or other interactions
+  const handleRefresh = () => {
+    refetch();
+  };
+
   const generatePdf = () => {
     const input = document.getElementById('report-container');
     html2canvas(input, { scale: 2 }).then((canvas) => {

@@ -38,6 +38,7 @@ const App = () => {
           <Route path="/form" element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />} />
           <Route path="/form/:id" element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />} /> {/* Added route for editing */}
           <Route path="/report" element={<ProtectedRoute element={<MedicalReport data={data} />} />} />
+          <Route path="/report/:reportId" element={<MedicalReport data={data} />} />
         </Routes>
       </Router>
     </AuthProvider>

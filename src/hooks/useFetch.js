@@ -12,6 +12,7 @@ const useFetch = (endpoint, options, mapper, defaultData) => {
 
   const fetchData = async () => {
     try {
+      console.log("endpoint: ", endpoint)
 
       if(!endpoint) {
         setData(defaultData);
