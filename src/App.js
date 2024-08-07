@@ -19,6 +19,7 @@ import ForgotPassword from "./components/Authentication/ForgetPassword";
 import VerifyResetPassword from "./components/Authentication/VerifyResetPassword";
 import ResetPassword from "./components/Authentication/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
+import WalletPage from "./pages/WalletPage";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/form" element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />} />
           <Route path="/form/:id" element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />} /> {/* Added route for editing */}
           <Route path="/report" element={<ProtectedRoute element={<MedicalReport data={data} />} />} />
+          <Route path="/wallet" element={<ProtectedRoute element={<WalletPage />} />} />
         </Routes>
       </Router>
     </AuthProvider>
