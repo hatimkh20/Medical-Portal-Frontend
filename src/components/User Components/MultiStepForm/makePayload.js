@@ -81,6 +81,7 @@ const makePayload = (step, formData, reportId) => {
                             severityNow: symptom.currentSeverity || defaultData.symptomsSection.questions[0].severityNow,
                             severityOnset: symptom.severityOnset || defaultData.symptomsSection.questions[0].severityOnset,
                             symptomsResolvedDuration: symptom.resolvedDuration || defaultData.symptomsSection.questions[0].symptomsResolvedDuration,
+                            resolvedDurationFrequency: symptom.resolvedDurationFrequency
                         })),
                     }
                 };
@@ -271,21 +272,38 @@ const makePayload = (step, formData, reportId) => {
                 
                 const detailedPrognosisPhysicalInjuries = groupRelatedQuestions(formData, 'physicalInjuriesDetailedPrognosis');
                 const detailedPrognosisPsychologicalInjuries = groupRelatedQuestions(formData, 'psychologicalInjuriesDetailedPrognosis');
-
+                console.log("MAKING PAYLOAD FOR ", detailedPrognosisPhysicalInjuries)
+                console.log(detailedPrognosisPsychologicalInjuries)
                 return {
                     reportName,
                     currentReportSectionStatus: "prognosisDetailedSection",
                     prognosisDetailedSection: {
                         physicalInjuries: {
-                            questions: {} || formData.prognosisPhysicalInjuries.map(prognosis => ({
+                            questions: detailedPrognosisPhysicalInjuries.map(prognosis => ({
                                 type: prognosis.type,
-                                prognosis: prognosis.prognosis,
+                                whenDidItResolved: prognosis.whenDidItResolved,
+                                timeWillTakeToRecover: prognosis.timeWillTakeToRecover,
+                                claimantRequireSpecialist: prognosis.claimantRequireSpecialist,
+                                otherRecommendation: prognosis.otherRecommendation,
+                                severeDisability: prognosis.severeDisability,
+                                specialist: prognosis.specialist,
+                                otherSpecialist: prognosis.otherSpecialist,
+                                anyLongTermSequelae: prognosis.anyLongTermSequelae,
+                                treatmentAndRehabiliation: prognosis.treatmentAndRehabiliation
                             })),
                         },
                         psychologicalInjuries: {
-                            questions: {} || formData.prognosisPsychologicalInjuries.map(prognosis => ({
+                            questions: detailedPrognosisPsychologicalInjuries.map(prognosis => ({
                                 type: prognosis.type,
-                                prognosis: prognosis.prognosis,
+                                whenDidItResolved: prognosis.whenDidItResolved,
+                                timeWillTakeToRecover: prognosis.timeWillTakeToRecover,
+                                claimantRequireSpecialist: prognosis.claimantRequireSpecialist,
+                                otherRecommendation: prognosis.otherRecommendation,
+                                severeDisability: prognosis.severeDisability,
+                                specialist: prognosis.specialist,
+                                otherSpecialist: prognosis.otherSpecialist,
+                                anyLongTermSequelae: prognosis.anyLongTermSequelae,
+                                treatmentAndRehabiliation: prognosis.treatmentAndRehabiliation
                             })),
                         }
                     }

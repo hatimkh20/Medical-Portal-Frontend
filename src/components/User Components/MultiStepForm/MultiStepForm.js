@@ -240,13 +240,30 @@ const MultiStepForm = ({ steps }) => {
       const prognosisDetailedSection = response.prognosisDetailedSection || {};
       if (prognosisDetailedSection.physicalInjuries && prognosisDetailedSection.physicalInjuries.questions) {
         prognosisDetailedSection.physicalInjuries.questions.forEach(question => {
-          setFormData(`prognosisDetailed_${question._id}`, question);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_whenDidItResolved`, question.whenDidItResolved);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_timeWillTakeToRecover`, question.timeWillTakeToRecover);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_claimantRequireSpecialist`, question.claimantRequireSpecialist);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_otherRecommendation`, question.otherRecommendation);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_severeDisability`, question.severeDisability);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_specialist`, question.specialist);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_otherSpecialist`, question.otherSpecialist);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_treatmentAndRehabiliation`, question.treatmentAndRehabiliation);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_anyLongTermSequelae`, question.anyLongTermSequelae);
         });
       }
     
       if (prognosisDetailedSection.psychologicalInjuries && prognosisDetailedSection.psychologicalInjuries.questions) {
         prognosisDetailedSection.psychologicalInjuries.questions.forEach(question => {
-          setFormData(`psychologicalPrognosisDetailed_${question._id}`, question);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_whenDidItResolved`, question.whenDidItResolved);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_timeWillTakeToRecover`, question.timeWillTakeToRecover);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_claimantRequireSpecialist`, question.claimantRequireSpecialist);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_otherRecommendation`, question.otherRecommendation);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_severeDisability`, question.severeDisability);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_specialist`, question.specialist);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_otherSpecialist`, question.otherSpecialist);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_treatmentAndRehabiliation`, question.treatmentAndRehabiliation);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_anyLongTermSequelae`, question.anyLongTermSequelae);
+
         });
       }
     
