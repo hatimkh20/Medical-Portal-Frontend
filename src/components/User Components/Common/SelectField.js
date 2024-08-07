@@ -42,9 +42,9 @@ const SelectField = ({ label, options = [], optionValues = [], fullLine, values,
         isPluralFrequencySelected(field.value) &&
         <div className={props.children && "input-group"}>
           <InputField
-            name={`${titleCase(field.name)}_frequency`}
+            name={`${titleCase(field.name)}Frequency`}
             label={`Enter the frequency of ${field.value.toLowerCase()}`}
-            value={values && values[`${titleCase(field.name)}_frequency`]}
+            value={values && values[`${titleCase(field.name)}Frequency`]}
             required={true}
             onChange={field.onChange}
             onBlur={props.onBlur}
