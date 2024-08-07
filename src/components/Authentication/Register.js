@@ -6,6 +6,8 @@ import "./Auth.css";
 import authenticationImage from "../../assets/images/authentication.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL, MAX_SIGNATURE_FILE_SIZE } from "../../constant";
+import imageCompression from 'browser-image-compression';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ const Register = () => {
       gmcNumber: Yup.string().required("GMC Number is required"),
       signature: Yup.string().required("Signature is required"),  // Changed validation to string
       password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
+        .min(8, "Password must be at least 6 characters")
         .required("Password is required"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("password"), null], "Passwords must match")
@@ -37,7 +39,7 @@ const Register = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.post("http://localhost:3001/api/auth/register", {
+        const response = await axios.post(BASE_URL+"/api/auth/register", {
           first_name: values.firstName,
           last_name: values.lastName,
           email: values.email,
@@ -55,6 +57,33 @@ const Register = () => {
       }
     },
   });
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      if (file.size / (1024 * 1024) > MAX_SIGNATURE_FILE_SIZE) {
+        alert("File is too large. Please select a file smaller than 2MB.");
+        return;
+      }
+  
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+  
+      try {
+        const compressedFile = await imageCompression(file, options);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          formik.setFieldValue('signature', reader.result);
+        };
+        reader.readAsDataURL(compressedFile);
+      } catch (error) {
+        console.error('Error compressing file:', error);
+      }
+    }
+  }
 
   return (
     <div className="login-page">
@@ -124,12 +153,13 @@ const Register = () => {
             <div className="form-group">
               <label htmlFor="signature">Signature</label>
               <input
-                type="text"
+                type="file"
                 id="signature"
                 name="signature"
-                onChange={formik.handleChange}
+                onChange={handleFileChange}
+                accept="image/*"
                 onBlur={formik.handleBlur}
-                value={formik.values.signature}
+                // value={formik.values.signature}
               />
               {formik.touched.signature && formik.errors.signature ? (
                 <div className="error">{formik.errors.signature}</div>
