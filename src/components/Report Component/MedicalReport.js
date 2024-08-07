@@ -1,41 +1,31 @@
-// MedicalReport.js
-import React, { useEffect, useState } from 'react';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-import './medicalReport.css';
-import DetailsSection from './DetailSection';
-import TableSection from './TableSection';
-import { useLocation, useParams } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
+import React from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import "./medicalReport.css";
+import DetailsSection from "./DetailSection";
+import TableSection from "./TableSection";
+import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import { formatString } from "../User Components/Common/util";
 
-const MedicalReport = ({ data }) => {
+const MedicalReport = () => {
   const { reportId } = useParams();
-  
-  // Adjusted to use the useFetch hook
-  const { data: reportData, loading, error, refetch } = useFetch(`/api/report/specific/${reportId}`);
+  const { data, loading, error } = useFetch(`/api/report/specific/${reportId}`);
 
-  console.log(reportData, "data")
-  // Optional: Add logic to handle manual refetch or other interactions
-  const handleRefresh = () => {
-    refetch();
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!data) return <div>No data available</div>;
 
   const generatePdf = () => {
-    const input = document.getElementById('report-container');
+    const input = document.getElementById("report-container");
     html2canvas(input, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/jpeg', 0.9); // Use JPEG and reduce quality to 0.5
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210; // A4 width in mm
+      const imgData = canvas.toDataURL("image/jpeg", 0.9);
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      // Calculate the required height for the PDF
-      const pdfHeight = imgHeight > 297 ? imgHeight : 297; // Ensure a minimum height of 297mm (A4 size)
-
-      // Create a new PDF with the calculated height
-      const pdfCanvas = new jsPDF('p', 'mm', [pdfHeight, imgWidth]);
-
-      pdfCanvas.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      pdfCanvas.save('report.pdf');
+      const pdfCanvas = new jsPDF("p", "mm", [imgHeight, imgWidth]);
+      pdfCanvas.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdfCanvas.save("report.pdf");
     });
   };
 
@@ -46,193 +36,256 @@ const MedicalReport = ({ data }) => {
           <h1 className="report-title">Medical Report</h1>
         </header>
 
-        <DetailsSection 
+        {/* Claimant's Details Section */}
+        <DetailsSection
           title="Claimant's Details"
           layout="two-rows"
           details={[
-            { label: 'Full Name', value: data.claimantDetails.name, inline: true },
-            { label: 'Date of Birth', value: data.claimantDetails.dob, inline: true },
-            { label: 'Address', value: data.claimantDetails.address, inline: true },
-            { label: 'Occupation', value: data.claimantDetails.occupation, inline: true },
-            { label: 'Phone', value: data.claimantDetails.phone, inline: true },
-            { label: 'GP Name', value: data.claimantDetails.gpName, inline: true },
-            { label: 'GP Address', value: data.claimantDetails.gpAddress, inline: true },
-            { label: 'Referrer', value: data.claimantDetails.referrer, inline: true },
-            { label: 'Agency Reference', value: data.claimantDetails.agencyReference, inline: true },
-            { label: 'Agency Address', value: data.claimantDetails.agencyAddress, inline: true },
-            { label: 'Solicitor', value: data.claimantDetails.solicitor, inline: true },
-            { label: 'Solicitor Address', value: data.claimantDetails.solicitorAddress, inline: true },
-            { label: 'Date of Examination', value: data.claimantDetails.dateOfExamination, inline: true },
-            { label: 'Duration of Examination', value: data.claimantDetails.durationOfExamination, inline: true },
-            { label: 'Examination Venue', value: data.claimantDetails.examinationVenue, inline: true },
-            { label: 'Report Date', value: data.claimantDetails.reportDate, inline: true },
-            { label: 'Agency', value: data.claimantDetails.agency, inline: true },
-            { label: 'Case Number', value: data.claimantDetails.caseNumber, inline: true }
+            { label: "Full Name", value: data.claimantDetails.fullName },
+            {
+              label: "Date of Birth",
+              value: data.claimantDetails.dateOfBirth.slice(0, 10),
+            }, // Formatting date
+            { label: "Address", value: data.claimantDetails.address },
+            { label: "Occupation", value: data.claimantDetails.occupation },
+            {
+              label: "Type of ID Checked",
+              value: data.claimantDetails.typeOfIdChecked,
+            },
+            {
+              label: "Date of Examination",
+              value: data.claimantDetails.dateOfExamination.slice(0, 10),
+            },
+            {
+              label: "Records Were Seen",
+              value: data.claimantDetails.recordsWereSeen,
+            },
+            {
+              label: "Date of Accident",
+              value: data.claimantDetails.dateOfAccident.slice(0, 10),
+            },
+            {
+              label: "Age at Time of Accident",
+              value: data.claimantDetails.ageAtTimeOfAccident,
+            },
+            {
+              label: "Medical Reports Provided",
+              value: data.claimantDetails.medicalReportsProvided,
+            },
+            {
+              label: "Photo ID Confirmed",
+              value: data.claimantDetails.photoIdConfirmed,
+            },
           ]}
         />
 
-        <DetailsSection 
+        {/* Accident Details Section */}
+        <DetailsSection
           title="Accident Details"
           layout="single-column"
           details={[
-            { label: 'Claimant Reported', value: data.accidentDetails.claimantResponse, inline: false }
+            {
+              label: "Claimant Reported",
+              nextLine: true,
+              value: `On the ${
+                data?.accidentSection?.timeOfAccident || "day"
+              }  of ${data.claimantDetails.dateOfAccident.slice(
+                0,
+                10
+              )}, the claimant's vehicle was stationary at a junction when it was rear-ended by a third-party vehicle traveling at a ${
+                data?.accidentSection?.speedOfImpact || "normal"
+              } typical of city road conditions. The impact resulted in significant damage to the claimant's car. 
+              Notably, the vehicle was equipped with headrests and an airbag; however, the airbag did not deploy upon impact. 
+              The incident is currently under investigation for further assessment.`,
+            },
           ]}
         />
 
-        <TableSection 
+        {/* Symptoms Section */}
+        <TableSection
           title="Symptoms Details"
-          rows={data.symptomsDetails.map(symptom => ({
-            Anatomy: symptom.anatomy,
-            "Started At": symptom.duration,
+          rows={data.symptomsSection.questions.map((symptom) => ({
+            Anatomy: symptom.type,
+            "Started At": symptom.symptomsStart,
             "Severity at onset": symptom.severityOnset,
             "Severity now": symptom.severityNow,
-            "Ongoing/Resolved": symptom.ongoing
+            "Resolved duration": symptom.symptomsResolvedDuration,
           }))}
         />
 
-        <DetailsSection 
+        {/* Treatment Details Section */}
+        <DetailsSection
           title="Treatment Details"
           layout="single-column"
           details={[
-            { label: 'Immediate Treatment', value: data.accidentDetails.claimantResponse, inline: false },
-            { label: 'Later Treatment', value: data.accidentDetails.claimantResponse, inline: false },
-
+            {
+              label: "Immediate Treatment",
+              nextLine: true,
+              value: `${
+                data?.treatmentSection?.immediateTreatment
+                  ?.serviceAttendedSceneOfAccident || "Someone"
+              }
+              attended at the scene of accident. 
+              ${
+                data?.treatmentSection?.immediateTreatment
+                  ?.treatmentReceivedAtSceneOfAccident
+              }.
+              The claimant ${
+                data?.treatmentSection?.immediateTreatment
+                  ?.locationWentAfterAccident
+              } after the accident and he went there by ${
+                data?.treatmentSection?.immediateTreatment?.howGetThere
+              }.`,
+            },
+            {
+              label: "Later Treatment",
+              nextLine: true,
+              value: `The treatment was received ${data?.treatmentSection?.laterTreatment?.whereTreatmentReceived}. 
+            The claimant seek treatment after the ${data?.treatmentSection?.laterTreatment?.durationOfTreatmentReceivedAfterAccident}
+             of accident and received the  treatment ${data?.treatmentSection?.laterTreatment?.whatTreatmentReceived}. 
+            ${data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone}.`,
+            },
           ]}
         />
 
-        <DetailsSection 
+        {/* Employment/Education Details */}
+        <DetailsSection
           title="Employment/Education Details"
           layout="single-column"
           details={[
-            { label: 'Current Employment Status', value: data.employmentEducationDetails.employmentStatus, inline: true },
-            { label: 'Occupation', value: data.employmentEducationDetails.occupation, inline: true },
-            { label: 'Education Level', value: data.employmentEducationDetails.educationLevel, inline: true },
-            { label: 'Missed Work Days', value: data.employmentEducationDetails.missedWorkDays, inline: true },
-            { label: 'Impact on Work', value: data.employmentEducationDetails.impactOnWork, inline: true }
+            {
+              label: "Studying where",
+              value: data.employmentEducationSection.studyingWhere,
+            },
+            {
+              label: "Duration Taken Off From School After Accident",
+              value:
+                data.employmentEducationSection
+                  .durationTakenOffFromSchoolAfterAccident,
+            },
+            {
+              label: "Hours Gave To Education",
+              value: data.employmentEducationSection.hoursGaveToEducation,
+            },
+            {
+              label: "Phased Return to School Management",
+              value:
+                data.employmentEducationSection.phasedReturnToSchoolManagement,
+            },
           ]}
         />
 
-        <TableSection 
+        {/* Domestic Impact Details */}
+        <TableSection
           title="Domestic Impact Details"
-          rows={data.domesticImpactDetails.map(impact => ({
-            Activity: impact.activity,
-            Severity: impact.severity,
-            SymptomExacerbation: impact.symptomExacerbation
-          }))}
-          mergedHeader="Ongoing"
+          rows={data.domesticImpactSection.questions.map(
+            (injury) => ({
+              "Activity": formatString(injury.type),
+              "Severity at onset": injury.severityAtAccident,
+              "Current condition": injury.currentCondition
+            })
+          )}
         />
 
-        <DetailsSection 
-          title="Past Medical History"
+        {/* General Observations Section */}
+        <DetailsSection
+          title="General Observations"
           layout="single-column"
           details={[
-            { label: 'Injuries', value: data.pastMedicalHistory.injuries, inline: false },
-            { label: 'Illnesses', value: data.pastMedicalHistory.illnesses, inline: false },
-            { label: 'Operations', value: data.pastMedicalHistory.operations, inline: false }
+            {
+              label: "Physical Appearance",
+              value: data.generalObservationSection.physicalAppearance,
+            },
+            {
+              label: "Presence of Bruises, Scars, Marks",
+              value: data.generalObservationSection.presenceOfBruisesScarsMarks,
+            },
+            {
+              label: "Holding Intelligent Conversation",
+              value:
+                data.generalObservationSection.holdingIntelligentConversation,
+            },
+            {
+              label: "Eye Contact and Rapport",
+              value: data.generalObservationSection.goodEyeContact,
+            },
+            {
+              label: "Mental State",
+              value: data.generalObservationSection.mentalState,
+            },
           ]}
         />
 
-        <DetailsSection 
-          title="General Observation"
-          layout="single-column"
-          details={[
-            { label: 'Presentation', value: data.generalObservation.presentation, inline: true },
-            { label: 'Demeanor', value: data.generalObservation.demeanor, inline: true },
-            { label: 'Pain Levels', value: data.generalObservation.painLevels, inline: true },
-            { label: 'Pain Management', value: data.generalObservation.painManagement, inline: true },
-            { label: 'Mobility', value: data.generalObservation.mobility, inline: true }
-          ]}
-        />
-
-        <TableSection 
-          title="Physical Examination"
-          rows={data.physicalExamination.map(exam => ({
-            Area: exam.area,
-            Observation: exam.observation,
-            Characteristics: exam.characteristics,
-            SymptomExacerbation: exam.symptomExacerbation
-          }))}
-        />
-
-        <TableSection 
+        {/* Diagnosis Details Section */}
+        <TableSection
           title="Diagnosis - Physical Injuries"
-          rows={data.diagnosisPhysicalInjuries.map(diagnosis => ({
-            Injury: diagnosis.injury,
-            Mechanism: diagnosis.mechanism,
-            Treatment: diagnosis.treatment,
-            Prognosis: diagnosis.prognosis
-          }))}
+          rows={data.diagnosisSection.physicalInjuries.questions.map(
+            (injury) => ({
+              Injury: injury.type,
+              Mechanism: injury.mechanismOfInjury,
+              Trauma: injury.traumaItCaused,
+            })
+          )}
         />
 
-        <TableSection 
+        {/* Psychological Injuries Section */}
+        <TableSection
           title="Diagnosis - Psychological Injuries"
-          rows={data.diagnosisPsychologicalInjuries.map(diagnosis => ({
-            Injury: diagnosis.injury,
-            Mechanism: diagnosis.mechanism,
-            Treatment: diagnosis.treatment,
-            Prognosis: diagnosis.prognosis
-          }))}
+          rows={data.diagnosisSection.psychologicalInjuries.questions.map(
+            (injury) => ({
+              Type: injury.type,
+              Mechanism: injury.mechanismOfInjury,
+            })
+          )}
         />
 
-        <DetailsSection 
-          title="Opinion"
-          layout="single-column"
-          details={[
-            { label: 'Opinion', value: data.opinion, inline: false }
-          ]}
-        />
-
-        <TableSection 
+        {/* Prognosis Details */}
+        <TableSection
           title="Prognosis - Physical Injuries"
-          rows={data.prognosisPhysicalInjuries.map(prognosis => ({
-            Injury: prognosis.injury,
-            ShortTerm: prognosis.shortTerm,
-            LongTerm: prognosis.longTerm
-          }))}
+          rows={data.prognosisSection.physicalInjuries.questions.map(
+            (injury) => ({
+              Question: injury.question,
+              Answer: injury.answer,
+            })
+          )}
         />
 
-        <TableSection 
+        {/* Psychological Prognosis Details */}
+        <TableSection
           title="Prognosis - Psychological Injuries"
-          rows={data.prognosisPsychologicalInjuries.map(prognosis => ({
-            Injury: prognosis.injury,
-            ShortTerm: prognosis.shortTerm,
-            LongTerm: prognosis.longTerm
-          }))}
+          rows={data.prognosisSection.psychologicalInjuries.questions.map(
+            (injury) => ({
+              Question: injury.question,
+              Answer: injury.answer,
+            })
+          )}
         />
 
-        <DetailsSection 
-          title="Further Treatment and Rehabilitation"
-          layout="single-column"
-          details={[
-            { label: 'Further Treatment', value: data.furtherTreatmentRehabilitation, inline: false }
-          ]}
-        />
-
-        <DetailsSection 
+        {/* Statement of Truth */}
+        <DetailsSection
           title="Statement of Truth"
           layout="single-column"
           details={[
-            { label: 'Statement of Truth', value: data.statementOfTruth, inline: false }
+            {
+              label: "Statement",
+              value: data.statementOfTruthSection.predefinedStatement.statement,
+            },
           ]}
         />
 
-        <DetailsSection 
-          title="Signature"
-          layout="single-column"
-          details={[
-            { label: 'Signed By', value: `${data.signedBy.name}, ${data.signedBy.qualifications}`, inline: true },
-            { label: 'Date', value: data.signedBy.date, inline: true }
-          ]}
-        />
-
-        <TableSection 
+        {/* Expert Bibliography */}
+        <TableSection
           title="Expert Bibliography"
-          rows={data.expertBibliography.map(bibliography => ({
-            Bibliography: bibliography
-          }))}
+          rows={data.expertBibliographySection.selectedBibliography.map(
+            (bib) => ({
+              Bibliography: bib.bibliography,
+            })
+          )}
         />
       </div>
-      <button onClick={generatePdf} className="report-download-button">Download PDF</button>
+      <button onClick={generatePdf} className="report-download-button">
+        Download PDF
+      </button>
     </div>
   );
 };

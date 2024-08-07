@@ -10,7 +10,7 @@ const DetailsSection = ({ title, details, layout }) => {
         {details.map((detail, index) => (
           <p 
             key={index} 
-            className={`report-text ${detail.inline ? 'inline' : 'block'}`}
+            className={`report-text ${detail.nextLine ? 'block' : 'inline'}`}
           >
             <strong>{detail.label}:</strong> <span>{detail.value}</span> 
           </p>

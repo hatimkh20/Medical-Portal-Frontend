@@ -16,6 +16,19 @@ export const toCamelCase = (value) => {
 
 }
 
+export const formatString = (input) => {
+  const formatted = input
+      .split(/(?=[A-Z])/)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+
+  return formatted;
+};
+
+// Example usage
+console.log(formatString("personalCare")); // Outputs: Personal Care
+
+
 export const isOtherSelected = (value) => {
   return value === "Other";
 }
