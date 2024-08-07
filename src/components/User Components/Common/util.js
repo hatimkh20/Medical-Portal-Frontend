@@ -25,9 +25,10 @@ export const formatString = (input) => {
   return formatted;
 };
 
-// Example usage
-console.log(formatString("personalCare")); // Outputs: Personal Care
-
+export const getTextBeforeUnderscore = (input) => {
+  const parts = input.split('_');
+  return parts[0];
+};
 
 export const isOtherSelected = (value) => {
   return value === "Other";

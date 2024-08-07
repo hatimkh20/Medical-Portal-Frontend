@@ -6,7 +6,7 @@ import DetailsSection from "./DetailSection";
 import TableSection from "./TableSection";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { formatString } from "../User Components/Common/util";
+import { formatString, getTextBeforeUnderscore } from "../User Components/Common/util";
 
 const MedicalReport = () => {
   const { reportId } = useParams();
@@ -105,7 +105,7 @@ const MedicalReport = () => {
         <TableSection
           title="Symptoms Details"
           rows={data.symptomsSection.questions.map((symptom) => ({
-            Anatomy: symptom.type,
+            Anatomy: formatString(symptom.type),
             "Started At": symptom.symptomsStart,
             "Severity at onset": symptom.severityOnset,
             "Severity now": symptom.severityNow,
@@ -216,12 +216,25 @@ const MedicalReport = () => {
           ]}
         />
 
+        {/* PHYSICAL EXAMINATION Section */}
+        <TableSection
+          title="PHYSICAL EXAMINATION"
+          rows={data.physicalExaminationSection.questions.map(
+            (injury) => ({
+              "Anatomy": formatString(injury.type),
+              "Observations on Palpation": injury.observationOfPalpation,
+              "Observations on flexion/ extension or abduction": injury.observationOnFlexios,
+            })
+          )}
+        />
+
         {/* Diagnosis Details Section */}
         <TableSection
           title="Diagnosis - Physical Injuries"
           rows={data.diagnosisSection.physicalInjuries.questions.map(
             (injury) => ({
-              Injury: injury.type,
+              Anatomy: formatString(injury.type),
+              Injury: injury.injury,
               Mechanism: injury.mechanismOfInjury,
               Trauma: injury.traumaItCaused,
             })
@@ -233,18 +246,21 @@ const MedicalReport = () => {
           title="Diagnosis - Psychological Injuries"
           rows={data.diagnosisSection.psychologicalInjuries.questions.map(
             (injury) => ({
-              Type: injury.type,
+              Type: formatString(getTextBeforeUnderscore(injury.type)),
               Mechanism: injury.mechanismOfInjury,
             })
           )}
         />
+
+        {/* Opinion Section */}
+        {/* TODO */}
 
         {/* Prognosis Details */}
         <TableSection
           title="Prognosis - Physical Injuries"
           rows={data.prognosisSection.physicalInjuries.questions.map(
             (injury) => ({
-              Question: injury.question,
+              Question: formatString(getTextBeforeUnderscore(injury.question)),
               Answer: injury.answer,
             })
           )}
@@ -255,7 +271,7 @@ const MedicalReport = () => {
           title="Prognosis - Psychological Injuries"
           rows={data.prognosisSection.psychologicalInjuries.questions.map(
             (injury) => ({
-              Question: injury.question,
+              Question: formatString(getTextBeforeUnderscore(injury.question)),
               Answer: injury.answer,
             })
           )}
