@@ -6,7 +6,10 @@ import DetailsSection from "./DetailSection";
 import TableSection from "./TableSection";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { formatString, getTextBeforeUnderscore } from "../User Components/Common/util";
+import {
+  formatString,
+  getTextBeforeUnderscore,
+} from "../User Components/Common/util";
 
 const MedicalReport = () => {
   const { reportId } = useParams();
@@ -28,6 +31,66 @@ const MedicalReport = () => {
       pdfCanvas.save("report.pdf");
     });
   };
+
+  const resolvedPhysicalInjuryDetails =
+  data.prognosisDetailedSection?.physicalInjuries?.questions
+    ?.filter((injury) =>
+      data.prognosisSection?.physicalInjuries?.questions?.find(
+        (q) =>
+          q.question?.toLowerCase() === `${injury.type}_resolvedOrOngoing`.toLowerCase() &&
+          q.answer?.toLowerCase() === "resolved"
+      )
+    )
+    ?.filter((injury) =>
+      data.anatomySection?.anatomySelectedOptions?.map(option => option.toLowerCase()).includes(
+        formatString(injury.type)?.toLowerCase()
+      )
+    ) || [];
+
+const ongoingPhysicalInjuryDetails =
+  data.prognosisDetailedSection?.physicalInjuries?.questions
+    ?.filter((injury) =>
+      data.prognosisSection?.physicalInjuries?.questions?.find(
+        (q) =>
+          q.question?.toLowerCase() === `${injury.type}_resolvedOrOngoing`.toLowerCase() &&
+          q.answer?.toLowerCase() === "ongoing"
+      )
+    )
+    ?.filter((injury) =>
+      data.anatomySection?.anatomySelectedOptions?.map(option => option.toLowerCase()).includes(
+        formatString(injury.type)?.toLowerCase()
+      )
+    ) || [];
+
+const resolvedPsychologicalDetails =
+  data.prognosisDetailedSection?.psychologicalInjuries?.questions
+    ?.filter((injury) =>
+      data.prognosisSection?.psychologicalInjuries?.questions?.find(
+        (q) =>
+          q.question?.toLowerCase() === `${injury.type}_resolvedOrOngoing`.toLowerCase() &&
+          q.answer?.toLowerCase() === "resolved"
+      )
+    )
+    ?.filter((injury) =>
+      data.anatomySection?.psychologicalInjuriesSelectedOptions?.map(option => option.toLowerCase()).includes(
+        formatString(injury.type)?.toLowerCase()
+      )
+    ) || [];
+
+const ongoingPsychologicalDetails =
+  data.prognosisDetailedSection?.psychologicalInjuries?.questions
+    ?.filter((injury) =>
+      data.prognosisSection?.psychologicalInjuries?.questions?.find(
+        (q) =>
+          q.question?.toLowerCase() === `${injury.type}_resolvedOrOngoing`.toLowerCase() &&
+          q.answer?.toLowerCase() === "ongoing"
+      )
+    )
+    ?.filter((injury) =>
+      data.anatomySection?.psychologicalInjuriesSelectedOptions?.map(option => option.toLowerCase()).includes(
+        formatString(injury.type)?.toLowerCase()
+      )
+    ) || [];
 
   return (
     <div className="report-wrapper">
@@ -104,13 +167,19 @@ const MedicalReport = () => {
         {/* Symptoms Section */}
         <TableSection
           title="Symptoms Details"
-          rows={data.symptomsSection.questions.map((symptom) => ({
-            Anatomy: formatString(symptom.type),
-            "Started At": symptom.symptomsStart,
-            "Severity at onset": symptom.severityOnset,
-            "Severity now": symptom.severityNow,
-            "Resolved duration": symptom.symptomsResolvedDuration,
-          }))}
+          rows={data.symptomsSection.questions
+            .filter((symptom) =>
+              data.anatomySection.anatomySelectedOptions.includes(
+                formatString(symptom.type)
+              )
+            )
+            .map((symptom) => ({
+              Anatomy: formatString(symptom.type),
+              "Started At": symptom.symptomsStart,
+              "Severity at onset": symptom.severityOnset,
+              "Severity now": symptom.severityNow,
+              "Resolved duration": symptom.symptomsResolvedDuration,
+            }))}
         />
 
         {/* Treatment Details Section */}
@@ -178,13 +247,29 @@ const MedicalReport = () => {
         {/* Domestic Impact Details */}
         <TableSection
           title="Domestic Impact Details"
-          rows={data.domesticImpactSection.questions.map(
-            (injury) => ({
-              "Activity": formatString(injury.type),
-              "Severity at onset": injury.severityAtAccident,
-              "Current condition": injury.currentCondition
-            })
-          )}
+          rows={data.domesticImpactSection.questions.map((injury) => ({
+            Activity: formatString(injury.type),
+            "Severity at onset": injury.severityAtAccident,
+            "Current condition": injury.currentCondition,
+          }))}
+        />
+
+        {/* PAST MEDICAL HISTORY Section */}
+        <DetailsSection
+          title="PAST MEDICAL HISTORY"
+          layout="single-column"
+          details={[
+            {
+              label: "Past Medical Injuries",
+              value: data.medicalHistorySection.detailsOfPastMedicalInjuries,
+            },
+            {
+              label: "Medical Notes Reviewed",
+              value: data.medicalHistorySection.medicalNotesReviewed
+                .map((notes) => notes.expertReview)
+                .join(", "),
+            },
+          ]}
         />
 
         {/* General Observations Section */}
@@ -219,26 +304,35 @@ const MedicalReport = () => {
         {/* PHYSICAL EXAMINATION Section */}
         <TableSection
           title="PHYSICAL EXAMINATION"
-          rows={data.physicalExaminationSection.questions.map(
-            (injury) => ({
-              "Anatomy": formatString(injury.type),
+          rows={data.physicalExaminationSection.questions
+            .filter((injury) =>
+              data.anatomySection.anatomySelectedOptions.includes(
+                formatString(injury.type)
+              )
+            )
+            .map((injury) => ({
+              Anatomy: formatString(injury.type),
               "Observations on Palpation": injury.observationOfPalpation,
-              "Observations on flexion/ extension or abduction": injury.observationOnFlexios,
-            })
-          )}
+              "Observations on flexion/ extension or abduction":
+                injury.observationOnFlexios,
+            }))}
         />
 
         {/* Diagnosis Details Section */}
         <TableSection
           title="Diagnosis - Physical Injuries"
-          rows={data.diagnosisSection.physicalInjuries.questions.map(
-            (injury) => ({
+          rows={data.diagnosisSection.physicalInjuries.questions
+            .filter((injury) =>
+              data.anatomySection.anatomySelectedOptions.includes(
+                formatString(injury.type)
+              )
+            )
+            .map((injury) => ({
               Anatomy: formatString(injury.type),
               Injury: injury.injury,
               Mechanism: injury.mechanismOfInjury,
               Trauma: injury.traumaItCaused,
-            })
-          )}
+            }))}
         />
 
         {/* Psychological Injuries Section */}
@@ -252,29 +346,128 @@ const MedicalReport = () => {
           )}
         />
 
-        {/* Opinion Section */}
-        {/* TODO */}
-
-        {/* Prognosis Details */}
+        {/* Opinion - Physical Injuries */}
         <TableSection
-          title="Prognosis - Physical Injuries"
-          rows={data.prognosisSection.physicalInjuries.questions.map(
-            (injury) => ({
-              Question: formatString(getTextBeforeUnderscore(injury.question)),
-              Answer: injury.answer,
+          title="Opinion - Physical Injuries"
+          rows={data.opinionSection.physicalInjuries.questions
+            .filter((injury) =>
+              data.anatomySection.anatomySelectedOptions.includes(
+                formatString(injury.type)
+              )
+            )
+            .map((detail) => ({
+              Type: formatString(detail.type),
+              Opinion: detail.opinion,
+            }))}
+        />
+
+        {/* Opinion - Physchological Injuries */}
+        <TableSection
+          title="Opinion - Physchological Injuries"
+          rows={data.opinionSection.psychologicalInjuries.questions.map(
+            (detail) => ({
+              Type: formatString(detail.type),
+              Opinion: detail.opinion,
             })
           )}
         />
 
-        {/* Psychological Prognosis Details */}
+        {/* Opinion Section */}
+        <DetailsSection
+          title="Opinion"
+          layout="single-column"
+          details={[
+            { label: "Exceptional Circumstances", labelHeading: true },
+            {
+              label: "Did claimant's claimed any exceptional circumstances?",
+              value:
+                data.opinionSection.exceptionalCircumstances
+                  .claimantClaimedAnyExceptionalCircumstance,
+            },
+            {
+              label: "Are you in agreement as Medical Expert?",
+              value:
+                data.opinionSection.exceptionalCircumstances
+                  .anyExceptionalCircumstanceInAccident,
+            },
+            {
+              label: "Were there any exceptional circumstances in accident?",
+              value:
+                data.opinionSection.exceptionalCircumstances
+                  .injuriesSustainedInAccident,
+            },
+            {
+              label: "Were the injuries result of exceptional circumstances?",
+              value:
+                data.opinionSection.exceptionalCircumstances
+                  .inAgreementAsMedicalExpert,
+            },
+            {
+              label:
+                "Injuries sustained in accident were exceptionally severe?",
+              value:
+                data.opinionSection.exceptionalCircumstances
+                  .injuriesResultOfExceptionalCircumstance,
+            },
+            {
+              label: "Anything Else?",
+              value: data.opinionSection.exceptionalCircumstances.anythingElse,
+            },
+          ]}
+        />
+
+        {/* Prognosis Details - Resolved */}
         <TableSection
-          title="Prognosis - Psychological Injuries"
-          rows={data.prognosisSection.psychologicalInjuries.questions.map(
-            (injury) => ({
-              Question: formatString(getTextBeforeUnderscore(injury.question)),
-              Answer: injury.answer,
-            })
-          )}
+          title="Prognosis - Physical Injuries"
+          mergedHeader="Resolved"
+          rows={resolvedPhysicalInjuryDetails.map((detail) => ({
+            Type: formatString(detail.type),
+            "Resolved Time":
+              detail.whenDidItResolved || detail.timeWillTakeToRecover,
+            "Long Term Sequelae": detail.anyLongTermSequelae,
+          }))}
+        />
+
+        {/* Prognosis Details - Ongoing */}
+        <TableSection
+          title="Prognosis - Physical Injuries"
+          mergedHeader="Ongoing"
+          rows={ongoingPhysicalInjuryDetails.map((detail) => ({
+            Type: formatString(detail.type),
+            "Estimated Time to Recover": detail.timeWillTakeToRecover,
+            "Severity of Disability": detail.severeDisability,
+            Specialist: detail.specialist,
+            Recommendation: detail.otherRecommendation,
+            "Long Term Sequelae": detail.anyLongTermSequelae,
+            "Treatment and Rehabilitation": detail.treatmentAndRehabiliation,
+          }))}
+        />
+
+        {/* Prognosis Details - Resolved */}
+        <TableSection
+          title="Prognosis - Pyschological Injuries"
+          mergedHeader="Resolved"
+          rows={resolvedPsychologicalDetails.map((detail) => ({
+            Type: formatString(detail.type),
+            "Resolved Time":
+              detail.whenDidItResolved || detail.timeWillTakeToRecover,
+            "Long Term Sequelae": detail.anyLongTermSequelae,
+          }))}
+        />
+
+        {/* Prognosis Details - Ongoing */}
+        <TableSection
+          title="Prognosis - Pyschological Injuries"
+          mergedHeader="Ongoing"
+          rows={ongoingPsychologicalDetails.map((detail) => ({
+            Type: formatString(detail.type),
+            "Estimated Time to Recover": detail.timeWillTakeToRecover,
+            "Severity of Disability": detail.severeDisability,
+            Specialist: detail.specialist,
+            Recommendation: detail.otherRecommendation,
+            "Long Term Sequelae": detail.anyLongTermSequelae,
+            "Treatment and Rehabilitation": detail.treatmentAndRehabiliation,
+          }))}
         />
 
         {/* Statement of Truth */}
@@ -283,8 +476,9 @@ const MedicalReport = () => {
           layout="single-column"
           details={[
             {
-              label: "Statement",
+              label: data.statementOfTruthSection.predefinedStatement.name,
               value: data.statementOfTruthSection.predefinedStatement.statement,
+              nextLine: true,
             },
           ]}
         />
