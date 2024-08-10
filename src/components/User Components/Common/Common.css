@@ -62,7 +62,7 @@
 .radio-group {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .radio-label {
@@ -81,7 +81,7 @@
 .radio-container {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   gap: 30px;
   width: 200px;
   background: #F1F8FB;

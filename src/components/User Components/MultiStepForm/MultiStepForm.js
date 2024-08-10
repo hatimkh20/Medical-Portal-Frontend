@@ -7,10 +7,11 @@ import makePayload from "./makePayload";
 import useFetch from "../../../hooks/useFetch";
 import { useParams } from "react-router";
 import { getDateWithoutTZ } from "../Common/util";
+import {SymptomSectionValidationSchema} from './formSchema';
 
 const MultiStepForm = ({ steps }) => {
   console.log("RENDERS")
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(18);
   
   const {id} = useParams();
 
@@ -341,7 +342,24 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
     <div className="multi-step-form-container">
       <Formik
         initialValues={formData}
-        validationSchema={steps.getStepValidationSchema(currentStep)}
+        validate={(values) => {
+          const schema = steps.getStepValidationSchema(currentStep)(values);
+          
+          try {
+            schema.validateSync(values, { abortEarly: false });
+            return {}; // No errors
+          } catch (err) {
+            const errors = {};
+            err.inner?.forEach(error => {
+              if (error.path) {
+                errors[error.path] = error.message;
+              }
+            });
+            return errors;
+          }
+        }}
+        validateOnChange
+        validateOnBlur
         onSubmit={handleSubmit}
       >
         {(formikProps) => (
