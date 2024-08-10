@@ -35,3 +35,8 @@
     transition: 0.4s;
   }
   
+  .errorBackground {
+    background-color: #E74C3C;
+    color: #fff;
+  }
+  

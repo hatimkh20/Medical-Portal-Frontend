@@ -155,15 +155,11 @@ export const DomesticImpactValidationSchema = (values) => {
 
 export const MedicalHistorySchema = (values) => {
   // Define schema for each medical note
-  const medicalNoteSchema = Yup.object().shape({
-    filename: Yup.string().required('Filename is required'),
-    expertReview: Yup.string().required('Expert Review is required'),
-  });
 
   // Define schema for MedicalHistory form
   return Yup.object().shape({
     pastMedicalInjuries: Yup.string().required('Please provide details of past medical injuries'),
-    medicalNotes: Yup.array().of(medicalNoteSchema).required('At least one medical note is required')
+    medicalNotes: Yup.array().required('At least one medical note is required')
       .min(1, 'At least one medical note is required'),
   });
 };

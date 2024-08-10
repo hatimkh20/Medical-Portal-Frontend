@@ -7,15 +7,13 @@ import makePayload from "./makePayload";
 import useFetch from "../../../hooks/useFetch";
 import { useParams } from "react-router";
 import { getDateWithoutTZ } from "../Common/util";
-import {SymptomSectionValidationSchema} from './formSchema';
+import structuredClone from '@ungap/structured-clone';
+
 
 const MultiStepForm = ({ steps }) => {
-  console.log("RENDERS")
   const [currentStep, setCurrentStep] = useState(18);
   
   const {id} = useParams();
-
-  console.log(id, "idd ")
 
   const defaultFormData = {
     fullName: "",
@@ -40,9 +38,7 @@ const MultiStepForm = ({ steps }) => {
     // Add other fields as needed
   }
 
-  const mapResponseToFormData = (response) => {
-    console.log("MApping Func tion Called")
-    
+  const mapResponseToFormData = (response) => {    
     const formData = {};
     formData.currentStepKey = response?.currentReportSectionStatus;
 
@@ -153,12 +149,15 @@ const MultiStepForm = ({ steps }) => {
       const medicalHistorySection = response.medicalHistorySection || {};
       setFormData('pastMedicalInjuries', medicalHistorySection.detailsOfPastMedicalInjuries);
 
-      if (medicalHistorySection.medicalNotes) {
-          medicalHistorySection.medicalNotes.forEach(note => {
-              setFormData(`medicalNotes_${note.fileName}_fileName`, note.fileName);
-              setFormData(`medicalNotes_${note.fileName}_expertReview`, note.expertReview);
-          });
-      }
+      formData.medicalNotes = [];
+      medicalHistorySection.medicalNotesReviewed.forEach((note, idx) => {
+        formData.medicalNotes.push({
+          filename: note.fileName,
+          expertReview: note.expertReview
+        })
+          // setFormData(`medicalNotes.filename-${idx}`, note.fileName);
+          // setFormData(`medicalNotes.expertReview-${idx}`, note.expertReview);
+      });
   
 
       const generalObservationSection = response.generalObservationSection || {};
@@ -287,10 +286,6 @@ const MultiStepForm = ({ steps }) => {
         });
       }
     
-  
-
-    console.log("MAPPING RESULT", formData, response)
-
     return formData;
 };
 
@@ -321,10 +316,10 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
     console.log(values.selectedBibliographies)
     if(JSON.stringify(prevValues) != JSON.stringify(values)){
       await saveForm(makePayload(currentStep, values, response?.data?._id || id));
-      setPrevValues(values);
+      setPrevValues(structuredClone(values));
     }
     else{
-      console.log("No changes detected, skipping save.");
+      console.debug("No changes detected, skipping save.");
     }
   
     nextStep(values);

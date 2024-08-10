@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "../Common/InputField";
 import TextAreaField from "../Common/TextAreaField";
 import Button from "../Common/Button";
@@ -26,6 +26,12 @@ const MedicalHistory = ({ values, setFieldValue, handleChange, handleBlur, prevS
     setFieldValue("medicalNotes", updatedNotes);
   };
 
+  useEffect(()=>{
+    if(!values.medicalNotes || values.medicalNotes.length == 0){
+      setFieldValue("medicalNotes", [{}])
+    }
+  }, [])
+
   return (
     <FormLayout title="SECTION: RELEVANT MEDICAL HISTORY">
       <div className="form-group">
@@ -38,7 +44,7 @@ const MedicalHistory = ({ values, setFieldValue, handleChange, handleBlur, prevS
           rows={2}
         />
       </div>
-
+      <div>
       <h2>SECTION: MEDICAL NOTES REVIEWED</h2>
       {values?.medicalNotes?.map((note, index) => (
         <div key={index} className="note-review-group input-group">
@@ -46,6 +52,7 @@ const MedicalHistory = ({ values, setFieldValue, handleChange, handleBlur, prevS
             name={`filename-${index}`}
             label="Filename"
             value={note.filename}
+            required
             onChange={(e) => handleNoteChange(index, "filename", e.target.value)}
           />
           <div className="expert-review-container">
@@ -56,11 +63,17 @@ const MedicalHistory = ({ values, setFieldValue, handleChange, handleBlur, prevS
               name={`expertReview-${index}`}
               label="Expert Review"
               value={note.expertReview}
+              required
               onChange={(e) => handleNoteChange(index, "expertReview", e.target.value)}
             />
           </div>
         </div>
       ))}
+      
+      <InputField name="medicalNotes" hidden></InputField>
+
+      </div>
+
       <div className="add-filename-container">
         <Button type="button" className="add-filename-btn" onClick={addNote}>
           Add <FontAwesomeIcon icon={faPlus} />
