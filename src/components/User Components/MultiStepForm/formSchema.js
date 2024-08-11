@@ -5,16 +5,14 @@ import { toCamelCase, isPluralFrequencySelected } from "../Common/util";
 export const ClaimantDetailsSchema = (values) => {
   return Yup.object().shape({
     fullName: Yup.string().required('Full Name is required'),
-    dateOfBirth: Yup.date().required('Date Of Birth is required'),
+    dateOfBirth: Yup.string().required('Date Of Birth is required'),
     address: Yup.string().required('Address is required'),
     occupation: Yup.string().required('Occupation is required'),
-    dateOfExamination: Yup.date().required('Date Of Examination is required'),
+    dateOfExamination: Yup.string().required('Date Of Examination is required'),
     whichRecordsSeen: Yup.string().required('Which records were seen? is required'),
-    dateOfAccident: Yup.date().required('Date Of Accident is required'),
-    ageAtTimeOfAccident: Yup.number()
-      .required('Age at the time of accident is required')
-      .positive()
-      .integer(),
+    dateOfAccident: Yup.string().required('Date Of Accident is required'),
+    ageAtTimeOfAccident: Yup.string()
+      .required('Age at the time of accident is required'),
     whichTypeOfIDChecked: Yup.string().nullable(),
   });
 };
