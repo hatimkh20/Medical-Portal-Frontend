@@ -72,7 +72,7 @@ const Steps = {
     {
       component: LivelihoodSection,
       validationSchema: LivelihoodSectionSchema,
-      identifier: 'livelihoodSection'
+      identifier: 'livehoodEducationSection'
     },
     {
       component: EducationSection,
@@ -81,7 +81,7 @@ const Steps = {
     },
     {
       component: DomesticImpactList,
-      identifier: 'domesticImpactList',
+      identifier: 'domesticSection',
       validationSchema: DomesticImpactListValidationSchema
     },
     {

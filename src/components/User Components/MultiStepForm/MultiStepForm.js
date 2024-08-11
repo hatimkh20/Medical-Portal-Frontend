@@ -116,6 +116,10 @@ const navigate = useNavigate()
       setFormData('serviceAtAccident', immediateTreatment.serviceAttendedSceneOfAccident);
       setFormData('postLocationAccident', immediateTreatment.locationWentAfterAccident);
       setFormData('treatmentAtAccident', immediateTreatment.treatmentReceivedAtSceneOfAccident);
+      setFormData('otherServiceAtAccident', immediateTreatment.otherServiceAttendedSceneOfAccident);
+      setFormData('otherPostLocationAccident', immediateTreatment.otherLocationWentAfterAccident);
+      setFormData('otherTreatmentAtAccident', immediateTreatment.otherTreatmentReceivedAtSceneOfAccident);
+
       setFormData('postLocationBy', immediateTreatment.howGetThere);
 
       const laterTreatment = treatmentSection.laterTreatment || {};
@@ -124,10 +128,13 @@ const navigate = useNavigate()
       setFormData('treatmentTimeAfterAccident', laterTreatment.durationOfTreatmentReceivedAfterAccident);
       setFormData('imagingOrScans', laterTreatment.whatImagingOrScansDone);
     
+      setFormData('otherLaterTreatmentLocation', laterTreatment.otherWhereTreatmentReceived);
+      setFormData('otherReceivedTreatment', laterTreatment.otherWhatTreatmentReceived);
+      setFormData('otherImagingOrScans', laterTreatment.otherWhatImagingOrScansDone);
 
       const livehoodEducationSection = response.livehoodEducationSection || {};
       setFormData('employmentStatus', livehoodEducationSection.employmentStatus);
-  
+      setFormData('otherEmploymentStatus', livehoodEducationSection.otherEmploymentStatus);
 
       const employmentEducationSection = response.employmentEducationSection || {};
       setFormData('currentEmployment', employmentEducationSection.studyingWhere);
@@ -165,6 +172,7 @@ const navigate = useNavigate()
 
       const generalObservationSection = response.generalObservationSection || {};
       setFormData('physicalAppearance', generalObservationSection.physicalAppearance);
+      setFormData('otherPhysicalAppearance', generalObservationSection.otherPhysicalAppearance);
       setFormData('presenceOfScars', generalObservationSection.presenceOfBruisesScarsMarks);
       setFormData('otherPresenceOfScars', generalObservationSection.otherPresenceOfBruisesScarsMarks);
       setFormData('conversation', generalObservationSection.holdingIntelligentConversation);
@@ -179,7 +187,9 @@ const navigate = useNavigate()
       if (physicalExaminationSection.questions) {
           physicalExaminationSection.questions.forEach(question => {
               setFormData(`physicalExamination_${question.type}_palpation`, question.observationOfPalpation);
+              setFormData(`physicalExamination_${question.type}_otherPalpation`, question.otherObservationOfPalpation);
               setFormData(`physicalExamination_${question.type}_observation`, question.observationOnFlexios);
+              setFormData(`physicalExamination_${question.type}_otherObservation`, question.otherObservationOnFlexios);
           });
       }
   

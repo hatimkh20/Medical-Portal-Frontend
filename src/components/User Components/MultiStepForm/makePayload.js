@@ -94,6 +94,9 @@ const makePayload = (step, formData, reportId) => {
                             serviceAttendedSceneOfAccident: formData.serviceAtAccident,
                             locationWentAfterAccident: formData.postLocationAccident,
                             treatmentReceivedAtSceneOfAccident: formData.treatmentAtAccident,
+                            otherServiceAttendedSceneOfAccident: formData.otherServiceAtAccident,
+                            otherLocationWentAfterAccident: formData.otherPostLocationAccident,
+                            otherTreatmentReceivedAtSceneOfAccident: formData.otherTreatmentAtAccident,
                             howGetThere: formData.postLocationBy,
                         },
                         laterTreatment: {
@@ -101,6 +104,9 @@ const makePayload = (step, formData, reportId) => {
                             whatTreatmentReceived: formData.receivedTreatment,
                             durationOfTreatmentReceivedAfterAccident: formData.treatmentTimeAfterAccident,
                             whatImagingOrScansDone: formData.imagingOrScans,
+                            otherWhereTreatmentReceived: formData.otherLaterTreatmentLocation,
+                            otherWhatTreatmentReceived: formData.otherReceivedTreatment,
+                            otherWhatImagingOrScansDone: formData.otherImagingOrScans,
                         }
                     }
                 };
@@ -110,6 +116,7 @@ const makePayload = (step, formData, reportId) => {
                     currentReportSectionStatus: "livehoodEducationSection",
                     livehoodEducationSection: {
                         employmentStatus: formData.employmentStatus,
+                        otherEmploymentStatus: formData.otherEmploymentStatus
                     }
                 };
             case 7:
@@ -143,7 +150,6 @@ const makePayload = (step, formData, reportId) => {
                             type: question.type,
                             severityAtAccident: question.severityAtAccident,
                             currentCondition: question.currentCondition,
-                            ifResolvedImpact: question.resolvedFollowUpAction,
                         })),
                     }
                 };
@@ -165,6 +171,7 @@ const makePayload = (step, formData, reportId) => {
                     currentReportSectionStatus: "generalObservationSection",
                     generalObservationSection: {
                         physicalAppearance: formData.physicalAppearance,
+                        otherPhysicalAppearance: formData.otherPhysicalAppearance,
                         presenceOfBruisesScarsMarks: formData.presenceOfScars,
                         otherPresenceOfBruisesScarsMarks: formData.otherPresenceOfScars,
                         holdingIntelligentConversation: formData.conversation,
@@ -184,7 +191,9 @@ const makePayload = (step, formData, reportId) => {
                         questions: physicalExaminationQuestions?.map(question => ({
                             type: question.type,
                             observationOfPalpation: question.palpation,
+                            otherObservationOfPalpation: question.otherPalpation,
                             observationOnFlexios: question.observation,
+                            otherObservationOnFlexios: question.otherObservation
                         })),
                     }
                 };
@@ -291,6 +300,7 @@ const makePayload = (step, formData, reportId) => {
                                 otherSpecialist: prognosis.otherSpecialist,
                                 anyLongTermSequelae: prognosis.anyLongTermSequelae,
                                 treatmentAndRehabiliation: prognosis.treatmentAndRehabiliation
+                                
                             })),
                         },
                         psychologicalInjuries: {
@@ -428,7 +438,7 @@ const defaultData = {
         phasedReturnToSchoolManagement: 'Full-time',
     },
     domesticImpactSection: {
-        questions: [{ type: 'Daily Activities', severityAtAccident: 'Moderate', currentCondition: 'Improving', resolvedFollowUpAction: 'Impact' }],
+        questions: [{ type: 'Daily Activities', severityAtAccident: 'Moderate', currentCondition: 'Improving' }],
     },
     medicalHistorySection: {
         detailsOfPastMedicalInjuries: 'No significant past injuries',

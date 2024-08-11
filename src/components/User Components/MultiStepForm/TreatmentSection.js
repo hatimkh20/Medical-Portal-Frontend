@@ -17,6 +17,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
             name="serviceAtAccident"
             options={responseTeams}
             value={values.serviceAtAccident}
+            values={values}
             onChange={handleChange}
           />
           <SelectField
@@ -24,6 +25,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
             name="treatmentAtAccident"
             options={treatmentOptions}
             value={values.treatmentAtAccident}
+            values={values}
             onChange={handleChange}
           />
         </div>
@@ -33,6 +35,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
             name="postLocationAccident"
             options={postAccidentLocations}
             value={values.postLocationAccident}
+            values={values}
             onChange={handleChange}
           />
           <InputField
@@ -53,6 +56,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
             name="laterTreatmentLocation"
             options={attendanceOptions}
             value={values.laterTreatmentLocation}
+            values={values}
             onChange={handleChange}
           />
           <SelectField
@@ -60,6 +64,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
             name="treatmentTimeAfterAccident"
             options={timeAfterAccident}
             value={values.treatmentTimeAfterAccident}
+            values={values}
             onChange={handleChange}
           />
         </div>
@@ -69,6 +74,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
             name="receivedTreatment"
             options={prescriptionOptions}
             value={values.receivedTreatment}
+            values={values}
             onChange={handleChange}
           />
           <SelectField
@@ -76,6 +82,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
             name="imagingOrScans"
             options={imagingOptions}
             value={values.imagingOrScans}
+            values={values}
             onChange={handleChange}
           />
         </div>

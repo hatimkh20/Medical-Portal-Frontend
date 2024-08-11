@@ -1,6 +1,5 @@
 // src/components/MultiStepForm/formSchema.js
 import * as Yup from "yup";
-import {anatomyList, domesticLifeActivities, psychologicalInjuries} from "./Constants";
 import { toCamelCase, isPluralFrequencySelected } from "../Common/util";
 
 export const ClaimantDetailsSchema = (values) => {
@@ -41,12 +40,10 @@ export const AccidentSectionSchema = (values) => {
 export const AnatomySectionValidationSchema = (values) => {
   return Yup.object().shape({
     anatomy: Yup.array()
-      .of(Yup.string().oneOf(anatomyList, 'Invalid anatomy selection'))
       .min(1, 'At least one anatomy must be selected')
       .required('Anatomy selection is required'),
 
     psychologicalInjuries: Yup.array()
-      .of(Yup.string().oneOf(psychologicalInjuries, 'Invalid psychological injury selection'))
       .min(1, 'At least one psychological injury must be selected')
       .required('Psychological Injury selection is required'),
   });
@@ -128,7 +125,6 @@ export const EducationValidationSchema = (values) => {
 export const DomesticImpactListValidationSchema = (values) => {
   return Yup.object().shape({
     domesticLifeActivities: Yup.array()
-      .of(Yup.string().oneOf(domesticLifeActivities, 'Invalid activity selection'))
       .min(1, 'At least one domestic impact activity must be selected')
       .required('Domestic impact activities selection is required')
   });

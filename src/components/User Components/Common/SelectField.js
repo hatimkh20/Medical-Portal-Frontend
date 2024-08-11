@@ -8,6 +8,10 @@ import InputField from "../Common/InputField";
 const SelectField = ({ label, options = [], optionValues = [], fullLine, values, ...props }) => {
   const [field, meta] = useField(props);
   const className = fullLine ? "form-group" : "input-form-group";
+  const fields = field.name.split('_');
+
+  console.log(values, "Valll")
+  const otherFieldName = fields.slice(0, fields.length - 1).join("_") + fields.length > 1 ? "_":"" + "other" + titleCase(fields.at(-1));
 
   return (
     <div className={className}>
@@ -24,12 +28,14 @@ const SelectField = ({ label, options = [], optionValues = [], fullLine, values,
         ) : null}
       </div>
       {
+        
         isOtherSelected(field.value) &&
+        
         <div className={props.children && "input-group"}>
           <InputField
-            name={`other${titleCase(field.name)}`}
+            name={otherFieldName}
             label={`Other ${label}, if you selected any other`}
-            value={values && values[`other${titleCase(field.name)}`]}
+            value={values && values[otherFieldName]}
             required={true}
             onChange={field.onChange}
             onBlur={props.onBlur}

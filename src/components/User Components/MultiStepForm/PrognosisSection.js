@@ -159,6 +159,7 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep, errors }
               value={values[fieldName]}
               onChange={handleChange}
               onBlur={handleBlur}
+              values={values}
             />
           </div>
         );
