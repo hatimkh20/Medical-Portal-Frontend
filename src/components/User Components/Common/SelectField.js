@@ -11,7 +11,11 @@ const SelectField = ({ label, options = [], optionValues = [], fullLine, values,
   const fields = field.name.split('_');
 
   console.log(values, "Valll")
-  const otherFieldName = fields.slice(0, fields.length - 1).join("_") + fields.length > 1 ? "_":"" + "other" + titleCase(fields.at(-1));
+  let otherFieldName = "other"+titleCase(field.name);
+
+  if(fields.length > 1){
+    otherFieldName = fields.slice(0, fields.length - 1).join("_") + "_other" + titleCase(fields.at(-1));
+  }
 
   return (
     <div className={className}>
