@@ -2,6 +2,11 @@ import React from 'react';
 import './tableSection.css';
 
 const TableSection = ({ title, rows, headerColor, mergedHeader }) => {
+  // Null or undefined check for rows
+  if (!Array.isArray(rows) || rows.length === 0 || !rows[0]) {
+    return null;
+  }
+
   return (
     <section className="report-section">
       {title && <h2 className="report-subtitle">{title}</h2>}
