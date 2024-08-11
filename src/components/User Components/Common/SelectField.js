@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useField } from "formik";
 import "./Common.css";
-import {titleCase, isOtherSelected, isPluralFrequencySelected} from "./util"
+import {titleCase, isOtherSelected, isPluralFrequencySelected, toCamelCase} from "./util"
 import InputField from "../Common/InputField";
 
 const SelectField = ({ label, options = [], optionValues = [], fullLine, values, ...props }) => {
@@ -42,9 +42,9 @@ const SelectField = ({ label, options = [], optionValues = [], fullLine, values,
         isPluralFrequencySelected(field.value) &&
         <div className={props.children && "input-group"}>
           <InputField
-            name={`${titleCase(field.name)}Frequency`}
+            name={`${toCamelCase(field.name)}Frequency`}
             label={`Enter the frequency of ${field.value.toLowerCase()}`}
-            value={values && values[`${titleCase(field.name)}Frequency`]}
+            value={values && values[`${toCamelCase(field.name)}Frequency`]}
             required={true}
             onChange={field.onChange}
             onBlur={props.onBlur}

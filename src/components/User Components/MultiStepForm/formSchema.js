@@ -1,7 +1,7 @@
 // src/components/MultiStepForm/formSchema.js
 import * as Yup from "yup";
-import {anatomyList, domesticLifeActivities, presentSeverityOptions, psychologicalInjuries, sympt} from "./Constants";
-import { toCamelCase } from "../Common/util";
+import {anatomyList, domesticLifeActivities, psychologicalInjuries} from "./Constants";
+import { toCamelCase, isPluralFrequencySelected } from "../Common/util";
 
 export const ClaimantDetailsSchema = (values) => {
   return Yup.object().shape({
@@ -189,5 +189,142 @@ export const PhysicalExaminationSectionSchema = (values) => {
     ...schema.fields,
   }), {}));
 };
+
+export const DiagnosisValidationSchema = (values) => {
+  const anatomySchema = values?.anatomy?.reduce((acc, item) => {
+    const fieldNamePrefix = `physicalInjuriesDiagnosis_${toCamelCase(item)}_`;
+    const injuryName = `${fieldNamePrefix}injury`;
+    const injuryOtherName = `${fieldNamePrefix}otherInjury`;
+    const mechanismName = `${fieldNamePrefix}injuryMechanism`;
+    const traumaName = `${fieldNamePrefix}trauma`;
+
+    acc[injuryName] = Yup.string()
+      .required("Please select an injury");
+
+    acc[mechanismName] = Yup.string()
+      .required("Please select a mechanism of injury");
+
+    acc[traumaName] = Yup.string()
+      .required("Please select a trauma");
+
+    if (values[injuryName] === "Other") {
+      acc[injuryOtherName] = Yup.string()
+        .required("Please provide details for the selected injury");
+    }
+
+    return acc;
+  }, {});
+
+  const psychologicalSchema = values?.psychologicalInjuries?.reduce((acc, item) => {
+    const fieldNamePrefix = `psychologicalInjuriesDiagnosis_${toCamelCase(item)}_`;
+    const mechanismName = `${fieldNamePrefix}injuryMechanism`;
+
+    acc[mechanismName] = Yup.string()
+      .required("Please select a mechanism of injury");
+
+    return acc;
+  }, {});
+
+  return Yup.object().shape({
+    ...anatomySchema,
+    ...psychologicalSchema,
+  });
+};
+
+export const OpinionValidationSchema = (values) => {
+  const validationSchema = Yup.object().shape({
+    // Validating the anatomy-related fields dynamically based on the values array
+    ...values?.anatomy?.reduce((acc, item) => {
+      const injuryName = `physicalInjuriesOpinion_${toCamelCase(item)}_injuryOpinion`;
+      acc[injuryName] = Yup.string()
+        .required("Opinion about the physical injuries is required")
+        .min(10, "Opinion must be at least 10 characters long");
+      return acc;
+    }, {}),
+
+    // Validating the psychological injuries fields dynamically based on the values array
+    ...values?.psychologicalInjuries?.reduce((acc, item) => {
+      const injuryName = `psychologicalInjuriesOpinion_${toCamelCase(item)}_injuryOpinion`;
+      acc[injuryName] = Yup.string()
+        .required("Opinion about the psychological injuries is required")
+        .min(10, "Opinion must be at least 10 characters long");
+      return acc;
+    }, {}),
+
+
+    // Validating the "Anything else" field
+    anythingElse: Yup.string().nullable(),
+  });
+
+  return validationSchema;
+};
+
+export const PrognosisValidationSchema = (values) => {
+  const ongoingPrognosisQuestions = [
+    'timeWillTakeToRecover',
+    'severeDisability',
+    'claimantRequireSpecialist',
+    'specialist',
+    'anyLongTermSequelae',
+    'otherRecommendation',
+    'treatmentAndRehabiliation'
+  ];
+
+  const resolvedPrognosisQuestions = [
+    'whenDidItResolved',
+    'whenDidItResolvedFrequency', // Add this field for frequency validation
+    'anyLongTermSequelae'
+  ];
+
+  const createValidationSchemaForQuestions = (fieldPrefix, questions) => {
+    const schema = {};
+    questions.forEach((question) => {
+      const field = fieldPrefix + question;
+      if (question === 'timeWillTakeToRecover') {
+        schema[field] = Yup.string().required('Time to recover is required');
+      } else if (question === 'severeDisability') {
+        schema[field] = Yup.string().required('Severity of disability is required');
+      } else if (question === 'claimantRequireSpecialist') {
+        schema[field] = Yup.string().required('Specialist recommendation is required');
+      } else if (question === 'specialist') {
+        schema[field] = Yup.string().required('Specialist field is required');
+      } else if (question === 'anyLongTermSequelae') {
+        schema[field] = Yup.string().required('Long-term sequelae status is required');
+      } else if (question === 'otherRecommendation') {
+        schema[field] = Yup.string().nullable();
+      } else if (question === 'treatmentAndRehabiliation') {
+        schema[field] = Yup.string().min(10, 'Treatment and rehabilitation must be at least 10 characters long');
+      } else if (question === 'whenDidItResolved') {
+        schema[field] = Yup.string().required('Resolution time is required');
+        if(isPluralFrequencySelected(values[field])){
+          schema[`${fieldPrefix}whenDidItResolvedFrequency`] = Yup.string().required("Frequency is required")
+        }
+      }
+    });
+    return schema;
+  };
+
+  const physicalInjuriesSchema = values?.anatomy?.reduce((acc, item) => {
+    const statusKey = `physicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
+    const status = values[statusKey];
+    const fieldPrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(item)}_`;
+    const questions = status === 'Resolved' ? resolvedPrognosisQuestions : ongoingPrognosisQuestions;
+    return { ...acc, ...createValidationSchemaForQuestions(fieldPrefix, questions) };
+  }, {});
+
+  const psychologicalInjuriesSchema = values?.psychologicalInjuries?.reduce((acc, item) => {
+    const statusKey = `psychologicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
+    const status = values[statusKey];
+    const fieldPrefix = `psychologicalInjuriesDetailedPrognosis_${toCamelCase(item)}_`;
+    const questions = status === 'Resolved' ? resolvedPrognosisQuestions : ongoingPrognosisQuestions;
+    return { ...acc, ...createValidationSchemaForQuestions(fieldPrefix, questions) };
+  }, {});
+
+  return Yup.object().shape({
+    ...physicalInjuriesSchema,
+    ...psychologicalInjuriesSchema,
+  });
+};
+
 
 export const NullSchema = (values) => Yup.object().shape({});

@@ -22,6 +22,9 @@ import {
   MedicalHistorySchema,
   ObservationSectionSchema,
   PhysicalExaminationSectionSchema,
+  DiagnosisValidationSchema,
+  OpinionValidationSchema,
+  PrognosisValidationSchema,
   NullSchema,
 } from "./formSchema";
 import MedicalHistory from "./MedicalHistory";
@@ -104,12 +107,12 @@ const Steps = {
     {
       component: DiagnosisSection,
       identifier: 'diagnosisSection',
-      validationSchema: NullSchema
+      validationSchema: DiagnosisValidationSchema
     },
     {
       component: OpinionSection,
       identifier: 'opinionSection',
-      validationSchema: NullSchema
+      validationSchema: OpinionValidationSchema
     },
     {
       component: PrognosisList,
@@ -119,7 +122,7 @@ const Steps = {
     {
       component: PrognosisSection,
       identifier: 'prognosisDetailedSection',
-      validationSchema: NullSchema
+      validationSchema: PrognosisValidationSchema
     },
     {
       component: StatementOfTruth,

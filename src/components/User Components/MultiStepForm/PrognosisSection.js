@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import RadioButton from "../Common/RadioButton";
 import TextAreaField from "../Common/TextAreaField";
+import InputField from "../Common/InputField";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
@@ -8,10 +9,45 @@ import "../Common/Common.css";
 import Accordion from "../Common/Accordion/Accordion";
 import { toCamelCase } from "../Common/util";
 import SelectField from "../Common/SelectField";
-import InputField from "../Common/InputField";
 import { specialistOptions, symptomSeverity, timeAfterAccident } from "./Constants";
 
-const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
+const PrognosisSection = ({ values, handleChange, handleBlur, prevStep, errors }) => {
+  const [openAccordions, setOpenAccordions] = useState([]);
+
+  useEffect(() => {
+    const openSections = [];
+    
+    values?.anatomy?.forEach((item) => {
+      const fieldNamePrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
+      const statusKey = `physicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
+
+      const questions = values[statusKey] === 'Resolved' ? resolvedPrognosisQuestions : ongoingPrognosisQuestions;
+
+      questions.forEach((question) => {
+        const fieldName = `${fieldNamePrefix}_${toCamelCase(question.name)}`;
+        if (errors[fieldName]) {
+          openSections.push(item);
+        }
+      });
+    });
+
+    values?.psychologicalInjuries?.forEach((item) => {
+      const fieldNamePrefix = `psychologicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
+      const statusKey = `psychologicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
+
+      const questions = values[statusKey] === 'Resolved' ? resolvedPrognosisQuestions : ongoingPrognosisQuestions;
+
+      questions.forEach((question) => {
+        const fieldName = `${fieldNamePrefix}_${toCamelCase(question.name)}`;
+        if (errors[fieldName]) {
+          openSections.push(item);
+        }
+      });
+    });
+
+    setOpenAccordions(openSections);
+  }, [errors, values]);
+
   const ongoingPrognosisQuestions = [
     {
       name: "timeWillTakeToRecover",
@@ -27,7 +63,7 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
       options: symptomSeverity
     },
     {
-      name: "recommendCheckupSpecialist",
+      name: "claimantRequireSpecialist",
       label: "Will the claimant require a specialist?",
       component: "RadioButton",
       options: ["Yes", "No"]
@@ -56,7 +92,7 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
       component: "TextAreaField"
     }
   ];
-  
+
   const resolvedPrognosisQuestions = [
     {
       name: "whenDidItResolved",
@@ -72,16 +108,15 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
       options: ["Yes", "No"]
     }
   ];
+
   const getBadgeLabel = (itemKey) => {
     const status = values[itemKey];
     return status === 'Resolved' ? 'Resolved' : 'Ongoing';
   };
 
-  // Enhanced title with badge for Accordion
   const getAccordionTitle = (item, itemKey) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
       <span>{item} <span className={`badge ${getBadgeLabel(itemKey).toLowerCase()}`}>{getBadgeLabel(itemKey)}</span></span>
-      
     </div>
   );
 
@@ -92,14 +127,13 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
       case "InputField":
         return (
           <div className="question-item">
-            <SelectField
+            <InputField
               name={fieldName}
               label={question.label}
               type={question.type}
               value={values[fieldName] || ''}
               onChange={handleChange}
               onBlur={handleBlur}
-              options={timeAfterAccident}
             />
           </div>
         );
@@ -151,7 +185,6 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
     }
   };
   
-  
   const renderQuestions = (statusKey, fieldNamePrefix) => {
     const status = values[statusKey];
     const questions = status === 'Resolved' ? resolvedPrognosisQuestions : ongoingPrognosisQuestions;
@@ -170,7 +203,7 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
         {values?.anatomy?.map((item) => {
           let itemKey = `physicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
           let fieldNamePrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
-          return (<Accordion key={item} title={getAccordionTitle(item, itemKey)}>
+          return (<Accordion key={item} title={getAccordionTitle(item, itemKey)} isOpenInitially={!!openAccordions.includes(item)}>
             {renderQuestions(itemKey, fieldNamePrefix)}
           </Accordion>)
         })}
@@ -181,7 +214,7 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep }) => {
         {values?.psychologicalInjuries?.map((item) => {
           let itemKey = `psychologicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
           let fieldNamePrefix = `psychologicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
-          return <Accordion key={item} title={getAccordionTitle(item, itemKey)}>
+          return <Accordion key={item} title={getAccordionTitle(item, itemKey)} isOpenInitially={!!openAccordions.includes(item)}>
             {renderQuestions(itemKey, fieldNamePrefix)}
           </Accordion>
         })}

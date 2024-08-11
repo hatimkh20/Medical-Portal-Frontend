@@ -10,7 +10,8 @@ const Accordion = ({ title, children, isOpenInitially = false}) => {
   };
 
   useEffect(() => {
-    setIsOpen(isOpenInitially);
+    if(isOpenInitially)
+      setIsOpen(isOpenInitially);
   }, [isOpenInitially]);
 
   return (

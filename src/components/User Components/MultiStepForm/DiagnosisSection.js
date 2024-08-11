@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Accordion from "../Common/Accordion/Accordion";
 import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
@@ -14,10 +14,37 @@ import {
 import RadioButton from "../Common/RadioButton";
 import { toCamelCase } from "../Common/util";
 
-const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
+const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }) => {
   const [selectedInjuries, setSelectedInjuries] = useState({});
   const [selectedMechanisms, setSelectedMechanisms] = useState({});
   const [selectedTraumas, setSelectedTraumas] = useState({});
+
+  const [openAccordions, setOpenAccordions] = useState({});
+
+  useEffect(() => {
+    const updatedOpenAccordions = {};
+    
+    values?.anatomy?.forEach((item) => {
+      const injuryName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_injury`;
+      const injuryOtherName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_otherInjury`;
+      const mechanismName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_injuryMechanism`;
+      const traumaName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_trauma`;
+
+      if (errors[injuryName] || errors[injuryOtherName] || errors[mechanismName] || errors[traumaName]) {
+        updatedOpenAccordions[item] = true;
+      }
+    });
+
+    values?.psychologicalInjuries?.forEach((item) => {
+      const mechanismName = `psychologicalInjuriesDiagnosis_${toCamelCase(item)}_injuryMechanism`;
+
+      if (errors[mechanismName]) {
+        updatedOpenAccordions[item] = true;
+      }
+    });
+
+    setOpenAccordions(updatedOpenAccordions);
+  }, [errors, values]);
 
   const handleInjuryChange = (name, value) => {
     setSelectedInjuries({
@@ -141,7 +168,7 @@ const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
       <div>
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
         {values?.anatomy?.map((item) => (
-          <Accordion key={item} title={item}>
+          <Accordion key={item} title={item} isOpenInitially={!!openAccordions[item]}>
             {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(item)}`)}
           </Accordion>
         ))}
@@ -150,7 +177,7 @@ const DiagnosisSection = ({ values, prevStep, handleChange, handleBlur }) => {
       <div>
         <h4 className="form-sub-heading">PSYCHOLOGICAL INJURIES</h4>
         {values?.psychologicalInjuries?.map((item) => (
-          <Accordion key={item} title={item}>
+          <Accordion key={item} title={item} isOpenInitially={!!openAccordions[item]}>
             {renderPsychologicalInjuries(`psychologicalInjuriesDiagnosis_${toCamelCase(item)}`)}
           </Accordion>
         ))}
