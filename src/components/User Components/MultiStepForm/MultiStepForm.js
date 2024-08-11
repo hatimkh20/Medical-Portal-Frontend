@@ -8,10 +8,13 @@ import useFetch from "../../../hooks/useFetch";
 import { useParams } from "react-router";
 import { getDateWithoutTZ } from "../Common/util";
 import structuredClone from '@ungap/structured-clone';
+import { useNavigate } from "react-router-dom";
+
 
 
 const MultiStepForm = ({ steps }) => {
   const [currentStep, setCurrentStep] = useState(18);
+const navigate = useNavigate()
   
   const {id} = useParams();
 
@@ -303,7 +306,10 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
   }, [formData])
 
   const nextStep = (values) => {
-    if (steps.isValid(currentStep + 1)) setCurrentStep(currentStep + 1);
+    if (steps.isValid(currentStep + 1)) return setCurrentStep(currentStep + 1);
+
+    navigate(`/report/${id}`);
+    
   };
 
   const prevStep = () => {

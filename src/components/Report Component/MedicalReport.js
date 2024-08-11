@@ -505,8 +505,8 @@ const MedicalReport = () => {
         {/* Signature Section */}
       <SignatureSection
         signatureImage={data?.doctorSignature?.base64Image}
-        doctorName={`${data?.first_name} ${data?.last_name}`}
-        gmcNumber={data?.gmc_number}
+        doctorName={`${data?.userRefId?.first_name} ${data?.userRefId?.last_name}`}
+        gmcNumber={data?.userRefId?.gmc_number}
         date="04/01/2024"
       />
 
