@@ -352,7 +352,7 @@ export const employmentStatusOptions = [
 ];
 
 export const presentSeverityOptions = [
-  "Presently",
+  "Presently Resolved",
   "Presently severe",
   "Presently moderate",
   "Presently mild"
@@ -409,3 +409,21 @@ export const specialistOptions = [
   "Vascular Surgeon",
   "Other"
 ]; 
+
+export const resolutionOptions = [
+  "Impact, resolved 1 week after index accident",
+  "Impact, resolved 2 weeks after index accident",
+  "Impact, resolved 3 weeks after index accident",
+  "Impact, resolved 4 weeks after index accident",
+  "Impact, resolved 5 weeks after index accident",
+  "Impact, resolved 6 weeks after index accident",
+  "Impact, resolved 7 weeks after index accident",
+  "Impact, resolved 8 weeks after index accident",
+  "Impact, resolved 1 month after index accident",
+  "Impact, resolved 2 months after index accident",
+  "Impact, resolved 3 months after index accident",
+  "Impact, resolved 4 months after index accident",
+  "Impact, resolved 5 months after index accident",
+  "Impact, resolved 6 months after index accident",
+  "Impact, resolved 12 months after index accident"
+];

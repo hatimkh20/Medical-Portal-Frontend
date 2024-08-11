@@ -143,6 +143,7 @@ const makePayload = (step, formData, reportId) => {
                             type: question.type,
                             severityAtAccident: question.severityAtAccident,
                             currentCondition: question.currentCondition,
+                            ifResolvedImpact: question.resolvedFollowUpAction,
                         })),
                     }
                 };
@@ -427,7 +428,7 @@ const defaultData = {
         phasedReturnToSchoolManagement: 'Full-time',
     },
     domesticImpactSection: {
-        questions: [{ type: 'Daily Activities', severityAtAccident: 'Moderate', currentCondition: 'Improving' }],
+        questions: [{ type: 'Daily Activities', severityAtAccident: 'Moderate', currentCondition: 'Improving', resolvedFollowUpAction: 'Impact' }],
     },
     medicalHistorySection: {
         detailsOfPastMedicalInjuries: 'No significant past injuries',

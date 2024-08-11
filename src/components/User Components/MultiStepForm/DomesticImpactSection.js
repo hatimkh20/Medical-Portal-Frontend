@@ -5,7 +5,7 @@ import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 
 import "../Common/Common.css";
-import { presentSeverityOptions } from "./Constants";
+import { presentSeverityOptions, resolutionOptions } from "./Constants";
 import { toCamelCase } from "../Common/util";
 
 const DomesticImpactSection = ({ values, prevStep, nextStep, errors }) => {
@@ -14,8 +14,12 @@ const DomesticImpactSection = ({ values, prevStep, nextStep, errors }) => {
   useEffect(() => {
     const newOpenAccordions = {};
     values?.domesticLifeActivities?.forEach((symptom) => {
-      const severityAtAccidentName = `domesticImpact_${toCamelCase(symptom)}_severityAtAccident`;
-      const currentConditionName = `domesticImpact_${toCamelCase(symptom)}_currentCondition`;
+      const severityAtAccidentName = `domesticImpact_${toCamelCase(
+        symptom
+      )}_severityAtAccident`;
+      const currentConditionName = `domesticImpact_${toCamelCase(
+        symptom
+      )}_currentCondition`;
 
       if (errors[severityAtAccidentName] || errors[currentConditionName]) {
         newOpenAccordions[symptom] = true;
@@ -44,6 +48,15 @@ const DomesticImpactSection = ({ values, prevStep, nextStep, errors }) => {
           options={presentSeverityOptions}
         />
       </div>
+      {values[`${symptom}_currentCondition`] === "Presently Resolved" && (
+          <div className="input-group">
+            <SelectField
+              label="Select Impact"
+              name={`${symptom}_resolvedFollowUpAction`}
+              options={resolutionOptions}
+            />
+          </div>
+        )}
     </div>
   );
 
@@ -53,8 +66,12 @@ const DomesticImpactSection = ({ values, prevStep, nextStep, errors }) => {
         Add severity of injury to each aspect of domestic impact.
       </p>
       {values?.domesticLifeActivities?.map((symptom) => {
-        const severityAtAccidentName = `domesticImpact_${toCamelCase(symptom)}_severityAtAccident`;
-        const currentConditionName = `domesticImpact_${toCamelCase(symptom)}_currentCondition`;
+        const severityAtAccidentName = `domesticImpact_${toCamelCase(
+          symptom
+        )}_severityAtAccident`;
+        const currentConditionName = `domesticImpact_${toCamelCase(
+          symptom
+        )}_currentCondition`;
 
         // Determine if the accordion should be open initially
         const isOpenInitially = !!openAccordions[symptom];
@@ -73,9 +90,7 @@ const DomesticImpactSection = ({ values, prevStep, nextStep, errors }) => {
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        <Button type="submit">
-          Proceed to Next Step
-        </Button>
+        <Button type="submit">Proceed to Next Step</Button>
       </div>
     </FormLayout>
   );

@@ -21,15 +21,19 @@ const Bibliography = ({ values, setFieldValue, handleChange, handleBlur, prevSte
 
   const handleSelectChange = (event) => {
     const selectedBibliographyId = event.target.value;
-
-    if (values.selectedBibliographies?.map(bib => bib.id).includes(selectedBibliographyId)) {
-      setShakingTagId(selectedBibliographyId); // Set shaking state
-      setTimeout(() => setShakingTagId(null), 500); // Reset after animation
+  
+    if (!Array.isArray(values.selectedBibliographies)) {
+      values.selectedBibliographies = [];
+    }
+  
+    if (values.selectedBibliographies.map(bib => bib.id).includes(selectedBibliographyId)) {
+      setShakingTagId(selectedBibliographyId);
+      setTimeout(() => setShakingTagId(null), 500);
       return;
     }
-
+  
     const selectedBibliography = statements.find(statement => statement._id === selectedBibliographyId);
-
+  
     setFieldValue("selectedBibliographies", [
       ...values.selectedBibliographies,
       {
@@ -38,6 +42,7 @@ const Bibliography = ({ values, setFieldValue, handleChange, handleBlur, prevSte
       }
     ]);
   };
+  
 
   const handleRemoveBibliography = (id) => {
     const updatedBibliographies = values.selectedBibliographies.filter(bib => bib.id !== id);
