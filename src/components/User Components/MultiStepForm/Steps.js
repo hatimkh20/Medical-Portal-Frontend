@@ -9,10 +9,20 @@ import EducationSection from "./EducationSection";
 import DomesticImpactList from "./DomesticImpactList";
 import DomesticImpactSection from "./DomesticImpactSection";
 import {
-  claimantDetailsSchema,
-  accidentDetailsSchema,
-  accidentSectionSchema,
-  nullSchema,
+  ClaimantDetailsSchema,
+  AccidentDetailsSchema,
+  AccidentSectionSchema,
+  AnatomySectionValidationSchema,
+  SymptomSectionValidationSchema,
+  TreatmentValidationSchema,
+  LivelihoodSectionSchema,
+  EducationValidationSchema,
+  DomesticImpactListValidationSchema,
+  DomesticImpactValidationSchema,
+  MedicalHistorySchema,
+  ObservationSectionSchema,
+  PhysicalExaminationSectionSchema,
+  NullSchema,
 } from "./formSchema";
 import MedicalHistory from "./MedicalHistory";
 import ObservationSection from "./ObservationSection";
@@ -28,81 +38,98 @@ const Steps = {
   values: [
     {
       component: ClaimantDetails,
-      validationSchema: claimantDetailsSchema,
+      validationSchema: ClaimantDetailsSchema,
       identifier: 'claimantDetails'
     },
     {
       component: AccidentDetails,
-      validationSchema: accidentDetailsSchema,
+      validationSchema: AccidentDetailsSchema,
       identifier: 'accidentDetails'
     },
     {
       component: AccidentSectionForm,
+      validationSchema: AccidentSectionSchema,
       identifier: 'accidentSection'
     },
     {
       component: AnatomySectionForm,
+      validationSchema: AnatomySectionValidationSchema,
       identifier: 'anatomySection'
     },
     {
       component: SymptomSectionForm,
+      validationSchema: SymptomSectionValidationSchema,
       identifier: 'symptomsSection'
     },
     {
       component: TreatmentSection,
+      validationSchema: TreatmentValidationSchema,
       identifier: 'treatmentSection'
     },
     {
       component: LivelihoodSection,
+      validationSchema: LivelihoodSectionSchema,
       identifier: 'livelihoodSection'
     },
     {
       component: EducationSection,
-      identifier: 'educationSection'
+      identifier: 'educationSection',
+      validationSchema: EducationValidationSchema
     },
     {
       component: DomesticImpactList,
-      identifier: 'domesticImpactList'
+      identifier: 'domesticImpactList',
+      validationSchema: DomesticImpactListValidationSchema
     },
     {
       component: DomesticImpactSection,
-      identifier: 'domesticImpactSection'
+      identifier: 'domesticImpactSection',
+      validationSchema: DomesticImpactValidationSchema
     },
     {
       component: MedicalHistory,
-      identifier: 'medicalHistory'
+      identifier: 'medicalHistorySection',
+      validationSchema: MedicalHistorySchema
     },
     {
       component: ObservationSection,
-      identifier: 'observationSection'
+      identifier: 'generalObservationSection',
+      validationSchema: ObservationSectionSchema
     },
     {
       component: PhysicalExaminationSection,
-      identifier: 'physicalExaminationSection'
+      identifier: 'physicalExaminationSection',
+      validationSchema: PhysicalExaminationSectionSchema
     },
     {
       component: DiagnosisSection,
-      identifier: 'diagnosisSection'
+      identifier: 'diagnosisSection',
+      validationSchema: NullSchema
     },
     {
       component: OpinionSection,
-      identifier: 'opinionSection'
+      identifier: 'opinionSection',
+      validationSchema: NullSchema
     },
     {
       component: PrognosisList,
-      identifier: 'prognosisSection'
+      identifier: 'prognosisSection',
+      validationSchema: NullSchema
     },
     {
       component: PrognosisSection,
-      identifier: 'prognosisDetailedSection'
+      identifier: 'prognosisDetailedSection',
+      validationSchema: NullSchema
     },
     {
       component: StatementOfTruth,
-      identifier: 'statementOfTruthSection'
+      identifier: 'statementOfTruthSection',
+      validationSchema: NullSchema
     },
     {
       component: Bibliography,
-      identifier: 'expertBibliographySection'
+      identifier: 'expertBibliographySection',
+      validationSchema: NullSchema
     }
   ],
 
@@ -125,7 +152,7 @@ const Steps = {
       process.env.REACT_APP_DISABLE_FORM_VALIDATION === "false";
     return isValidationEnabled
       ? this.values[stepNumber].validationSchema
-      : nullSchema;
+      : NullSchema;
   },
 
   getCurrentStepByKey(identifier) {

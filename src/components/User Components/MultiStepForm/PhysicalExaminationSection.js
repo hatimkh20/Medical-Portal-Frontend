@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Accordion from "../Common/Accordion/Accordion";
 import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
@@ -12,7 +12,27 @@ const PhysicalExaminationSection = ({
   prevStep,
   handleChange,
   handleBlur,
+  errors
 }) => {
+
+  const [openAccordions, setOpenAccordions] = useState({});
+
+  useEffect(() => {
+    // Check for errors and open corresponding accordions
+    const newOpenAccordions = {};
+    values.anatomy.forEach((item) => {
+      const anatomyName = `physicalExamination_${toCamelCase(item)}`;
+      const palpationName = `${anatomyName}_palpation`;
+      const observationName = `${anatomyName}_observation`;
+
+      if (errors[palpationName] || errors[observationName]) {
+        newOpenAccordions[item] = true;
+      }
+    });
+    setOpenAccordions(newOpenAccordions);
+    console.log(openAccordions, "OPEN ACCORD")
+  }, [errors, values.anatomy]);
+
 
   const renderAnatomyOnsets = (anatomy) => {
     const palpationName = `${anatomy}_palpation`;
@@ -52,7 +72,7 @@ const PhysicalExaminationSection = ({
         examination
       </p>
       {values?.anatomy?.map((item) => (
-        <Accordion key={item} title={item}>
+        <Accordion key={item} title={item} isOpenInitially={!!openAccordions[item]}>
           {renderAnatomyOnsets(`physicalExamination_${toCamelCase(item)}`)}
         </Accordion>
       ))}

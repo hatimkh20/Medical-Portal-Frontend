@@ -19,7 +19,7 @@ const SelectField = ({ label, options = [], optionValues = [], fullLine, values,
             <option key={idx} value={optionValues.length > 0 ? optionValues[idx]: option}>{option}</option>
           ))}
         </select>
-        {meta.touched && meta.error ? (
+        {meta.error ? (
           <div className="error">{meta.error}</div>
         ) : null}
       </div>

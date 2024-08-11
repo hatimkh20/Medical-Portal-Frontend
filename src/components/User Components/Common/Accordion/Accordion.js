@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Accordion.module.css';
 
-const Accordion = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Accordion = ({ title, children, isOpenInitially = false}) => {
+  const [isOpen, setIsOpen] = useState(isOpenInitially);
 
   const toggleAccordion = (event) => {
     event.preventDefault();  // Prevents the default action
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    setIsOpen(isOpenInitially);
+  }, [isOpenInitially]);
+
   return (
-    <div className={styles.accordionContainer}>
-      <button className={styles.accordionTitle} onClick={toggleAccordion}>
+    <div className={`${styles.accordionContainer}`}>
+      <button className={`${styles.accordionTitle} ${isOpenInitially ? styles.errorBackground: ''}`} onClick={toggleAccordion}>
         {title} {isOpen ? '-' : '+'}
       </button>
       {isOpen && (

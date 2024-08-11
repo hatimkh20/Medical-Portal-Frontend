@@ -153,7 +153,7 @@ const makePayload = (step, formData, reportId) => {
                     medicalHistorySection: {
                         detailsOfPastMedicalInjuries: formData.pastMedicalInjuries,
                         medicalNotesReviewed: formData.medicalNotes.map(note => ({
-                            fileName: note.fileName,
+                            fileName: note.filename,
                             expertReview: note.expertReview,
                         })),
                     }
