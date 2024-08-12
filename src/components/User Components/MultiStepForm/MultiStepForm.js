@@ -14,7 +14,8 @@ import MultiStepFormNavigation from "./MultiStepFormNavigation";
 
 
 const MultiStepForm = ({ steps }) => {
-  const [currentStep, setCurrentStep] = useState(18);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [lastHighestAccessedStep, setLastHighestAccessedStep] = useState(0);
   const navigate = useNavigate()
   
   const {id} = useParams();
@@ -317,7 +318,10 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
   }, [formData])
 
   const nextStep = (values) => {
-    if (steps.isValid(currentStep + 1)) return setCurrentStep(currentStep + 1);
+    if (steps.isValid(currentStep + 1)) {
+      setLastHighestAccessedStep(currentStep + 1);
+      return setCurrentStep(currentStep + 1);
+    };
 
     navigate(`/report/${id}`);
     
@@ -396,15 +400,9 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
         )}
       </Formik>
 
-      {/* {steps.values.map((step, index) => (
-        <Button key={step.key} onClick={() => jumpToStep(index)} style={{marginTop:'16px'}}>
-          {index+1}
-        </Button>
-      ))} */}
-
       <MultiStepFormNavigation
         currentStep={currentStep} 
-        totalSteps={id ? steps.values.length-1: currentStep}
+        totalSteps={id ? steps.values.length-1: lastHighestAccessedStep }
         onStepChange={setCurrentStep}
        />
     </div>

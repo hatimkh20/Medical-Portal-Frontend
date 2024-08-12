@@ -16,7 +16,7 @@ const MultiStepFormNavigation = ({ currentStep, totalSteps, onStepChange }) => {
   const handlePrevious = () => {
 
     if(visibleSteps.length < visibleStepsSize){
-        setVisibleSteps([totalSteps-3, totalSteps-2, totalSteps-1]);
+        setVisibleSteps([visibleSteps[0]-3, visibleSteps[0]-2, visibleSteps[0]-1]);
     }
     else if (visibleSteps[0] > 0) {
       setVisibleSteps(visibleSteps.filter(step => step - 3 >= 0).map(step => step - 3));
