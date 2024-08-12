@@ -1,0 +1,47 @@
+.multi-step-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .nav-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* background-color: #224b5f; */
+    background-color: #fff;
+    color: #224b5f;
+    border: 2px solid #224b5f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-button.active {
+    background-color: #224b5f;
+    color: #fff;
+  }
+  
+  .nav-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .nav-button:hover:not(:disabled) {
+    background-color: #224b5f;
+    color: #fff;
+  }
+  
+  .nav-dropdown {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #224b5f;
+    margin-left: 10px;
+  }
+  

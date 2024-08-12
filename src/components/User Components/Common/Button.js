@@ -2,11 +2,11 @@
 import React from "react";
 import "./Common.css";
 
-const Button = ({ type, onClick, children, className }) => {
+const Button = ({ type, onClick, children, className , ...props}) => {
   const buttonClass = `common-button ${className || ''}`;
 
   return (
-    <button type={type} onClick={onClick} className={buttonClass}>
+    <button type={type} onClick={onClick} className={buttonClass} {...props}>
       {children}
     </button>
   );

@@ -9,12 +9,13 @@ import { useParams } from "react-router";
 import { getDateWithoutTZ } from "../Common/util";
 import structuredClone from '@ungap/structured-clone';
 import { useNavigate } from "react-router-dom";
-
+import Button from "../Common/Button";
+import MultiStepFormNavigation from "./MultiStepFormNavigation";
 
 
 const MultiStepForm = ({ steps }) => {
   const [currentStep, setCurrentStep] = useState(18);
-const navigate = useNavigate()
+  const navigate = useNavigate()
   
   const {id} = useParams();
 
@@ -341,6 +342,10 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
     nextStep(values);
   };
 
+  const jumpToStep = (stepIndex) => {
+    setCurrentStep(stepIndex);
+  };
+
   const StepComponent = steps.getStepComponent(currentStep);
 
   if (!formData || !Object.keys(formData).length) {
@@ -390,6 +395,18 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
           </Form>
         )}
       </Formik>
+
+      {/* {steps.values.map((step, index) => (
+        <Button key={step.key} onClick={() => jumpToStep(index)} style={{marginTop:'16px'}}>
+          {index+1}
+        </Button>
+      ))} */}
+
+      <MultiStepFormNavigation
+        currentStep={currentStep} 
+        totalSteps={id ? steps.values.length-1: currentStep}
+        onStepChange={setCurrentStep}
+       />
     </div>
   );
 };
