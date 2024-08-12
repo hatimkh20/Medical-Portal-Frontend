@@ -319,7 +319,8 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
 
   const nextStep = (values) => {
     if (steps.isValid(currentStep + 1)) {
-      setLastHighestAccessedStep(currentStep + 1);
+      if(lastHighestAccessedStep < currentStep + 1)
+        setLastHighestAccessedStep(currentStep + 1);
       return setCurrentStep(currentStep + 1);
     };
 
