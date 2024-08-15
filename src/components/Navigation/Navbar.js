@@ -45,6 +45,13 @@ const Navbar = () => {
               <li>
                 <Link to="/wallet" onClick={toggleMenu}>Wallet</Link>
               </li>
+              {/* super user */}
+              <li>
+                <Link to="/users" onClick={toggleMenu}>Users</Link>
+              </li>
+              <li>
+                <Link to="/transactions" onClick={toggleMenu}>Transactions</Link>
+              </li>
               <li>
                 <button onClick={() => { logout(); toggleMenu(); }} className="btn-logout">
                   Logout

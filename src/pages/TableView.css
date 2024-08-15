@@ -1,0 +1,195 @@
+/* General styles for the UsersPage */
+.status-complete, .status-active {
+  background-color: #259225; /* Yellow */
+  color: #fff;
+}
+
+.status-incomplete, .status-inactive {
+  background-color: #eb8787; /* Light blue */
+  color: #fff;
+}
+
+.mainDiv {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 10%;
+  }
+
+  .mainDiv-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: left;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #00364d; /* Darker blue */
+    padding: 10px 20px;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .create-customTable-button {
+    background-color: #4e6f7c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: 500;
+    border-radius: 5px;
+  }
+
+  .create-customTable-button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Container for customTable */
+  .customTable-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* Header row */
+  .customTable-header {
+    display: flex;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  }
+
+  /* Header column style */
+  .customTable-header-item {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .customTable-header-item:first-child {
+    flex: 0.3; /* Adjusted to take less space */
+  }
+
+  .customTable-header-item:nth-child(2) {
+    flex: 1.5; /* Adjusted to give more space */
+  }
+
+  .customTable-header-item:last-child {
+    flex: 0.8; /* Adjusted to give more space to actions */
+  }
+
+  /* customTable row style */
+  .customTable-row {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    border: 1px solid #ddd;
+    margin: 10px 0px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  /* customTable data column style */
+  .customTable-item {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .customTable-item:first-child {
+    flex: 0.3; /* Adjusted to take less space */
+  }
+
+  .customTable-item:nth-child(2) {
+    flex: 1.5; /* Adjusted to give more space */
+  }
+
+  .customTable-item:last-child {
+    flex: 0.8; /* Adjusted to give more space to actions */
+  }
+
+  /* Status badges */
+  .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    min-width: 120px;
+  }
+
+  /* Action buttons */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #000; /* Default to black */
+  }
+
+  .action-button .fas {
+    color: #000; /* Default to black */
+  }
+
+  .action-button:hover .fas {
+    color: #007bff;
+  }
+
+  /* Responsive styles for small devices */
+  @media (max-width: 768px) {
+    .UsersPage {
+      padding: 0 5%;
+    }
+
+    .UsersPage-header {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .create-customTable-button {
+      margin-top: 10px;
+    }
+
+    .customTable-header {
+      display: none;
+    }
+
+    .customTable-row {
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
+      padding: 20px;
+    }
+
+    .customTable-item {
+      width: 100%;
+      padding: 5px 0;
+    }
+
+    .customTable-item-label {
+      font-weight: bold;
+      display: block;
+    }
+
+    .customTable-item:first-child,
+    .customTable-item:nth-child(2),
+    .customTable-item:nth-child(3),
+    .customTable-item:nth-child(4),
+    .customTable-item:last-child {
+      width: 100%;
+    }
+
+    .customTable-item.actions {
+      justify-content: flex-start;
+    }
+
+    .status-badge {
+      min-width: auto;
+    }
+  }

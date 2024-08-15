@@ -1,5 +1,5 @@
 import React from 'react';
-import './WalletPage.css'; // Assuming you have a CSS file for styling
+import './WalletPage.css';
 
 const WalletPage = () => {
   return (

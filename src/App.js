@@ -20,6 +20,8 @@ import VerifyResetPassword from "./components/Authentication/VerifyResetPassword
 import ResetPassword from "./components/Authentication/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import WalletPage from "./pages/WalletPage";
+import UsersPage from "./pages/UsersPage";
+import TransactionsPage from "./pages/TransactionsPage";
 
 const App = () => {
   return (
@@ -40,6 +42,8 @@ const App = () => {
           <Route path="/form/:id" element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />} /> {/* Added route for editing */}
           <Route path="/report" element={<ProtectedRoute element={<MedicalReport data={data} />} />} />
           <Route path="/wallet" element={<ProtectedRoute element={<WalletPage />} />} />
+          <Route path="/users" element={<ProtectedRoute element={<UsersPage />} />} />
+          <Route path="/transactions" element={<ProtectedRoute element={<TransactionsPage />} />} />
         </Routes>
       </Router>
     </AuthProvider>
