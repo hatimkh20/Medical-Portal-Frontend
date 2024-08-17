@@ -22,6 +22,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import WalletPage from "./pages/WalletPage";
 import UsersPage from "./pages/UsersPage";
 import TransactionsPage from "./pages/TransactionsPage";
+import CreateUserPage from "./pages/CreateUserPage";
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/wallet" element={<ProtectedRoute element={<WalletPage />} />} />
           <Route path="/users" element={<ProtectedRoute element={<UsersPage />} />} />
           <Route path="/transactions" element={<ProtectedRoute element={<TransactionsPage />} />} />
+          <Route path="/create-user" element={<ProtectedRoute element={<CreateUserPage />} />} />
         </Routes>
       </Router>
     </AuthProvider>

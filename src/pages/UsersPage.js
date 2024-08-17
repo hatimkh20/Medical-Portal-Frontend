@@ -26,7 +26,7 @@ const UsersPage = () => {
   };
 
   const redirectToForm = (id="") => {
-    navigate(`/user-form/${id}`);
+    navigate(`/create-user/`);
   };
 
   return (
