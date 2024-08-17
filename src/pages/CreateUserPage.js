@@ -11,8 +11,7 @@ const CreateUserPage = () => {
       firstName: "",
       lastName: "",
       email: "",
-      gmcNumber: "",
-      signature: "",  // Changed to string
+      role: "",
       password: "",
       confirmPassword: "",
     },
@@ -100,6 +99,30 @@ const CreateUserPage = () => {
               {formik.touched.email && formik.errors.email ? (
                 <div className="error">{formik.errors.email}</div>
               ) : null}
+            </div>
+
+
+
+            <div className="form-group">
+              <label htmlFor="role">Roles</label>
+              <select
+              className="form-control"
+                id="role"
+                name="role"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                >
+                <option value="">Select Role</option>
+                <option key="manager" value="manager">
+                    Manager
+                </option>
+                <option key="accountant" value="accountant">
+                    Accountant
+                </option>
+                </select>
+                {formik.touched.role && formik.errors.role ? (
+                    <div className="error">{formik.errors.role}</div>
+                ) : null}
             </div>
 
             <div className="form-group">
