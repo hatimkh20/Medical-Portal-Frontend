@@ -146,7 +146,7 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
       <div className="input-group">
         <SelectField
           name="mentalState"
-          label="Mental State: Signs of Anxiety / Depression"
+          label="Mental Health: Signs of Anxiety / Depression"
           value={values.mentalState}
           onChange={handleInputChange}
           onBlur={handleBlur}

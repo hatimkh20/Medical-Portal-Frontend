@@ -2,23 +2,23 @@
 import React from "react";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
-import SelectField from "../Common/SelectField";
 import InputField from "../Common/InputField";
 
 const EducationSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
+    
     <FormLayout title="SECTION: EMPLOYMENT / EDUCATION">
       <div>
         <div className="input-group">
           <InputField
             name="currentEmployment"
-            label="Where are you studying/working currently?"
+            label="Where were you studying/working at the time of the Accident?"
             value={values.currentEmployment}
             onChange={handleChange}
           />
           <InputField
             name="hoursEmployment"
-            label="How many hours do you give to your education/work?"
+            label="How many hours do you work or study?"
             value={values.hoursEmployment}
             onChange={handleChange}
           />
@@ -26,13 +26,13 @@ const EducationSection = ({ values, handleChange, prevStep, nextStep }) => {
         <div className="input-group">
         <InputField
             name="durationTakenOffFromSchoolAfterAccident"
-            label="How long did you take off from school/work after accident?"
+            label="How long were you away from school/work after the accident"
             value={values.durationTakenOffFromSchoolAfterAccident}
             onChange={handleChange}
           />
           <InputField
             name="phasedReturnToSchoolManagement"
-            label="How was your phased return to school/work managed?"
+            label="How was your return to work managed?"
             value={values.phasedReturnToSchoolManagement}
             onChange={handleChange}
           />

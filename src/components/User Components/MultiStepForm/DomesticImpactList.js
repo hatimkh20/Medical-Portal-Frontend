@@ -28,7 +28,7 @@ const DomesticImpactList = ({ values, handleChange, handleBlur, prevStep }) => {
   return (
     <FormLayout title="SECTION: DOMESTIC IMPACT">
       <SelectableList
-        title="Impacted Activities"
+        title="Activities of Daily Living"
         name="domesticLifeActivities"
         options={domesticLifeActivities}
         selectedItems={values.domesticLifeActivities}
