@@ -51,7 +51,7 @@ const DomesticImpactSection = ({ values, prevStep, nextStep, errors }) => {
       {values[`${symptom}_currentCondition`] === "Presently Resolved" && (
           <div className="input-group">
             <SelectField
-              label="Select Impact"
+              label="When was it resolved?"
               name={`${symptom}_resolvedFollowUpAction`}
               options={resolutionOptions}
             />

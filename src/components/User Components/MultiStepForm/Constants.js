@@ -43,6 +43,8 @@ export const domesticLifeActivities = [
 ];
 
 export const vehicleLevelDamage = [
+  "Moderately damaged",
+  "Extensively damaged",
   "few scratches",
   "few scratches and bump",
   "will need bodyshop work",
@@ -118,6 +120,7 @@ export const treatmentOptions = [
 ];
 
 export const responseTeams = [
+  "Other",
   "Police",
   "Paramedics",
   "Highway Patrol",
@@ -128,7 +131,7 @@ export const responseTeams = [
   "Police and Fire Service",
   "Police, Paramedics and Fire Service",
   "Police, Paramedics or Fire Service",
-  "Other"
+  "None"
 ];
 
 export const observations = [
@@ -286,7 +289,7 @@ export const traumaOptions = [
   "Other" // Added "Other" option
 ];
 
-export const timeOfAccident = ["morning", "day", "evening", "night"]
+export const timeOfAccident = ["morning", "afternoon", "evening", "night"]
 
 export const attendanceOptions = [
   "Going to Hospital",
@@ -302,6 +305,7 @@ export const attendanceOptions = [
 ];
 
 export const imagingOptions = [
+  "Other",
   "Xray was done with bony injury observed",
   "Xray was done, but no bony injury observed",
   "CT was done, with the following injury observed",
@@ -312,7 +316,7 @@ export const imagingOptions = [
   "MRI was done",
   "MRI was done with soft tissue injury observed",
   "MRI was done with no bony injury observed",
-  "Other"
+  "None"
 ];
 
 export const prescriptionOptions = [
@@ -425,5 +429,6 @@ export const resolutionOptions = [
   "Impact, resolved 4 months after index accident",
   "Impact, resolved 5 months after index accident",
   "Impact, resolved 6 months after index accident",
-  "Impact, resolved 12 months after index accident"
+  "Impact, resolved 12 months after index accident",
+  "Other",
 ];
