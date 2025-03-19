@@ -1,5 +1,4 @@
-// src/components/MultiStepForm/ClaimantDetails.js
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import InputField from "../Common/InputField";
 import TextAreaField from "../Common/TextAreaField";
 import RadioButton from "../Common/RadioButton";
@@ -8,36 +7,39 @@ import FormLayout from "../Common/FormLayout";
 import "./Form.css";
 
 const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => {
-  // const [values, setvalues] = useState(values);
-
-  console.log(values, "VALUES")
-
-  const handleInputChange = (e) => {
-    // const { name, value } = e.target;
-    // setvalues({ ...values, [name]: value });
-    // console.log(values)
-    console.log(e.target)
-    handleChange(e); // Call Formik's handleChange
-  };
-
-  const save = async (e) => {
-
-    // await handleSubmit(e)();
-  }
-
   const pageKey = "claimantDetails";
+
+  // Function to calculate age at the time of the accident
+  useEffect(() => {
+    if (values.dateOfBirth && values.dateOfAccident) {
+      const dob = new Date(values.dateOfBirth);
+      const accidentDate = new Date(values.dateOfAccident);
+
+      if (!isNaN(dob) && !isNaN(accidentDate) && accidentDate >= dob) {
+        let age = accidentDate.getFullYear() - dob.getFullYear();
+        const monthDiff = accidentDate.getMonth() - dob.getMonth();
+        const dayDiff = accidentDate.getDate() - dob.getDate();
+
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+          age--;
+        }
+
+        handleChange({
+          target: { name: "ageAtTimeOfAccident", value: age.toString() },
+        });
+      }
+    }
+  }, [values.dateOfBirth, values.dateOfAccident]);
 
   return (
     <FormLayout title="CLAIMANT'S DETAIL">
-      <p className="form-description">
-        Please provide claimant's personal details
-      </p>
+      <p className="form-description">Please provide claimant's personal details</p>
       <div className="input-group">
         <InputField
           name="fullName"
           label="Full Name"
           value={values.fullName}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onBlur={handleBlur}
           pageKey={pageKey}
         />
@@ -46,7 +48,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           label="Date Of Birth"
           type="date"
           value={values.dateOfBirth}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onBlur={handleBlur}
           pageKey={pageKey}
         />
@@ -56,7 +58,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           name="address"
           label="Address"
           value={values.address}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onBlur={handleBlur}
           pageKey={pageKey}
         />
@@ -65,7 +67,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
             name="occupation"
             label="Occupation"
             value={values.occupation}
-            onChange={handleInputChange}
+            onChange={handleChange}
             onBlur={handleBlur}
             pageKey={pageKey}
           />
@@ -73,7 +75,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
             name="whichTypeOfIDChecked"
             label="Which type of ID was checked?"
             value={values.whichTypeOfIDChecked}
-            onChange={handleInputChange}
+            onChange={handleChange}
             onBlur={handleBlur}
             pageKey={pageKey}
           />
@@ -85,18 +87,21 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           label="Date Of Examination"
           type="date"
           value={values.dateOfExamination}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onBlur={handleBlur}
           pageKey={pageKey}
         />
-        <InputField
-          name="whichRecordsSeen"
-          label="Which records were seen?"
-          value={values.whichRecordsSeen}
-          onChange={handleInputChange}
-          onBlur={handleBlur}
-          pageKey={pageKey}
-        />
+        {values.medicalRecordsProvided === "yes" && (
+          <InputField
+            name="whichRecordsSeen"
+            label="Which records were seen?"
+            value={values.whichRecordsSeen}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            pageKey={pageKey}
+          />
+        )}
+        {values.medicalRecordsProvided === "no" && <div style={{ width: "100%" }} />}
       </div>
       <div className="input-group">
         <InputField
@@ -104,7 +109,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           label="Date Of Accident"
           type="date"
           value={values.dateOfAccident}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onBlur={handleBlur}
           pageKey={pageKey}
         />
@@ -113,9 +118,10 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           label="Age at the time of accident"
           type="number"
           value={values.ageAtTimeOfAccident}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onBlur={handleBlur}
           pageKey={pageKey}
+          disabled // Make read-only since it's auto-calculated
         />
       </div>
       <div className="input-group">
@@ -126,14 +132,14 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               name="medicalRecordsProvided"
               value="yes"
               checked={values.medicalRecordsProvided === "yes"}
-              onChange={handleInputChange}
+              onChange={handleChange}
               pageKey={pageKey}
             />
             <RadioButton
               name="medicalRecordsProvided"
               value="no"
               checked={values.medicalRecordsProvided === "no"}
-              onChange={handleInputChange}
+              onChange={handleChange}
               pageKey={pageKey}
             />
           </div>
@@ -146,20 +152,22 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               name="hasPhotoIDConfirmed"
               value="yes"
               checked={values.hasPhotoIDConfirmed === "yes"}
-              onChange={handleInputChange}
+              onChange={handleChange}
               pageKey={pageKey}
             />
             <RadioButton
               name="hasPhotoIDConfirmed"
               value="no"
               checked={values.hasPhotoIDConfirmed === "no"}
-              onChange={handleInputChange}
+              onChange={handleChange}
               pageKey={pageKey}
             />
           </div>
         </div>
       </div>
-      <Button type="submit" onClick={save}>Save & Next</Button>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button type="submit" onClick={handleSubmit} style={{ marginLeft: 'auto' }}>Save & Next</Button>
+      </div>
     </FormLayout>
   );
 };

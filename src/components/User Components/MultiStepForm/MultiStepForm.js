@@ -332,10 +332,25 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
     setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values, formikBag) => {
+    // Validate the current step
+    const errors = await formikBag.validateForm();
+    const currentStepFields = Object.keys(steps.getStepValidationSchema(currentStep)(values).fields || {});
+    
+    // Check if there are any errors in the current step's fields
+    const hasCurrentStepErrors = currentStepFields.some(field => errors[field]);
+    
+    if (hasCurrentStepErrors) {
+      // Set all fields as touched to show validation errors
+      const touchedFields = {};
+      currentStepFields.forEach(field => {
+        touchedFields[field] = true;
+      });
+      formikBag.setTouched(touchedFields);
+      return; // Don't proceed if there are errors
+    }
 
-    console.log(values)
-    console.log(values.selectedBibliographies)
+    // If no errors, proceed with saving and moving to next step
     if(JSON.stringify(prevValues) != JSON.stringify(values)){
       await saveForm(makePayload(currentStep, values, response?.data?._id || id));
       setPrevValues(structuredClone(values));
@@ -379,8 +394,8 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
             return errors;
           }
         }}
-        validateOnChange
-        validateOnBlur
+        validateOnChange={false}  // Add this line
+        validateOnBlur={false}    // Add this line
         onSubmit={handleSubmit}
       >
         {(formikProps) => (

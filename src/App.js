@@ -6,6 +6,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import AuthProvider from "./context/AuthContext";
@@ -27,6 +28,7 @@ const App = () => {
         <div>
           <Navbar />
         </div>
+        <ToastContainer position="top-right" autoClose={3000}  />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sign-in" element={<AuthPage />} />

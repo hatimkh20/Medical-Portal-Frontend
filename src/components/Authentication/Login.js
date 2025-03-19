@@ -1,12 +1,11 @@
-// components/Auth/Login.js
-
 import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import "./Auth.css";
 import authenticationImage from "../../assets/images/authentication.png";
-import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -24,8 +23,12 @@ const Login = () => {
       password: Yup.string().required("Password is required"),
     }),
     onSubmit: async (values) => {
-      await login(values.email, values.password);
-      navigate("/dashboard");
+      try {
+        await login(values.email, values.password);
+        navigate("/dashboard");
+      } catch (error) {
+        console.log("ERROR");
+      }
     },
   });
 
@@ -51,24 +54,20 @@ const Login = () => {
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <div className="password-group">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                />
-               
-              </div>
-              
+              <input
+                type="password"
+                id="password"
+                name="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
               {formik.touched.password && formik.errors.password ? (
                 <div className="error">{formik.errors.password}</div>
               ) : null}
-               <Link to="/forgot-password" className="forgot-password-link">
+              <Link to="/forgot-password" className="forgot-password-link">
                 Forgot Password?
-                </Link>
+              </Link>
             </div>
 
             <button type="submit" className="btn btn-primary">

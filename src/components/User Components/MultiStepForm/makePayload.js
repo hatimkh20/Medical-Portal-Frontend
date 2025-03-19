@@ -1,7 +1,7 @@
 import { toCamelCase } from "../Common/util";
 
 const makePayload = (step, formData, reportId) => {
-    const reportName = "ahmed-report";
+    // const reportName = "ahmed-report";
 
     if(!formData) return;
 
@@ -12,7 +12,7 @@ const makePayload = (step, formData, reportId) => {
         switch (step) {
             case 0:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "claimantDetails",
                     claimantDetails: {
                         fullName: formData.fullName || defaultData.claimantDetails.fullName,
@@ -30,7 +30,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 1:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "accidentDetails",
                     accidentDetails: {
                         vehicleType: formData.vehicleType || defaultData.accidentDetails.vehicleType,
@@ -42,7 +42,7 @@ const makePayload = (step, formData, reportId) => {
                 
 
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "accidentSection",
                     accidentSection: {
                         timeOfAccident: formData.accidentTime || defaultData.accidentSection.timeOfAccident,
@@ -61,7 +61,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 3:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "anatomySection",
                     anatomySection: {
                         anatomySelectedOptions: formData.anatomy || defaultData.anatomySection.anatomySelectedOptions,
@@ -72,7 +72,7 @@ const makePayload = (step, formData, reportId) => {
                 const symptoms = groupRelatedQuestions(formData, 'symptom');
 
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "symptomsSection",
                     symptomsSection: {
                         questions: (symptoms || defaultData.symptomsSection.questions).map(symptom => ({
@@ -87,7 +87,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 5:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "treatmentSection",
                     treatmentSection: {
                         immediateTreatment: {
@@ -112,7 +112,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 6:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "livehoodEducationSection",
                     livehoodEducationSection: {
                         employmentStatus: formData.employmentStatus,
@@ -121,7 +121,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 7:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "employmentEducationSection",
                     employmentEducationSection: {
                         studyingWhere: formData.currentEmployment,
@@ -132,7 +132,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 8:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "domesticSection",
                     domesticSection: {
                         domesticImpactedAreas: formData.domesticLifeActivities
@@ -143,7 +143,7 @@ const makePayload = (step, formData, reportId) => {
                 
                 console.log(domesticImpactQuestions, "domestic questions h");
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "domesticImpactSection",
                     domesticImpactSection: {
                         questions: domesticImpactQuestions.map(question => ({
@@ -155,7 +155,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 10:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "medicalHistorySection",
                     medicalHistorySection: {
                         detailsOfPastMedicalInjuries: formData.pastMedicalInjuries,
@@ -167,7 +167,7 @@ const makePayload = (step, formData, reportId) => {
                 };
             case 11:
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "generalObservationSection",
                     generalObservationSection: {
                         physicalAppearance: formData.physicalAppearance,
@@ -185,7 +185,7 @@ const makePayload = (step, formData, reportId) => {
             case 12:
                 const physicalExaminationQuestions = groupRelatedQuestions(formData, 'physicalExamination');
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "physicalExaminationSection",
                     physicalExaminationSection: {
                         questions: physicalExaminationQuestions?.map(question => ({
@@ -202,7 +202,7 @@ const makePayload = (step, formData, reportId) => {
                 const psychologicalInjuriesDiagnosisQuestions = groupRelatedQuestions(formData, 'psychologicalInjuriesDiagnosis');
 
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "diagnosisSection",
                     diagnosisSection: {
                         physicalInjuries: {
@@ -230,7 +230,7 @@ const makePayload = (step, formData, reportId) => {
                 const psychologicalInjuriesOpinionQuestions = groupRelatedQuestions(formData, 'psychologicalInjuriesOpinion');
 
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "opinionSection",
                     opinionSection: {
                         physicalInjuries: {
@@ -261,7 +261,7 @@ const makePayload = (step, formData, reportId) => {
 
 
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "prognosisSection",
                     prognosisSection: {
                         physicalInjuries: {
@@ -285,7 +285,7 @@ const makePayload = (step, formData, reportId) => {
                 console.log("MAKING PAYLOAD FOR ", detailedPrognosisPhysicalInjuries)
                 console.log(detailedPrognosisPsychologicalInjuries)
                 return {
-                    reportName,
+                     
                     currentReportSectionStatus: "prognosisDetailedSection",
                     prognosisDetailedSection: {
                         physicalInjuries: {
@@ -348,7 +348,7 @@ const makePayload = (step, formData, reportId) => {
 
     const payload = {
         report_id: reportId,
-        reportName,
+         reportName: formData.fullName || defaultData.claimantDetails.fullName,
         currentReportSectionStatus: getSpecificKeys().currentReportSectionStatus,
         ...getSpecificKeys(),
     };

@@ -32,7 +32,23 @@
   outline: none;
   border: none;
   border-right: 3px solid #224b5f;
+  transition: all 0.3s ease-in-out;
 }
+
+.text-input:focus, .text-area:focus {
+  background-color: #e3f2f9;
+  border-color: #1a3a4a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Disabled state */
+.text-input:disabled, .text-area:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: #e0e5e7;
+  color: #6c757d;
+}
+
 /* 
 .text-area {
   height:;
