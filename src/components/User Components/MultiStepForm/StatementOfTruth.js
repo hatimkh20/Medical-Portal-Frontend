@@ -8,53 +8,72 @@ import InputField from "../Common/InputField";
 import usePost from "../../../hooks/usePost";
 import useFetch from "../../../hooks/useFetch";
 
-const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, prevStep }) => {
-
+const StatementOfTruth = ({
+  values,
+  setFieldValue,
+  handleChange,
+  handleBlur,
+  prevStep,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: response, loading, error, postRequest: saveForm } = usePost('/api/statement-of-truth', {
-    headers: { 'Content-Type': 'application/json' },
+  const {
+    data: response,
+    loading,
+    error,
+    postRequest: saveForm,
+  } = usePost("/api/statement-of-truth", {
+    headers: { "Content-Type": "application/json" },
   });
 
-  const { data: statements, setData: setStatements, refetch } = useFetch('/api/statement-of-truth');
+  const {
+    data: statements,
+    setData: setStatements,
+    refetch,
+  } = useFetch("/api/statement-of-truth");
 
   const handleSelectChange = (event) => {
     const statementName = event.target.value;
 
-    const statement = statements.find(statement => statement.name === statementName);
+    const statement = statements.find(
+      (statement) => statement.name === statementName
+    );
 
     setFieldValue("selectedStatement", {
       // id: statement._id,
       name: statement.name,
-      content: statement.statement
-    })
-    
+      content: statement.statement,
+    });
   };
 
   const saveStatement = async (e) => {
-    if(!values.statementName || !values.statementContent) {
+    if (!values.statementName || !values.statementContent) {
       return;
     }
 
     const newStatement = {
       name: values.statementName,
-      statement: values.statementContent
+      statement: values.statementContent,
     };
 
-    await saveForm(newStatement)
+    await saveForm(newStatement);
 
     // setStatements([...statements, newStatement])
     await refetch();
 
     setIsModalOpen(false);
-  }
+  };
 
   return (
     <FormLayout
       title={
         <div className="title-with-button">
           <h2>STATEMENT OF TRUTH</h2>
-          <Button type="button" onClick={() => setIsModalOpen(true)}>
+          <Button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className={statements?.length === 0 ? "blink" : ""}
+          >
             Add Statement In Library
           </Button>
         </div>
@@ -64,7 +83,7 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
         <SelectField
           name="selectedStatement"
           label="Select predefined statement or from library"
-          options={statements?.map(statement => statement.name)}
+          options={statements?.map((statement) => statement.name)}
           // optionValues={statements?.map(statement => statement._id)}
           value={values?.selectedStatement?.name}
           onChange={handleSelectChange}
@@ -107,7 +126,9 @@ const StatementOfTruth = ({ values, setFieldValue, handleChange, handleBlur, pre
             />
           </div>
 
-          <Button type="button" onClick={saveStatement}>Add In Library</Button>
+          <Button type="button" onClick={saveStatement}>
+            Add In Library
+          </Button>
         </Modal>
       )}
 

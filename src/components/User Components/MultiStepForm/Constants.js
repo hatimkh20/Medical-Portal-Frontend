@@ -78,12 +78,9 @@ export const anatomyList = [
 export const timeAfterAccident = [
   "immediately",
   "few minutes",
-  "day",
-  "days",
-  "week",
-  "weeks",
-  "month",
-  "months"
+  "day(s)",
+  "week(s)",
+  "month(s)"
 ];
 
 export const postAccidentLocations = [
@@ -415,6 +412,7 @@ export const specialistOptions = [
 ]; 
 
 export const resolutionOptions = [
+  "Other",
   "Impact, resolved 1 week after index accident",
   "Impact, resolved 2 weeks after index accident",
   "Impact, resolved 3 weeks after index accident",
@@ -430,5 +428,4 @@ export const resolutionOptions = [
   "Impact, resolved 5 months after index accident",
   "Impact, resolved 6 months after index accident",
   "Impact, resolved 12 months after index accident",
-  "Other",
 ];
