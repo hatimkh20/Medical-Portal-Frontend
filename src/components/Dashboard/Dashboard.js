@@ -3,18 +3,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEdit, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEdit, faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from "../User Components/Common/util";
 import LoadingErrorWrapper from "../User Components/Common/LoadingErrorWrapper";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from '../../context/AuthContext';
+import useDelete from "../../hooks/useDelete";
 
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { data: reports, loading, error } = useFetch('/api/report');  
+  const { data: reports, loading, error, refetch } = useFetch('/api/report');  
+  const { deleteRequest, loading: deleting, error: deleteError } = useDelete();
 
   const handleViewReport = (reportId) => {
     navigate(`/report/${reportId}`);
@@ -37,6 +39,17 @@ const Dashboard = () => {
 
   const redirectToForm = (id="") => {
     navigate(`/form/${id}`);
+  };
+
+  const handleDeleteReport = async (reportId) => {
+    if (!window.confirm("Are you sure you want to delete this report?")) return;
+
+    try {
+      await deleteRequest(`/api/report/specific/${reportId}`); 
+      refetch();
+    } catch (error) {
+      alert(error || "Failed to delete report.");
+    }
   };
 
   return (
@@ -79,6 +92,9 @@ const Dashboard = () => {
                 </button>
                 <button className="action-button">
                   <FontAwesomeIcon icon={faDownload} />
+                </button>
+                <button className="action-button" onClick={() => handleDeleteReport(report._id)}>
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
             </div>
