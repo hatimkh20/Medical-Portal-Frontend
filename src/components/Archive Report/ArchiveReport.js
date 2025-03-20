@@ -1,23 +1,21 @@
-// components/Dashboard.js
+// components/ArchiveReport.js
 
 import React, { useContext, useEffect, useState } from "react";
-import "./Dashboard.css";
+import "./ArchiveReport.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEdit, faDownload, faTrash, faFileArrowDown, faBoxArchive } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEdit, faDownload, faTrash, faFileArrowUp, faInbox } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from "../User Components/Common/util";
 import LoadingErrorWrapper from "../User Components/Common/LoadingErrorWrapper";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from '../../context/AuthContext';
-import useDelete from "../../hooks/useDelete";
 import usePatch from "../../hooks/usePatch";
 
-const Dashboard = () => {
+const ArchiveReport = () => {
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { data: reports, loading, error, refetch } = useFetch('/api/report');  
-  const { deleteRequest, loading: deleting, error: deleteError } = useDelete();
+  const { data: reports, loading, error, refetch } = useFetch('/api/report?viewStatus=archive');
   const { patchRequest, loading: patching, error: patchError } = usePatch();
 
   const handleViewReport = (reportId) => {
@@ -39,26 +37,11 @@ const Dashboard = () => {
     }
   };
 
-  const redirectToForm = (id="") => {
-    navigate(`/form/${id}`);
+  const handleViewUnarchiveReports = () => {
+    navigate(`/dashboard`);
   };
 
-  const handleDeleteReport = async (reportId) => {
-    if (!window.confirm("Are you sure you want to delete this report?")) return;
-
-    try {
-      await deleteRequest(`/api/report/specific/${reportId}`); 
-      refetch();
-    } catch (error) {
-      alert(error || "Failed to delete report.");
-    }
-  };
-
-  const handleViewArchiveReports = () => {
-    navigate(`/archive-reports`);
-  };
-
-  const handleArchiveReport = async (reportId, updatedData) => {
+  const handleUnarchiveReport = async (reportId, updatedData) => {
     try {
       await patchRequest(`/api/report/specific/${reportId}/changeViewStatus`, updatedData);
       refetch();
@@ -68,14 +51,11 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
-      <header className="dashboard-header">
-        <div>{user ? `${user.first_name}'s DASHBOARD` : "DASHBOARD"}</div>
-        <button className="create-report-button" onClick={() => redirectToForm()}>Create Report</button>
+    <div className="archiveReport">
+      <header className="archiveReport-header">
+        <div>{user ? `${user.first_name}'s ARCHIVE REPORTS` : "ARCHIVE REPORTS"}</div>
+        <button className="create-report-button" onClick={() => handleViewUnarchiveReports()}><FontAwesomeIcon icon={faInbox} /> &nbsp; Dashboard</button>
       </header>
-      <div className="archive-btn-div">
-        <button className="create-report-button" onClick={() => handleViewArchiveReports()}><FontAwesomeIcon icon={faBoxArchive} />&nbsp; Archived</button>
-      </div>
       <div className="reports-container">
         <div className="reports-header">
           <div className="reports-header-item">S.No</div>
@@ -85,10 +65,6 @@ const Dashboard = () => {
           <div className="reports-header-item">Actions</div>
         </div>
         <LoadingErrorWrapper loading={loading} error={error}>
-        <button className="action-button" onClick={() => redirectToForm("66b0f9572246523c585f6ca1")}>
-                  <FontAwesomeIcon icon={faEdit} />
-                  Default form for dev purpose
-                </button>
           {reports && reports.map((report, idx) => (
             <div className="report-row" key={report.id || idx}>
               <div className="report-item">
@@ -102,20 +78,11 @@ const Dashboard = () => {
                 </span>
               </div>
               <div className="report-item actions">
-              <button className="action-button" onClick={() => handleViewReport(report._id)}>
-              <FontAwesomeIcon icon={faEye} />
+                <button className="action-button" onClick={() => handleViewReport(report._id)}>
+                  <FontAwesomeIcon icon={faEye} />
                 </button>
-                <button className="action-button" onClick={() => redirectToForm(report._id)}>
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-                {/* <button className="action-button">
-                  <FontAwesomeIcon icon={faDownload} />
-                </button> */}
-                <button className="action-button" onClick={() => handleDeleteReport(report._id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-                <button className="action-button" onClick={() => handleArchiveReport(report._id)}>
-                  <FontAwesomeIcon icon={faFileArrowDown} />
+                <button className="action-button" onClick={() => handleUnarchiveReport(report._id)}>
+                  <FontAwesomeIcon icon={faFileArrowUp} />
                 </button>
               </div>
             </div>
@@ -126,4 +93,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ArchiveReport;

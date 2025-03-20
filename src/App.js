@@ -20,6 +20,7 @@ import ForgotPassword from "./components/Authentication/ForgetPassword";
 import VerifyResetPassword from "./components/Authentication/VerifyResetPassword";
 import ResetPassword from "./components/Authentication/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ArchiveReport from "./components/Archive Report/ArchiveReport";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/verify-reset-password/:token" element={<VerifyResetPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+          <Route path="/archive-reports" element={<ProtectedRoute element={<ArchiveReport />} />} />
             <Route path="/form" element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />} />
           <Route path="/form/:id" element={<ProtectedRoute element={<MultiStepForm steps={Steps} />} />} /> {/* Added route for editing */}
           <Route path="/report/:reportId" element={<ProtectedRoute element={<MedicalReport data={data} />}  />} />
