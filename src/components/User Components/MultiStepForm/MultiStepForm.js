@@ -32,6 +32,15 @@ const MultiStepForm = ({ steps }) => {
     dateOfAccident: "",
     ageAtTimeOfAccident: "",
     whichTypeOfIDChecked: "",
+    accompaniedBy: "",
+    placeOfExamination: "",
+    durationOfExamination: "",
+    dateOfReport: "",
+    instructingParty: "",
+    instructingPartyRef: "",
+    agency: "",
+    agencyRef: "",
+    medcoCaseNumber: "",
     vehicleType: "",
     otherVehicleType: "",
     vehicleWheels: "",
@@ -76,6 +85,15 @@ const MultiStepForm = ({ steps }) => {
         setFormData('ageAtTimeOfAccident', claimantDetails.ageAtTimeOfAccident);
         setFormData('medicalRecordsProvided', claimantDetails.medicalReportsProvided);
         setFormData('hasPhotoIDConfirmed', claimantDetails.photoIdConfirmed);
+        setFormData('accompaniedBy', claimantDetails.accompaniedBy);
+        setFormData('placeOfExamination', claimantDetails.placeOfExamination);
+        setFormData('durationOfExamination', claimantDetails.durationOfExamination);
+        setFormData('dateOfReport', getDateWithoutTZ(claimantDetails.dateOfReport));
+        setFormData('instructingParty', claimantDetails.instructingParty);
+        setFormData('instructingPartyRef', claimantDetails.instructingPartyRef);
+        setFormData('agency', claimantDetails.agency);
+        setFormData('agencyRef', claimantDetails.agencyRef);
+        setFormData('medcoCaseNumber', claimantDetails.medcoCaseNumber);
     
 
         const accidentDetails = response.accidentDetails || {};
@@ -380,7 +398,6 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
         initialValues={formData}
         validate={(values) => {
           const schema = steps.getStepValidationSchema(currentStep)(values);
-          
           try {
             schema.validateSync(values, { abortEarly: false });
             return {}; // No errors

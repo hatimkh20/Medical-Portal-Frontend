@@ -39,7 +39,7 @@ const MedicalReport = () => {
         data?.prognosisSection?.physicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "resolved"
         )
       )
@@ -55,7 +55,7 @@ const MedicalReport = () => {
         data?.prognosisSection?.physicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "ongoing"
         )
       )
@@ -71,7 +71,7 @@ const MedicalReport = () => {
         data?.prognosisSection?.psychologicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "resolved"
         )
       )
@@ -87,7 +87,7 @@ const MedicalReport = () => {
         data?.prognosisSection?.psychologicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "ongoing"
         )
       )
@@ -109,13 +109,22 @@ const MedicalReport = () => {
           title="Claimant's Details"
           layout="two-rows"
           details={[
-            { label: "Full Name", value: data?.claimantDetails?.fullName },
+            {
+              label: "Full Name",
+              value: data?.claimantDetails?.fullName
+            },
             {
               label: "Date of Birth",
               value: data?.claimantDetails?.dateOfBirth?.slice(0, 10),
             }, // Formatting date
-            { label: "Address", value: data?.claimantDetails?.address },
-            { label: "Occupation", value: data?.claimantDetails?.occupation },
+            { 
+              label: "Address", 
+              value: data?.claimantDetails?.address 
+            },
+            { 
+              label: "Occupation", 
+              value: data?.claimantDetails?.occupation 
+            },
             {
               label: "Type of ID Checked",
               value: data?.claimantDetails?.typeOfIdChecked,
@@ -144,6 +153,42 @@ const MedicalReport = () => {
               label: "Photo ID Confirmed",
               value: data?.claimantDetails?.photoIdConfirmed,
             },
+            { 
+              label: "Accompanied By", 
+              value: data?.claimantDetails?.accompaniedBy 
+            },
+            { 
+              label: "Place Of Examination", 
+              value: data?.claimantDetails?.placeOfExamination 
+            },
+            { 
+              label: "Duration Of Examination", 
+              value: data?.claimantDetails?.durationOfExamination 
+            },
+            { 
+              label: "Date Of Report", 
+              value: data?.claimantDetails?.dateOfReport?.slice(0, 10)
+            },
+            { 
+              label: "Instructing Party", 
+              value: data?.claimantDetails?.instructingParty 
+            },
+            { 
+              label: "Instructing Party Ref", 
+              value: data?.claimantDetails?.instructingPartyRef 
+            },
+            { 
+              label: "Agency", 
+              value: data?.claimantDetails?.agency 
+            },
+            { 
+              label: "Agency Ref", 
+              value: data?.claimantDetails?.agencyRef 
+            },
+            { 
+              label: "Medco Case Number", 
+              value: data?.claimantDetails?.medcoCaseNumber 
+            }
           ]}
         />
 
@@ -155,14 +200,12 @@ const MedicalReport = () => {
             {
               label: "Claimant Reported",
               nextLine: true,
-              value: `On the ${
-                data?.accidentSection?.timeOfAccident || "day"
-              }  of ${data?.claimantDetails?.dateOfAccident?.slice(
-                0,
-                10
-              )}, the claimant's vehicle was stationary at a junction when it was rear-ended by a third-party vehicle traveling at a ${
-                data?.accidentSection?.speedOfImpact || "normal"
-              } typical of city road conditions. The impact resulted in significant damage to the claimant's car. 
+              value: `On the ${data?.accidentSection?.timeOfAccident || "day"
+                }  of ${data?.claimantDetails?.dateOfAccident?.slice(
+                  0,
+                  10
+                )}, the claimant's vehicle was stationary at a junction when it was rear-ended by a third-party vehicle traveling at a ${data?.accidentSection?.speedOfImpact || "normal"
+                } typical of city road conditions. The impact resulted in significant damage to the claimant's car. 
               Notably, the vehicle was equipped with headrests and an airbag; however, the airbag did not deploy upon impact. 
               The incident is currently under investigation for further assessment.`,
             },
@@ -195,38 +238,30 @@ const MedicalReport = () => {
             {
               label: "Immediate Treatment",
               nextLine: true,
-              value: `${
-                data?.treatmentSection?.immediateTreatment
+              value: `${data?.treatmentSection?.immediateTreatment
                   ?.serviceAttendedSceneOfAccident || "Someone"
-              }
+                }
               attended at the scene of accident. 
-              ${
-                data?.treatmentSection?.immediateTreatment
+              ${data?.treatmentSection?.immediateTreatment
                   ?.treatmentReceivedAtSceneOfAccident
-              }.
-              The claimant ${
-                data?.treatmentSection?.immediateTreatment
+                }.
+              The claimant ${data?.treatmentSection?.immediateTreatment
                   ?.locationWentAfterAccident
-              } after the accident and he went there by ${
-                data?.treatmentSection?.immediateTreatment?.howGetThere
-              }.`,
+                } after the accident and he went there by ${data?.treatmentSection?.immediateTreatment?.howGetThere
+                }.`,
             },
             {
               label: "Later Treatment",
               nextLine: true,
-              value: `The treatment was received ${
-                data?.treatmentSection?.laterTreatment?.whereTreatmentReceived
-              }. 
-            The claimant seek treatment after the ${
-              data?.treatmentSection?.laterTreatment
-                ?.durationOfTreatmentReceivedAfterAccident
-            }
-             of accident and received the  treatment ${
-               data?.treatmentSection?.laterTreatment?.whatTreatmentReceived
-             }. 
-            ${
-              data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone
-            }.`,
+              value: `The treatment was received ${data?.treatmentSection?.laterTreatment?.whereTreatmentReceived
+                }. 
+            The claimant seek treatment after the ${data?.treatmentSection?.laterTreatment
+                  ?.durationOfTreatmentReceivedAfterAccident
+                }
+             of accident and received the  treatment ${data?.treatmentSection?.laterTreatment?.whatTreatmentReceived
+                }. 
+            ${data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone
+                }.`,
             },
           ]}
         />
@@ -503,12 +538,12 @@ const MedicalReport = () => {
         />
 
         {/* Signature Section */}
-      <SignatureSection
-        signatureImage={data?.doctorSignature?.base64Image}
-        doctorName={`${data?.userRefId?.first_name} ${data?.userRefId?.last_name}`}
-        gmcNumber={data?.userRefId?.gmc_number}
-        date="04/01/2024"
-      />
+        <SignatureSection
+          signatureImage={data?.doctorSignature?.base64Image}
+          doctorName={`${data?.userRefId?.first_name} ${data?.userRefId?.last_name}`}
+          gmcNumber={data?.userRefId?.gmc_number}
+          date="04/01/2024"
+        />
 
         {/* Expert Bibliography */}
         <TableSection

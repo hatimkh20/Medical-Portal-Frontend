@@ -26,6 +26,15 @@ const makePayload = (step, formData, reportId) => {
                         ageAtTimeOfAccident: formData.ageAtTimeOfAccident || defaultData.claimantDetails.ageAtTimeOfAccident,
                         medicalReportsProvided: formData.medicalRecordsProvided || defaultData.claimantDetails.medicalReportsProvided,
                         photoIdConfirmed: formData.hasPhotoIDConfirmed || defaultData.claimantDetails.photoIdConfirmed,
+                        accompaniedBy: formData.accompaniedBy || defaultData.claimantDetails.accompaniedBy,
+                        placeOfExamination: formData.placeOfExamination || defaultData.claimantDetails.placeOfExamination,
+                        durationOfExamination: formData.durationOfExamination || defaultData.claimantDetails.durationOfExamination,
+                        dateOfReport: formData.dateOfReport || defaultData.claimantDetails.dateOfReport,
+                        instructingParty: formData.instructingParty || defaultData.claimantDetails.instructingParty,
+                        instructingPartyRef: formData.instructingPartyRef || defaultData.claimantDetails.instructingPartyRef,
+                        agency: formData.agency || defaultData.claimantDetails.agency,
+                        agencyRef: formData.agencyRef || defaultData.claimantDetails.agencyRef,
+                        medcoCaseNumber: formData.medcoCaseNumber || defaultData.claimantDetails.medcoCaseNumber,
                     }
                 };
             case 1:
@@ -394,6 +403,15 @@ const defaultData = {
         ageAtTimeOfAccident: 30,
         medicalReportsProvided: 'yes',
         photoIdConfirmed: 'yes',
+        accompaniedBy: 'Alice',
+        placeOfExamination: 'England',
+        durationOfExamination: '15 minutes',
+        dateOfReport: '2024-01-01',
+        instructingParty: 'DLG Legal Services',
+        instructingPartyRef: 'KNFR/02277722',
+        agency: 'Bodycare Clinics',
+        agencyRef: '1375420',
+        medcoCaseNumber: '410512/1'
     },
     accidentDetails: {
         vehicleType: 'Car',
