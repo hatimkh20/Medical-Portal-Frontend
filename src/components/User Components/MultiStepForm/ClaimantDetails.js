@@ -124,6 +124,92 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           disabled // Make read-only since it's auto-calculated
         />
       </div>
+
+      {/* Bilal work */}
+      <div className="input-group">
+        <InputField
+          name="accompaniedBy"
+          label="Accompanied By"
+          value={values.accompaniedBy}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+        <InputField
+          name="placeOfExamination"
+          label="Place Of Examination"
+          value={values.placeOfExamination}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+      </div>
+      <div className="input-group">
+        <InputField
+          name="durationOfExamination"
+          label="Duration Of Examination"
+          value={values.durationOfExamination}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+        <InputField
+          name="dateOfReport"
+          label="Date Of Report"
+          type="date"
+          value={values.dateOfReport}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+      </div>
+      <div className="input-group">
+        <InputField
+          name="instructingParty"
+          label="Instructing Party"
+          value={values.instructingParty}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+        <InputField
+          name="instructingPartyRef"
+          label="Instructing Party Ref"
+          value={values.instructingPartyRef}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+      </div>
+      <div className="input-group">
+        <InputField
+          name="agency"
+          label="Agency"
+          value={values.agency}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+        <InputField
+          name="agencyRef"
+          label="Agency Ref"
+          value={values.agencyRef}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+      </div>
+      <div className="input-group">
+        <InputField
+          name="medcoCaseNumber"
+          label="Medco Case Number"
+          value={values.medcoCaseNumber}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          pageKey={pageKey}
+        />
+      </div>
+      {/* Bilal work end */}
       <div className="input-group">
         <div className="input-form-group">
           <label>Were medical records provided?</label>
@@ -165,6 +251,8 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           </div>
         </div>
       </div>
+
+
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button type="submit" onClick={handleSubmit} style={{ marginLeft: 'auto' }}>Save & Next</Button>
       </div>

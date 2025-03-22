@@ -71,11 +71,14 @@ const Dashboard = () => {
     <div className="dashboard">
       <header className="dashboard-header">
         <div>{user ? `${user.first_name}'s DASHBOARD` : "DASHBOARD"}</div>
-        <button className="create-report-button" onClick={() => redirectToForm()}>Create Report</button>
+        <div>
+          <button className="create-report-button" onClick={() => redirectToForm()}>Create Report</button>
+          <button className="create-report-button" onClick={() => handleViewArchiveReports()}><FontAwesomeIcon icon={faBoxArchive} />&nbsp; Archived</button>
+        </div>
       </header>
-      <div className="archive-btn-div">
+      {/* <div className="archive-btn-div">
         <button className="create-report-button" onClick={() => handleViewArchiveReports()}><FontAwesomeIcon icon={faBoxArchive} />&nbsp; Archived</button>
-      </div>
+      </div> */}
       <div className="reports-container">
         <div className="reports-header">
           <div className="reports-header-item">S.No</div>

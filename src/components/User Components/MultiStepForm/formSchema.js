@@ -19,6 +19,15 @@ export const ClaimantDetailsSchema = (values) => {
     dateOfAccident: Yup.string().required("Date Of Accident is required"),
     ageAtTimeOfAccident: Yup.string().nullable(), // Not required since it's auto-calculated
     whichTypeOfIDChecked: Yup.string().nullable(),
+    accompaniedBy: Yup.string().required("Accompanied By is required"),
+    placeOfExamination: Yup.string().required("Place Of Examination is required"),
+    durationOfExamination: Yup.string().required("Duration Of Examination is required"),
+    dateOfReport: Yup.string().required("Date Of Report is required"),
+    instructingParty: Yup.string().required("Instructing Party is required"),
+    instructingPartyRef: Yup.string().required("Instructing Party Ref is required"),
+    agency: Yup.string().required("Agency is required"),
+    agencyRef: Yup.string().required("Agency Ref is required"),
+    medcoCaseNumber: Yup.string().required("Medco Case Number is required"),
   });
 };
 
