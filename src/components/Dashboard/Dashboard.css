@@ -113,12 +113,12 @@
   color: #000;
 }
 
-.status-edited {
+.status-in_progress {
   background-color: #87ceeb; /* Light blue */
   color: #000;
 }
 
-.status-downloaded {
+.status-completed {
   background-color: #32cd32; /* Light green */
   color: #000;
 }
@@ -151,6 +151,10 @@
   color: #007bff;
 }
 
+.archive-btn-div{
+  text-align: right;
+  padding: 0 20px;
+}
 /* Responsive styles for small devices */
 @media (max-width: 768px) {
   .dashboard {

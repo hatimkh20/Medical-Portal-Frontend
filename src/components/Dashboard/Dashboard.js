@@ -3,18 +3,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEdit, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEdit, faDownload, faTrash, faFileArrowDown, faBoxArchive } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from "../User Components/Common/util";
 import LoadingErrorWrapper from "../User Components/Common/LoadingErrorWrapper";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from '../../context/AuthContext';
+import useDelete from "../../hooks/useDelete";
+import usePatch from "../../hooks/usePatch";
 
 const Dashboard = () => {
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { data: reports, loading, error } = useFetch('/api/report');  
+  const { data: reports, loading, error, refetch } = useFetch('/api/report');  
+  const { deleteRequest, loading: deleting, error: deleteError } = useDelete();
+  const { patchRequest, loading: patching, error: patchError } = usePatch();
 
   const handleViewReport = (reportId) => {
     navigate(`/report/${reportId}`);
@@ -22,14 +26,14 @@ const Dashboard = () => {
 
   const getStatusClass = (status) => {
     switch (status.toLowerCase()) {
-      case "viewed":
-        return "status-viewed";
-      case "edited":
-        return "status-edited";
-      case "downloaded":
-        return "status-downloaded";
       case "created":
         return "status-created";
+      case "in_progress":
+        return "status-in_progress";
+      case "completed":
+        return "status-completed";
+      case "viewed":
+        return "status-viewed";
       default:
         return "";
     }
@@ -39,12 +43,42 @@ const Dashboard = () => {
     navigate(`/form/${id}`);
   };
 
+  const handleDeleteReport = async (reportId) => {
+    if (!window.confirm("Are you sure you want to delete this report?")) return;
+
+    try {
+      await deleteRequest(`/api/report/specific/${reportId}`); 
+      refetch();
+    } catch (error) {
+      alert(error || "Failed to delete report.");
+    }
+  };
+
+  const handleViewArchiveReports = () => {
+    navigate(`/archive-reports`);
+  };
+
+  const handleArchiveReport = async (reportId, updatedData) => {
+    try {
+      await patchRequest(`/api/report/specific/${reportId}/changeViewStatus`, updatedData);
+      refetch();
+    } catch (error) {
+      alert(error || "Failed to archvie report.");
+    }
+  };
+
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <div>{user ? `${user.first_name}'s DASHBOARD` : "DASHBOARD"}</div>
-        <button className="create-report-button" onClick={() => redirectToForm()}>Create Report</button>
+        <div>
+          <button className="create-report-button" onClick={() => redirectToForm()}>Create Report</button>
+          <button className="create-report-button" onClick={() => handleViewArchiveReports()}><FontAwesomeIcon icon={faBoxArchive} />&nbsp; Archived</button>
+        </div>
       </header>
+      {/* <div className="archive-btn-div">
+        <button className="create-report-button" onClick={() => handleViewArchiveReports()}><FontAwesomeIcon icon={faBoxArchive} />&nbsp; Archived</button>
+      </div> */}
       <div className="reports-container">
         <div className="reports-header">
           <div className="reports-header-item">S.No</div>
@@ -77,8 +111,14 @@ const Dashboard = () => {
                 <button className="action-button" onClick={() => redirectToForm(report._id)}>
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
-                <button className="action-button">
+                {/* <button className="action-button">
                   <FontAwesomeIcon icon={faDownload} />
+                </button> */}
+                <button className="action-button" onClick={() => handleDeleteReport(report._id)}>
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+                <button className="action-button" onClick={() => handleArchiveReport(report._id)}>
+                  <FontAwesomeIcon icon={faFileArrowDown} />
                 </button>
               </div>
             </div>
