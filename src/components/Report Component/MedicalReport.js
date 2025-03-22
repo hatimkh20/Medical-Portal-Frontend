@@ -6,11 +6,13 @@ import DetailsSection from "./DetailSection";
 import TableSection from "./TableSection";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { faDownload, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import {
   formatString,
   getTextBeforeUnderscore,
 } from "../User Components/Common/util";
 import SignatureSection from "./SignatureSection";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MedicalReport = () => {
   const { reportId } = useParams();
@@ -214,19 +216,10 @@ const MedicalReport = () => {
             {
               label: "Later Treatment",
               nextLine: true,
-              value: `The treatment was received ${
-                data?.treatmentSection?.laterTreatment?.whereTreatmentReceived
-              }. 
-            The claimant seek treatment after the ${
-              data?.treatmentSection?.laterTreatment
-                ?.durationOfTreatmentReceivedAfterAccident
-            }
-             of accident and received the  treatment ${
-               data?.treatmentSection?.laterTreatment?.whatTreatmentReceived
-             }. 
-            ${
-              data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone
-            }.`,
+              value: `The treatment was received ${data?.treatmentSection?.laterTreatment?.whereTreatmentReceived}. 
+            The claimant seek treatment after the ${data?.treatmentSection?.laterTreatment?.durationOfTreatmentReceivedAfterAccident}
+             of accident and received the  treatment ${data?.treatmentSection?.laterTreatment?.whatTreatmentReceived}. 
+            ${data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone}.`,
             },
           ]}
         />
@@ -304,8 +297,7 @@ const MedicalReport = () => {
             {
               label: "Holding Intelligent Conversation",
               value:
-                data?.generalObservationSection
-                  ?.holdingIntelligentConversation,
+                data?.generalObservationSection?.holdingIntelligentConversation,
             },
             {
               label: "Eye Contact and Rapport",
@@ -503,12 +495,12 @@ const MedicalReport = () => {
         />
 
         {/* Signature Section */}
-      <SignatureSection
-        signatureImage={data?.doctorSignature?.base64Image}
-        doctorName={`${data?.userRefId?.first_name} ${data?.userRefId?.last_name}`}
-        gmcNumber={data?.userRefId?.gmc_number}
-        date="04/01/2024"
-      />
+        <SignatureSection
+          signatureImage={data?.doctorSignature?.base64Image}
+          doctorName={`${data?.userRefId?.first_name} ${data?.userRefId?.last_name}`}
+          gmcNumber={data?.userRefId?.gmc_number}
+          date="04/01/2024"
+        />
 
         {/* Expert Bibliography */}
         <TableSection
@@ -520,9 +512,18 @@ const MedicalReport = () => {
           )}
         />
       </div>
-      <button onClick={generatePdf} className="report-download-button">
-        Download PDF
-      </button>
+      <div className="button-container">
+        <button
+          onClick={() => window.history.back()}
+          className="circle-button back-button"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>
+
+        <button onClick={generatePdf} className="circle-button download-button">
+          <FontAwesomeIcon icon={faDownload} />
+        </button>
+      </div>
     </div>
   );
 };

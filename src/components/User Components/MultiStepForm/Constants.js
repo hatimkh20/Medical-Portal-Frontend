@@ -60,7 +60,7 @@ export const symptomSeverity = [
 ];
 
 export const anatomyList = [
-    "Concussion", "Head", "Forehead", "Nosebleed", "Headaches", "Nausea", "Vomiting", "Dizziness", "Light-Headedness",
+    "Other", "Concussion", "Head", "Forehead", "Nosebleed", "Headaches", "Nausea", "Vomiting", "Dizziness", "Light-Headedness",
     "Vomiting and Nausea", "High Blood Pressure", "Blackout", "Loss of Conciousness", "Right Face", "Left Eye",
     "Right Eye", "Eyes (Right and Left)", "Left Face", "Right Ear", "Left Ear", "Right and Left Ears", "Neck", "Left Neck",
     "Right Neck", "Whole Back", "Upper Back", "Middle Back", "Lower Back", "Right and Left Shoulders", "Left Shoulder",
@@ -72,7 +72,7 @@ export const anatomyList = [
     "Right and Left Thighs", "Right Leg", "Left Leg", "Right and Left Legs", "Right Knee", "Left Knee",
     "Right and Left Knees", "Right Shin", "Left Shin", "Right and Left Shin", "Right Ankle", "Left Ankle",
     "Right and Left Ankles", "Right Toes", "Left toes", "Left Foot", "Right Foot", "Whole Body", "Radial Nerve",
-    "Collar Bone (Right)", "Collar Bone (Left)", "Collar Bone (Right & Left)", "Other"
+    "Collar Bone (Right)", "Collar Bone (Left)", "Collar Bone (Right & Left)"
 ];
 
 export const timeAfterAccident = [

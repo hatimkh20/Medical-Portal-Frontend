@@ -100,3 +100,47 @@
 .report-text strong {
   color: #224B5F;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Back on left, Download on right */
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.circle-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  position: relative;
+}
+
+.back-button {
+  background-color: #6c757d; /* Gray */
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+
+.download-button {
+  background-color: #007bff; /* Blue */
+  color: white;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.download-button:hover {
+  background-color: #0056b3;
+}
