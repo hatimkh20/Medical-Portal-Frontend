@@ -255,15 +255,19 @@ const MedicalReport = () => {
             {
               label: "Later Treatment",
               nextLine: true,
-              value: `The treatment was received ${data?.treatmentSection?.laterTreatment?.whereTreatmentReceived
-                }. 
-            The claimant seek treatment after the ${data?.treatmentSection?.laterTreatment
-                  ?.durationOfTreatmentReceivedAfterAccident
-                }
-             of accident and received the  treatment ${data?.treatmentSection?.laterTreatment?.whatTreatmentReceived
-                }. 
-            ${data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone
-                }.`,
+              value: `The treatment was received ${
+                data?.treatmentSection?.laterTreatment?.whereTreatmentReceived
+              }. 
+            The claimant seek treatment after the ${
+              data?.treatmentSection?.laterTreatment
+                ?.durationOfTreatmentReceivedAfterAccident
+            }
+             of accident and received the  treatment ${
+               data?.treatmentSection?.laterTreatment?.whatTreatmentReceived
+             }. 
+            ${
+              data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone
+            }.`,
             },
           ]}
         />
@@ -437,12 +441,7 @@ const MedicalReport = () => {
                 data?.opinionSection?.exceptionalCircumstances
                   ?.claimantClaimedAnyExceptionalCircumstance,
             },
-            {
-              label: "Are you in agreement as Medical Expert?",
-              value:
-                data?.opinionSection?.exceptionalCircumstances
-                  ?.anyExceptionalCircumstanceInAccident,
-            },
+            
             {
               label: "Were there any exceptional circumstances in accident?",
               value:
@@ -461,6 +460,12 @@ const MedicalReport = () => {
               value:
                 data?.opinionSection?.exceptionalCircumstances
                   ?.injuriesResultOfExceptionalCircumstance,
+            },
+            {
+              label: "Are you in agreement as Medical Expert?",
+              value:
+                data?.opinionSection?.exceptionalCircumstances
+                  ?.anyExceptionalCircumstanceInAccident,
             },
             {
               label: "Anything Else?",

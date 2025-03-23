@@ -40,10 +40,6 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
       label: "Did claimant's claimed any exceptional circumstances?",
     },
     {
-      name: "agreementAsMedicalExpert",
-      label: "Are you in agreement as Medical Expert?",
-    },
-    {
       name: "exceptionalCircumstancesInAccident",
       label: "Were there any exceptional circumstances in accident?",
     },
@@ -54,6 +50,10 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
     {
       name: "injuriesExceptionallySevere",
       label: "Injuries sustained in accident were exceptionally severe?",
+    },
+    {
+      name: "agreementAsMedicalExpert",
+      label: "Are you in agreement as Medical Expert?",
     },
   ];
 

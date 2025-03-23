@@ -91,7 +91,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
           onBlur={handleBlur}
           pageKey={pageKey}
         />
-        {values.medicalRecordsProvided === "yes" && (
+        {values.medicalRecordsProvided !== "no" && (
           <InputField
             name="whichRecordsSeen"
             label="Which records were seen?"
