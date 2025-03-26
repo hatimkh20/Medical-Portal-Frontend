@@ -218,7 +218,7 @@ export const psychologicalInjuries = [
   "Nightmares",
 ];
 
-export const mechanismWhiplashOptions = [
+export const mechanismNonWhiplashOptions = [
   "Other", // Added "Other" option
   "resulted from hitting the back of head on the headrest on truncal rebound.",
   "resulted from the forehead hitting against the side of the car window.",
@@ -240,6 +240,23 @@ export const mechanismWhiplashOptions = [
   "resulted from the trauma sustained as the claimant attempted to break the fall with the left side of the body.",
   "resulted from the trauma sustained as the claimant attempted to break the fall with the right side of the body.",
   "resulted from nerve damage sustained from hitting against the back of the seat worsening the pre-existing Sciatica.",
+];
+
+export const mechanismWhiplashOptions = [
+  "Other",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Neck.",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Back.",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Right Shoulder.",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Left Shoulder.",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Shoulders.",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Neck, Back and Shoulder(s)",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Neck and Back.",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Back and Shoulder(s).",
+  "The force of the truncal rebound on whiplash was the mechanism of injury to the Neck and Shoulder(s).",
+  "Trauma sustained in the Shoulder(s) resulted from the forceful seatbelt restrain",
+  "The injury/ injuries resulted from the forceful forward jolt, seatbelt restraint, and truncal rebound on braking/ impact.",
+  "The shoulder pain resulted from the forceful sidewards jolt of the claimant smashing into the door and window on impact / braking.",
+  "The shoulder injury resulted from the forceful sidewards jolt of the claimant smashing into the door and window on impact / braking."
 ];
 
 export const mechanismPsychologicalTraumaOptions = [

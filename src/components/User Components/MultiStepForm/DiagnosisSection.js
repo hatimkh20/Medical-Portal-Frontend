@@ -8,6 +8,7 @@ import "../Common/Common.css";
 import {
   mechanismPsychologicalTraumaOptions,
   mechanismWhiplashOptions,
+  mechanismNonWhiplashOptions,
   observations,
   traumaOptions,
 } from "./Constants";
@@ -76,6 +77,12 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
     const mechanismName = `${anatomy}_injuryMechanism`;
     const traumaName = `${anatomy}_trauma`;
 
+    // Determine which options to show based on selected injury type
+    const mechanismOptions =
+      values[injuryName] === "Whiplash"
+        ? mechanismWhiplashOptions
+        : mechanismNonWhiplashOptions;
+
     return (
       <div>
         <div className="input-group">
@@ -112,11 +119,12 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
             />
           )}
         </div>
+
         <div className="input-group">
           <SelectField
             label="Mechanism of injury"
             name={mechanismName}
-            options={mechanismWhiplashOptions}
+            options={mechanismOptions} // Dynamic options
             value={values[mechanismName]}
             values={values}
             otherHandleChange={handleChange}
@@ -136,6 +144,7 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
       </div>
     );
   };
+
 
   const renderPsychologicalInjuries = (psychologicalInjuries) => {
     const mechanismName = `${psychologicalInjuries}_injuryMechanism`;
