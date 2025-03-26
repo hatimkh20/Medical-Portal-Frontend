@@ -1,4 +1,5 @@
 export const vehicleTypes = [
+  "Other",
   "car",
   "van",
   "4x4",
@@ -12,7 +13,6 @@ export const vehicleTypes = [
   "pushbike",
   "electric chair",
   "wheel chair",
-  "Other"
 ];
 
 export const vehicleSpeedImpact = [
@@ -22,6 +22,7 @@ export const vehicleSpeedImpact = [
 ];
 
 export const domesticLifeActivities = [
+  "Other",
   "child care",
   "personal care",
   "lifting items",
@@ -39,7 +40,6 @@ export const domesticLifeActivities = [
   "fitness training",
   "gym",
   "golf",
-  "Other"
 ];
 
 export const vehicleLevelDamage = [
@@ -84,6 +84,7 @@ export const timeAfterAccident = [
 ];
 
 export const postAccidentLocations = [
+  "Other",
   "went home",
   "went to A&E",
   "went to hospital",
@@ -104,16 +105,15 @@ export const postAccidentLocations = [
   "went to a nearby cafe",
   "went to the police station",
   "went to the Body Shop",
-  "Other"
 ];
 
 export const treatmentOptions = [
+  "Other",
   "No treatment was administered at the scene of accident",
   "Treatment was administered at the scene of accident",
   "Received first aid at the scene of the accident",
   "Received painkillers at the scene of the accident",
   "The wounds were cleaned and bandaged to stop loss of blood",
-  "Other"
 ];
 
 export const responseTeams = [
@@ -132,6 +132,7 @@ export const responseTeams = [
 ];
 
 export const observations = [
+  "Other",
   "No physical injury was visible on examination.",
   "Physical examination was normal. Symptoms described by the claimant had resolved during examination/ assessment.",
   "No tenderness was observed during examination, and all symptoms had resolved.",
@@ -190,12 +191,12 @@ export const observations = [
   "tenderness of the Left and Right Patella present.",
   "tenderness of the Peroneal tendons/muscles.",
   "tenderness of the moot of Foot.",
-  "Other"
 ];
 
-export const palpations = ["Mild", "Slight", "Moderate", "Significant", "Other"];
+export const palpations = ["Other","Mild", "Slight", "Moderate", "Significant", ];
 
 export const psychologicalInjuries = [
+  "Other", // Added "Other" option
   "General Anxiety",
   "General Anxiety and Stress",
   "Shock",
@@ -215,10 +216,10 @@ export const psychologicalInjuries = [
   "Travel Anxiety and Travel Discomfort",
   "Night Terrors",
   "Nightmares",
-  "Other" // Added "Other" option
 ];
 
 export const mechanismWhiplashOptions = [
+  "Other", // Added "Other" option
   "resulted from hitting the back of head on the headrest on truncal rebound.",
   "resulted from the forehead hitting against the side of the car window.",
   "resulted from hitting the head against the headrest on whiplash.",
@@ -239,18 +240,18 @@ export const mechanismWhiplashOptions = [
   "resulted from the trauma sustained as the claimant attempted to break the fall with the left side of the body.",
   "resulted from the trauma sustained as the claimant attempted to break the fall with the right side of the body.",
   "resulted from nerve damage sustained from hitting against the back of the seat worsening the pre-existing Sciatica.",
-  "Other" // Added "Other" option
 ];
 
 export const mechanismPsychologicalTraumaOptions = [
+  "Other", // Added "Other" option
   "is a consequence of psychological trauma suffered during the accident.",
   "are a consequence of psychological trauma suffered during the accident.",
   "was induced by the psychological trauma of the accident.",
   "resulted from the psychological impact of the accident.",
-  "Other" // Added "Other" option
 ];
 
 export const traumaOptions = [
+  "Other",
   "pain",
   "pain and stiffness",
   "pain and bruisings",
@@ -283,12 +284,12 @@ export const traumaOptions = [
   "Loss of Power",
   "spasm",
   "cramps",
-  "Other" // Added "Other" option
 ];
 
 export const timeOfAccident = ["morning", "afternoon", "evening", "night"]
 
 export const attendanceOptions = [
+  "Other",
   "Going to Hospital",
   "Going to A&E",
   "Going to Urgent Care",
@@ -298,7 +299,6 @@ export const attendanceOptions = [
   "She did not attend Hospital or GP Surgery after the accident",
   "He did not attend Hospital after the accident",
   "She did not attend Hospital after the accident",
-  "Other"
 ];
 
 export const imagingOptions = [
@@ -317,6 +317,7 @@ export const imagingOptions = [
 ];
 
 export const prescriptionOptions = [
+  "Other",
   "Co-codamol was prescribed",
   "Naproxen was prescribed",
   "Naproxen and lansoprazole prescribed Paracetamol prescribed to management the pain",
@@ -338,10 +339,10 @@ export const prescriptionOptions = [
   "Taking Amitriptyline",
   "Taking Steroids and injections",
   "Taking Steroids",
-  "Other"
 ];
 
 export const employmentStatusOptions = [
+  "Other",
   "Employed",
   "Self-Employed",
   "Unemployed",
@@ -349,7 +350,6 @@ export const employmentStatusOptions = [
   "Retired",
   "Homemaker",
   "Military",
-  "Other"
 ];
 
 export const presentSeverityOptions = [
@@ -360,19 +360,20 @@ export const presentSeverityOptions = [
 ];
 
 export const eyeContactOptions = [
+  "Other",
   "The claimant made good eye contact and rapport",
   "The claimant did not make good eye contact and rapport",
-  "Other"
 ];
 
 export const mentalStateOptions = [
+  "Other",
   "The claimant showed no obvious sign of anxiety or depression",
   "The claimant showed signs of anxiety",
   "The claimant showed signs of anxiety and depression",
-  "Other"
 ];
 
 export const specialistOptions = [
+  "Other",
   "Cardiologist",
   "Dermatologist",
   "Endocrinologist",
@@ -408,7 +409,6 @@ export const specialistOptions = [
   "Radiologist",
   "Sports Medicine Specialist",
   "Vascular Surgeon",
-  "Other"
 ]; 
 
 export const resolutionOptions = [
