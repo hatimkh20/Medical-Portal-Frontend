@@ -60,6 +60,8 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
           handleAddItem={handleAddAnatomy}
           handleRemoveItem={handleRemoveAnatomy}
           values={values}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
         />
         <SelectableList 
           title="Psychological Injuries" 
