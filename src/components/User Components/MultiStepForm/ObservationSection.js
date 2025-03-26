@@ -31,18 +31,23 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
               value="Good"
               checked={values.physicalAppearance === "Good"}
               onChange={handleInputChange}
+              defaultValue="Good"
             />
             <RadioButton
               name="physicalAppearance"
               value="Dishevelled"
               checked={values.physicalAppearance === "Dishevelled"}
               onChange={handleInputChange}
+              defaultValue="Good"
+
             />
             <RadioButton
               name="physicalAppearance"
               value="Other"
               checked={values.physicalAppearance === "Other"}
               onChange={handleInputChange}
+              defaultValue="Good"
+
             />
           </div>
         </div>
@@ -67,12 +72,16 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
               value="yes"
               checked={values.presenceOfScars === "yes"}
               onChange={handleInputChange}
+              defaultValue="no"
+
             />
             <RadioButton
               name="presenceOfScars"
               value="no"
               checked={values.presenceOfScars === "no"}
               onChange={handleInputChange}
+              defaultValue="no"
+
             />
             <RadioButton
               name="presenceOfScars"
@@ -103,12 +112,16 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
               value="yes"
               checked={values.conversation === "yes"}
               onChange={handleInputChange}
+              defaultValue="yes"
+
             />
             <RadioButton
               name="conversation"
               value="no"
               checked={values.conversation === "no"}
               onChange={handleInputChange}
+              defaultValue="yes"
+
             />
             <RadioButton
               name="conversation"

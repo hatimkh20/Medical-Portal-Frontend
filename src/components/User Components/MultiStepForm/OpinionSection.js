@@ -38,26 +38,35 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
     {
       name: "claimedExceptionalCircumstances",
       label: "Did claimant's claimed any exceptional circumstances?",
+      defaultValue: "no"
     },
     {
       name: "exceptionalCircumstancesInAccident",
       label: "Were there any exceptional circumstances in accident?",
+      defaultValue: "no"
+
     },
     {
       name: "injuriesResultOfExceptionalCircumstances",
       label: "Were the injuries result of exceptional circumstances?",
+      defaultValue: "no"
+
     },
     {
       name: "injuriesExceptionallySevere",
       label: "Injuries sustained in accident were exceptionally severe?",
+      defaultValue: "no"
+
     },
     {
       name: "agreementAsMedicalExpert",
       label: "Are you in agreement as Medical Expert?",
+      defaultValue: "yes"
+
     },
   ];
 
-  const renderRadioButtons = (name) => (
+  const renderRadioButtons = (name, defaultValue) => (
     <>
       <RadioButton
         name={name}
@@ -66,6 +75,7 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
         checked={values[name] === "yes"}
         onChange={handleChange}
         onBlur={handleBlur}
+        defaultValue={defaultValue}
       />
       <RadioButton
         name={name}
@@ -74,6 +84,8 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
         checked={values[name] === "no"}
         onChange={handleChange}
         onBlur={handleBlur}
+        defaultValue={defaultValue}
+
       />
     </>
   );
@@ -135,7 +147,7 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
           <div key={question.name} className="radio-group-inline">
             <label>{question.label}</label>
             <div className="radio-container">
-              {renderRadioButtons(question.name)}
+              {renderRadioButtons(question.name, question.defaultValue)}
             </div>
           </div>
         ))}

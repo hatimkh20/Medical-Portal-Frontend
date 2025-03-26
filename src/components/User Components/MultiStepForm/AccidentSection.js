@@ -5,23 +5,45 @@ import RadioButton from "../Common/RadioButton";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
-import { timeOfAccident, vehicleLevelDamage, vehicleSpeedImpact } from "./Constants";
+import {
+  timeOfAccident,
+  vehicleLevelDamage,
+  vehicleSpeedImpact,
+} from "./Constants";
 
 const questionsFourWheels = [
-  { name: "seatbeltFit", label: "Did the vehicle have a seatbelt fitted?" },
-  { name: "seatbeltOn", label: "Did the claimant have the seatbelt on?" },
+  {
+    name: "seatbeltFit",
+    label: "Did the vehicle have a seatbelt fitted?",
+    defaultValue: "yes",
+  },
+  {
+    name: "seatbeltOn",
+    label: "Did the claimant have the seatbelt on?",
+    defaultValue: "yes",
+  },
   {
     name: "seatbeltWear",
     label: "Does the claimant have an exception to wearing a seatbelt?",
+    defaultValue: "no",
   },
-  { name: "airbagsFit", label: "Did the vehicle have airbags fitted?" },
-  { name: "airbagsDeploy", label: "Did the airbags deploy?" },
+  {
+    name: "airbagsFit",
+    label: "Did the vehicle have airbags fitted?",
+    defaultValue: "yes",
+  },
+  {
+    name: "airbagsDeploy",
+    label: "Did the airbags deploy?",
+    defaultValue: "no",
+  },
 ];
 
 const questionsTwoWheels = [
   {
     name: "safetyHelmetOn",
     label: "Did the claimant have a safety helmet on?",
+    defaultValue: "yes"
   },
 ];
 
@@ -38,7 +60,7 @@ const AccidentSectionForm = ({
     "bus",
     "truck",
     "trailer",
-    "Other"
+    "Other",
   ].includes(values.vehicleType);
   const isTwoWheeledVehicle = [
     "bicycle",
@@ -48,7 +70,7 @@ const AccidentSectionForm = ({
     "pushbike",
   ].includes(values.vehicleType);
 
-  const renderRadioButtons = (name) => (
+  const renderRadioButtons = (name, defaultValue) => (
     <>
       <RadioButton
         name={`vehicleQuestion_${name}`}
@@ -57,6 +79,7 @@ const AccidentSectionForm = ({
         checked={values[`vehicleQuestion_${name}`] === "yes"}
         onChange={handleChange}
         onBlur={handleBlur}
+        defaultValue={defaultValue}
       />
       <RadioButton
         name={`vehicleQuestion_${name}`}
@@ -65,6 +88,7 @@ const AccidentSectionForm = ({
         checked={values[`vehicleQuestion_${name}`] === "no"}
         onChange={handleChange}
         onBlur={handleBlur}
+        defaultValue={defaultValue}
       />
     </>
   );
@@ -120,7 +144,7 @@ const AccidentSectionForm = ({
             <div key={question.name} className="radio-group-inline">
               <label>{question.label}</label>
               <div className="radio-container">
-                {renderRadioButtons(question.name)}
+                {renderRadioButtons(question.name, question.defaultValue)}
               </div>
             </div>
           ))}
@@ -136,7 +160,7 @@ const AccidentSectionForm = ({
             <div key={question.name} className="radio-group-inline">
               <label>{question.label}</label>
               <div className="radio-container">
-                {renderRadioButtons(question.name)}
+                {renderRadioButtons(question.name, question.defaultValue)}
               </div>
             </div>
           ))}

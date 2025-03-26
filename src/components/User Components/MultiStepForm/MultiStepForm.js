@@ -27,8 +27,6 @@ const MultiStepForm = ({ steps }) => {
     occupation: "",
     dateOfExamination: "",
     whichRecordsSeen: "",
-    medicalRecordsProvided: "",
-    hasPhotoIDConfirmed: "",
     dateOfAccident: "",
     ageAtTimeOfAccident: "",
     whichTypeOfIDChecked: "",

@@ -220,6 +220,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               checked={values.medicalRecordsProvided === "yes"}
               onChange={handleChange}
               pageKey={pageKey}
+              defaultValue="no"
             />
             <RadioButton
               name="medicalRecordsProvided"
@@ -227,6 +228,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               checked={values.medicalRecordsProvided === "no"}
               onChange={handleChange}
               pageKey={pageKey}
+              defaultValue="no"
             />
           </div>
         </div>
@@ -240,6 +242,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               checked={values.hasPhotoIDConfirmed === "yes"}
               onChange={handleChange}
               pageKey={pageKey}
+              defaultValue="yes"
             />
             <RadioButton
               name="hasPhotoIDConfirmed"
@@ -247,6 +250,7 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
               checked={values.hasPhotoIDConfirmed === "no"}
               onChange={handleChange}
               pageKey={pageKey}
+              defaultValue="yes"
             />
           </div>
         </div>
