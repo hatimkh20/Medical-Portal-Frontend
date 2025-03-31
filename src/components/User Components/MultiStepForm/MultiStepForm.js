@@ -392,6 +392,12 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
 
   return (
     <div className="multi-step-form-container">
+      <MultiStepFormNavigation
+        currentStep={currentStep} 
+        totalSteps={id ? steps.values.length-1: lastHighestAccessedStep }
+        onStepChange={setCurrentStep}
+       />
+       
       <Formik
         initialValues={formData}
         validate={(values) => {
@@ -431,11 +437,11 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
         )}
       </Formik>
 
-      <MultiStepFormNavigation
+      {/* <MultiStepFormNavigation
         currentStep={currentStep} 
         totalSteps={id ? steps.values.length-1: lastHighestAccessedStep }
         onStepChange={setCurrentStep}
-       />
+       /> */}
     </div>
   );
 };

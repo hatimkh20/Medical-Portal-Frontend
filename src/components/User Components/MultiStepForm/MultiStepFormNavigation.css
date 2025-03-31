@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin: 20px 0;
+    /* margin: 20px 0; */
+
   }
   
   .nav-button {
@@ -45,3 +46,54 @@
     margin-left: 10px;
   }
   
+
+  /* Bilal work */
+  .step-buttons-container {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap;
+    padding: 10px 0;
+    width: 100%;
+    gap: 5px;
+    /* border: 1px solid #ddd; */
+    border-radius: 6px;
+    /* background-color: #f9f9f9; */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #ccc transparent;
+  }
+  
+  /* Custom Scrollbar for Webkit Browsers (Chrome, Safari) */
+  .step-buttons-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .step-buttons-container::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 3px;
+  }
+  
+  .step-buttons-container::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  
+  .step-button {
+    padding: 9px 12px;
+    margin: 3px;
+    cursor: pointer;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .step-button:hover {
+    background-color: #d0d0d0;
+  }
+  
+  .step-button.active {
+    background-color: #00364d;
+    color: white;
+    font-weight: bold;
+    transform: scale(1.05); /* Slight enlargement for better UX */
+  }
