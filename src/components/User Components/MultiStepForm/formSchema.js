@@ -59,25 +59,21 @@ export const AnatomySectionValidationSchema = (values) => {
       .required("Psychological Injury selection is required"),
   });
 };
-
 const generateSymptomValidationSchema = (symptom) => {
-  const fieldNamePrefix = `symptom_${toCamelCase(symptom)}_`;
+  const fieldNamePrefix = `symptom_${toCamelCase(symptom.name)}_`; // Use symptom.name
 
   return {
     [`${fieldNamePrefix}startTime`]: Yup.string().required(
       "Start time is required"
     ),
-
     [`${fieldNamePrefix}severityOnset`]: Yup.string().required(
       "Severity at onset is required"
     ),
-
     [`${fieldNamePrefix}currentSeverity`]: Yup.string().required(
       "Current severity is required"
     ),
-
     [`${fieldNamePrefix}resolvedDuration`]: Yup.string().required(
-      "Current severity is required"
+      "Resolved duration is required"
     ),
   };
 };
@@ -85,20 +81,20 @@ const generateSymptomValidationSchema = (symptom) => {
 export const SymptomSectionValidationSchema = (values) => {
   console.log("SymptomSectionValidationSchema called with values:", values);
 
-  const schemaFields = values?.anatomy?.reduce((acc, symptom) => {
-    return {
+  const schemaFields = Object.values(values?.anatomy || {}).reduce(
+    (acc, symptom) => ({
       ...acc,
-      ...generateSymptomValidationSchema(symptom),
-    };
-  }, {});
+      ...generateSymptomValidationSchema(symptom), // Pass the full object
+    }),
+    {}
+  );
 
   console.log("Schema Fields");
   console.dir(schemaFields);
 
-  return Yup.object().shape({
-    ...schemaFields,
-  });
+  return Yup.object().shape(schemaFields);
 };
+
 
 export const TreatmentValidationSchema = (values) => {
   const schemaShape = {};
@@ -211,49 +207,38 @@ export const ObservationSectionSchema = (values) => {
 };
 
 export const PhysicalExaminationSectionSchema = (values) => {
-  // Dynamically create Yup validation schema based on the values
-  const createSchemaForAnatomy = (anatomy) =>
+  // Function to create schema for each anatomy entry
+  const createSchemaForAnatomy = (anatomyName) =>
     Yup.object().shape({
-      [`physicalExamination_${anatomy}_palpation`]: Yup.string().required(
+      [`physicalExamination_${anatomyName}_palpation`]: Yup.string().required(
         "Palpation observation is required"
       ),
-      [`physicalExamination_${anatomy}_observation`]: Yup.string().required(
+      [`physicalExamination_${anatomyName}_observation`]: Yup.string().required(
         "Observation is required"
       ),
     });
 
-  // Create a schema for each anatomy item
-  const schemas = values.anatomy.reduce((acc, item) => {
-    return acc.concat(createSchemaForAnatomy(toCamelCase(item)));
-  }, []);
+  // Iterate over anatomy objects and generate schema
+  const schemas = Object.values(values.anatomy || {}).reduce((acc, { name }) => {
+    return { ...acc, ...createSchemaForAnatomy(toCamelCase(name)).fields };
+  }, {});
 
-  // Combine all schemas into a single schema
-  return Yup.object().shape(
-    schemas.reduce(
-      (acc, schema) => ({
-        ...acc,
-        ...schema.fields,
-      }),
-      {}
-    )
-  );
+  // Return final Yup validation schema
+  return Yup.object().shape(schemas);
 };
 
 export const DiagnosisValidationSchema = (values) => {
-  const anatomySchema = values?.anatomy?.reduce((acc, item) => {
-    const fieldNamePrefix = `physicalInjuriesDiagnosis_${toCamelCase(item)}_`;
+  const anatomySchema = Object.keys(values?.anatomy || {}).reduce((acc, item) => {
+    const fieldNamePrefix = `physicalInjuriesDiagnosis_${toCamelCase(values.anatomy[item].name)}_`;
     const injuryName = `${fieldNamePrefix}injury`;
     const injuryOtherName = `${fieldNamePrefix}otherInjury`;
     const mechanismName = `${fieldNamePrefix}injuryMechanism`;
-    const traumaName = `${fieldNamePrefix}trauma`;
 
     acc[injuryName] = Yup.string().required("Please select an injury");
 
     acc[mechanismName] = Yup.string().required(
       "Please select a mechanism of injury"
     );
-
-    acc[traumaName] = Yup.string().required("Please select a trauma");
 
     if (values[injuryName] === "Other") {
       acc[injuryOtherName] = Yup.string().required(
@@ -266,9 +251,7 @@ export const DiagnosisValidationSchema = (values) => {
 
   const psychologicalSchema = values?.psychologicalInjuries?.reduce(
     (acc, item) => {
-      const fieldNamePrefix = `psychologicalInjuriesDiagnosis_${toCamelCase(
-        item
-      )}_`;
+      const fieldNamePrefix = `psychologicalInjuriesDiagnosis_${toCamelCase(item)}_`;
       const mechanismName = `${fieldNamePrefix}injuryMechanism`;
 
       acc[mechanismName] = Yup.string().required(
@@ -288,11 +271,9 @@ export const DiagnosisValidationSchema = (values) => {
 
 export const OpinionValidationSchema = (values) => {
   const validationSchema = Yup.object().shape({
-    // Validating the anatomy-related fields dynamically based on the values array
-    ...values?.anatomy?.reduce((acc, item) => {
-      const injuryName = `physicalInjuriesOpinion_${toCamelCase(
-        item
-      )}_injuryOpinion`;
+    // Validating the anatomy-related fields dynamically based on the anatomy object
+    ...Object.keys(values?.anatomy || {}).reduce((acc, item) => {
+      const injuryName = `physicalInjuriesOpinion_${toCamelCase(values.anatomy[item].name)}_injuryOpinion`;
       acc[injuryName] = Yup.string()
         .required("Opinion about the physical injuries is required")
         .min(10, "Opinion must be at least 10 characters long");
@@ -301,9 +282,7 @@ export const OpinionValidationSchema = (values) => {
 
     // Validating the psychological injuries fields dynamically based on the values array
     ...values?.psychologicalInjuries?.reduce((acc, item) => {
-      const injuryName = `psychologicalInjuriesOpinion_${toCamelCase(
-        item
-      )}_injuryOpinion`;
+      const injuryName = `psychologicalInjuriesOpinion_${toCamelCase(item)}_injuryOpinion`;
       acc[injuryName] = Yup.string()
         .required("Opinion about the psychological injuries is required")
         .min(10, "Opinion must be at least 10 characters long");
@@ -316,6 +295,7 @@ export const OpinionValidationSchema = (values) => {
 
   return validationSchema;
 };
+
 
 export const PrognosisValidationSchema = (values) => {
   const ongoingPrognosisQuestions = [
@@ -372,24 +352,23 @@ export const PrognosisValidationSchema = (values) => {
     return schema;
   };
 
-  const physicalInjuriesSchema = values?.anatomy?.reduce((acc, item) => {
-    const statusKey = `physicalInjuriesPrognosis_${toCamelCase(
-      item
-    )}_resolvedOrOngoing`;
-    const status = values[statusKey];
-    const fieldPrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(
-      item
-    )}_`;
-    const questions =
-      status === "Resolved"
-        ? resolvedPrognosisQuestions
-        : ongoingPrognosisQuestions;
-    return {
-      ...acc,
-      ...createValidationSchemaForQuestions(fieldPrefix, questions),
-    };
-  }, {});
-
+  const physicalInjuriesSchema = Object.keys(values?.anatomy || {}).reduce(
+    (acc, key) => {
+      const anatomy = values.anatomy[key].name; // Assuming `name` is the key in the object
+      const statusKey = `physicalInjuriesPrognosis_${toCamelCase(anatomy)}_resolvedOrOngoing`;
+      const status = values[statusKey];
+      const fieldPrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(anatomy)}_`;
+      const questions =
+        status === "Resolved"
+          ? resolvedPrognosisQuestions
+          : ongoingPrognosisQuestions;
+      return {
+        ...acc,
+        ...createValidationSchemaForQuestions(fieldPrefix, questions),
+      };
+    },
+    {}
+  );
   const psychologicalInjuriesSchema = values?.psychologicalInjuries?.reduce(
     (acc, item) => {
       const statusKey = `psychologicalInjuriesPrognosis_${toCamelCase(

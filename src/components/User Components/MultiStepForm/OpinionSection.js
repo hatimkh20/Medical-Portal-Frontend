@@ -14,11 +14,11 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
     const openSections = [];
     console.log("Errors:", errors);
     
-    values?.anatomy?.forEach((item) => {
-      const injuryName = `physicalInjuriesOpinion_${toCamelCase(item)}_injuryOpinion`;
+    values?.anatomy?.forEach(({ name }) => {
+      const injuryName = `physicalInjuriesOpinion_${toCamelCase(name)}_injuryOpinion`;
       console.log("Checking anatomy item:", injuryName, "Error present:", !!errors[injuryName]);
       if (errors[injuryName]) {
-        openSections.push(item);
+        openSections.push(name);
       }
     });
 
@@ -124,9 +124,9 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
     <FormLayout title="SECTION: OPINION">
       <div>
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
-        {values?.anatomy?.map((item) => (
-          <Accordion key={item} title={item} isOpenInitially={!!openAccordions.includes(item)}>
-            {renderAnatomyDetails(`physicalInjuriesOpinion_${toCamelCase(item)}`)}
+        {values?.anatomy?.map(({ name, trauma }) => (
+          <Accordion key={name} title={`${name} - ${trauma}`} isOpenInitially={!!openAccordions.includes(name)}>
+            {renderAnatomyDetails(`physicalInjuriesOpinion_${toCamelCase(name)}`)}
           </Accordion>
         ))}
       </div>

@@ -15,6 +15,7 @@ const SelectableList = ({
   values,
   handleChange,
   handleBlur,
+  isAnatomy=false,
   ...props
 }) => {
   const [field, meta] = useField(props);
@@ -85,14 +86,15 @@ const SelectableList = ({
         </div>
       </div>
       <div>
-        <div className={styles.title}>Selected Options</div>
         <div className={styles.list}>
           {selectedItems?.length > 0 ? (
             selectedItems.map((item, index) => (
               <div key={index} className={styles.item}>
-                {item}
+                {isAnatomy
+                  ? `${item.name} - ${item.trauma || "No trauma specified"}`
+                  : item}
                 <span
-                  onClick={() => handleRemoveItem(item)}
+                  onClick={() => handleRemoveItem(isAnatomy ? item.name : item)}
                   className={styles.removeButton}
                 >
                   X

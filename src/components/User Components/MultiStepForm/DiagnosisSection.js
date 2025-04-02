@@ -18,21 +18,19 @@ import { toCamelCase } from "../Common/util";
 const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }) => {
   const [selectedInjuries, setSelectedInjuries] = useState({});
   const [selectedMechanisms, setSelectedMechanisms] = useState({});
-  const [selectedTraumas, setSelectedTraumas] = useState({});
 
   const [openAccordions, setOpenAccordions] = useState({});
 
   useEffect(() => {
     const updatedOpenAccordions = {};
     
-    values?.anatomy?.forEach((item) => {
-      const injuryName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_injury`;
-      const injuryOtherName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_otherInjury`;
-      const mechanismName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_injuryMechanism`;
-      const traumaName = `physicalInjuriesDiagnosis_${toCamelCase(item)}_trauma`;
+    values?.anatomy?.forEach(({name}) => {
+      const injuryName = `physicalInjuriesDiagnosis_${toCamelCase(name)}_injury`;
+      const injuryOtherName = `physicalInjuriesDiagnosis_${toCamelCase(name)}_otherInjury`;
+      const mechanismName = `physicalInjuriesDiagnosis_${toCamelCase(name)}_injuryMechanism`;
 
-      if (errors[injuryName] || errors[injuryOtherName] || errors[mechanismName] || errors[traumaName]) {
-        updatedOpenAccordions[item] = true;
+      if (errors[injuryName] || errors[injuryOtherName] || errors[mechanismName]) {
+        updatedOpenAccordions[name] = true;
       }
     });
 
@@ -63,19 +61,11 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
     handleChange({ target: { name, value } }); // Update Formik's values
   };
 
-  const handleTraumaChange = (name, value) => {
-    setSelectedTraumas({
-      ...selectedTraumas,
-      [name]: value,
-    });
-    handleChange({ target: { name, value } }); // Update Formik's values
-  };
-
-  const renderAnatomyDetails = (anatomy) => {
-    const injuryName = `${anatomy}_injury`;
-    const injuryOtherName = `${anatomy}_otherInjury`;
-    const mechanismName = `${anatomy}_injuryMechanism`;
-    const traumaName = `${anatomy}_trauma`;
+  const renderAnatomyDetails = (name) => {
+    console.log(`Diagnosis Section: ${name}`)
+    const injuryName = `${name}_injury`;
+    const injuryOtherName = `${name}_otherInjury`;
+    const mechanismName = `${name}_injuryMechanism`;
 
     // Determine which options to show based on selected injury type
     const mechanismOptions =
@@ -131,15 +121,6 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
             onBlur={handleBlur}
           />
 
-          <SelectField
-            label="Trauma it caused"
-            name={traumaName}
-            options={traumaOptions}
-            value={values[traumaName]}
-            values={values}
-            otherHandleChange={handleChange}
-            onBlur={handleBlur}
-          />
         </div>
       </div>
     );
@@ -176,9 +157,9 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
 
       <div>
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
-        {values?.anatomy?.map((item) => (
-          <Accordion key={item} title={item} isOpenInitially={!!openAccordions[item]}>
-            {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(item)}`)}
+        {values?.anatomy?.map(( { name, trauma }) => (
+          <Accordion key={name} title={`${name} - ${trauma}`} isOpenInitially={!!openAccordions[name]}>
+            {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(name)}`)}
           </Accordion>
         ))}
       </div>
