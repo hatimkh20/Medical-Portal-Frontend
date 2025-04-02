@@ -7,13 +7,20 @@ import "../Common/Common.css";
 import { symptomSeverity, timeAfterAccident } from "./Constants";
 import { toCamelCase } from "../Common/util";
 
-const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep, errors }) => {
+const SymptomSectionForm = ({
+  values,
+  handleChange,
+  prevStep,
+  nextStep,
+  errors,
+}) => {
   const [openAccordions, setOpenAccordions] = useState({});
 
   useEffect(() => {
     const newOpenAccordions = {};
-    values?.anatomy?.forEach((symptom) => {
-      const fieldNamePrefix = `symptom_${toCamelCase(symptom)}_`;
+    values?.anatomy?.forEach(({ name }) => {
+      // Extract name from anatomy object
+      const fieldNamePrefix = `symptom_${toCamelCase(name)}_`;
       const fieldsToCheck = [
         `${fieldNamePrefix}startTime`,
         `${fieldNamePrefix}severityOnset`,
@@ -22,7 +29,7 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep, errors }
       ];
 
       if (fieldsToCheck.some((field) => errors[field])) {
-        newOpenAccordions[symptom] = true;
+        newOpenAccordions[name] = true;
       }
     });
     setOpenAccordions(newOpenAccordions);
@@ -32,8 +39,9 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep, errors }
     handleChange(e); // Call Formik's handleChange
   };
 
-  const renderSymptomDetails = (symptom) => {
-    const fieldNamePrefix = `symptom_${toCamelCase(symptom)}_`;
+  const renderSymptomDetails = ({ name }) => {
+    // Accept anatomy object and extract name
+    const fieldNamePrefix = `symptom_${toCamelCase(name)}_`;
     return (
       <div>
         <div className="input-group">
@@ -79,16 +87,14 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep, errors }
       <p className="form-description">
         Add the onset and severity for the selected symptoms
       </p>
-      {values?.anatomy?.map((symptom) => {
-        const isOpenInitially = !!openAccordions[symptom];
+      {values?.anatomy?.map(({ name, trauma }) => {
+        // Extract name & trauma
+        const isOpenInitially = !!openAccordions[name];
+        const title = `${name} - ${trauma}`; // Combine name & trauma
 
         return (
-          <Accordion
-            key={symptom}
-            title={symptom}
-            isOpenInitially={isOpenInitially}
-          >
-            {renderSymptomDetails(symptom)}
+          <Accordion key={name} title={title} isOpenInitially={isOpenInitially}>
+            {renderSymptomDetails({ name })}
           </Accordion>
         );
       })}
@@ -96,9 +102,7 @@ const SymptomSectionForm = ({ values, handleChange, prevStep, nextStep, errors }
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        <Button type="submit">
-          Proceed to Next Step
-        </Button>
+        <Button type="submit">Proceed to Next Step</Button>
       </div>
     </FormLayout>
   );

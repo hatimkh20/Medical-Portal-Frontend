@@ -41,13 +41,13 @@ const MedicalReport = () => {
         data?.prognosisSection?.physicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "resolved"
         )
       )
       ?.filter((injury) =>
         data?.anatomySection?.anatomySelectedOptions
-          ?.map((option) => option?.toLowerCase())
+          ?.map(({ name }) => name?.toLowerCase())
           ?.includes(formatString(injury?.type)?.toLowerCase())
       ) || [];
 
@@ -57,47 +57,65 @@ const MedicalReport = () => {
         data?.prognosisSection?.physicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "ongoing"
         )
       )
       ?.filter((injury) =>
         data?.anatomySection?.anatomySelectedOptions
-          ?.map((option) => option?.toLowerCase())
+          ?.map(({ name }) => name?.toLowerCase())
           ?.includes(formatString(injury?.type)?.toLowerCase())
       ) || [];
 
   const resolvedPsychologicalDetails =
-    data?.prognosisDetailedSection?.psychologicalInjuries?.questions
-      ?.filter((injury) =>
+    data?.prognosisDetailedSection?.psychologicalInjuries?.questions?.filter(
+      (injury) =>
         data?.prognosisSection?.psychologicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "resolved"
         )
-      )
-      ?.filter((injury) =>
-        data?.anatomySection?.psychologicalInjuriesSelectedOptions
-          ?.map((option) => option?.toLowerCase())
-          ?.includes(formatString(injury?.type)?.toLowerCase())
-      ) || [];
+    ) || [];
 
   const ongoingPsychologicalDetails =
-    data?.prognosisDetailedSection?.psychologicalInjuries?.questions
-      ?.filter((injury) =>
+    data?.prognosisDetailedSection?.psychologicalInjuries?.questions?.filter(
+      (injury) =>
         data?.prognosisSection?.psychologicalInjuries?.questions?.find(
           (q) =>
             q?.question?.toLowerCase() ===
-            `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
+              `${injury?.type}_resolvedOrOngoing`.toLowerCase() &&
             q?.answer?.toLowerCase() === "ongoing"
         )
-      )
-      ?.filter((injury) =>
-        data?.anatomySection?.psychologicalInjuriesSelectedOptions
-          ?.map((option) => option?.toLowerCase())
-          ?.includes(formatString(injury?.type)?.toLowerCase())
-      ) || [];
+    ) || [];
+
+  const handleOtherValues = (obj, fieldName) => {
+    if (!obj || !fieldName) return null;
+
+    const fieldValue = obj[fieldName];
+
+    // Ensure case matches the actual property in the data
+    const otherFieldKey = `other${fieldName
+      .charAt(0)
+      .toUpperCase()}${fieldName.slice(1)}`;
+
+    console.log(`Processing field: ${fieldName}`);
+    console.log(`Original value:`, fieldValue);
+    console.log(`Checking for alternative field: ${otherFieldKey}`);
+    console.log(`Other field value (${otherFieldKey}):`, obj[otherFieldKey]);
+
+    if (
+      typeof fieldValue === "string" &&
+      fieldValue.toLowerCase() === "other" &&
+      obj[otherFieldKey]?.trim()
+    ) {
+      console.log(`Replacing "${fieldValue}" with "${obj[otherFieldKey]}"`);
+      return obj[otherFieldKey]; // Use the alternative value
+    }
+
+    console.log(`Returning original value:`, fieldValue);
+    return fieldValue;
+  };
 
   return (
     <div className="report-wrapper">
@@ -113,19 +131,19 @@ const MedicalReport = () => {
           details={[
             {
               label: "Full Name",
-              value: data?.claimantDetails?.fullName
+              value: data?.claimantDetails?.fullName,
             },
             {
               label: "Date of Birth",
               value: data?.claimantDetails?.dateOfBirth?.slice(0, 10),
             }, // Formatting date
-            { 
-              label: "Address", 
-              value: data?.claimantDetails?.address 
+            {
+              label: "Address",
+              value: data?.claimantDetails?.address,
             },
-            { 
-              label: "Occupation", 
-              value: data?.claimantDetails?.occupation 
+            {
+              label: "Occupation",
+              value: data?.claimantDetails?.occupation,
             },
             {
               label: "Type of ID Checked",
@@ -155,46 +173,45 @@ const MedicalReport = () => {
               label: "Photo ID Confirmed",
               value: data?.claimantDetails?.photoIdConfirmed,
             },
-            { 
-              label: "Accompanied By", 
-              value: data?.claimantDetails?.accompaniedBy 
+            {
+              label: "Accompanied By",
+              value: data?.claimantDetails?.accompaniedBy,
             },
-            { 
-              label: "Place Of Examination", 
-              value: data?.claimantDetails?.placeOfExamination 
+            {
+              label: "Place Of Examination",
+              value: data?.claimantDetails?.placeOfExamination,
             },
-            { 
-              label: "Duration Of Examination", 
-              value: data?.claimantDetails?.durationOfExamination 
+            {
+              label: "Duration Of Examination",
+              value: data?.claimantDetails?.durationOfExamination,
             },
-            { 
-              label: "Date Of Report", 
-              value: data?.claimantDetails?.dateOfReport?.slice(0, 10)
+            {
+              label: "Date Of Report",
+              value: data?.claimantDetails?.dateOfReport?.slice(0, 10),
             },
-            { 
-              label: "Instructing Party", 
-              value: data?.claimantDetails?.instructingParty 
+            {
+              label: "Instructing Party",
+              value: data?.claimantDetails?.instructingParty,
             },
-            { 
-              label: "Instructing Party Ref", 
-              value: data?.claimantDetails?.instructingPartyRef 
+            {
+              label: "Instructing Party Ref",
+              value: data?.claimantDetails?.instructingPartyRef,
             },
-            { 
-              label: "Agency", 
-              value: data?.claimantDetails?.agency 
+            {
+              label: "Agency",
+              value: data?.claimantDetails?.agency,
             },
-            { 
-              label: "Agency Ref", 
-              value: data?.claimantDetails?.agencyRef 
+            {
+              label: "Agency Ref",
+              value: data?.claimantDetails?.agencyRef,
             },
-            { 
-              label: "Medco Case Number", 
-              value: data?.claimantDetails?.medcoCaseNumber 
-            }
+            {
+              label: "Medco Case Number",
+              value: data?.claimantDetails?.medcoCaseNumber,
+            },
           ]}
         />
 
-        {/* Accident Details Section */}
         <DetailsSection
           title="Accident Details"
           layout="single-column"
@@ -202,14 +219,50 @@ const MedicalReport = () => {
             {
               label: "Claimant Reported",
               nextLine: true,
-              value: `On the ${data?.accidentSection?.timeOfAccident || "day"
-                }  of ${data?.claimantDetails?.dateOfAccident?.slice(
-                  0,
-                  10
-                )}, the claimant's vehicle was stationary at a junction when it was rear-ended by a third-party vehicle traveling at a ${data?.accidentSection?.speedOfImpact || "normal"
-                } typical of city road conditions. The impact resulted in significant damage to the claimant's car. 
-              Notably, the vehicle was equipped with headrests and an airbag; however, the airbag did not deploy upon impact. 
-              The incident is currently under investigation for further assessment.`,
+              value: (() => {
+                const accident = data?.accidentSection || {};
+                const claimant = data?.claimantDetails || {};
+
+                // Extract details from the array
+                const seatbeltWear = accident.details?.find(
+                  (d) => d.question === "vehicleQuestion_seatbeltWear"
+                )?.answer;
+                const airbagDeploy = accident.details?.find(
+                  (d) => d.question === "vehicleQuestion_airbagsDeploy"
+                )?.answer;
+
+                // Construct the paragraph dynamically
+                return `On the ${accident.timeOfAccident || "day"} of ${
+                  claimant.dateOfAccident?.slice(0, 10) || "the accident date"
+                }, 
+        the claimant's vehicle was stationary at a junction when it was rear-ended by a third-party vehicle traveling at ${
+          accident.speedOfImpact || "a normal speed"
+        }, typical of city road conditions. 
+        
+        The impact resulted in ${
+          accident.levelOfDamageVehicle || "some damage"
+        } to the claimant's car. ${
+                  accident.levelOfDamageVehicle
+                    ?.toLowerCase()
+                    .includes("extensive")
+                    ? "The severity of the damage suggests a significant impact."
+                    : ""
+                }
+
+        The vehicle was equipped with headrests and airbags. ${
+          seatbeltWear === "yes"
+            ? "The claimant was wearing a seatbelt at the time of the collision."
+            : seatbeltWear === "no"
+            ? "The claimant was not wearing a seatbelt, which may have increased the risk of injury."
+            : ""
+        } ${
+                  airbagDeploy === "yes"
+                    ? "The airbags deployed upon impact."
+                    : "However, the airbags did not deploy."
+                }
+
+        The incident is currently under investigation for further assessment.`;
+              })(),
             },
           ]}
         />
@@ -219,8 +272,8 @@ const MedicalReport = () => {
           title="Symptoms Details"
           rows={data?.symptomsSection?.questions
             ?.filter((symptom) =>
-              data?.anatomySection?.anatomySelectedOptions?.includes(
-                formatString(symptom?.type)
+              data?.anatomySection?.anatomySelectedOptions?.some(
+                (option) => formatString(symptom?.type) === option?.name
               )
             )
             ?.map((symptom) => ({
@@ -240,34 +293,51 @@ const MedicalReport = () => {
             {
               label: "Immediate Treatment",
               nextLine: true,
-              value: `${data?.treatmentSection?.immediateTreatment
-                  ?.serviceAttendedSceneOfAccident || "Someone"
-                }
-              attended at the scene of accident. 
-              ${data?.treatmentSection?.immediateTreatment
-                  ?.treatmentReceivedAtSceneOfAccident
-                }.
-              The claimant ${data?.treatmentSection?.immediateTreatment
-                  ?.locationWentAfterAccident
-                } after the accident and he went there by ${data?.treatmentSection?.immediateTreatment?.howGetThere
-                }.`,
+              value: (() => {
+                const treatment =
+                  data?.treatmentSection?.immediateTreatment || {};
+                return `${
+                  treatment.serviceAttendedSceneOfAccident || "Someone"
+                } attended at the scene of the accident. 
+        ${
+          treatment.treatmentReceivedAtSceneOfAccident ||
+          "No treatment details available"
+        }. 
+        The claimant ${
+          treatment.locationWentAfterAccident || "went elsewhere"
+        } after the accident and traveled there by ${
+                  treatment.howGetThere || "an unknown method"
+                }.`;
+              })(),
             },
             {
               label: "Later Treatment",
               nextLine: true,
-              value: `The treatment was received ${
-                data?.treatmentSection?.laterTreatment?.whereTreatmentReceived
-              }. 
-            The claimant seek treatment after the ${
-              data?.treatmentSection?.laterTreatment
-                ?.durationOfTreatmentReceivedAfterAccident
-            }
-             of accident and received the  treatment ${
-               data?.treatmentSection?.laterTreatment?.whatTreatmentReceived
-             }. 
-            ${
-              data?.treatmentSection?.laterTreatment?.whatImagingOrScansDone
-            }.`,
+              value: (() => {
+                const treatment = data?.treatmentSection?.laterTreatment || {};
+
+                // Handle "Other" cases
+                const whereTreatment = handleOtherValues(
+                  treatment,
+                  "whereTreatmentReceived"
+                );
+                const whatTreatment = handleOtherValues(
+                  treatment,
+                  "whatTreatmentReceived"
+                );
+                const imagingScans = handleOtherValues(
+                  treatment,
+                  "whatImagingOrScansDone"
+                );
+
+                return `The treatment was received ${whereTreatment}. 
+        The claimant sought treatment ${
+          treatment.durationOfTreatmentReceivedAfterAccident ||
+          "after some time"
+        } 
+        following the accident and received treatment ${whatTreatment}. 
+        ${imagingScans || "No imaging or scans were conducted."}`;
+              })(),
             },
           ]}
         />
@@ -278,21 +348,21 @@ const MedicalReport = () => {
           layout="single-column"
           details={[
             {
-              label: "Studying where",
+              label: "Place of Study/Employment at the Time of the Accident",
               value: data?.employmentEducationSection?.studyingWhere,
             },
             {
-              label: "Duration Taken Off From School After Accident",
+              label: "Duration Away from School/Work After the Accident",
               value:
                 data?.employmentEducationSection
                   ?.durationTakenOffFromSchoolAfterAccident,
             },
             {
-              label: "Hours Gave To Education",
+              label: "Work/Study Hours",
               value: data?.employmentEducationSection?.hoursGaveToEducation,
             },
             {
-              label: "Phased Return to School Management",
+              label: "Return to Work/School Management",
               value:
                 data?.employmentEducationSection
                   ?.phasedReturnToSchoolManagement,
@@ -335,25 +405,38 @@ const MedicalReport = () => {
           details={[
             {
               label: "Physical Appearance",
-              value: data?.generalObservationSection?.physicalAppearance,
+              value: handleOtherValues(
+                data?.generalObservationSection,
+                "physicalAppearance"
+              ),
             },
             {
               label: "Presence of Bruises, Scars, Marks",
-              value:
-                data?.generalObservationSection?.presenceOfBruisesScarsMarks,
+              value: handleOtherValues(
+                data?.generalObservationSection,
+                "presenceOfBruisesScarsMarks"
+              ),
             },
             {
               label: "Holding Intelligent Conversation",
-              value:
-                data?.generalObservationSection?.holdingIntelligentConversation,
+              value: handleOtherValues(
+                data?.generalObservationSection,
+                "holdingIntelligentConversation"
+              ),
             },
             {
               label: "Eye Contact and Rapport",
-              value: data?.generalObservationSection?.goodEyeContact,
+              value: handleOtherValues(
+                data?.generalObservationSection,
+                "goodEyeContact"
+              ),
             },
             {
               label: "Mental State",
-              value: data?.generalObservationSection?.mentalState,
+              value: handleOtherValues(
+                data?.generalObservationSection,
+                "mentalState"
+              ),
             },
           ]}
         />
@@ -363,15 +446,18 @@ const MedicalReport = () => {
           title="PHYSICAL EXAMINATION"
           rows={data?.physicalExaminationSection?.questions
             ?.filter((injury) =>
-              data?.anatomySection?.anatomySelectedOptions?.includes(
-                formatString(injury?.type)
+              data?.anatomySection?.anatomySelectedOptions?.some(
+                (option) => formatString(injury?.type) === option?.name
               )
             )
             ?.map((injury) => ({
               Anatomy: formatString(injury?.type),
-              "Observations on Palpation": injury?.observationOfPalpation,
+              "Observations on Palpation": handleOtherValues(
+                injury,
+                "observationOfPalpation"
+              ),
               "Observations on flexion/ extension or abduction":
-                injury?.observationOnFlexios,
+                handleOtherValues(injury, "observationOnFlexios"),
             }))}
         />
 
@@ -380,15 +466,15 @@ const MedicalReport = () => {
           title="Diagnosis - Physical Injuries"
           rows={data?.diagnosisSection?.physicalInjuries?.questions
             ?.filter((injury) =>
-              data?.anatomySection?.anatomySelectedOptions?.includes(
-                formatString(injury?.type)
+              data?.anatomySection?.anatomySelectedOptions?.some(
+                (option) => formatString(injury?.type) === option?.name
               )
             )
             ?.map((injury) => ({
               Anatomy: formatString(injury?.type),
-              Injury: injury?.injury,
-              Mechanism: injury?.mechanismOfInjury,
-              Trauma: injury?.traumaItCaused,
+              Injury: handleOtherValues(injury, "injury"),
+              Mechanism: handleOtherValues(injury, "mechanismOfInjury"),
+              Trauma: handleOtherValues(injury, "traumaItCaused"),
             }))}
         />
 
@@ -398,7 +484,7 @@ const MedicalReport = () => {
           rows={data?.diagnosisSection?.psychologicalInjuries?.questions?.map(
             (injury) => ({
               Type: formatString(getTextBeforeUnderscore(injury?.type)),
-              Mechanism: injury?.mechanismOfInjury,
+              Mechanism: handleOtherValues(injury, "mechanismOfInjury"),
             })
           )}
         />
@@ -418,15 +504,19 @@ const MedicalReport = () => {
             }))}
         />
 
-        {/* Opinion - Physchological Injuries */}
+        {/* Opinion - Physical Injuries */}
         <TableSection
-          title="Opinion - Physchological Injuries"
-          rows={data?.opinionSection?.psychologicalInjuries?.questions?.map(
-            (detail) => ({
+          title="Opinion - Physical Injuries"
+          rows={data?.opinionSection?.physicalInjuries?.questions
+            ?.filter((injury) =>
+              data?.anatomySection?.anatomySelectedOptions?.some(
+                (option) => formatString(injury?.type) === option?.name
+              )
+            )
+            ?.map((detail) => ({
               Type: formatString(detail?.type),
               Opinion: detail?.opinion,
-            })
-          )}
+            }))}
         />
 
         {/* Opinion Section */}
@@ -441,7 +531,7 @@ const MedicalReport = () => {
                 data?.opinionSection?.exceptionalCircumstances
                   ?.claimantClaimedAnyExceptionalCircumstance,
             },
-            
+
             {
               label: "Were there any exceptional circumstances in accident?",
               value:
@@ -482,8 +572,12 @@ const MedicalReport = () => {
           rows={resolvedPhysicalInjuryDetails?.map((detail) => ({
             Type: formatString(detail?.type),
             "Resolved Time":
-              detail?.whenDidItResolved || detail?.timeWillTakeToRecover,
-            "Long Term Sequelae": detail?.anyLongTermSequelae,
+              handleOtherValues(detail, "whenDidItResolved") ||
+              handleOtherValues(detail, "timeWillTakeToRecover"),
+            "Long Term Sequelae": handleOtherValues(
+              detail,
+              "anyLongTermSequelae"
+            ),
           }))}
         />
 
@@ -493,39 +587,67 @@ const MedicalReport = () => {
           mergedHeader="Ongoing"
           rows={ongoingPhysicalInjuryDetails?.map((detail) => ({
             Type: formatString(detail?.type),
-            "Estimated Time to Recover": detail?.timeWillTakeToRecover,
-            "Severity of Disability": detail?.severeDisability,
-            Specialist: detail?.specialist,
-            Recommendation: detail?.otherRecommendation,
-            "Long Term Sequelae": detail?.anyLongTermSequelae,
-            "Treatment and Rehabilitation": detail?.treatmentAndRehabiliation,
+            "Estimated Time to Recover": handleOtherValues(
+              detail,
+              "timeWillTakeToRecover"
+            ),
+            "Severity of Disability": handleOtherValues(
+              detail,
+              "severeDisability"
+            ),
+            Specialist: handleOtherValues(detail, "specialist"),
+            Recommendation: handleOtherValues(detail, "otherRecommendation"),
+            "Long Term Sequelae": handleOtherValues(
+              detail,
+              "anyLongTermSequelae"
+            ),
+            "Treatment and Rehabilitation": handleOtherValues(
+              detail,
+              "treatmentAndRehabiliation"
+            ),
           }))}
         />
 
         {/* Prognosis Details - Resolved */}
         <TableSection
-          title="Prognosis - Pyschological Injuries"
+          title="Prognosis - Psychological Injuries"
           mergedHeader="Resolved"
           rows={resolvedPsychologicalDetails?.map((detail) => ({
             Type: formatString(detail?.type),
             "Resolved Time":
-              detail?.whenDidItResolved || detail?.timeWillTakeToRecover,
-            "Long Term Sequelae": detail?.anyLongTermSequelae,
+              handleOtherValues(detail, "whenDidItResolved") ||
+              handleOtherValues(detail, "timeWillTakeToRecover"),
+            "Long Term Sequelae": handleOtherValues(
+              detail,
+              "anyLongTermSequelae"
+            ),
           }))}
         />
 
         {/* Prognosis Details - Ongoing */}
         <TableSection
-          title="Prognosis - Pyschological Injuries"
+          title="Prognosis - Psychological Injuries"
           mergedHeader="Ongoing"
           rows={ongoingPsychologicalDetails?.map((detail) => ({
             Type: formatString(detail?.type),
-            "Estimated Time to Recover": detail?.timeWillTakeToRecover,
-            "Severity of Disability": detail?.severeDisability,
-            Specialist: detail?.specialist,
-            Recommendation: detail?.otherRecommendation,
-            "Long Term Sequelae": detail?.anyLongTermSequelae,
-            "Treatment and Rehabilitation": detail?.treatmentAndRehabiliation,
+            "Estimated Time to Recover": handleOtherValues(
+              detail,
+              "timeWillTakeToRecover"
+            ),
+            "Severity of Disability": handleOtherValues(
+              detail,
+              "severeDisability"
+            ),
+            Specialist: handleOtherValues(detail, "specialist"),
+            Recommendation: handleOtherValues(detail, "otherRecommendation"),
+            "Long Term Sequelae": handleOtherValues(
+              detail,
+              "anyLongTermSequelae"
+            ),
+            "Treatment and Rehabilitation": handleOtherValues(
+              detail,
+              "treatmentAndRehabiliation"
+            ),
           }))}
         />
 

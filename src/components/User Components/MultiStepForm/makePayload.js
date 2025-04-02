@@ -218,7 +218,7 @@ const makePayload = (step, formData, reportId) => {
                             questions: physicalInjuriesDiagnosisQuestions?.map(injury => ({
                                 type: injury.type,
                                 injury: injury.injury,
-                                otherInjury: injury.otherInJury,
+                                otherInjury: injury.otherInjury,
                                 mechanismOfInjury: injury.injuryMechanism,
                                 otherMechanismOfInjury: injury.otherInjuryMechanism,
                                 traumaItCaused: injury.trauma,

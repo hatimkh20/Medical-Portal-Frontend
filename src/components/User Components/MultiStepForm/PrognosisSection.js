@@ -17,16 +17,16 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep, errors }
   useEffect(() => {
     const openSections = [];
     
-    values?.anatomy?.forEach((item) => {
-      const fieldNamePrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
-      const statusKey = `physicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
+    values?.anatomy?.forEach(({name}) => {
+      const fieldNamePrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(name)}`;
+      const statusKey = `physicalInjuriesPrognosis_${toCamelCase(name)}_resolvedOrOngoing`;
 
       const questions = values[statusKey] === 'Resolved' ? resolvedPrognosisQuestions : ongoingPrognosisQuestions;
 
       questions.forEach((question) => {
         const fieldName = `${fieldNamePrefix}_${toCamelCase(question.name)}`;
         if (errors[fieldName]) {
-          openSections.push(item);
+          openSections.push(name);
         }
       });
     });
@@ -202,9 +202,10 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep, errors }
       <div>
         <h4 className="form-sub-heading">Physical Injuries</h4>
         {values?.anatomy?.map((item) => {
-          let itemKey = `physicalInjuriesPrognosis_${toCamelCase(item)}_resolvedOrOngoing`;
-          let fieldNamePrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(item)}`;
-          return (<Accordion key={item} title={getAccordionTitle(item, itemKey)} isOpenInitially={!!openAccordions.includes(item)}>
+          let itemKey = `physicalInjuriesPrognosis_${toCamelCase(item.name)}_resolvedOrOngoing`;
+          let fieldNamePrefix = `physicalInjuriesDetailedPrognosis_${toCamelCase(item.name)}`;
+          let title = `${item.name} - ${item.trauma}`
+          return (<Accordion key={item.name} title={getAccordionTitle(title, itemKey)} isOpenInitially={!!openAccordions.includes(item.name)}>
             {renderQuestions(itemKey, fieldNamePrefix)}
           </Accordion>)
         })}

@@ -35,10 +35,10 @@ const PrognosisList = ({ values, handleChange, handleBlur, prevStep }) => {
     <FormLayout title="SECTION: PROGNOSIS">
       <div>
         <h4 className="form-sub-heading">Physical Injuries</h4>
-        {values.anatomy.map((anatomy) => (
-          <div key={anatomy} className="prognosis">
-            <label className="prognosis-label">{anatomy}</label>
-            {renderRadioButtons(`physicalInjuriesPrognosis_${toCamelCase(anatomy)}`)}
+        {values.anatomy.map(({name, trauma}) => (
+          <div key={name} className="prognosis">
+            <label className="prognosis-label">{name} - {trauma}</label>
+            {renderRadioButtons(`physicalInjuriesPrognosis_${toCamelCase(name)}`)}
           </div>
         ))}
       </div>

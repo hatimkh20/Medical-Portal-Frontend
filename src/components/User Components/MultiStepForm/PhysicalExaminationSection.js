@@ -14,29 +14,26 @@ const PhysicalExaminationSection = ({
   handleBlur,
   errors
 }) => {
-
   const [openAccordions, setOpenAccordions] = useState({});
 
   useEffect(() => {
     // Check for errors and open corresponding accordions
     const newOpenAccordions = {};
-    values.anatomy.forEach((item) => {
-      const anatomyName = `physicalExamination_${toCamelCase(item)}`;
+    Object.values(values.anatomy || {}).forEach(({ name }) => { // Extract `name` from object
+      const anatomyName = `physicalExamination_${toCamelCase(name)}`;
       const palpationName = `${anatomyName}_palpation`;
       const observationName = `${anatomyName}_observation`;
 
       if (errors[palpationName] || errors[observationName]) {
-        newOpenAccordions[item] = true;
+        newOpenAccordions[name] = true;
       }
     });
     setOpenAccordions(newOpenAccordions);
-    console.log(openAccordions, "OPEN ACCORD")
   }, [errors, values.anatomy]);
 
-
-  const renderAnatomyOnsets = (anatomy) => {
-    const palpationName = `${anatomy}_palpation`;
-    const observationName = `${anatomy}_observation`;
+  const renderAnatomyOnsets = (anatomyName) => {
+    const palpationName = `${anatomyName}_palpation`;
+    const observationName = `${anatomyName}_observation`;
 
     return (
       <div>
@@ -50,7 +47,6 @@ const PhysicalExaminationSection = ({
             otherHandleChange={handleChange}
             onBlur={handleBlur}
           />
-
           <SelectField
             label="Observations on flexion/extension or abduction"
             name={observationName}
@@ -71,11 +67,14 @@ const PhysicalExaminationSection = ({
         Now, you have to add the onset and severity of the selected physical
         examination
       </p>
-      {values?.anatomy?.map((item) => (
-        <Accordion key={item} title={item} isOpenInitially={!!openAccordions[item]}>
-          {renderAnatomyOnsets(`physicalExamination_${toCamelCase(item)}`)}
-        </Accordion>
-      ))}
+      {Object.values(values?.anatomy || {}).map(({ name, trauma }) => {
+        const formattedName = `physicalExamination_${toCamelCase(name)}`;
+        return (
+          <Accordion key={name} title={`${name} - ${trauma || "No trauma specified"}`} isOpenInitially={!!openAccordions[name]}>
+            {renderAnatomyOnsets(formattedName)}
+          </Accordion>
+        );
+      })}
       <div className="button-group">
         <Button type="button" onClick={prevStep}>
           Previous Step

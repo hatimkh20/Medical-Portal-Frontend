@@ -88,6 +88,8 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
               value="Other"
               checked={values.presenceOfScars === "Other"}
               onChange={handleInputChange}
+              defaultValue="no"
+
             />
           </div>
         </div>
@@ -128,6 +130,8 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
               value="Other"
               checked={values.conversation === "Other"}
               onChange={handleInputChange}
+              defaultValue="yes"
+
             />
           </div>
         </div>
