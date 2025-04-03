@@ -40,8 +40,9 @@ const SymptomSectionForm = ({
   };
 
   const renderSymptomDetails = ({ name }) => {
-    // Accept anatomy object and extract name
     const fieldNamePrefix = `symptom_${toCamelCase(name)}_`;
+    const currentSeverity = values[`${fieldNamePrefix}currentSeverity`];
+  
     return (
       <div>
         <div className="input-group">
@@ -67,20 +68,23 @@ const SymptomSectionForm = ({
             name={`${fieldNamePrefix}currentSeverity`}
             options={symptomSeverity}
             onChange={handleInputChange}
-            value={values[`${fieldNamePrefix}currentSeverity`]}
+            value={currentSeverity}
           />
-          <SelectField
-            label="If symptoms have resolved, how long ago was this?"
-            name={`${fieldNamePrefix}resolvedDuration`}
-            options={timeAfterAccident}
-            onChange={handleInputChange}
-            value={values[`${fieldNamePrefix}resolvedDuration`]}
-            values={values}
-          />
+          {currentSeverity?.toLowerCase() === "resolved" && (
+            <SelectField
+              label="If symptoms have resolved, how long ago was this?"
+              name={`${fieldNamePrefix}resolvedDuration`}
+              options={timeAfterAccident}
+              onChange={handleInputChange}
+              value={values[`${fieldNamePrefix}resolvedDuration`]}
+              values={values}
+            />
+          )}
         </div>
       </div>
     );
   };
+  
 
   return (
     <FormLayout title="SECTION: SYMPTOMS">
