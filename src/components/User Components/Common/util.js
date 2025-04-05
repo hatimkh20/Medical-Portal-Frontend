@@ -39,7 +39,7 @@ export const otherOrValue = (options, value) => {
 }
 
 export const isPluralFrequencySelected = (value) => {
-  return value === "months" || value ===  "weeks" || value === "days";
+  return value === "day(s)" || value ===  "week(s)" || value === "month(s)";
 }
 
 export const formatDate = (dateString) => {

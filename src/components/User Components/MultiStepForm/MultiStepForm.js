@@ -320,11 +320,27 @@ const MultiStepForm = ({ steps }) => {
     return formData;
 };
 
-const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFetch(id ? `/api/report/specific/${id}`: null, null, mapResponseToFormData, defaultFormData);
+const {
+  data: response,
+  loading: loadingOnSave,
+  error: errorOnSave,
+  postRequest: saveForm,
+} = usePost("/api/report", {
+  headers: { "Content-Type": "application/json" },
+});
 
-  const { data: response, loading: loadingOnSave, error: errorOnSave, postRequest: saveForm } = usePost('/api/report', {
-    headers: { 'Content-Type': 'application/json' },
-  });
+const reportId = id ?? response?.data?._id;
+
+const {
+  data: formData,
+  loading: loadingOnGetForm,
+  error: errorOnGetForm,
+} = useFetch(
+  id ? `/api/report/specific/${reportId}` : null,
+  null,
+  mapResponseToFormData,
+  defaultFormData
+);
 
   const [prevValues, setPrevValues] = useState({});
 
@@ -340,7 +356,7 @@ const {data: formData, loading: loadingOnGetForm, error:errorOnGetForm} = useFet
       return setCurrentStep(currentStep + 1);
     };
 
-    navigate(`/report/${id}`);
+    navigate(`/report/${reportId}`);
     
   };
 
