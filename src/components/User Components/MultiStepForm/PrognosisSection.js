@@ -123,6 +123,13 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep, errors }
   const renderQuestionComponent = (question, anatomy) => {
     const fieldName = `${toCamelCase(anatomy)}_${toCamelCase(question.name)}`;
   
+    if (question.name === "specialist") {
+      const requireSpecialistFieldName = `${toCamelCase(anatomy)}_claimantRequireSpecialist`;
+      if (values[requireSpecialistFieldName] !== "Yes") {
+        return null;
+      }
+    }
+
     switch (question.component) {
       case "InputField":
         return (
