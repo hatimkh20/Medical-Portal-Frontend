@@ -47,7 +47,7 @@ const SymptomSectionForm = ({
       <div>
         <div className="input-group">
           <SelectField
-            label="When did the symptoms start?"
+            label="When was the onset of symptoms"
             name={`${fieldNamePrefix}startTime`}
             options={timeAfterAccident}
             onChange={handleInputChange}

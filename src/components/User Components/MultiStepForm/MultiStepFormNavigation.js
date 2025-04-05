@@ -113,10 +113,10 @@ const MultiStepFormNavigation = ({ currentStep, totalSteps, onStepChange }) => {
 
   const sectionLabels = {
     0: "Claimant Details",
-    1: "Accident Details",
-    2: "Accident Section",
-    3: "Anatomy Section",
-    4: "Symptoms Section",
+    1: "Vehicular Details",
+    2: "Accident Details",
+    3: "Anatomy",
+    4: "Symptoms",
     5: "Treatment Section",
     6: "Livehood Education Section",
     7: "Education Section",

@@ -109,7 +109,7 @@ const AccidentSectionForm = ({
         />
         <InputField
           name="accidentLocation"
-          label="Where did the accident happen?"
+          label="Where did the accident occur?"
           value={values.accidentLocation}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -126,7 +126,7 @@ const AccidentSectionForm = ({
         />
         <SelectField
           name="vehicleDamage"
-          label="What was the level of damage to the vehicle?"
+          label="What was the vehicular damage?"
           options={vehicleLevelDamage}
           value={values.vehicleDamage}
           onChange={handleChange}
@@ -137,8 +137,7 @@ const AccidentSectionForm = ({
       {isFourWheeledVehicle && (
         <>
           <p className="form-description">
-            Since the claimant was in a vehicle with four or more wheels, please
-            provide the following details:
+            Please provide the following details
           </p>
           {questionsFourWheels.map((question) => (
             <div key={question.name} className="radio-group-inline">
@@ -153,8 +152,7 @@ const AccidentSectionForm = ({
       {isTwoWheeledVehicle && (
         <>
           <p className="form-description">
-            Since the claimant was on a two-wheeled vehicle, please answer the
-            following:
+          Please provide the following details
           </p>
           {questionsTwoWheels.map((question) => (
             <div key={question.name} className="radio-group-inline">

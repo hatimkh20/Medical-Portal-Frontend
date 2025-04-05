@@ -16,7 +16,7 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldV
   }
 
   return (
-    <FormLayout title="ACCIDENT DETAILS">
+    <FormLayout title="Vehicular Details">
       <p className="form-description">
         Please select vehicle type, note that all questions will be according to that.
       </p>
@@ -33,7 +33,7 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldV
         >
           <InputField
             name="vehicleWheels"
-            label="Vehicle wheels, if you selected any other"
+            label="Enter number of wheels"
             value={values.vehicleWheels}
             onChange={handleChange}
             onBlur={handleBlur}

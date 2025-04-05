@@ -213,7 +213,7 @@ const MedicalReport = () => {
         />
 
         <DetailsSection
-          title="Accident Details"
+          title="Vehicular Details"
           layout="single-column"
           details={[
             {
