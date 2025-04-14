@@ -112,8 +112,8 @@ const MultiStepFormNavigation = ({ currentStep, totalSteps, onStepChange }) => {
   const hasIdInUrl = /^\/form\/[a-zA-Z0-9]+$/.test(path);
 
   const sectionLabels = {
-    0: "Claimant Details",
-    1: "Vehicular Details",
+    0: "Claimant Detail",
+    1: "Vehicular Detail",
     2: "Accident Details",
     3: "Anatomy",
     4: "Symptoms",

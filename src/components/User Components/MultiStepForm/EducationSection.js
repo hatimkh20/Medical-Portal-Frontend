@@ -12,13 +12,13 @@ const EducationSection = ({ values, handleChange, prevStep, nextStep }) => {
         <div className="input-group">
           <InputField
             name="currentEmployment"
-            label="Where were you studying/working at the time of the Accident?"
+            label="Where is your place of study or employment?"
             value={values.currentEmployment}
             onChange={handleChange}
           />
           <InputField
             name="hoursEmployment"
-            label="How many hours do you work or study?"
+            label="How many hours do you work or study add per week?"
             value={values.hoursEmployment}
             onChange={handleChange}
           />
@@ -26,13 +26,13 @@ const EducationSection = ({ values, handleChange, prevStep, nextStep }) => {
         <div className="input-group">
         <InputField
             name="durationTakenOffFromSchoolAfterAccident"
-            label="How long were you away from school/work after the accident"
+            label="How long were you away from school/work after the accident?"
             value={values.durationTakenOffFromSchoolAfterAccident}
             onChange={handleChange}
           />
           <InputField
             name="phasedReturnToSchoolManagement"
-            label="How was your return to work managed?"
+            label="How was your return to normal activities managed?"
             value={values.phasedReturnToSchoolManagement}
             onChange={handleChange}
           />
