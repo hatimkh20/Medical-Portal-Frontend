@@ -94,7 +94,7 @@ const AccidentSectionForm = ({
   );
 
   return (
-    <FormLayout title="SECTION: ACCIDENT">
+    <FormLayout title=" ACCIDENT">
       <p className="form-description">
         Please provide details about the accident.
       </p>

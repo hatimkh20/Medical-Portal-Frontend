@@ -48,7 +48,20 @@ export const ClaimantDetailsSchema = (values) => {
     durationOfExamination: Yup.string().required(
       "Duration Of Examination is required"
     ),
-    dateOfReport: Yup.string().required("Date Of Report is required"),
+    dateOfReport: Yup.string()
+    .required("Date Of Report is required")
+    .test(
+      "report-after-exam-and-accident",
+      "Date of Report must be on or after Date of Examination and Date of Accident",
+      function (value) {
+        const { dateOfExamination, dateOfAccident } = this.parent;
+        if (!value || !dateOfExamination || !dateOfAccident) return true;
+        const reportDate = Date.parse(value);
+        const examDate = Date.parse(dateOfExamination);
+        const accidentDate = Date.parse(dateOfAccident);
+        return reportDate >= examDate && reportDate >= accidentDate;
+      }
+    ),
     instructingParty: Yup.string().required("Instructing Party is required"),
     instructingPartyRef: Yup.string().required(
       "Instructing Party Ref is required"

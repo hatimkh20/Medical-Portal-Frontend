@@ -62,7 +62,7 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
   };
 
   const renderAnatomyDetails = (name) => {
-    console.log(`Diagnosis Section: ${name}`)
+    console.log(`Diagnosis  ${name}`)
     const injuryName = `${name}_injury`;
     const injuryOtherName = `${name}_otherInjury`;
     const mechanismName = `${name}_injuryMechanism`;
@@ -149,7 +149,7 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
   };
 
   return (
-    <FormLayout title="SECTION: DIAGNOSIS">
+    <FormLayout title=" DIAGNOSIS">
       <p className="form-description">
         Please identify all the Whiplash and Non-whiplash related injuries and
         tell how it happened and what trauma claimant got

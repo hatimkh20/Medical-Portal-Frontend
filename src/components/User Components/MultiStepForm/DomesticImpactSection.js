@@ -61,7 +61,7 @@ const DomesticImpactSection = ({ values, prevStep, nextStep, errors }) => {
   );
 
   return (
-    <FormLayout title="SECTION: DOMESTIC IMPACT">
+    <FormLayout title=" DOMESTIC IMPACT">
       <p className="form-description">
         Add severity of injury to each aspect of domestic impact.
       </p>

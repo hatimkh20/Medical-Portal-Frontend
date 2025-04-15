@@ -7,7 +7,7 @@ import { attendanceOptions, imagingOptions, postAccidentLocations, prescriptionO
 
 const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
-    <FormLayout title="SECTION: TREATMENT">
+    <FormLayout title=" TREATMENT">
       <div>
         <h4 className="form-sub-heading">IMMEDIATE TREATMENT</h4>
 

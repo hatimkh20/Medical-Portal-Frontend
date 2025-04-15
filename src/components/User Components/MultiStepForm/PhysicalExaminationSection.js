@@ -62,7 +62,7 @@ const PhysicalExaminationSection = ({
   };
 
   return (
-    <FormLayout title="SECTION: PHYSICAL EXAMINATION">
+    <FormLayout title=" PHYSICAL EXAMINATION">
       <p className="form-description">
         Now, you have to add the onset and severity of the selected physical
         examination

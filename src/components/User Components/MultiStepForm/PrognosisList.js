@@ -32,7 +32,7 @@ const PrognosisList = ({ values, handleChange, handleBlur, prevStep }) => {
   };
 
   return (
-    <FormLayout title="SECTION: PROGNOSIS">
+    <FormLayout title=" PROGNOSIS">
       <div>
         <h4 className="form-sub-heading">Physical Injuries</h4>
         {values.anatomy.map(({name, trauma}) => (

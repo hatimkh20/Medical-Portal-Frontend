@@ -87,7 +87,7 @@ const SymptomSectionForm = ({
   
 
   return (
-    <FormLayout title="SECTION: SYMPTOMS">
+    <FormLayout title=" SYMPTOMS">
       <p className="form-description">
         Add the onset and severity for the selected symptoms
       </p>

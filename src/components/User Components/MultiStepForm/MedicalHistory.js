@@ -33,7 +33,7 @@ const MedicalHistory = ({ values, setFieldValue, handleChange, handleBlur, prevS
   }, [])
 
   return (
-    <FormLayout title="SECTION: RELEVANT MEDICAL HISTORY">
+    <FormLayout title=" RELEVANT MEDICAL HISTORY">
       <div className="form-group">
         <TextAreaField
           name="pastMedicalInjuries"
@@ -45,7 +45,7 @@ const MedicalHistory = ({ values, setFieldValue, handleChange, handleBlur, prevS
         />
       </div>
       <div>
-      <h2>SECTION: MEDICAL NOTES REVIEWED</h2>
+      <h2> MEDICAL NOTES REVIEWED</h2>
       {values?.medicalNotes?.map((note, index) => (
         <div key={index} className="note-review-group input-group">
           <InputField

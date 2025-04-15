@@ -49,7 +49,7 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
   };
 
   return (
-    <FormLayout title="SECTION: ANATOMY">
+    <FormLayout title=" ANATOMY">
       <p className="form-description">Please select affected anatomies.</p>
       <div className="anatomy-container">
         <SelectableList

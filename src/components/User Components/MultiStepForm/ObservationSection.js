@@ -17,7 +17,7 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
   };
 
   return (
-    <FormLayout title="SECTION: GENERAL OBSERVATIONS">
+    <FormLayout title=" GENERAL OBSERVATIONS">
       <p className="form-description">
         Please provide details about the general observations.
       </p>

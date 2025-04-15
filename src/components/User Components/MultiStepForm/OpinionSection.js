@@ -121,7 +121,7 @@ const OpinionSection = ({ values, prevStep, handleChange, errors, handleBlur }) 
   };
 
   return (
-    <FormLayout title="SECTION: OPINION">
+    <FormLayout title=" OPINION">
       <div>
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
         {values?.anatomy?.map(({ name, trauma }) => (

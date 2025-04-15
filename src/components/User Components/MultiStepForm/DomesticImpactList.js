@@ -26,7 +26,7 @@ const DomesticImpactList = ({ values, handleChange, handleBlur, prevStep }) => {
     });
   };
   return (
-    <FormLayout title="SECTION: DOMESTIC IMPACT">
+    <FormLayout title=" DOMESTIC IMPACT">
       <SelectableList
         title="Activities of Daily Living"
         name="domesticLifeActivities"

@@ -7,7 +7,7 @@ import InputField from "../Common/InputField";
 const EducationSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
     
-    <FormLayout title="SECTION: EMPLOYMENT / EDUCATION">
+    <FormLayout title=" EMPLOYMENT / EDUCATION">
       <div>
         <div className="input-group">
           <InputField
