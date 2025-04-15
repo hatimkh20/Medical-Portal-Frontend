@@ -126,7 +126,7 @@ const MedicalReport = () => {
 
         {/* Claimant's Details Section */}
         <DetailsSection
-          title="Claimant's Details"
+          title="Claimant Detail"
           layout="two-rows"
           details={[
             {
@@ -213,7 +213,7 @@ const MedicalReport = () => {
         />
 
         <DetailsSection
-          title="Vehicular Details"
+          title="Vehicular Detail"
           layout="single-column"
           details={[
             {

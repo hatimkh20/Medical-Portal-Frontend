@@ -16,7 +16,7 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldV
   }
 
   return (
-    <FormLayout title="Vehicular Details">
+    <FormLayout title="Vehicular Detail">
       <p className="form-description">
         Please select vehicle type, note that all questions will be according to that.
       </p>
@@ -45,7 +45,7 @@ const AccidentDetails = ({ values, handleChange, handleBlur, prevStep, setFieldV
         <div className="input-group">
           <InputField
             name="otherVehicleType"
-            label="Other vehicle type, if you selected any other"
+            label="Enter Vehicle Type, if you selected any other"
             value={values.otherVehicleType}
             required={true}
             onChange={handleChange}
