@@ -32,8 +32,8 @@ const ClaimantDetails = ({ values, handleChange, handleBlur, handleSubmit }) => 
   }, [values.dateOfBirth, values.dateOfAccident]);
 
   return (
-    <FormLayout title="CLAIMANT'S DETAIL">
-      <p className="form-description">Please provide claimant's personal details</p>
+    <FormLayout title="CLAIMANT DETAIL">
+      <p className="form-description">Please provide claimant personal details</p>
       <div className="input-group">
         <InputField
           name="fullName"

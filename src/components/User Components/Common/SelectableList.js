@@ -57,7 +57,7 @@ const SelectableList = ({
           <div className={props.children && "input-group"}>
             <InputField
               name={`other${titleCase(field.name)}`}
-              label={`Other ${title}, if you selected any other`}
+              label={`Enter ${title}, if you selected any other`}
               value={values && values[`other${titleCase(field.name)}`]}
               required={true}
               onChange={field.onChange}
@@ -69,7 +69,7 @@ const SelectableList = ({
         {/* Show detail input only for Anatomy */}
         {title === "Anatomy" && selectedOption && (
           <SelectField
-            label="Trauma it caused"
+            label="Trauma"
             name={`${selectedOption}_trauma`}
             options={traumaOptions}
             value={values[`${selectedOption}_trauma`] || ""}

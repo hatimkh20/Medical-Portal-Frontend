@@ -107,7 +107,7 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
 
       <div className="input-group">
         <div className="input-form-group">
-          <label>Holding intellegent / coherent conversation</label>
+          <label>Holding intelligent / coherent conversation</label>
           <div className="radio-container" style={{ width: "100%" }}>
             <RadioButton
               name="conversation"
