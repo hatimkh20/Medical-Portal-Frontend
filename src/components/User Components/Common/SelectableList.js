@@ -91,7 +91,7 @@ const SelectableList = ({
             selectedItems.map((item, index) => (
               <div key={index} className={styles.item}>
                 {isAnatomy
-                  ? `${item.name} - ${item.trauma || "No trauma specified"}`
+                  ? `${item.name} - ${item.trauma}`
                   : item}
                 <span
                   onClick={() => handleRemoveItem(isAnatomy ? item.name : item)}

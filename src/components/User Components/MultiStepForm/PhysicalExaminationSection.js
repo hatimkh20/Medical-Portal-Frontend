@@ -70,7 +70,7 @@ const PhysicalExaminationSection = ({
       {Object.values(values?.anatomy || {}).map(({ name, trauma }) => {
         const formattedName = `physicalExamination_${toCamelCase(name)}`;
         return (
-          <Accordion key={name} title={`${name} - ${trauma || "No trauma specified"}`} isOpenInitially={!!openAccordions[name]}>
+          <Accordion key={name} title={`${name} - ${trauma}`} isOpenInitially={!!openAccordions[name]}>
             {renderAnatomyOnsets(formattedName)}
           </Accordion>
         );

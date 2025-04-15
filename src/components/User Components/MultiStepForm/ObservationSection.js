@@ -152,6 +152,7 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
           name="eyeContact"
           label="Good eye contact / Rapport"
           value={values.eyeContact}
+          defaultValue="The claimant made good eye contact and rapport"
           onChange={handleInputChange}
           onBlur={handleBlur}
           fullLine={true}
@@ -165,6 +166,7 @@ const ObservationSection = ({ values, handleChange, handleBlur, prevStep }) => {
           name="mentalState"
           label="Mental Health: Signs of Anxiety / Depression"
           value={values.mentalState}
+          defaultValue="The claimant showed no obvious sign of anxiety or depression"
           onChange={handleInputChange}
           onBlur={handleBlur}
           fullLine={true}

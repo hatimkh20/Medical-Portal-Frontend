@@ -95,9 +95,7 @@ export const AnatomySectionValidationSchema = (values) => {
       .min(1, "At least one anatomy must be selected")
       .required("Anatomy selection is required"),
 
-    psychologicalInjuries: Yup.array()
-      .min(1, "At least one psychological injury must be selected")
-      .required("Psychological Injury selection is required"),
+      psychologicalInjuries: Yup.array().optional(),
   });
 };
 
