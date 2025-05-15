@@ -47,7 +47,7 @@ const SelectField = ({ label, options = [], optionValues = [], fullLine, values,
         <div className={props.children && "input-group"}>
           <InputField
             name={otherFieldName}
-            label={`Enter ${label}, if you selected any other`}
+            label={`Enter ${label}?`}
             value={values && values[otherFieldName]}
             required={true}
             onChange={field.onChange}
