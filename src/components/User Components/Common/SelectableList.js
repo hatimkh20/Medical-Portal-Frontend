@@ -57,7 +57,7 @@ const SelectableList = ({
           <div className={props.children && "input-group"}>
             <InputField
               name={`other${titleCase(field.name)}`}
-              label={`Enter ${title}, if you selected any other`}
+              label={`Enter ${title}?`}
               value={values && values[`other${titleCase(field.name)}`]}
               required={true}
               onChange={field.onChange}

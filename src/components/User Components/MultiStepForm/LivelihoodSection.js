@@ -7,7 +7,7 @@ import { employmentStatusOptions } from "./Constants";
 
 const LivelihoodSection = ({ values, handleChange, prevStep, nextStep }) => {
   return (
-    <FormLayout title="IMPACT ON LIVELIHOOD / EDUCATION">
+    <FormLayout title="IMPACT ON EMPLOYMENT / EDUCATION">
       
       <div className="input-group">
         <SelectField

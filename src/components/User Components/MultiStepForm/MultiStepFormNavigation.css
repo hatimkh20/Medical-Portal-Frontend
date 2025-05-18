@@ -58,17 +58,18 @@
     /* border: 1px solid #ddd; */
     border-radius: 6px;
     /* background-color: #f9f9f9; */
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #ccc transparent;
+    /* scrollbar-width: thin; */
+    scrollbar-color: #224b5f;
   }
   
   /* Custom Scrollbar for Webkit Browsers (Chrome, Safari) */
   .step-buttons-container::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
   }
   
   .step-buttons-container::-webkit-scrollbar-thumb {
-    background: #aaa;
+    /* background: #aaa; */
+    background-color: #224b5f;
     border-radius: 3px;
   }
   
