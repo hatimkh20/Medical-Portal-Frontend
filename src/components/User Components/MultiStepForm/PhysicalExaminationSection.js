@@ -62,10 +62,9 @@ const PhysicalExaminationSection = ({
   };
 
   return (
-    <FormLayout title=" PHYSICAL EXAMINATION">
+    <FormLayout title="EXAMINATION">
       <p className="form-description">
-        Now, you have to add the onset and severity of the selected physical
-        examination
+        Add onset and severity of the selected Anatomy
       </p>
       {Object.values(values?.anatomy || {}).map(({ name, trauma }) => {
         const formattedName = `physicalExamination_${toCamelCase(name)}`;

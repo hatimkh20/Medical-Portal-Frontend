@@ -58,17 +58,18 @@
     /* border: 1px solid #ddd; */
     border-radius: 6px;
     /* background-color: #f9f9f9; */
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #ccc transparent;
+    /* scrollbar-width: thin; */
+    scrollbar-color: #224b5f;
   }
   
   /* Custom Scrollbar for Webkit Browsers (Chrome, Safari) */
   .step-buttons-container::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
   }
   
   .step-buttons-container::-webkit-scrollbar-thumb {
-    background: #aaa;
+    /* background: #aaa; */
+    background-color: #224b5f;
     border-radius: 3px;
   }
   
@@ -97,3 +98,47 @@
     font-weight: bold;
     transform: scale(1.05); /* Slight enlargement for better UX */
   }
+
+  /*  */
+      .slider-tooltip-notification {
+      /* position: fixed; */
+      /* bottom: 20px; */
+      /* right: 30px; */
+      width: 170px;
+      margin: auto;
+      margin-top: 25px;
+      background-color: #00364d;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0.95;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: fadeInUp 0.4s ease-out;
+      justify-content: center;
+    }
+
+    .slider-tooltip-notification::before {
+      content: "🖱️";
+      font-size: 16px;
+    }
+    .slider-tooltip-notification::after {
+      content: " ⬆️";
+      margin-left: 4px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 0.95;
+        transform: translateY(0);
+      }
+    }

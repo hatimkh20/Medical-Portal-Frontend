@@ -4,7 +4,7 @@
 // const MultiStepFormNavigation = ({ currentStep, totalSteps, onStepChange }) => {
 //   const visibleStepsSize = 3;
 //   const intitalVisibleSteps = [0, 1, 2];
-  
+
 //   const [visibleSteps, setVisibleSteps] = useState(intitalVisibleSteps); // Adjust visible range
 
 //   const handleNext = () => {
@@ -64,7 +64,7 @@
 //       <button className="nav-button" onClick={handlePrevious} disabled={visibleSteps[0] === 1}>
 //         &lt;
 //       </button>
-      
+
 //       {visibleSteps.map(step => (
 //         <button
 //           key={step}
@@ -78,7 +78,7 @@
 //       <button className="nav-button" onClick={handleNext} disabled={visibleSteps[visibleSteps.length - 1] === totalSteps}>
 //         &gt;
 //       </button>
-      
+
 //       <select className="nav-dropdown" onChange={handleJumpFromDropdown} value={currentStep}>
 //         {Array.from({ length: totalSteps+1 }, (_, i) => i).map(step => (
 //           <option key={step} value={step}>
@@ -92,14 +92,11 @@
 
 // export default MultiStepFormNavigation;
 
-
-
-
 // Bilal work
 
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import './MultiStepFormNavigation.css';
+import React from "react";
+import { useLocation } from "react-router-dom";
+import "./MultiStepFormNavigation.css";
 
 const MultiStepFormNavigation = ({ currentStep, totalSteps, onStepChange }) => {
   const location = useLocation();
@@ -114,48 +111,50 @@ const MultiStepFormNavigation = ({ currentStep, totalSteps, onStepChange }) => {
   const sectionLabels = {
     0: "Claimant Detail",
     1: "Vehicular Detail",
-    2: "Accident Details",
+    2: "Accident Detail",
     3: "Anatomy",
     4: "Symptoms",
     5: "Treatment ",
-    6: "Livehood Education ",
+    6: "Employment Education ",
     7: "Education ",
     8: "Domestic ",
     9: "Domestic Impact ",
     10: "Medical History ",
     11: "General Observation ",
-    12: "Physical Examination ",
+    12: "Examination ",
     13: "Diagnosis ",
     14: "Opinion ",
     15: "Prognosis ",
     16: "Prognosis Detailed ",
     17: "Statement Of Truth ",
-    18: "Expert Bibliography "
+    18: "Expert Bibliography ",
   };
 
   // Determine which steps to display
   let stepsToShow;
   if (isFormOnly && currentStep === 0) {
     stepsToShow = [0];
-  } 
-  else {
+  } else {
     stepsToShow = Array.from({ length: 19 }, (_, i) => i);
   }
 
   return (
-    <div className="multi-step-navigation">
-      <div className="step-buttons-container">
-        {stepsToShow.map(step => (
-          <button
-            key={step}
-            onClick={() => onStepChange(step)}
-            className={`step-button ${currentStep === step ? 'active' : ''}`}
-          >
-            {sectionLabels[step]}
-          </button>
-        ))}
+    <>
+      <div className="multi-step-navigation">
+        <div className="step-buttons-container">
+          {stepsToShow.map((step) => (
+            <button
+              key={step}
+              onClick={() => onStepChange(step)}
+              className={`step-button ${currentStep === step ? "active" : ""}`}
+            >
+              {sectionLabels[step]}
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
+      <div class="slider-tooltip-notification">Click and drag</div>
+    </>
   );
 };
 
