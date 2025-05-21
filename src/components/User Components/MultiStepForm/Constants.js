@@ -60,19 +60,94 @@ export const symptomSeverity = [
 ];
 
 export const anatomyList = [
-    "Other", "Concussion", "Head", "Forehead", "Nosebleed", "Headaches", "Nausea", "Vomiting", "Dizziness", "Light-Headedness",
-    "Vomiting and Nausea", "High Blood Pressure", "Blackout", "Loss of Conciousness", "Right Face", "Left Eye",
-    "Right Eye", "Eyes (Right and Left)", "Left Face", "Right Ear", "Left Ear", "Right and Left Ears", "Neck", "Left Neck",
-    "Right Neck", "Whole Back", "Upper Back", "Middle Back", "Lower Back", "Right and Left Shoulders", "Left Shoulder",
-    "Right Shoulder", "Right Arm", "Left Arm", "Right and Left Elbows", "Left Elbow", "Right Elbow", "Right Wrist",
-    "Left and Left Wrists", "Right Fingers", "Right Middle Finger", "Right Thumb", "Right Index Finger", "Left Fingers",
-    "Left Middle Finger", "Left Thumb", "Left Index finger", "Right Hand", "Left Hand", "Chest", "Right Ribs",
-    "Left Ribs", "Ribs (Left and Right)", "Torso", "Abdomen", "Hip", "Right Hip", "Left Hip", "Buttocks",
-    "Right Buttocks", "Left Buttocks", "Left Groin", "Right Groin", "Bilateral Groin", "Right Thigh", "Left Thigh",
-    "Right and Left Thighs", "Right Leg", "Left Leg", "Right and Left Legs", "Right Knee", "Left Knee",
-    "Right and Left Knees", "Right Shin", "Left Shin", "Right and Left Shin", "Right Ankle", "Left Ankle",
-    "Right and Left Ankles", "Right Toes", "Left toes", "Left Foot", "Right Foot", "Whole Body", "Radial Nerve",
-    "Collar Bone (Right)", "Collar Bone (Left)", "Collar Bone (Right & Left)"
+  "Other",
+  "Concussion",
+  "Head",
+  "Forehead",
+  "Nosebleed",
+  "Headaches",
+  "Nausea",
+  "Vomiting",
+  "Dizziness",
+  "Light Headedness",
+  "Vomiting and Nausea",
+  "High Blood Pressure",
+  "Blackout",
+  "Loss of Conciousness",
+  "Right Face",
+  "Left Eye",
+  "Right Eye",
+  "Eyes (Right and Left)",
+  "Left Face",
+  "Right Ear",
+  "Left Ear",
+  "Right and Left Ears",
+  "Neck",
+  "Left Neck",
+  "Right Neck",
+  "Whole Back",
+  "Upper Back",
+  "Middle Back",
+  "Lower Back",
+  "Right and Left Shoulders",
+  "Left Shoulder",
+  "Right Shoulder",
+  "Right Arm",
+  "Left Arm",
+  "Right and Left Elbows",
+  "Left Elbow",
+  "Right Elbow",
+  "Right Wrist",
+  "Left and Left Wrists",
+  "Right Fingers",
+  "Right Middle Finger",
+  "Right Thumb",
+  "Right Index Finger",
+  "Left Fingers",
+  "Left Middle Finger",
+  "Left Thumb",
+  "Left Index finger",
+  "Right Hand",
+  "Left Hand",
+  "Chest",
+  "Right Ribs",
+  "Left Ribs",
+  "Ribs (Left and Right)",
+  "Torso",
+  "Abdomen",
+  "Hip",
+  "Right Hip",
+  "Left Hip",
+  "Buttocks",
+  "Right Buttocks",
+  "Left Buttocks",
+  "Left Groin",
+  "Right Groin",
+  "Bilateral Groin",
+  "Right Thigh",
+  "Left Thigh",
+  "Right and Left Thighs",
+  "Right Leg",
+  "Left Leg",
+  "Right and Left Legs",
+  "Right Knee",
+  "Left Knee",
+  "Right and Left Knees",
+  "Right Shin",
+  "Left Shin",
+  "Right and Left Shin",
+  "Right Ankle",
+  "Left Ankle",
+  "Right and Left Ankles",
+  "Right Toes",
+  "Left toes",
+  "Left Foot",
+  "Right Foot",
+  "Whole Body",
+  "Radial Nerve",
+  "Collar Bone (Right)",
+  "Collar Bone (Left)",
+  "Collar Bone (Right & Left)",
 ];
 
 export const timeAfterAccident = [
@@ -80,7 +155,7 @@ export const timeAfterAccident = [
   "few minutes",
   "day(s)",
   "week(s)",
-  "month(s)"
+  "month(s)",
 ];
 
 export const postAccidentLocations = [
@@ -128,7 +203,7 @@ export const responseTeams = [
   "Police and Fire Service",
   "Police, Paramedics and Fire Service",
   "Police, Paramedics or Fire Service",
-  "None"
+  "None",
 ];
 
 export const observations = [
@@ -193,7 +268,13 @@ export const observations = [
   "tenderness of the moot of Foot.",
 ];
 
-export const palpations = ["Other","Mild", "Slight", "Moderate", "Significant", ];
+export const palpations = [
+  "Other",
+  "Mild",
+  "Slight",
+  "Moderate",
+  "Significant",
+];
 
 export const psychologicalInjuries = [
   "Other", // Added "Other" option
@@ -256,7 +337,7 @@ export const mechanismWhiplashOptions = [
   "Trauma sustained in the Shoulder(s) resulted from the forceful seatbelt restrain",
   "The injury/ injuries resulted from the forceful forward jolt, seatbelt restraint, and truncal rebound on braking/ impact.",
   "The shoulder pain resulted from the forceful sidewards jolt of the claimant smashing into the door and window on impact / braking.",
-  "The shoulder injury resulted from the forceful sidewards jolt of the claimant smashing into the door and window on impact / braking."
+  "The shoulder injury resulted from the forceful sidewards jolt of the claimant smashing into the door and window on impact / braking.",
 ];
 
 export const mechanismPsychologicalTraumaOptions = [
@@ -290,7 +371,7 @@ export const traumaOptions = [
   "weakness",
   "tinglings, pins and needles",
   "nausea",
-  "light-headedness",
+  "light headedness",
   "fatigue",
   "ringing and thumping",
   "heightened palpitations",
@@ -303,7 +384,7 @@ export const traumaOptions = [
   "cramps",
 ];
 
-export const timeOfAccident = ["morning", "afternoon", "evening", "night"]
+export const timeOfAccident = ["morning", "afternoon", "evening", "night"];
 
 export const attendanceOptions = [
   "Other",
@@ -330,7 +411,7 @@ export const imagingOptions = [
   "MRI was done",
   "MRI was done with soft tissue injury observed",
   "MRI was done with no bony injury observed",
-  "None"
+  "None",
 ];
 
 export const prescriptionOptions = [
@@ -373,7 +454,7 @@ export const presentSeverityOptions = [
   "Presently Resolved",
   "Presently severe",
   "Presently moderate",
-  "Presently mild"
+  "Presently mild",
 ];
 
 export const eyeContactOptions = [
@@ -426,7 +507,7 @@ export const specialistOptions = [
   "Radiologist",
   "Sports Medicine Specialist",
   "Vascular Surgeon",
-]; 
+];
 
 export const resolutionOptions = [
   "Other",
@@ -446,3 +527,130 @@ export const resolutionOptions = [
   "Impact, resolved 6 months after index accident",
   "Impact, resolved 12 months after index accident",
 ];
+export const injuryTypeByAnatomy = {
+  // Whiplash related
+  neck: "Whiplash",
+  "left neck": "Whiplash",
+  "right neck": "Whiplash",
+  "upper back": "Whiplash",
+  "whole back": "Whiplash",
+  "left shoulder": "Whiplash",
+  "right shoulder": "Whiplash",
+  "lower back": "Whiplash",
+
+  // Head & facial (mostly non-whiplash)
+  concussion: "Non-Whiplash",
+  head: "Non-Whiplash",
+  forehead: "Non-Whiplash",
+  nosebleed: "Non-Whiplash",
+  headaches: "Non-Whiplash",
+  nausea: "Non-Whiplash",
+  vomiting: "Non-Whiplash",
+  dizziness: "Non-Whiplash",
+  "light headedness": "Non-Whiplash",
+  "vomiting and nausea": "Non-Whiplash",
+  "high blood pressure": "Non-Whiplash",
+  blackout: "Non-Whiplash",
+  "loss of conciousness": "Non-Whiplash",
+
+  // Eyes & Ears
+  "right face": "Non-Whiplash",
+  "left eye": "Non-Whiplash",
+  "right eye": "Non-Whiplash",
+  "eyes (right and left)": "Non-Whiplash",
+  "left face": "Non-Whiplash",
+  "right ear": "Non-Whiplash",
+  "left ear": "Non-Whiplash",
+  "right and left ears": "Non-Whiplash",
+
+  // Back and torso
+  "middle back": "Non-Whiplash",
+
+  // Shoulders and Arms
+  "right and left shoulders": "Non-Whiplash",
+  "right arm": "Non-Whiplash",
+  "left arm": "Non-Whiplash",
+
+  // Elbows & Wrists
+  "right and left elbows": "Non-Whiplash",
+  "left elbow": "Non-Whiplash",
+  "right elbow": "Non-Whiplash",
+  "right wrist": "Non-Whiplash",
+  "left and left wrists": "Non-Whiplash",
+
+  // Fingers
+  "right fingers": "Non-Whiplash",
+  "right middle finger": "Non-Whiplash",
+  "right thumb": "Non-Whiplash",
+  "right index finger": "Non-Whiplash",
+  "left fingers": "Non-Whiplash",
+  "left middle finger": "Non-Whiplash",
+  "left thumb": "Non-Whiplash",
+  "left index finger": "Non-Whiplash",
+
+  // Hands
+  "right hand": "Non-Whiplash",
+  "left hand": "Non-Whiplash",
+
+  // Chest & Ribs
+  chest: "Non-Whiplash",
+  "right ribs": "Non-Whiplash",
+  "left ribs": "Non-Whiplash",
+  "ribs (left and right)": "Non-Whiplash",
+
+  // Torso
+  torso: "Non-Whiplash",
+  abdomen: "Non-Whiplash",
+
+  // Hips & Buttocks
+  hip: "Non-Whiplash",
+  "right hip": "Non-Whiplash",
+  "left hip": "Non-Whiplash",
+  buttocks: "Non-Whiplash",
+  "right buttocks": "Non-Whiplash",
+  "left buttocks": "Non-Whiplash",
+
+  // Groin
+  "left groin": "Non-Whiplash",
+  "right groin": "Non-Whiplash",
+  "bilateral groin": "Non-Whiplash",
+
+  // Thighs
+  "right thigh": "Non-Whiplash",
+  "left thigh": "Non-Whiplash",
+  "right and left thighs": "Non-Whiplash",
+
+  // Legs & Knees
+  "right leg": "Non-Whiplash",
+  "left leg": "Non-Whiplash",
+  "right and left legs": "Non-Whiplash",
+  "right knee": "Non-Whiplash",
+  "left knee": "Non-Whiplash",
+  "right and left knees": "Non-Whiplash",
+
+  // Shins & Ankles
+  "right shin": "Non-Whiplash",
+  "left shin": "Non-Whiplash",
+  "right and left shin": "Non-Whiplash",
+  "right ankle": "Non-Whiplash",
+  "left ankle": "Non-Whiplash",
+  "right and left ankles": "Non-Whiplash",
+
+  // Feet & Toes
+  "right toes": "Non-Whiplash",
+  "left toes": "Non-Whiplash",
+  "left foot": "Non-Whiplash",
+  "right foot": "Non-Whiplash",
+
+  // Whole body
+  "whole body": "Other",
+
+  // Nerves & bones
+  "radial nerve": "Non-Whiplash",
+  "collar bone (right)": "Non-Whiplash",
+  "collar bone (left)": "Non-Whiplash",
+  "collar bone (right & left)": "Non-Whiplash",
+
+  // Default fallback
+  other: "Other",
+};

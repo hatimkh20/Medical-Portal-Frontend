@@ -11,6 +11,7 @@ import {
   mechanismNonWhiplashOptions,
   observations,
   traumaOptions,
+  injuryTypeByAnatomy,
 } from "./Constants";
 import RadioButton from "../Common/RadioButton";
 import { toCamelCase } from "../Common/util";
@@ -18,13 +19,12 @@ import { toCamelCase } from "../Common/util";
 const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }) => {
   const [selectedInjuries, setSelectedInjuries] = useState({});
   const [selectedMechanisms, setSelectedMechanisms] = useState({});
-
   const [openAccordions, setOpenAccordions] = useState({});
 
   useEffect(() => {
     const updatedOpenAccordions = {};
-    
-    values?.anatomy?.forEach(({name}) => {
+
+    values?.anatomy?.forEach(({ name }) => {
       const injuryName = `physicalInjuriesDiagnosis_${toCamelCase(name)}_injury`;
       const injuryOtherName = `physicalInjuriesDiagnosis_${toCamelCase(name)}_otherInjury`;
       const mechanismName = `physicalInjuriesDiagnosis_${toCamelCase(name)}_injuryMechanism`;
@@ -45,12 +45,28 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
     setOpenAccordions(updatedOpenAccordions);
   }, [errors, values]);
 
+  // 👇 Pre-fill injury based on anatomy
+  useEffect(() => {
+    if (!values || !values.anatomy) return;
+
+    values.anatomy.forEach(({ name }) => {
+      const key = `physicalInjuriesDiagnosis_${toCamelCase(name)}_injury`;
+      if (!values[key]) {
+        debugger;
+        const defaultInjury = injuryTypeByAnatomy[name.toLowerCase()];
+        if (defaultInjury) {
+          handleChange({ target: { name: key, value: defaultInjury } });
+        }
+      }
+    });
+  }, [values.anatomy, handleChange]);
+
   const handleInjuryChange = (name, value) => {
     setSelectedInjuries({
       ...selectedInjuries,
       [name]: value,
     });
-    handleChange({ target: { name, value } }); // Update Formik's values
+    handleChange({ target: { name, value } });
   };
 
   const handleMechanismChange = (name, value) => {
@@ -58,16 +74,14 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
       ...selectedMechanisms,
       [name]: value,
     });
-    handleChange({ target: { name, value } }); // Update Formik's values
+    handleChange({ target: { name, value } });
   };
 
   const renderAnatomyDetails = (name) => {
-    console.log(`Diagnosis  ${name}`)
     const injuryName = `${name}_injury`;
     const injuryOtherName = `${name}_otherInjury`;
     const mechanismName = `${name}_injuryMechanism`;
 
-    // Determine which options to show based on selected injury type
     const mechanismOptions =
       values[injuryName] === "Whiplash"
         ? mechanismWhiplashOptions
@@ -114,18 +128,16 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
           <SelectField
             label="Mechanism of injury"
             name={mechanismName}
-            options={mechanismOptions} // Dynamic options
+            options={mechanismOptions}
             value={values[mechanismName]}
             values={values}
             otherHandleChange={handleChange}
             onBlur={handleBlur}
           />
-
         </div>
       </div>
     );
   };
-
 
   const renderPsychologicalInjuries = (psychologicalInjuries) => {
     const mechanismName = `${psychologicalInjuries}_injuryMechanism`;
@@ -157,7 +169,7 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
 
       <div>
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
-        {values?.anatomy?.map(( { name, trauma }) => (
+        {values?.anatomy?.map(({ name, trauma }) => (
           <Accordion key={name} title={`${name} - ${trauma}`} isOpenInitially={!!openAccordions[name]}>
             {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(name)}`)}
           </Accordion>
