@@ -7,14 +7,11 @@ import InputField from "../Common/InputField";
 import "../Common/Common.css";
 import {
   mechanismPsychologicalTraumaOptions,
-  mechanismWhiplashOptions,
-  mechanismNonWhiplashOptions,
-  observations,
-  traumaOptions,
   injuryTypeByAnatomy,
 } from "./Constants";
+import injuryFilteredOptions from "../../../assets/data/injuryPalpation.json";
 import RadioButton from "../Common/RadioButton";
-import { toCamelCase } from "../Common/util";
+import { toCamelCase, getFilteredOptions } from "../Common/util";
 
 const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }) => {
   const [selectedInjuries, setSelectedInjuries] = useState({});
@@ -77,15 +74,18 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
     handleChange({ target: { name, value } });
   };
 
-  const renderAnatomyDetails = (name) => {
+  const renderAnatomyDetails = (name, trauma) => {
     const injuryName = `${name}_injury`;
     const injuryOtherName = `${name}_otherInjury`;
     const mechanismName = `${name}_injuryMechanism`;
 
-    const mechanismOptions =
-      values[injuryName] === "Whiplash"
-        ? mechanismWhiplashOptions
-        : mechanismNonWhiplashOptions;
+    const filteredOptions = injuryFilteredOptions.filter(
+      (item) =>
+        item.associatedInjury?.toLowerCase().trim() ===
+        trauma?.toLowerCase().trim()
+    );
+
+    const mechanismOptions = getFilteredOptions(filteredOptions, "mechanismOfInjuryValue");
 
     return (
       <div>
@@ -171,7 +171,7 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
         {values?.anatomy?.map(({ name, trauma }) => (
           <Accordion key={name} title={`${name} - ${trauma}`} isOpenInitially={!!openAccordions[name]}>
-            {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(name)}`)}
+            {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(name)}`, trauma)}
           </Accordion>
         ))}
       </div>

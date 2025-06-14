@@ -1,0 +1,214 @@
+[
+  {
+    "value": "Headaches",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Migraine",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Concussion",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Dizziness",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Vertigo",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Nausea",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Memory Loss",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Loss of Conciousness",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Blackout",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Head bump/ injury / laceration",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Face injury",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Nosebleed",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Mouth Injury",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Ear Ache",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Tinnitus",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Eyes",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Jaw (TMJ) Dysfunction",
+    "anatomyName": "HEAD"
+  },
+  {
+    "value": "Neck Pain / Sprain /",
+    "anatomyName": "NECK"
+  },
+  {
+    "value": "Brachial Plexus Injury",
+    "anatomyName": "NECK"
+  },
+  {
+    "value": "Herniated Cervical Disc",
+    "anatomyName": "NECK"
+  },
+  {
+    "value": "Shoulder pain/ Injury/ Sprain",
+    "anatomyName": "Shoulder"
+  },
+  {
+    "value": "Clavicle (Collar Bone) Pain",
+    "anatomyName": "Shoulder"
+  },
+  {
+    "value": "Stenoclaviclar Joint sprain /misalignment",
+    "anatomyName": "Shoulder"
+  },
+  {
+    "value": "Clavicle (Collar Bone) dislocation / fracure",
+    "anatomyName": "Shoulder"
+  },
+  {
+    "value": "Arm pain",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Arm weakness",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Arm tingling / pins / needles",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Elbow",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Wrist pain",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Wrist fracture",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Hand",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Finger(s)",
+    "anatomyName": "Arm"
+  },
+  {
+    "value": "Chest pain",
+    "anatomyName": "Chest"
+  },
+  {
+    "value": "Chest bruising",
+    "anatomyName": "Chest"
+  },
+  {
+    "value": "Thoracic Spine Contusion",
+    "anatomyName": "Chest"
+  },
+  {
+    "value": "Rib pain / Fractures",
+    "anatomyName": "Chest"
+  },
+  {
+    "value": "Rib Bruising",
+    "anatomyName": "Chest"
+  },
+  {
+    "value": "Abdomen",
+    "anatomyName": "Chest"
+  },
+  {
+    "value": "Upper Back",
+    "anatomyName": "Back"
+  },
+  {
+    "value": "Middle Back",
+    "anatomyName": "Back"
+  },
+  {
+    "value": "Lower Back",
+    "anatomyName": "Back"
+  },
+  {
+    "value": "Coccydynia (Tailbone Injury)",
+    "anatomyName": "Back"
+  },
+  {
+    "value": "Lumbar Disc Herniation",
+    "anatomyName": "Back"
+  },
+  {
+    "value": "Buttock",
+    "anatomyName": "PELVIS"
+  },
+  {
+    "value": "Pelvis",
+    "anatomyName": "PELVIS"
+  },
+  {
+    "value": "Hips pain",
+    "anatomyName": "PELVIS"
+  },
+  {
+    "value": "Hip Fracture",
+    "anatomyName": "PELVIS"
+  },
+  {
+    "value": "Thigh(s) Bruising",
+    "anatomyName": "Leg"
+  },
+  {
+    "value": "Knee pain",
+    "anatomyName": "Leg"
+  },
+  {
+    "value": "Knee Meniscus Tear",
+    "anatomyName": "Leg"
+  },
+  {
+    "value": "Lower Leg pain",
+    "anatomyName": "Leg"
+  },
+  {
+    "value": "Ankle pain",
+    "anatomyName": "Leg"
+  },
+  {
+    "value": "Feet",
+    "anatomyName": "Leg"
+  }
+]

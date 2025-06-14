@@ -50,3 +50,10 @@ export const formatDate = (dateString) => {
 export const getDateWithoutTZ = (dateTime) => {
   return new Date(dateTime).toISOString().split('T')[0];
 }
+
+export const getFilteredOptions = (filteredOptions, key) => {
+  const valuesSet = new Set(
+    filteredOptions.map((item) => item[key]).filter((v) => v && v.trim())
+  );
+  return ["Other", ...Array.from(valuesSet)];
+};

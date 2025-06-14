@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./SelectableList.module.css";
 import InputField from "../Common/InputField";
 import { titleCase, isOtherSelected } from "./util";
 import { useField } from "formik";
-import { traumaOptions } from "../MultiStepForm/Constants";
+//import { traumaOptions } from "../MultiStepForm/Constants";
+import traumaOptions from "../../../assets/data/associatedInjuries.json";
 import SelectField from "./SelectField";
 
 const SelectableList = ({
@@ -34,6 +35,21 @@ const SelectableList = ({
     } else handleAddItem(selectedOption);
     setSelectedOption("");
   };
+
+  const filteredTraumaOptions = useMemo(() => {
+    if (!selectedOption) return [];
+
+    const filtered = traumaOptions
+      .filter(
+        (item) =>
+          item.anatomyName?.toLowerCase().trim() ===
+          selectedOption.toLowerCase().trim()
+      )
+      .map((item) => item.value);
+
+    // Ensure "Other" is included once
+    return filtered.includes("Other") ? filtered : ["Other" ,...filtered];
+  }, [selectedOption]);
 
   return (
     <div className={styles.container}>
@@ -69,9 +85,9 @@ const SelectableList = ({
         {/* Show detail input only for Anatomy */}
         {title === "Anatomy" && selectedOption && (
           <SelectField
-            label="Trauma"
+            label="Associated Injury/Trauma"
             name={`${selectedOption}_trauma`}
-            options={traumaOptions}
+            options={filteredTraumaOptions}
             value={values[`${selectedOption}_trauma`] || ""}
             values={values}
             otherHandleChange={handleChange}

@@ -1,0 +1,848 @@
+[
+    {
+        "associatedInjury": "Headaches",
+        "palpationValue": "pain referral to the temple/ eyes / face",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Tension at the back of the neck/ shoulder"
+    },
+    {
+        "associatedInjury": "Headaches",
+        "palpationValue": "intermettent and pounding headaches",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Head striking the steering wheel"
+    },
+    {
+        "associatedInjury": "Migraine",
+        "palpationValue": "complaint of tightness and pressure around the head",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Hitting the head on the back of the vehicle seat"
+    },
+    {
+        "associatedInjury": "Migraine",
+        "palpationValue": "Sensitivity to light and sound",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Hitting the head on the vehicle window"
+    },
+    {
+        "associatedInjury": "Migraine",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Resulting from anxiety and depression"
+    },
+    {
+        "associatedInjury": "Concussion",
+        "palpationValue": "confusion/disorientation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Head striking windshield"
+    },
+    {
+        "associatedInjury": "Concussion",
+        "palpationValue": "balance issues (tandem gait test)",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Rotational brain injury from whiplash"
+    },
+    {
+        "associatedInjury": "Concussion",
+        "palpationValue": "delayed verbal/motor responses",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Secondary impact (e.g., airbag deployment)"
+    },
+    {
+        "associatedInjury": "Dizziness",
+        "palpationValue": "sensitivity to light",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Vertigo",
+        "palpationValue": "difficulty tracking moving object with eyes",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Nausea",
+        "palpationValue": "atypical eye movement",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Memory Loss",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Loss of Conciousness",
+        "palpationValue": "tendernessof the forehead",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Head striking windshield"
+    },
+    {
+        "associatedInjury": "Blackout",
+        "palpationValue": "tendernessof Orbital (Right/Left) Bone",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Head striking the steering wheel"
+    },
+    {
+        "associatedInjury": "Head bump/ injury / laceration",
+        "palpationValue": "tendernessof the left temporal side of the head",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of head striking windshield"
+    },
+    {
+        "associatedInjury": "Face injury",
+        "palpationValue": "tendernessof the left supraorbital side of the head",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Secondary impact (e.g., airbag deployment)"
+    },
+    {
+        "associatedInjury": "Face injury",
+        "palpationValue": "tendernessof the right temporal side of the head",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of head striking the steering wheel"
+    },
+    {
+        "associatedInjury": "Face injury",
+        "palpationValue": "tendernessof the left supraorbital side of the head",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting head on the back of the vehicle seat"
+    },
+    {
+        "associatedInjury": "Nosebleed",
+        "palpationValue": "broken nose visible",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of face  striking the side of the vehicle"
+    },
+    {
+        "associatedInjury": "Mouth Injury",
+        "palpationValue": "swolleness of lips visible",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Secondary impact (e.g., airbag deployment)"
+    },
+    {
+        "associatedInjury": "Mouth Injury",
+        "palpationValue": "broken tooth/ teeth visible",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Face striking the steering wheel"
+    },
+    {
+        "associatedInjury": "Mouth Injury",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting head on the back of the vehicle seat"
+    },
+    {
+        "associatedInjury": "Mouth Injury",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting head on the vehicle window"
+    },
+    {
+        "associatedInjury": "Ear Ache",
+        "palpationValue": "pain in the inner ear",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting head on the back of the vehicle seat"
+    },
+    {
+        "associatedInjury": "Tinnitus",
+        "palpationValue": "Intermittent ringing in the ear(s)",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting head on the vehicle window"
+    },
+    {
+        "associatedInjury": "Tinnitus",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting head striking the steering wheel"
+    },
+    {
+        "associatedInjury": "Tinnitus",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Secondary impact (e.g., airbag deployment)"
+    },
+    {
+        "associatedInjury": "Eyes",
+        "palpationValue": "intermittent ache in the eye",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting face on the side of  vehicle window"
+    },
+    {
+        "associatedInjury": "Eyes",
+        "palpationValue": "sensitivity to light",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting face on the side of vehicle door"
+    },
+    {
+        "associatedInjury": "Eyes",
+        "palpationValue": "difficulty tracking moving object with eyes",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of hitting face on the ground from the fall"
+    },
+    {
+        "associatedInjury": "Eyes",
+        "palpationValue": "atypical eye movement",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Jaw (TMJ) Dysfunction",
+        "palpationValue": "jaw clicking/popping",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Teeth clenching during collision"
+    },
+    {
+        "associatedInjury": "Jaw (TMJ) Dysfunction",
+        "palpationValue": "tendernessat temporomandibular joint",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Rapid forward-backward jaw motion"
+    },
+    {
+        "associatedInjury": "Jaw (TMJ) Dysfunction",
+        "palpationValue": "Limited jaw opening and pain while chewing",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Pre-existing TMJ arthritis worsened by trauma"
+    },
+    {
+        "associatedInjury": "Neck Pain / Sprain /",
+        "palpationValue": "tendernessover cervical paraspinal muscles on palpation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Rear-end collision causing hyperextension/hyperflexion"
+    },
+    {
+        "associatedInjury": "Neck Pain / Sprain /",
+        "palpationValue": "tendernessof Right and Left superior borders of Trapezii muscles at the back of neck",
+        "flexionValue": "nuchal rigidity on 45 deg lateral rotation",
+        "mechanismOfInjuryValue": "Sudden deceleration forcing head forward"
+    },
+    {
+        "associatedInjury": "Neck Pain / Sprain /",
+        "palpationValue": "tendernessof Sternocleimastoid (Left/ Right) muscles present",
+        "flexionValue": "Popping sound on rotation",
+        "mechanismOfInjuryValue": "Poor headrest positioning during impact"
+    },
+    {
+        "associatedInjury": "Neck Pain / Sprain /",
+        "palpationValue": "Limited neck range of motion (ROM) on flexion/extension",
+        "flexionValue": "Could not rotate up to 45-degs laterally",
+        "mechanismOfInjuryValue": "Twisting motion while falling from"
+    },
+    {
+        "associatedInjury": "Neck Pain / Sprain /",
+        "palpationValue": "Cervical radiculopathy - tingling sensation and numbness",
+        "flexionValue": "Normal range of motion was acheived during examination",
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Neck Pain / Sprain /",
+        "palpationValue": "Restricted cervical rotation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Brachial Plexus Injury",
+        "palpationValue": "numbness in fingers (specific dermatomes)",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Overstretching neck during side-impact collision"
+    },
+    {
+        "associatedInjury": "Brachial Plexus Injury",
+        "palpationValue": "weakness in shoulder/arm",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Shoulder traction resulting from falling to the ground on impact"
+    },
+    {
+        "associatedInjury": "Brachial Plexus Injury",
+        "palpationValue": "Tinel\u2019s sign at Erb point around the Brachial Plexius",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Herniated Cervical Disc",
+        "palpationValue": "Pain radiating to arm (dermatomal pattern)",
+        "flexionValue": "nuchal rigidity on 45 deg lateral rotation",
+        "mechanismOfInjuryValue": "Axial loading during neck compression (e.g., diving accident)"
+    },
+    {
+        "associatedInjury": "Herniated Cervical Disc",
+        "palpationValue": "Weakness in grip/arm muscles",
+        "flexionValue": "Popping sound on rotation",
+        "mechanismOfInjuryValue": "Twisting motion while lifting"
+    },
+    {
+        "associatedInjury": "Herniated Cervical Disc",
+        "palpationValue": "Positive Spurling\u2019s test to determine radiating pain",
+        "flexionValue": "Could not rotate up to 45-degs laterally",
+        "mechanismOfInjuryValue": "Degenerative disc exacerbated by whiplash"
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "Pain on shoulder abduction",
+        "flexionValue": "tenderness and pain at 90-deg abduction",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion of the deltoid muscles"
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "Weakness in external rotation",
+        "flexionValue": "tenderness and pain at 90-deg adduction",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion of the rotor cuff"
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "Positive Drop Arm test indicating of a Rotator Cuff tear",
+        "flexionValue": "Resistricted movement on extension",
+        "mechanismOfInjuryValue": "Impact of trauma  from breaking fall with arm, hand and legs"
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "tendernessof the Rotor Cuff on palpation",
+        "flexionValue": "Resistricted movement on flexion",
+        "mechanismOfInjuryValue": "Repetitive overhead strain from lifting objects"
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "tendernessof the Deltoid muscle on palpation",
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": "Direct impact to shoulder"
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "tendernessof the Trapezius muscle on palpation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "tendernessof the Acromioclavicular joint on palpation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Shoulder pain/ Injury/ Sprain",
+        "palpationValue": "tendernessof Glenoid Cavity of the Shoulder",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Clavicle (Collar Bone) Pain",
+        "palpationValue": "Pain on shoulder abduction",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of blunt force trauma on collision"
+    },
+    {
+        "associatedInjury": "Stenoclaviclar Joint sprain /misalignment",
+        "palpationValue": "Swelling over sternoclavicular joint",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of muscle forces pulling the bone fragments apart"
+    },
+    {
+        "associatedInjury": "Clavicle (Collar Bone) dislocation / fracure",
+        "palpationValue": "Instability on stress testing",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of forceful arm movement during steering wheel jerking"
+    },
+    {
+        "associatedInjury": "Clavicle (Collar Bone) dislocation / fracure",
+        "palpationValue": "Pain with arm elevation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of forceful seat seatbelt restraint over clavicle"
+    },
+    {
+        "associatedInjury": "Arm pain",
+        "palpationValue": "Positive Spurling\u2019s test to determine radiating pain from neck to arms",
+        "flexionValue": "tenderness and pain at 90-deg abduction",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion of the arm as it gripped the steering wheel"
+    },
+    {
+        "associatedInjury": "Arm weakness",
+        "palpationValue": "Cervical radiculopathy - tingling sensation and numbness",
+        "flexionValue": "tenderness and pain at 90-deg adduction",
+        "mechanismOfInjuryValue": "Impact of trauma  from force of seatbelt restraint"
+    },
+    {
+        "associatedInjury": "Arm tingling / pins / needles",
+        "palpationValue": "Contusion (bruising) of the forearm muscles",
+        "flexionValue": "Resistricted movement on extension",
+        "mechanismOfInjuryValue": "Impact of hitting arm on the side of the car"
+    },
+    {
+        "associatedInjury": "Arm tingling / pins / needles",
+        "palpationValue": null,
+        "flexionValue": "Resistricted movement on flexion",
+        "mechanismOfInjuryValue": "Impact of trauma  from breaking fall with arm, hand and legs"
+    },
+    {
+        "associatedInjury": "Arm tingling / pins / needles",
+        "palpationValue": null,
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Elbow",
+        "palpationValue": "tendernessof the Epicondyle Grove on palpation",
+        "flexionValue": "tenderness and pain at 90-deg abduction",
+        "mechanismOfInjuryValue": "Impact of jerking and twisting motion as the hands gript the steering"
+    },
+    {
+        "associatedInjury": "Elbow",
+        "palpationValue": "tendernessof the Olecranon on palpation",
+        "flexionValue": "tenderness and pain at 90-deg adduction",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting elbow on the side of the car"
+    },
+    {
+        "associatedInjury": "Elbow",
+        "palpationValue": null,
+        "flexionValue": "Resistricted movement on extension",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting elbow on the window"
+    },
+    {
+        "associatedInjury": "Elbow",
+        "palpationValue": null,
+        "flexionValue": "Resistricted movement on flexion",
+        "mechanismOfInjuryValue": "Impact of trauma  from breaking fall with arm, hand and legs"
+    },
+    {
+        "associatedInjury": "Elbow",
+        "palpationValue": null,
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Wrist pain",
+        "palpationValue": "tendernessaround the medial (ulnar) and lateral (radial) collateral ligaments",
+        "flexionValue": "pain and tenderness on dorsiflexion",
+        "mechanismOfInjuryValue": "Impact of jerking and twisting motion as the hands gript the steering"
+    },
+    {
+        "associatedInjury": "Wrist fracture",
+        "palpationValue": "tendernessof wrist from Triangular Fibro Cartilage Complex (TFCC) injury",
+        "flexionValue": "Resistricted movement on extension",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting hand on the side of the car"
+    },
+    {
+        "associatedInjury": "Wrist fracture",
+        "palpationValue": "tendernessof wrist from Lunotriquetral ligament) injury on palpation",
+        "flexionValue": "Resistricted movement on flexion",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting hand on the window"
+    },
+    {
+        "associatedInjury": "Wrist fracture",
+        "palpationValue": "tendernessof wrist from Scapholunate ligament injury on palpation",
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": "Impact of trauma  from breaking fall with arm, hand and legs"
+    },
+    {
+        "associatedInjury": "Wrist fracture",
+        "palpationValue": "Weak gripping strenght",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Wrist fracture",
+        "palpationValue": "Pain with wrist flexion",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Hand",
+        "palpationValue": "tendernessof hand from blunt force trauma",
+        "flexionValue": "pain and tenderness on dorsiflexion",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion of the hand as it gripped the steering wheel"
+    },
+    {
+        "associatedInjury": "Hand",
+        "palpationValue": "Tingling, pins and needles in the hands",
+        "flexionValue": "Resistricted movement on extension",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion of the hand as it gripped the grab hamdle"
+    },
+    {
+        "associatedInjury": "Hand",
+        "palpationValue": "Weak gripping strenght",
+        "flexionValue": "Resistricted movement on flexion",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting hand on the side of the car"
+    },
+    {
+        "associatedInjury": "Hand",
+        "palpationValue": "tendernessof Dorsum of hand",
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting hand on the window"
+    },
+    {
+        "associatedInjury": "Finger(s)",
+        "palpationValue": "tendernessof finger(s) from blunt force trauma",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion of the finger as it gripped the steering wheel"
+    },
+    {
+        "associatedInjury": "Finger(s)",
+        "palpationValue": "Tingling, pins and needles in the finger(s)",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting hand on the side of the car"
+    },
+    {
+        "associatedInjury": "Finger(s)",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting hand on the window"
+    },
+    {
+        "associatedInjury": "Finger(s)",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion of the hand as it gripped the grab hamdle"
+    },
+    {
+        "associatedInjury": "Chest pain",
+        "palpationValue": "tendernessacross Sternal muscle group on palpation",
+        "flexionValue": "pain across chest on full exhalation and inhalation",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting chest on the dashboard"
+    },
+    {
+        "associatedInjury": "Chest bruising",
+        "palpationValue": "Chest contusion (bruising)",
+        "flexionValue": "Resistricted movement on extension observed",
+        "mechanismOfInjuryValue": "Impact of trauma  from hitting chest on the steering wheel"
+    },
+    {
+        "associatedInjury": "Chest bruising",
+        "palpationValue": "Pain across chest on full exhalation and inhalation",
+        "flexionValue": "Resistricted movement on extension observed",
+        "mechanismOfInjuryValue": "Impact of trauma  from force of seatbelt restraint"
+    },
+    {
+        "associatedInjury": "Thoracic Spine Contusion",
+        "palpationValue": "Mid-back bruising/swelling",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Seatbelt restraint compression"
+    },
+    {
+        "associatedInjury": "Thoracic Spine Contusion",
+        "palpationValue": "Pain with deep breathing",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Direct blunt force trauma"
+    },
+    {
+        "associatedInjury": "Thoracic Spine Contusion",
+        "palpationValue": "Spinal tendernesson palpation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Vertebral fracture from high-impact crash"
+    },
+    {
+        "associatedInjury": "Rib pain / Fractures",
+        "palpationValue": "Chest wall crepitus",
+        "flexionValue": "pain across chest on full exhalation and inhalation",
+        "mechanismOfInjuryValue": "Steering wheel compression"
+    },
+    {
+        "associatedInjury": "Rib pain / Fractures",
+        "palpationValue": "Pain with coughing/sneezing",
+        "flexionValue": "Resistricted movement on flexion observed",
+        "mechanismOfInjuryValue": "Seatbelt tightening during collision"
+    },
+    {
+        "associatedInjury": "Rib pain / Fractures",
+        "palpationValue": "Paradoxical breathing",
+        "flexionValue": "Resistricted movement on extension observed",
+        "mechanismOfInjuryValue": "Impact of trauma from falling onto ribcage"
+    },
+    {
+        "associatedInjury": "Rib Bruising",
+        "palpationValue": "tendernessof the intercostal muscles around the ribs on palpation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Rib Bruising",
+        "palpationValue": "Contusion of the muscles around the rib cage",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Abdomen",
+        "palpationValue": "Contusion across the abodomen",
+        "flexionValue": "Resistricted movement on flexion observed",
+        "mechanismOfInjuryValue": "Seatbelt restraint compression"
+    },
+    {
+        "associatedInjury": "Abdomen",
+        "palpationValue": "tenderness of the epigastic muscles",
+        "flexionValue": "Resistricted movement on extension observed",
+        "mechanismOfInjuryValue": "Steering wheel compression"
+    },
+    {
+        "associatedInjury": "Upper Back",
+        "palpationValue": "tendernessof theTrapezius muscles on palpation",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion from the traumatic impact of jolting forward / backward"
+    },
+    {
+        "associatedInjury": "Upper Back",
+        "palpationValue": "Radiating pain from Upper Back into the supporting musculature on both sides of the back and shoulders",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion from the traumatic impact of jolting forward / backward"
+    },
+    {
+        "associatedInjury": "Upper Back",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Traumatic impact of hitting Upper Back on the seat due to jolting"
+    },
+    {
+        "associatedInjury": "Upper Back",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Traumatic impact of twisting  Upper Back when knocked to the ground"
+    },
+    {
+        "associatedInjury": "Middle Back",
+        "palpationValue": "tendernessof theTrapezius muscles on palpation",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion from the traumatic impact of jolting forward / backward"
+    },
+    {
+        "associatedInjury": "Middle Back",
+        "palpationValue": "Radiating pain from Mid Back into the supporting musculature on both sides of the back and shoulders",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Hyperextension and hyperflexion from the traumatic impact of jolting forward / backward"
+    },
+    {
+        "associatedInjury": "Middle Back",
+        "palpationValue": "Pain on full spinal flexion and extension",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Traumatic impact of hitting Upper Back on the seat due to jolting"
+    },
+    {
+        "associatedInjury": "Middle Back",
+        "palpationValue": "Restricted range of motion",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Traumatic impact of twisting  Upper Back when knocked to the ground"
+    },
+    {
+        "associatedInjury": "Lower Back",
+        "palpationValue": "tendernessof Latissimus Dorsi muscles on palpation",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Traumatic impact of hitting Lower Back on the seat due to jolting"
+    },
+    {
+        "associatedInjury": "Lower Back",
+        "palpationValue": "Radiating pain from Lower Back into the supporting musculature on both sides of the back and shoulders",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Traumatic impact of twisting  Lower Back when knocked to the ground"
+    },
+    {
+        "associatedInjury": "Lower Back",
+        "palpationValue": "tendernessof the Coccyx",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Lower Back",
+        "palpationValue": "tendernessof L4-S1 Vertebrae on palpation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Lower Back",
+        "palpationValue": "tendernessof Lumbar Vertebrae on palpation",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Coccydynia (Tailbone Injury)",
+        "palpationValue": "Pain on sitting",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Trauma from falling onto buttocks"
+    },
+    {
+        "associatedInjury": "Coccydynia (Tailbone Injury)",
+        "palpationValue": "coccyx misalignment on palpation on palpation",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Lumbar Disc Herniation",
+        "palpationValue": "tendernessof the Lumbar Spine",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Sudden twisting while lifting"
+    },
+    {
+        "associatedInjury": "Lumbar Disc Herniation",
+        "palpationValue": "Sciatic nerve tension on positive straight leg raise",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Seatbelt compression during collision"
+    },
+    {
+        "associatedInjury": "Lumbar Disc Herniation",
+        "palpationValue": "Reduced ankle reflex",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Chronic poor posture exacerbated by trauma"
+    },
+    {
+        "associatedInjury": "Buttock",
+        "palpationValue": "tendernessof the Gluteus Maximus muscles on palpation",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Traumatic impact of hitting the buttocks against the vehicle seat"
+    },
+    {
+        "associatedInjury": "Buttock",
+        "palpationValue": "Sharp nerve nerve impingement (sciatic) pain in the buttocks",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Soft tissue injury from breaking fall with buttocks"
+    },
+    {
+        "associatedInjury": "Pelvis",
+        "palpationValue": "Inability to bear weight",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Trauma resulting from side-impact collision"
+    },
+    {
+        "associatedInjury": "Pelvis",
+        "palpationValue": "Pain in the pubis  on internal rotation",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Trauma from fall onto lateral hip"
+    },
+    {
+        "associatedInjury": "Hips pain",
+        "palpationValue": "tendernessof the Illium on palpation",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Trauma resulting from side-impact collision"
+    },
+    {
+        "associatedInjury": "Hips pain",
+        "palpationValue": "tendernessof the illiac on palpation",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Trauma from fall onto lateral hip"
+    },
+    {
+        "associatedInjury": "Hip Fracture",
+        "palpationValue": "Leg shortening/external rotation",
+        "flexionValue": "pain on full spinal flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Trauma resulting from side-impact collision"
+    },
+    {
+        "associatedInjury": "Hip Fracture",
+        "palpationValue": "Pain with hip internal rotation",
+        "flexionValue": "Restricted range of movement",
+        "mechanismOfInjuryValue": "Trauma from fall onto lateral hip"
+    },
+    {
+        "associatedInjury": "Hip Fracture",
+        "palpationValue": "Inability to bear weight",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Osteoporotic bone failure from low-energy trauma"
+    },
+    {
+        "associatedInjury": "Thigh(s) Bruising",
+        "palpationValue": "Contusion across the thigh(s) from direct trauma",
+        "flexionValue": "pain on flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Trauma from hitting thigh against the side of the vehicle"
+    },
+    {
+        "associatedInjury": "Thigh(s) Bruising",
+        "palpationValue": "Pain radiating from Lower Back",
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": "Trauma from hitting against the vehicle dashboard"
+    },
+    {
+        "associatedInjury": "Thigh(s) Bruising",
+        "palpationValue": "Pain on leg adduction/abduction",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Trauma from breaking fall with the thigh"
+    },
+    {
+        "associatedInjury": "Thigh(s) Bruising",
+        "palpationValue": "Pain on leg adduction/abduction",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Knee pain",
+        "palpationValue": "tendernessof the patella on palpation",
+        "flexionValue": "pain on flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Direct blow to knee (dashboard impact)"
+    },
+    {
+        "associatedInjury": "Knee pain",
+        "palpationValue": "Inability to bear weight",
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": "Trauma from breaking fall with the knee(s)"
+    },
+    {
+        "associatedInjury": "Knee Meniscus Tear",
+        "palpationValue": "Joint line tendernesson palpation",
+        "flexionValue": "pain on flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Trauma from sudden pivot/twist"
+    },
+    {
+        "associatedInjury": "Knee Meniscus Tear",
+        "palpationValue": "Locking/catching of knee",
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": "Direct blow to knee (dashboard impact)"
+    },
+    {
+        "associatedInjury": "Knee Meniscus Tear",
+        "palpationValue": "Positive McMurray\u2019s test to detemine meniscus tear",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Direct blow to knee from hitting against the seat in front"
+    },
+    {
+        "associatedInjury": "Lower Leg pain",
+        "palpationValue": "tendernessof the Tibia and fibula on palpation",
+        "flexionValue": "pain on flexion and extension noticeable",
+        "mechanismOfInjuryValue": "Blunt force trauma from hitting against the side of the vehicle"
+    },
+    {
+        "associatedInjury": "Lower Leg pain",
+        "palpationValue": "tendernessof the soft issues in the lower leg on palpation",
+        "flexionValue": "Reduced range of movement on flexion and extension",
+        "mechanismOfInjuryValue": "Crush injuries from leg being trapped between dashboard and vehicle seat"
+    },
+    {
+        "associatedInjury": "Lower Leg pain",
+        "palpationValue": "Contusion across the lower leg muscles from direct trauma",
+        "flexionValue": null,
+        "mechanismOfInjuryValue": null
+    },
+    {
+        "associatedInjury": "Ankle pain",
+        "palpationValue": "Pain on ankle on dorsiflexion",
+        "flexionValue": "pain on Planta flexion and dorsiflexion",
+        "mechanismOfInjuryValue": "Trauma from hitting against the foot pedals"
+    },
+    {
+        "associatedInjury": "Ankle pain",
+        "palpationValue": "Pain on ankle on palpation",
+        "flexionValue": "Resistricted movement on flexion observed",
+        "mechanismOfInjuryValue": "Trauma from hitting against the passenger footwell"
+    },
+    {
+        "associatedInjury": "Ankle pain",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Trauma from breaking fall with ankle"
+    },
+    {
+        "associatedInjury": "Feet",
+        "palpationValue": "tendernessof the moot of foot on palpation",
+        "flexionValue": "pain on Planta flexion and dorsiflexion",
+        "mechanismOfInjuryValue": "Trauma from hitting against the foot pedals"
+    },
+    {
+        "associatedInjury": "Feet",
+        "palpationValue": "Pain on foot on dorsiflexion",
+        "flexionValue": "Resistricted movement on flexion observed",
+        "mechanismOfInjuryValue": "Trauma from hitting against the passenger footwell"
+    },
+    {
+        "associatedInjury": "Feet",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Trauma from forced dorsiflexion when braking suddenly"
+    },
+    {
+        "associatedInjury": "Feet",
+        "palpationValue": null,
+        "flexionValue": null,
+        "mechanismOfInjuryValue": "Trauma from breaking fall with feet"
+    }
+]

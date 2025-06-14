@@ -4,22 +4,23 @@ import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "../Common/Common.css";
-import { observations, palpations } from "./Constants";
-import { toCamelCase } from "../Common/util";
+import observationsOptions from "../../../assets/data/injuryPalpation.json";
+import { toCamelCase, getFilteredOptions } from "../Common/util";
 
 const PhysicalExaminationSection = ({
   values,
   prevStep,
   handleChange,
   handleBlur,
-  errors
+  errors,
 }) => {
   const [openAccordions, setOpenAccordions] = useState({});
 
   useEffect(() => {
     // Check for errors and open corresponding accordions
     const newOpenAccordions = {};
-    Object.values(values.anatomy || {}).forEach(({ name }) => { // Extract `name` from object
+    Object.values(values.anatomy || {}).forEach(({ name }) => {
+      // Extract `name` from object
       const anatomyName = `physicalExamination_${toCamelCase(name)}`;
       const palpationName = `${anatomyName}_palpation`;
       const observationName = `${anatomyName}_observation`;
@@ -31,9 +32,19 @@ const PhysicalExaminationSection = ({
     setOpenAccordions(newOpenAccordions);
   }, [errors, values.anatomy]);
 
-  const renderAnatomyOnsets = (anatomyName) => {
+  const renderAnatomyOnsets = (anatomyName, trauma) => {
     const palpationName = `${anatomyName}_palpation`;
     const observationName = `${anatomyName}_observation`;
+
+    // Filter options based on trauma
+    const filteredOptions = observationsOptions.filter(
+      (item) =>
+        item.associatedInjury?.toLowerCase().trim() ===
+        trauma?.toLowerCase().trim()
+    );
+
+    const palpationOptions = getFilteredOptions(filteredOptions, "palpationValue");
+    const observationOptions = getFilteredOptions(filteredOptions, "flexionValue");
 
     return (
       <div>
@@ -41,7 +52,7 @@ const PhysicalExaminationSection = ({
           <SelectField
             label="Observations on Palpation"
             name={palpationName}
-            options={palpations}
+            options={palpationOptions}
             value={values[palpationName]}
             values={values}
             otherHandleChange={handleChange}
@@ -50,7 +61,7 @@ const PhysicalExaminationSection = ({
           <SelectField
             label="Observations on flexion/extension or abduction"
             name={observationName}
-            options={observations}
+            options={observationOptions}
             value={values[observationName]}
             values={values}
             otherHandleChange={handleChange}
@@ -69,8 +80,12 @@ const PhysicalExaminationSection = ({
       {Object.values(values?.anatomy || {}).map(({ name, trauma }) => {
         const formattedName = `physicalExamination_${toCamelCase(name)}`;
         return (
-          <Accordion key={name} title={`${name} - ${trauma}`} isOpenInitially={!!openAccordions[name]}>
-            {renderAnatomyOnsets(formattedName)}
+          <Accordion
+            key={name}
+            title={`${name} - ${trauma}`}
+            isOpenInitially={!!openAccordions[name]}
+          >
+            {renderAnatomyOnsets(formattedName, trauma)}
           </Accordion>
         );
       })}
