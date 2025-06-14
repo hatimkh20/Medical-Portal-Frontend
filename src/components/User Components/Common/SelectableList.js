@@ -16,7 +16,7 @@ const SelectableList = ({
   values,
   handleChange,
   handleBlur,
-  isAnatomy=false,
+  isAnatomy = false,
   ...props
 }) => {
   const [field, meta] = useField(props);
@@ -48,7 +48,7 @@ const SelectableList = ({
       .map((item) => item.value);
 
     // Ensure "Other" is included once
-    return filtered.includes("Other") ? filtered : ["Other" ,...filtered];
+    return filtered.includes("Other") ? filtered : ["Other", ...filtered];
   }, [selectedOption]);
 
   return (
@@ -106,11 +106,13 @@ const SelectableList = ({
           {selectedItems?.length > 0 ? (
             selectedItems.map((item, index) => (
               <div key={index} className={styles.item}>
-                {isAnatomy
-                  ? `${item.name} - ${item.trauma}`
-                  : item}
+                {isAnatomy ? `${item.name} - ${item.trauma}` : item}
                 <span
-                  onClick={() => handleRemoveItem(isAnatomy ? item.name : item)}
+                  onClick={() =>
+                    isAnatomy
+                      ? handleRemoveItem(item.name, item.trauma)
+                      : handleRemoveItem(item)
+                  }
                   className={styles.removeButton}
                 >
                   X

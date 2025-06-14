@@ -8,8 +8,14 @@ import { anatomyList, psychologicalInjuries } from "./Constants";
 
 const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
   const handleAddAnatomy = (item) => {
-    if (item && !values.anatomy.some((a) => a.name === item)) {
-      const traumaValue = values[`${item}_trauma`] || ""; // Get trauma value
+    if (!item) return;
+  
+    const traumaValue = values[`${item}_trauma`] || "";
+    const alreadyExists = values.anatomy.some(
+      (a) => a.name === item && a.trauma === traumaValue
+    );
+  
+    if (!alreadyExists) {
       handleChange({
         target: {
           name: "anatomy",
@@ -18,15 +24,19 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
       });
     }
   };
+  
 
-  const handleRemoveAnatomy = (item) => {
+  const handleRemoveAnatomy = (anatomyName, trauma) => {
+    console.log(anatomyName, trauma);
     handleChange({
       target: {
         name: "anatomy",
-        value: values.anatomy.filter((a) => a.name !== item),
+        value: values.anatomy.filter(
+          (a) => !(a.name === anatomyName && a.trauma === trauma)
+        ),
       },
     });
-  };
+  };  
 
   const handleAddPsychologicalInjury = (item) => {
     if (item && !values.psychologicalInjuries.includes(item)) {
