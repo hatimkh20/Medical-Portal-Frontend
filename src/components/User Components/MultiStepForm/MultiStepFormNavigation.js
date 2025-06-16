@@ -235,84 +235,88 @@ const MultiStepFormNavigation = ({ currentStep, totalSteps, onStepChange }) => {
   };
 
   // Handle dragging the thumb
-  useEffect(() => {
-    const content = scrollContentRef.current;
-    const thumb = thumbRef.current;
-    const track = trackRef.current;
+useEffect(() => {
+  const content = scrollContentRef.current;
+  const thumb = thumbRef.current;
+  const track = trackRef.current;
 
-    const handleScroll = () => updateThumbPosition();
+  if (!content || !thumb || !track) return;
 
-    content.addEventListener("scroll", handleScroll);
+  const handleScroll = () => updateThumbPosition();
 
-    let isDragging = false;
-    let startX = 0;
-    let startLeft = 0;
+  content.addEventListener("scroll", handleScroll);
 
-    const onMouseDown = (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      startLeft = thumb.offsetLeft;
-      document.body.style.userSelect = "none";
-    };
+  let isDragging = false;
+  let startX = 0;
+  let startLeft = 0;
 
-    const onMouseMove = (e) => {
-      if (!isDragging) return;
-      const dx = e.clientX - startX;
-      const maxThumbX = track.clientWidth - thumb.offsetWidth;
-      const newLeft = Math.min(Math.max(0, startLeft + dx), maxThumbX);
+  const onMouseDown = (e) => {
+    isDragging = true;
+    startX = e.clientX;
+    startLeft = thumb.offsetLeft;
+    document.body.style.userSelect = "none";
+  };
 
-      thumb.style.left = `${newLeft}px`;
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - startX;
+    const maxThumbX = track.clientWidth - thumb.offsetWidth;
+    const newLeft = Math.min(Math.max(0, startLeft + dx), maxThumbX);
 
-      const scrollRatio = newLeft / maxThumbX;
-      content.scrollLeft =
-        scrollRatio * (content.scrollWidth - content.clientWidth);
-    };
+    thumb.style.left = `${newLeft}px`;
 
-    const onMouseUp = () => {
-      isDragging = false;
-      document.body.style.userSelect = "";
-    };
+    const scrollRatio = newLeft / maxThumbX;
+    content.scrollLeft =
+      scrollRatio * (content.scrollWidth - content.clientWidth);
+  };
 
-    thumb.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
+  const onMouseUp = () => {
+    isDragging = false;
+    document.body.style.userSelect = "";
+  };
 
-    return () => {
-      content.removeEventListener("scroll", handleScroll);
-      thumb.removeEventListener("mousedown", onMouseDown);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-    };
-  }, []);
+  thumb.addEventListener("mousedown", onMouseDown);
+  window.addEventListener("mousemove", onMouseMove);
+  window.addEventListener("mouseup", onMouseUp);
 
-  return (
-    <div className="multi-step-navigation">
-      <div className="scroll-container">
-        <div className="button-scroll" ref={scrollContentRef}>
-          <div className="step-buttons-container">
-            {stepsToShow.map((step) => (
-              <button
-                key={step}
-                onClick={() => onStepChange(step)}
-                className={`step-button ${
-                  currentStep === step ? "active" : ""
-                }`}
-              >
-                {sectionLabels[step]}
-              </button>
-            ))}
-          </div>
+  return () => {
+    content.removeEventListener("scroll", handleScroll);
+    thumb.removeEventListener("mousedown", onMouseDown);
+    window.removeEventListener("mousemove", onMouseMove);
+    window.removeEventListener("mouseup", onMouseUp);
+  };
+}, []);
+
+
+return (
+  <div className="multi-step-navigation">
+    <div className="scroll-container">
+      <div className="button-scroll" ref={scrollContentRef}>
+        <div className="step-buttons-container">
+          {stepsToShow.map((step) => (
+            <button
+              key={step}
+              onClick={() => onStepChange(step)}
+              className={`step-button ${currentStep === step ? "active" : ""}`}
+            >
+              {sectionLabels[step]}
+            </button>
+          ))}
         </div>
+      </div>
 
+      {stepsToShow.length > 1 && (
         <div className="custom-scrollbar-track" ref={trackRef}>
           <div className="scrollbar-ticks"></div>
           <div className="custom-thumb" ref={thumbRef}>
             <div className="thumb-grip"></div>
           </div>
         </div>
-      </div>
+      )}
     </div>
-  );
+  </div>
+);
+
 };
 
 export default MultiStepFormNavigation;
