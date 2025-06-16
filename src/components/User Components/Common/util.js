@@ -57,3 +57,10 @@ export const getFilteredOptions = (filteredOptions, key) => {
   );
   return ["Other", ...Array.from(valuesSet)];
 };
+
+export const formatTraumaOther = (input) => {
+  const [key, value] = input.split(':').map(part => part.trim());
+  const cleanedValue = value.replace(/^"|"$/g, '');
+
+  return `${cleanedValue}`;
+}

@@ -1,11 +1,12 @@
 import React, { useMemo } from "react";
 import styles from "./SelectableList.module.css";
 import InputField from "../Common/InputField";
-import { titleCase, isOtherSelected } from "./util";
+import { titleCase, isOtherSelected, formatTraumaOther } from "./util";
 import { useField } from "formik";
 //import { traumaOptions } from "../MultiStepForm/Constants";
 import traumaOptions from "../../../assets/data/associatedInjuries.json";
 import SelectField from "./SelectField";
+
 
 const SelectableList = ({
   options,
@@ -28,10 +29,13 @@ const SelectableList = ({
   };
 
   const handleAddButtonClick = (event) => {
+    console.log("handleAddButtonClick", field);
     event.preventDefault();
-    console.log(selectedOption);
+    console.log(selectedOption, "selectedOption");
+    console.log(values, "values");
     if (selectedOption === "Other") {
-      handleAddItem(values[`other${titleCase(field.name)}`]);
+      console.log("In condition");
+      handleAddItem(formatTraumaOther(values[`other${titleCase(field.name)}`]));
     } else handleAddItem(selectedOption);
     setSelectedOption("");
   };

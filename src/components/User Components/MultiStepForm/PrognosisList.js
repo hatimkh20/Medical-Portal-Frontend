@@ -73,7 +73,7 @@ const PrognosisList = ({ values, handleChange, handleBlur, prevStep }) => {
 
       <div className="button-group">
         <Button type="button" onClick={prevStep}>Previous Step</Button>
-        <Button type="submit">Proceed to Next Step</Button>
+        <Button type="submit">Save & Proceed</Button>
       </div>
     </FormLayout>
   );

@@ -7,10 +7,20 @@ import "./Form.css";
 import { anatomyList, psychologicalInjuries } from "./Constants";
 
 const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
+  
   const handleAddAnatomy = (item) => {
     if (!item) return;
   
-    const traumaValue = values[`${item}_trauma`] || "";
+    let traumaValue = values[`${item}_trauma`] || "";
+  
+    // If traumaValue is 'Other', get the actual input from `${item}_otherTrauma`
+    if (traumaValue === "Other") {
+      const otherTrauma = values[`${item}_otherTrauma`];
+      if (otherTrauma) {
+        traumaValue = otherTrauma;
+      }
+    }
+  
     const alreadyExists = values.anatomy.some(
       (a) => a.name === item && a.trauma === traumaValue
     );
@@ -23,8 +33,7 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
         },
       });
     }
-  };
-  
+  };  
 
   const handleRemoveAnatomy = (anatomyName, trauma) => {
     console.log(anatomyName, trauma);
@@ -88,7 +97,7 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
         <Button type="button" onClick={prevStep}>
           Previous Step
         </Button>
-        <Button type="submit">Proceed to Next Step</Button>
+        <Button type="submit">Save & Proceed</Button>
       </div>
     </FormLayout>
   );

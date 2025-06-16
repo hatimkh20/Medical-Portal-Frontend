@@ -470,12 +470,20 @@ const MedicalReport = () => {
                 (option) => formatString(injury?.type) === option?.name
               )
             )
-            ?.map((injury) => ({
-              Anatomy: formatString(injury?.type),
-              Injury: handleOtherValues(injury, "injury"),
-              Mechanism: handleOtherValues(injury, "mechanismOfInjury"),
-              Trauma: handleOtherValues(injury, "traumaItCaused"),
-            }))}
+            ?.map((injury) => {
+              const anatomyName = formatString(injury?.type);
+              const matchedAnatomy =
+                data?.anatomySection?.anatomySelectedOptions?.find(
+                  (option) => option?.name === anatomyName
+                );
+
+              return {
+                Anatomy: anatomyName,
+                Injury: handleOtherValues(injury, "injury"),
+                Mechanism: handleOtherValues(injury, "mechanismOfInjury"),
+                Trauma: matchedAnatomy?.trauma || "",
+              };
+            })}
         />
 
         {/* Psychological Injuries Section */}

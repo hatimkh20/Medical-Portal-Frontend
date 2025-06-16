@@ -93,7 +93,7 @@ const TreatmentSection = ({ values, handleChange, prevStep, nextStep }) => {
           Previous Step
         </Button>
         <Button type="submit">
-          Proceed to Next Step
+          Save & Proceed
         </Button>
       </div>
     </FormLayout>
