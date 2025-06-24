@@ -50,6 +50,13 @@ const PrognosisSection = ({ values, handleChange, handleBlur, prevStep, errors }
 
   const ongoingPrognosisQuestions = [
     {
+      name: "fromDateAccident",
+      label: "From",
+      component: "SelectField",
+      type: "text",
+      options: ["From Date of Index accident", "From Date of Examination"]
+    },
+    {
       name: "timeWillTakeToRecover",
       label: "How much time will it take to recover? (From index accident)",
       component: "InputField",

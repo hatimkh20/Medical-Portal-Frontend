@@ -280,6 +280,8 @@ const MultiStepForm = ({ steps }) => {
           setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_otherSpecialist`, question.otherSpecialist);
           setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_treatmentAndRehabiliation`, question.treatmentAndRehabiliation);
           setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_anyLongTermSequelae`, question.anyLongTermSequelae);
+          setFormData(`physicalInjuriesDetailedPrognosis_${question.type}_fromDateAccident`, question.fromDateAccident);
+
         });
       }
     
@@ -294,6 +296,8 @@ const MultiStepForm = ({ steps }) => {
           setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_otherSpecialist`, question.otherSpecialist);
           setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_treatmentAndRehabiliation`, question.treatmentAndRehabiliation);
           setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_anyLongTermSequelae`, question.anyLongTermSequelae);
+          setFormData(`psychologicalInjuriesDetailedPrognosis_${question.type}_fromDateAccident`, question.fromDateAccident);
+
 
         });
       }
