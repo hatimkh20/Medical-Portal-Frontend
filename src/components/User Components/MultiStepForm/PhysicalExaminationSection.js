@@ -4,8 +4,7 @@ import SelectField from "../Common/SelectField";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "../Common/Common.css";
-import observationsOptions from "../../../assets/data/injuryPalpation.json";
-import { toCamelCase, getFilteredOptions } from "../Common/util";
+import { toCamelCase, getAnatomyOptions } from "../Common/util";
 
 const PhysicalExaminationSection = ({
   values,
@@ -32,19 +31,12 @@ const PhysicalExaminationSection = ({
     setOpenAccordions(newOpenAccordions);
   }, [errors, values.anatomy]);
 
-  const renderAnatomyOnsets = (anatomyName, trauma) => {
-    const palpationName = `${anatomyName}_palpation`;
-    const observationName = `${anatomyName}_observation`;
+  
+  const renderAnatomyOnsets = (formattedAnatomyName, anatomyName) => {
+    const palpationName = `${formattedAnatomyName}_palpation`;
+    const observationName = `${formattedAnatomyName}_observation`;
 
-    // Filter options based on trauma
-    const filteredOptions = observationsOptions.filter(
-      (item) =>
-        item.associatedInjury?.toLowerCase().trim() ===
-        trauma?.toLowerCase().trim()
-    );
-
-    const palpationOptions = getFilteredOptions(filteredOptions, "palpationValue");
-    const observationOptions = getFilteredOptions(filteredOptions, "flexionValue");
+    const { palpationOptions, flexionOptions } = getAnatomyOptions(anatomyName);
 
     return (
       <div>
@@ -61,7 +53,7 @@ const PhysicalExaminationSection = ({
           <SelectField
             label="Observations on flexion/extension or abduction"
             name={observationName}
-            options={observationOptions}
+            options={flexionOptions}
             value={values[observationName]}
             values={values}
             otherHandleChange={handleChange}
@@ -85,7 +77,7 @@ const PhysicalExaminationSection = ({
             title={`${name} - ${trauma}`}
             isOpenInitially={!!openAccordions[name]}
           >
-            {renderAnatomyOnsets(formattedName, trauma)}
+            {renderAnatomyOnsets(formattedName, name)}
           </Accordion>
         );
       })}

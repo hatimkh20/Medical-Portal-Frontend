@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import styles from "./SelectableList.module.css";
 import InputField from "../Common/InputField";
-import { titleCase, isOtherSelected, formatTraumaOther } from "./util";
+import { titleCase, isOtherSelected, formatTraumaOther, getAnatomyOptions } from "./util";
 import { useField } from "formik";
 //import { traumaOptions } from "../MultiStepForm/Constants";
-import traumaOptions from "../../../assets/data/associatedInjuries.json";
+import traumaOptions from "../../../assets/data/traumaOptions.json";
 import SelectField from "./SelectField";
 
 
@@ -42,19 +42,20 @@ const SelectableList = ({
 
   const filteredTraumaOptions = useMemo(() => {
     if (!selectedOption) return [];
-
-    const filtered = traumaOptions
-      .filter(
-        (item) =>
-          item.anatomyName?.toLowerCase().trim() ===
-          selectedOption.toLowerCase().trim()
-      )
-      .map((item) => item.value);
-
-    // Ensure "Other" is included once
-    return filtered.includes("Other") ? filtered : ["Other", ...filtered];
-  }, [selectedOption]);
-
+      const { groupName } = getAnatomyOptions(selectedOption);
+      const traumaGroup = traumaOptions.find(
+      (item) => item.group?.toLowerCase().trim() === groupName?.toLowerCase().trim()
+    );
+  
+    if (!traumaGroup) return ["Other"];
+  
+    // Normalize options and ensure "Other" is first
+    const options = traumaGroup.traumaOptions.map(opt => opt.trim());
+    return options.includes("Other")
+      ? ["Other", ...options.filter(opt => opt.toLowerCase() !== "other")]
+      : ["Other", ...options];
+  }, [selectedOption, traumaOptions]);
+  
   return (
     <div className={styles.container}>
       <div>

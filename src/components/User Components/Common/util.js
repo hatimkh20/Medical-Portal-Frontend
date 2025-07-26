@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import anatomyData from "../../../assets/data/anatomy_data.json";
 
 export const titleCase = (value) => {
     return value.at(0).toUpperCase() + value.substring(1);
@@ -64,3 +65,22 @@ export const formatTraumaOther = (input) => {
 
   return `${cleanedValue}`;
 }
+
+export const getAnatomyOptions = (anatomyName) => {
+  const found = anatomyData.find(item =>
+    item.anatomy.some(a => a.toLowerCase().trim() === anatomyName.toLowerCase().trim())
+  );
+
+  console.log("Found:", found, anatomyName);
+
+  if (!found) {
+    return { palpationOptions: ["Other"], flexionOptions: ["Other"] };
+  }
+
+  const palpationOptions = ["Other", ...(found.palpationValue || [])];
+  const flexionOptions = ["Other", ...(found.flexionValue || [])];
+  const mechanismOptions = ["Other", ...(found.mechanismOfInjuryValue || [])];
+  const groupName = found.group;
+
+  return { palpationOptions, flexionOptions, mechanismOptions, groupName };
+};

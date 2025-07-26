@@ -1,0 +1,426 @@
+[
+  {
+    "group": "HEAD",
+    "anatomy": "Migraine"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Concussion"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Dizziness"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Vertigo"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Nausea"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Vomitting and Nausea"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Memory Loss"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Loss of Conciousness"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Blackout"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Head"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Forehead"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Face"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Right Face"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Left Face"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Nosebleed"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Nose "
+  },
+  {
+    "group": "HEAD",
+    "anatomy": " Right and Left Ears"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Right Ear"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Left Ear"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Tinnitus"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": " Right and Left Eyes"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Right Eyes"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Left Eyes"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Jaw (TMJ) Dysfunction"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Mouth"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Lip(s)"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Teeth"
+  },
+  {
+    "group": "HEAD",
+    "anatomy": "Tooth"
+  },
+  {
+    "group": "NECK",
+    "anatomy": "Bilateral Neck"
+  },
+  {
+    "group": "NECK",
+    "anatomy": "Neck"
+  },
+  {
+    "group": "NECK",
+    "anatomy": "Right Neck"
+  },
+  {
+    "group": "NECK",
+    "anatomy": "Left Neck"
+  },
+  {
+    "group": "NECK",
+    "anatomy": "Right and Left Neck"
+  },
+  {
+    "group": "NECK",
+    "anatomy": "Brachial Plexus "
+  },
+  {
+    "group": "NECK",
+    "anatomy": "Cervical Disc"
+  },
+  {
+    "group": "Shoulder(s)",
+    "anatomy": "Right and Left Shoulders"
+  },
+  {
+    "group": "Shoulder(s)",
+    "anatomy": "Right Shoulder"
+  },
+  {
+    "group": "Shoulder(s)",
+    "anatomy": "Left Shoulder"
+  },
+  {
+    "group": "Shoulder(s)",
+    "anatomy": "Clavicle (Collar Bone)"
+  },
+  {
+    "group": "Shoulder(s)",
+    "anatomy": "Stenoclaviclar Joint"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right and Left Arms"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Arm"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Upper Arm"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Left Arm"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Left Upper Arms"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right and Left Elbows"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Elbow"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Left Elbow"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right and Left Wrist"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Wrist"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Left Wrist"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right and Left Hands"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Hand"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Left Hand"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right and Left Fingers"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Fingers"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Left Fingers"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Index Finger"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Middle Finger"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Left Index Finger"
+  },
+  {
+    "group": "Arm",
+    "anatomy": "Right Index Finger"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Chest "
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Right Breast"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Left Breast"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Thoracic Spine "
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Left and Right Ribs"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Right Ribs"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Left Ribs"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Rib Bruising"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Abdomen"
+  },
+  {
+    "group": "Chest",
+    "anatomy": "Torso"
+  },
+  {
+    "group": "Back",
+    "anatomy": "Upper Back"
+  },
+  {
+    "group": "Back",
+    "anatomy": "Middle Back"
+  },
+  {
+    "group": "Back",
+    "anatomy": "Lower Back"
+  },
+  {
+    "group": "Back",
+    "anatomy": "Coccydynia (Tailbone)"
+  },
+  {
+    "group": "Back",
+    "anatomy": "Lumbar Disc "
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Right and Left Buttocks"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Right Buttocks"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Left Buttocks"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Pelvis"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Bilateral Groin"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Left Groin"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Right Groin"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Right and Left Hips"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Right Hip"
+  },
+  {
+    "group": "PELVIS",
+    "anatomy": "Left Hip"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right and Left Thighs"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right Thigh"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Left Thigh"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right and Left Knees"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right Knee"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Left Knee"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Knee Meniscus Tear"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Lower Leg"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right Shin"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Left Shin"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right and Left Ankles "
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right Ankle"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Left Ankle"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Achilles Tendon"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Feet"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right Foot"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Left Foot"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right and Left Toes"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Right Toes"
+  },
+  {
+    "group": "Leg",
+    "anatomy": "Left  Toes"
+  }
+]

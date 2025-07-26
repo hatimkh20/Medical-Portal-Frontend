@@ -11,7 +11,7 @@ import {
 } from "./Constants";
 import injuryFilteredOptions from "../../../assets/data/injuryPalpation.json";
 import RadioButton from "../Common/RadioButton";
-import { toCamelCase, getFilteredOptions } from "../Common/util";
+import { toCamelCase, getAnatomyOptions } from "../Common/util";
 
 const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }) => {
   const [selectedInjuries, setSelectedInjuries] = useState({});
@@ -74,18 +74,12 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
     handleChange({ target: { name, value } });
   };
 
-  const renderAnatomyDetails = (name, trauma) => {
+  const renderAnatomyDetails = (name, anatomyName) => {
     const injuryName = `${name}_injury`;
     const injuryOtherName = `${name}_otherInjury`;
     const mechanismName = `${name}_injuryMechanism`;
 
-    const filteredOptions = injuryFilteredOptions.filter(
-      (item) =>
-        item.associatedInjury?.toLowerCase().trim() ===
-        trauma?.toLowerCase().trim()
-    );
-
-    const mechanismOptions = getFilteredOptions(filteredOptions, "mechanismOfInjuryValue");
+    const { mechanismOptions } = getAnatomyOptions(anatomyName);
 
     return (
       <div>
@@ -171,7 +165,7 @@ const DiagnosisSection = ({ values, prevStep, errors, handleChange, handleBlur }
         <h4 className="form-sub-heading">PHYSICAL INJURIES</h4>
         {values?.anatomy?.map(({ name, trauma }) => (
           <Accordion key={name} title={`${name} - ${trauma}`} isOpenInitially={!!openAccordions[name]}>
-            {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(name)}`, trauma)}
+            {renderAnatomyDetails(`physicalInjuriesDiagnosis_${toCamelCase(name)}`, name)}
           </Accordion>
         ))}
       </div>

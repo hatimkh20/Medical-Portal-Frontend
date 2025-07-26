@@ -4,7 +4,8 @@ import SelectableList from "../Common/SelectableList";
 import Button from "../Common/Button";
 import FormLayout from "../Common/FormLayout";
 import "./Form.css";
-import { anatomyList, psychologicalInjuries } from "./Constants";
+import { psychologicalInjuries } from "./Constants";
+import anatomyList from "../../../assets/data/anatomy_values.json";
 
 const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
   
@@ -67,6 +68,8 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
     });
   };
 
+  const anatomyList_ = ["Other", ...anatomyList.map(item => item.anatomy)];
+
   return (
     <FormLayout title=" ANATOMY">
       <p className="form-description">Please select affected anatomies.</p>
@@ -74,7 +77,7 @@ const AnatomySectionForm = ({ values, handleChange, handleBlur, prevStep }) => {
         <SelectableList
           title="Anatomy"
           name="anatomy"
-          options={anatomyList}
+          options={anatomyList_}
           selectedItems={values.anatomy} // Already in object format
           handleAddItem={handleAddAnatomy}
           handleRemoveItem={handleRemoveAnatomy}
